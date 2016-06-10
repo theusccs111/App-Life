@@ -1,0 +1,115 @@
+﻿@model APP_Life.Models.Usuario
+@{
+    ViewBag.Title = "CadastrarUsuario";
+}
+
+<h2>CadastrarUsuario</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true);
+    <fieldset>
+        <legend>Cadastrar Usuário</legend>
+        <div>
+            @Html.LabelFor(model => model.nome)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.nome)
+            @Html.ValidationMessageFor(model => model.nome)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.sobrenome)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.sobrenome)
+            @Html.ValidationMessageFor(model => model.sobrenome)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.dataNasc)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.dataNasc)
+            @Html.ValidationMessageFor(model => model.dataNasc)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.telefone)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.telefone)
+            @Html.ValidationMessageFor(model => model.telefone)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.sexo)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.sexo)
+            @Html.ValidationMessageFor(model => model.sexo)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.rua)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.rua)
+            @Html.ValidationMessageFor(model => model.rua)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.numero)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.numero)
+            @Html.ValidationMessageFor(model => model.numero)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.bairro)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.bairro)
+            @Html.ValidationMessageFor(model => model.bairro)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.cidade)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.cidade)
+            @Html.ValidationMessageFor(model => model.cidade)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.estado)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.estado)
+            @Html.ValidationMessageFor(model => model.estado)
+        </div>
+        
+        <div>
+            @Html.LabelFor(model => model.email)
+        </div>
+        <div>
+            @Html.EditorFor(model => model.email)
+            @Html.ValidationMessageFor(model => model.email)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.senha)
+        </div>
+        <div>
+            @Html.PasswordFor(model => model.senha)
+            @Html.ValidationMessageFor(model => model.senha)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.confirmaSenha)
+        </div>
+        <div>
+            @Html.PasswordFor(model => model.confirmaSenha)
+            @Html.ValidationMessageFor(model => model.confirmaSenha)
+        </div>
+        
+        <p>
+            <input type="submit" value="Logar" />
+        </p>
+    </fieldset>
+}
+

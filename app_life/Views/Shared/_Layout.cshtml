@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!--<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bootstrap-theme")
+    @Styles.Render("~/Content/bootstrap")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+
+
+   
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="container">
+        @RenderPage("~/Views/Shared/_Header.cshtml")
+        <div class="row">
+            <div class="col-sm-push-9">
+                @RenderBody() <!-- pega o corpo da minha view como a index.cshtml-->
+            </div>
+        </div>
+        <div class="row">
+            <hr />
+            @RenderPage("~/Views/Shared/_Footer.cshtml")<!-- pega outro layout e chama ele dessa forma-->
+        </div>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/jquery.validate.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+        @using System.Web.Optimization
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/Scripts/jquery")
+        @Scripts.Render("~/Scripts/knockout")
+    </div>
+</body>
+</html>

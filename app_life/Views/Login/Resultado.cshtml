@@ -1,0 +1,91 @@
+﻿@model APP_Life.Models.Usuario
+@{
+    ViewBag.Title = "Resultado";
+}
+
+<h2>Resultado</h2>
+
+<fieldset>
+    <legend>usuario</legend>
+    <div>
+        @Html.DisplayNameFor(model => model.nome)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.nome)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.sobrenome)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.sobrenome)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.dataNasc)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.dataNasc)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.telefone)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.telefone)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.sexo)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.sexo)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.rua)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.rua)
+    </div>
+    <div>
+        @Html.DisplayNameFor(model => model.numero)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.numero)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.bairro)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.bairro)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.cidade)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.cidade)
+    </div><div>
+        @Html.DisplayNameFor(model => model.estado)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.estado)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div>
+        @Html.DisplayNameFor(model => model.senha)
+    </div>
+    <div>
+        @Html.DisplayFor(model => model.senha)
+    </div>
+</fieldset>
+@Html.ActionLink("Voltar", "Index");
