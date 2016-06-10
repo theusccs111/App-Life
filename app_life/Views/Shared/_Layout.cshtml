@@ -28,7 +28,16 @@
 </head>
 <body>
     <div class="container">
-        @RenderPage("~/Views/Shared/_Header.cshtml")
+        @if (IsSectionDefined("header"))
+        {
+           // @RenderPage("~/Views/Shared/_Header.cshtml")
+           @RenderSection("header")
+        }
+        else
+        {
+            @Html.Partial("_Header")
+        }
+      
         <div class="row">
             <div class="col-sm-push-9">
                 @RenderBody() <!-- pega o corpo da minha view como a index.cshtml-->

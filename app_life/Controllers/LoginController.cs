@@ -47,6 +47,11 @@ namespace APP_Life.Controllers
         }
 
 
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+
         public ActionResult Lancamento()
         {
             return View();
