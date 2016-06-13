@@ -53,6 +53,7 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.bairro).HasColumnName("bairro");
             this.Property(t => t.cidade).HasColumnName("cidade");
             this.Property(t => t.estado).HasColumnName("estado");
+            this.Property(t => t.Calorias).HasColumnName("Calorias");
         }
     }
 }

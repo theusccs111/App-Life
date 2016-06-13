@@ -8,6 +8,7 @@ namespace APP_Life.Models
         public usuario()
         {
             this.despesas = new List<despesa>();
+            this.dietaxalimentoxusuarios = new List<dietaxalimentoxusuario>();
             this.projetadoes = new List<projetado>();
             this.receitas = new List<receita>();
         }
@@ -25,7 +26,9 @@ namespace APP_Life.Models
         public string bairro { get; set; }
         public string cidade { get; set; }
         public string estado { get; set; }
+        public Nullable<float> Calorias { get; set; }
         public virtual ICollection<despesa> despesas { get; set; }
+        public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public virtual ICollection<projetado> projetadoes { get; set; }
         public virtual ICollection<receita> receitas { get; set; }
     }

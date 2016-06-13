@@ -16,16 +16,22 @@ namespace APP_Life.Models
         {
         }
 
+        public DbSet<alimento> alimentoes { get; set; }
         public DbSet<categoria> categorias { get; set; }
         public DbSet<despesa> despesas { get; set; }
+        public DbSet<dieta> dietas { get; set; }
+        public DbSet<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public DbSet<projetado> projetadoes { get; set; }
         public DbSet<receita> receitas { get; set; }
         public DbSet<usuario> usuarios { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new alimentoMap());
             modelBuilder.Configurations.Add(new categoriaMap());
             modelBuilder.Configurations.Add(new despesaMap());
+            modelBuilder.Configurations.Add(new dietaMap());
+            modelBuilder.Configurations.Add(new dietaxalimentoxusuarioMap());
             modelBuilder.Configurations.Add(new projetadoMap());
             modelBuilder.Configurations.Add(new receitaMap());
             modelBuilder.Configurations.Add(new usuarioMap());
