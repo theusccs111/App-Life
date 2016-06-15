@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
-    public partial class usuario
+    public partial class usuario:IEnumerable<usuario>
     {
         public usuario()
         {
@@ -11,6 +12,20 @@ namespace APP_Life.Models
             this.dietaxalimentoxusuarios = new List<dietaxalimentoxusuario>();
             this.projetadoes = new List<projetado>();
             this.receitas = new List<receita>();
+        }
+
+        private List<usuario> usuariosLista;
+
+       
+
+        public IEnumerator<usuario> GetEnumerator()
+        {
+            return usuariosLista.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return usuariosLista.GetEnumerator();
         }
 
         public int usuarioID { get; set; }

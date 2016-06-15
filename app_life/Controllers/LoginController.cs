@@ -10,6 +10,8 @@ namespace APP_Life.Controllers
 {
     public class LoginController : Controller
     {
+        app_lifeContext contexto = new app_lifeContext();
+
         // GET: Login
         public ActionResult Index()
         {//view tipada
@@ -28,7 +30,6 @@ namespace APP_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                app_lifeContext contexto = new app_lifeContext();
                 var query = from u in contexto.usuarios select u;
                 foreach (var item in query)
                 {
@@ -54,6 +55,7 @@ namespace APP_Life.Controllers
 
         public ActionResult Lancamento()
         {
+            contexto.receitas.ToList();
             return View();
         }
 
