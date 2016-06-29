@@ -8,10 +8,16 @@ namespace APP_Life.Models.Mapping
         public dietaxalimentoxusuarioMap()
         {
             // Primary Key
-            this.HasKey(t => t.DietaID);
+            this.HasKey(t => new { t.DietaID, t.AlimentoID, t.UsuarioID });
 
             // Properties
             this.Property(t => t.DietaID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            this.Property(t => t.AlimentoID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            this.Property(t => t.UsuarioID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             this.Property(t => t.Medida)
@@ -26,12 +32,13 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Medida).HasColumnName("Medida");
 
             // Relationships
-            this.HasOptional(t => t.alimento)
+            this.HasRequired(t => t.alimento)
                 .WithMany(t => t.dietaxalimentoxusuarios)
                 .HasForeignKey(d => d.AlimentoID);
             this.HasRequired(t => t.dieta)
-                .WithOptional(t => t.dietaxalimentoxusuario);
-            this.HasOptional(t => t.usuario)
+                .WithMany(t => t.dietaxalimentoxusuarios)
+                .HasForeignKey(d => d.DietaID);
+            this.HasRequired(t => t.usuario)
                 .WithMany(t => t.dietaxalimentoxusuarios)
                 .HasForeignKey(d => d.UsuarioID);
 

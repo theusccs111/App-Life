@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
-    public partial class receita:IEnumerable<receita>
+    public partial class receita
     {
         public int ReceitaID { get; set; }
         public Nullable<int> UsuarioID { get; set; }
@@ -14,16 +13,5 @@ namespace APP_Life.Models
         public Nullable<System.DateTime> Data { get; set; }
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
-
-        private List<receita> receitaLista;
-        public IEnumerator<receita> GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return receitaLista.GetEnumerator();
-        }
     }
 }
