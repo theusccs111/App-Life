@@ -35,8 +35,10 @@ namespace APP_Life.Controllers
                 {
                     if (item.email == user.email)
                     {
-                        return View("Lancamento", user);
-
+                        Session["usuarioLogadoID"] = item.usuarioID.ToString();
+                        Session["nomeUsuarioLogado"] = item.nome.ToString();
+                        return RedirectToAction("Lancamento");
+                  //      return View("Lancamento");
                     }
                     else
                     {
@@ -55,8 +57,15 @@ namespace APP_Life.Controllers
 
         public ActionResult Lancamento()
         {
-            contexto.receitas.ToList();
-            return View();
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View(contexto.receitas.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
 

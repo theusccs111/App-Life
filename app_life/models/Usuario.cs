@@ -1,9 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
-    public partial class usuario
+    public partial class usuario:IEnumerable<usuario>
     {
         public usuario()
         {
@@ -12,6 +13,8 @@ namespace APP_Life.Models
             this.projetadoes = new List<projetado>();
             this.receitas = new List<receita>();
         }
+
+      
 
         public int usuarioID { get; set; }
         public string email { get; set; }
@@ -31,5 +34,17 @@ namespace APP_Life.Models
         public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public virtual ICollection<projetado> projetadoes { get; set; }
         public virtual ICollection<receita> receitas { get; set; }
+
+
+        List<usuario> usuariosLista;
+        public IEnumerator<usuario> GetEnumerator()
+        {
+            return usuariosLista.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return usuariosLista.GetEnumerator();
+        }
     }
 }
