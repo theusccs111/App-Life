@@ -31,6 +31,90 @@
         }
     </tbody>
 </table>
+
+<script>
+
+
+
+    sessionStorage.clear();
+    var linha = document.getElementById('tb').rows;
+    var dados = null;
+    for (var i = 1 ; i < linha.length ; i++) {
+        dados = linha[i].cells;
+        for (var j = 0 ; j < dados.length ; j++) {
+            sessionStorage.setItem('valor' + [i], dados[j  ].innerText);
+			 sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
+            sessionStorage.setItem('categoria' + [i], dados[j + 2].innerText);
+           break;
+        }
+    }
+
+
+    var array = [];
+    var array2 = [];
+	var array3 =[];
+
+
+    for (var i = 1; i < sessionStorage.length; i++) {
+        if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
+            array[i] = sessionStorage.getItem('valor' + [i]);
+            array2[i] = sessionStorage.getItem('descricao' + [i]);
+            array3[i] = sessionStorage.getItem('categoria' + [i]);
+           }
+    }
+
+
+    google.charts.setOnLoadCallback(drawChart);
+
+    google.charts.load('43', { 'packages': ['corechart'] });
+     function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Receitas');
+        data.addColumn('number', 'Valor');
+       
+	
+        for (var i = 1; i < array.length; i++) {
+
+            data.addRows([
+            [String(array2[i]), parseFloat(array[i])]
+           
+            ]);
+        }
+
+
+
+        var options = {
+            title: 'Receitas',
+            vAxis: { title: 'Visitas' },
+			hAxis: { title: 'dados' },
+            seriesType: 'bars',
+            legend: { position: 'bottom' }
+
+        };
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+
+
+
+
+    }
+
+</script>
+
+<div class="container">
+
+
+    <div class="col-md-12">
+        <div id="chart_div" style="width: 100%; height:450px;">
+        </div>
+    </div>
+
+</div>
+
+
+
 <div class="form-actions text-right pal">
     <button type="submit" class="btn btn-primary" name="Salvar" value="Salvar">
         Salvar Alterações
