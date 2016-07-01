@@ -19,9 +19,9 @@ namespace APP_Life.Controllers
             return View(user);
         }
 
-        public void lerUsuario()
+        public ActionResult teste()
         {
-
+            return View();
 
         }
 

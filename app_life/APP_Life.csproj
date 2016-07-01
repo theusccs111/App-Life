@@ -147,6 +147,9 @@
     <Content Include="Content\img\portfolio\5.png" />
     <Content Include="Content\img\portfolio\6.jpg" />
     <Content Include="Content\magnific-popup.css" />
+    <Content Include="Content\metisMenu.css" />
+    <Content Include="Content\metisMenu.min.css" />
+    <Content Include="Content\sb-admin-2.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -210,12 +213,16 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\loader.js" />
+    <Content Include="Scripts\metisMenu.js" />
+    <Content Include="Scripts\metisMenu.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\sb-admin-2.js" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
+    <Content Include="Views\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Resultado.cshtml" />
   </ItemGroup>
@@ -259,6 +266,7 @@
     <Content Include="Views\Shared\_MenuLateral.cshtml" />
     <Content Include="Views\Login\Lancamento.cshtml" />
     <Content Include="Views\Login\Inicio.cshtml" />
+    <Content Include="Views\Login\teste.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
