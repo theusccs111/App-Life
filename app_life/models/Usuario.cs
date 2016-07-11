@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace APP_Life.Models
 {
@@ -14,21 +15,50 @@ namespace APP_Life.Models
             this.receitas = new List<receita>();
         }
 
-      
 
+      //  [DisplayName("Código")]
         public int usuarioID { get; set; }
+
+     //   [DisplayName("Email")]
         public string email { get; set; }
+
+   //     [DisplayName("Senha")]
         public string senha { get; set; }
+
+        //[DisplayName("Confirmar Senha")]
+       // public string confirmaSenha { get; set; }
+
+        [DisplayName("Nome")]
         public string nome { get; set; }
+
+        [DisplayName("Sobrenome")]
         public string sobrenome { get; set; }
+
+        [DisplayName("Data de Nascimento")]
         public Nullable<System.DateTime> datanasc { get; set; }
+
+        [DisplayName("Sexo")]
         public string sexo { get; set; }
+
+        [DisplayName("Telefone")]
         public Nullable<long> telefone { get; set; }
+
+        [DisplayName("Rua")]
         public string rua { get; set; }
+
+        [DisplayName("Número da Rua")]
         public Nullable<int> numero { get; set; }
+
+        [DisplayName("Bairro")]
         public string bairro { get; set; }
+
+        [DisplayName("Cidade")]
         public string cidade { get; set; }
+
+        [DisplayName("Estado")]
         public string estado { get; set; }
+
+        [DisplayName("Calorias")]
         public Nullable<float> Calorias { get; set; }
         public virtual ICollection<despesa> despesas { get; set; }
         public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }

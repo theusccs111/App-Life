@@ -1,38 +1,40 @@
 ﻿@model APP_Life.Models.usuario
 @{
     ViewBag.Title = "Login";
-
+    
 }
-
+@section login{
 <style type="text/css">
-        body {
-            background: url(../../Content/img/fundo_2.jpg) fixed;
-            background-size: cover;
-            padding: 0;
-            margin: 0;
-        }
+    body {
+        background: url(../../Content/img/fundo_2.jpg) fixed;
+        background-size: cover;
+        padding: 0;
+        margin: 0;
+    }
 </style>
 
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true);
     <div class="container">
-        <div class="col-md-4">    <div class="label">
-            @Html.LabelFor(model => model.email)
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(model => model.email)
+            </div>
+            <div>
+                @Html.EditorFor(model => model.email,new { @class = "form-control"})
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+            <div>
+                @Html.LabelFor(model => model.senha)
+            </div>
+            <div>
+                @Html.PasswordFor(model => model.senha, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.senha)
+            </div>
+            <p>
+                <input type="submit" value="Logar" class="btn btn-primary btn-success" />
+            </p>
         </div>
-        <div>
-            @Html.EditorFor(model => model.email)
-            @Html.ValidationMessageFor(model => model.email)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.senha)
-        </div>
-        <div>
-            @Html.PasswordFor(model => model.senha)
-            @Html.ValidationMessageFor(model => model.senha)
-        </div>
-        <p>
-            <input type="submit" value="Logar" class="btn btn-primary btn-success" />
-        </p>
-    </div></div>
-}
+    </div>
+}}

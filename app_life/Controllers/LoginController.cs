@@ -52,6 +52,8 @@ namespace APP_Life.Controllers
 
         public ActionResult Inicio()
         {
+            Session["usuarioLogadoID"] = null;
+            Session["nomeUsuarioLogado"] = null;
             return View();
         }
 
@@ -67,6 +69,47 @@ namespace APP_Life.Controllers
             }
             
         }
+
+        public ActionResult Receitas()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View(contexto.receitas.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public ActionResult Despesas()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View(contexto.despesas.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+        public ActionResult Geral()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+                return View(contexto.despesas.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+
+        }
+
+
 
 
         public ActionResult Resultado(usuario user)
@@ -85,6 +128,7 @@ namespace APP_Life.Controllers
         {
             if (ModelState.IsValid)
             {
+              //testar senha
                 return View("Resultado", user);
             }
             return View(user);

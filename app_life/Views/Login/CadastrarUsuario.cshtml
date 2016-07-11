@@ -3,113 +3,131 @@
     ViewBag.Title = "CadastrarUsuario";
 }
 
-<h2>CadastrarUsuario</h2>
+<h2>Cadastrar Usuario</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CadastrarUsuario", "LoginController",
+            new { ReturnUrl = ViewBag.ReturnUrl },
+            FormMethod.Post, new { @class="form-horizontal" }))
 {
     @Html.ValidationSummary(true);
-    <fieldset>
-        <legend>Cadastrar Usuário</legend>
-        <div>
-            @Html.LabelFor(model => model.nome)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.nome)
-            @Html.ValidationMessageFor(model => model.nome)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.sobrenome)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.sobrenome)
-            @Html.ValidationMessageFor(model => model.sobrenome)
+    <div class="container">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.nome, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.nome)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sobrenome, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.sobrenome)
+                </div>
+            </div>
+
+                    <div class="form-group">
+                @Html.LabelFor(model => model.datanasc, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.datanasc, new { htmlAttributes = new { @class = "form-control input-md",@type = "date" } })
+                    @Html.ValidationMessageFor(model => model.datanasc)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.telefone, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.telefone)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.sexo, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.sexo, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.sexo)
+                </div>
+            </div>
+
         </div>
 
-        <div>
-            @Html.LabelFor(model => model.dataNasc)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.dataNasc)
-            @Html.ValidationMessageFor(model => model.dataNasc)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.telefone)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.telefone)
-            @Html.ValidationMessageFor(model => model.telefone)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.sexo)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.sexo)
-            @Html.ValidationMessageFor(model => model.sexo)
-        </div>
 
-        <div>
-            @Html.LabelFor(model => model.rua)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.rua)
-            @Html.ValidationMessageFor(model => model.rua)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.numero)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.numero)
-            @Html.ValidationMessageFor(model => model.numero)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.bairro)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.bairro)
-            @Html.ValidationMessageFor(model => model.bairro)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.cidade)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.cidade)
-            @Html.ValidationMessageFor(model => model.cidade)
-        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.rua, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.rua, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.rua)
+                </div>
+            </div>
 
-        <div>
-            @Html.LabelFor(model => model.estado)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.estado)
-            @Html.ValidationMessageFor(model => model.estado)
-        </div>
-        
-        <div>
-            @Html.LabelFor(model => model.email)
-        </div>
-        <div>
-            @Html.EditorFor(model => model.email)
-            @Html.ValidationMessageFor(model => model.email)
-        </div>
-        <div>
-            @Html.LabelFor(model => model.senha)
-        </div>
-        <div>
-            @Html.PasswordFor(model => model.senha)
-            @Html.ValidationMessageFor(model => model.senha)
-        </div>
 
-        <div>
-            @Html.LabelFor(model => model.confirmaSenha)
+            <div class="form-group">
+                @Html.LabelFor(model => model.numero, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.numero)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.bairro, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.bairro)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.cidade, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.cidade)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.estado, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.estado)
+                </div>
+            </div>
         </div>
-        <div>
-            @Html.PasswordFor(model => model.confirmaSenha)
-            @Html.ValidationMessageFor(model => model.confirmaSenha)
+    </div>
+    <div class="container">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.email, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control input-md" } })
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.senha, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.PasswordFor(model => model.senha, new { htmlAttributes = new { @class = "form-control input-md",@id="senha" } })
+                    @Html.ValidationMessageFor(model => model.senha)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.senha, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                  <input type="password" id="confirmarSenha" class="form-control input-md"/>
+                </div>
+            </div>
         </div>
-        
+    </div>
         <p>
-            <input type="submit" value="Logar" />
+            <input type="submit" value="Cadastrar" class="btn btn-success" />
         </p>
-    </fieldset>
+
 }
 
