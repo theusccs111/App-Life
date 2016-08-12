@@ -42,7 +42,7 @@ namespace APP_Life.Controllers
                     }
                     else
                     {
-                        return View(user);
+                       // return View(user);
                     }
                 }
             }
@@ -100,6 +100,23 @@ namespace APP_Life.Controllers
         {
             if (Session["usuarioLogadoID"] != null)
             {
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+                var query = from u in contexto.receitas
+                            where u.UsuarioID == id
+                            select new
+                            {
+
+                                valor = u.Valor,
+
+                            };
+                Double total = 0;
+              foreach(var u in query)
+                {
+                    total += Convert.ToDouble(u.valor);
+                }
+                Session["total"] = total;
+
+
                 return View(contexto.despesas.ToList());
             }
             else
@@ -114,6 +131,7 @@ namespace APP_Life.Controllers
 
         public ActionResult Resultado(usuario user)
         {
+
             return View(user);
         }
 
@@ -124,14 +142,18 @@ namespace APP_Life.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadastrarUsuario(usuario user)
+        public ActionResult CadastrarUsuario(FormCollection collection)
         {
             if (ModelState.IsValid)
             {
+                CrudUsuario crud = new CrudUsuario();
+                usuario user = new usuario();
+                TryUpdateModel(user,collection);
+               crud.InsertOrUpdate(user);
               //testar senha
                 return View("Resultado", user);
             }
-            return View(user);
+            return View();
         }
 
         public ActionResult EmailUnico(string email)
