@@ -1,0 +1,7 @@
+insert : db.usuario.add(user)
+
+
+update : manda o select quando tem o objeto atribui tipo user.nome = ivo depois db.savechanges();
+
+
+delete : db.usuario.remove(user)
