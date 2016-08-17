@@ -142,28 +142,18 @@ namespace APP_Life.Controllers
         }
 
         [HttpPost]
-        public ActionResult CadastrarUsuario(FormCollection collection)
+        public ActionResult CadastrarUsuario(usuario user)
         {
             if (ModelState.IsValid)
             {
-                CrudUsuario crud = new CrudUsuario();
-                usuario user = new usuario();
-                TryUpdateModel(user,collection);
-               crud.InsertOrUpdate(user);
-              //testar senha
-                return View("Resultado", user);
+                contexto.usuarios.Add(user);
+                contexto.SaveChanges();
+                return RedirectToAction("Geral");
             }
             return View();
         }
 
-        public ActionResult EmailUnico(string email)
-        {
-            var loginsDeExemplo = new Collection<string>
-            {
-                "theus@gmail.com","fael@gmail.com","ivo@gmail.com","lili@gmail.com"
-            };
-            return Json(loginsDeExemplo.All(x => x.ToLower() != email.ToLower()), JsonRequestBehavior.AllowGet);
-        }
+      
 
     }
 

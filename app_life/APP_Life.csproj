@@ -239,7 +239,6 @@
     <Compile Include="Models\alimento.cs" />
     <Compile Include="Models\app_lifeContext.cs" />
     <Compile Include="Models\categoria.cs" />
-    <Compile Include="Models\CrudUsuario.cs" />
     <Compile Include="Models\despesa.cs" />
     <Compile Include="Models\dieta.cs" />
     <Compile Include="Models\dietaxalimentoxusuario.cs" />
