@@ -4,8 +4,10 @@
 
 }
 @section login{
-    @using (Html.BeginForm(new { htmlAttributes = new { @class = "form.login" } }))
-    {
+   @using (Html.BeginForm("Index", "Login",
+             new { ReturnUrl = ViewBag.ReturnUrl },
+             FormMethod.Post, new { @class = "login" }))
+   {
                     @Html.ValidationSummary(true);
         <div class="container">
             <div class="col-md-12">
@@ -20,7 +22,7 @@
                     @Html.LabelFor(model => model.senha)
                 </div>
                 <div>
-                    @Html.PasswordFor(model => model.senha, new { @class = "form.login" })
+                    @Html.PasswordFor(model => model.senha, new { @class = "" })
                     @Html.ValidationMessageFor(model => model.senha)
                 </div>
                 <p>
