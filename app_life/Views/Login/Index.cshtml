@@ -11,23 +11,27 @@
                     @Html.ValidationSummary(true);
         <div class="container">
             <div class="col-md-12">
+         
+                    <p class="form-title"> Vamos Começar!</p>
+   
                 <div>
-                    @Html.LabelFor(model => model.email)
-                </div>
-                <div>
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "1231" } })
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
                     @Html.ValidationMessageFor(model => model.email)
                 </div>
+
                 <div>
-                    @Html.LabelFor(model => model.senha)
-                </div>
-                <div>
-                    @Html.PasswordFor(model => model.senha, new { @class = "" })
+                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
                     @Html.ValidationMessageFor(model => model.senha)
                 </div>
                 <p>
-                    <input type="submit" value="Logar" class="btn btn-primary btn-success" />
+                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
                 </p>
-            </div>
-        </div>
+                <p>
+                    <input type="submit" value="Cadastre-se" class="btn btn-primary" />
+                </p>
+</div>
+          
+      </div>
+
     }}
