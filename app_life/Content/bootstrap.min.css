@@ -12,6 +12,7 @@ html {
 
 body {
     margin: 0;
+    background: black;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -7243,8 +7244,10 @@ p.form-title
 
 form
 {
-    width: 250px;
-    margin: 0 auto;
+    width: 300px;
+    margin: 200px auto;
+    left: 200px;
+    background: rgba(75, 117, 177, 0.4);
 }
 
 form.login input[type="text"], form.login input[type="password"]
