@@ -1,4 +1,6 @@
-﻿@model IEnumerable<APP_Life.Models.receita>
+﻿
+@model IEnumerable<APP_Life.Models.receita>
+
 @{
     ViewBag.Title = "Receitas";
 }
@@ -11,92 +13,6 @@
     }
 </style>
 
-  <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <!-- Modal content-->
-                <div class="container">
-                    <div class="col-md-12">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <input id="textinput" name="textinput" placeholder="Descrição" class="form-control" type="text">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="col-md-12">
-                        <!-- Select Basic -->
-                        <div class="form-group">         
-                            <div class="col-md-12">
-                               <!-- <select id="selectbasic" name="selectbasic"  class="form-control">
-                                   
-                                    <option value="2">Salario</option>
-                                    <option value="3">Por Fora</option>
-                                </select>-->
-                                @Html.DropDownListFor(model => model., new SelectList(Enum.GetValues(typeof(MyNamespace.Enums.States))))
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                <div class="container">
-                    <div class="col-md-6">
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="control-label" for="textinput">Valor</label>
-                            <div class="col-md-12">
-                                <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Text input-->
-                        <div class="form-group">
-                           
-                            <div class="col-md-12">
-                                <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="datetime">    
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="container">
-                  
-                    <div class="col-md-6">
-                        <!-- Button -->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" for="singlebutton">Salvar</label>
-                            <div class="col-md-4">
-                                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-</div>
 
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
     <thead>

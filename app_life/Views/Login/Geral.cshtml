@@ -6,7 +6,10 @@
 
 
 <h3 id="receitaTotal" style="display:none;">
-    @Session["total"].ToString()
+    @Session["receitaTotal"].ToString()
+</h3>
+<h3 id="despesaTotal" style="display:none;">
+    @Session["despesaTotal"].ToString()
 </h3>
 <!--
 ter saldo de receita e despesa e projeções
@@ -19,7 +22,7 @@ ter saldo de receita e despesa e projeções
 
 -->
 
-<table id="tb" class="table table-striped" cellspacing="0" style="display:none;width: 100%;">
+<table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
             <th>Valor</th>
@@ -82,9 +85,11 @@ ter saldo de receita e despesa e projeções
     }
 
     total = document.getElementById('receitaTotal').innerText;
+    total2 = document.getElementById('despesaTotal').innerText;
+
     google.charts.setOnLoadCallback(drawChart);
 
-    google.charts.load('43', { 'packages': ['corechart'] });
+    google.charts.load('43', { 'packages': ['corechart'],'language':'pt-br' });
      function drawChart() {
 
         var data = new google.visualization.DataTable();
@@ -92,11 +97,12 @@ ter saldo de receita e despesa e projeções
         data.addColumn('number', 'Total Receita');
         data.addColumn('number', 'Despesa');
         
-
+        var auxSoma = 0;
         for (var i = 1; i < array.length; i++) {
+            auxSoma = parseFloat(auxSoma) + parseFloat(array[i]);
 
             data.addRows([
-            [String(array4[i]), parseFloat(total),parseFloat(array[i])]
+            [String(array4[i]), parseFloat(total),parseFloat(auxSoma)]
 
             ]);
         }
@@ -105,7 +111,7 @@ ter saldo de receita e despesa e projeções
 
         var options = {
             title: 'Geral',
-            
+           format:'currency',
 			curveType: 'function',
             legend: { position: 'bottom' }
 
@@ -125,7 +131,7 @@ ter saldo de receita e despesa e projeções
 
 
     <div class="col-md-12">
-        <div id="chart_div" style="width:100%;height:75%;">
+        <div id="chart_div" style="width:100%;height:100%;">
         </div>
     </div>
 

@@ -271,6 +271,7 @@
     <Content Include="Views\Login\Receitas.cshtml" />
     <Content Include="Views\Login\Despesas.cshtml" />
     <Content Include="Views\Login\Geral.cshtml" />
+    <Content Include="Views\Login\CadastrarReceita.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -83,6 +83,24 @@ namespace APP_Life.Controllers
 
         }
 
+        public ActionResult CadastrarReceita()
+        {
+            var rece = new receita();
+            return View(rece);
+        }
+
+        [HttpPost]
+        public ActionResult CadastrarReceita(receita rece)
+        {
+            if (ModelState.IsValid)
+            {
+                contexto.receitas.Add(rece);
+                contexto.SaveChanges();
+                return RedirectToAction("Geral");
+            }
+            return View();
+        }
+
         public ActionResult Despesas()
         {
             if (Session["usuarioLogadoID"] != null)
@@ -114,10 +132,25 @@ namespace APP_Life.Controllers
                 {
                     total += Convert.ToDouble(u.valor);
                 }
-                Session["total"] = total;
+                Session["receitaTotal"] = total;
 
+                var query2 = from u in contexto.despesas
+                            where u.UsuarioID == id
+                            select new
+                            {
 
-                return View(contexto.despesas.ToList());
+                                valor = u.Valor,
+
+                            };
+                Double total2 = 0;
+                foreach (var u2 in query2)
+                {
+                    total2 += Convert.ToDouble(u2.valor);
+                }
+                Session["despesaTotal"] = total2;
+
+                var query3 = from u in contexto.despesas  orderby u.Data select u ;
+                return View(query3);
             }
             else
             {
