@@ -13,6 +13,35 @@
     }
 </style>
 
+<script type="text/javascript">
+
+    function atualizarDefinicao() {
+        $.ajax(
+        {
+            type: 'GET',
+            url: '/Login/CadastrarReceita',
+            dataType: 'html',
+            cache: false,
+            async: true,
+            success: function (data) {
+                $('#definicaoArquitetura').html(data);
+            }
+        });
+    }
+
+  
+</script>
+
+<div>
+    @Html.Partial("CadastrarReceita")
+
+</div>
+
+<input id="btnProximaDefinicao"
+       type="button"
+       value="Próxima Definição"
+       onclick="atualizarDefinicao();" />
+
 
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
     <thead>

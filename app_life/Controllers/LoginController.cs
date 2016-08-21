@@ -87,8 +87,8 @@ namespace APP_Life.Controllers
             }
 
         }
-
-        public ActionResult CadastrarReceita()
+     
+        public PartialViewResult CadastrarReceita()
         {
             ViewBag.CategoriaID = new SelectList
                  (
@@ -97,13 +97,13 @@ namespace APP_Life.Controllers
                      "nome"
                  );
             var rece = new receita();
-            return View(rece);
+            return PartialView(rece);
            
 
         }
 
         [HttpPost]
-        public ActionResult CadastrarReceita(receita rece)
+        public PartialViewResult CadastrarReceita(receita rece)
         {
             if (ModelState.IsValid)
             {
@@ -111,9 +111,9 @@ namespace APP_Life.Controllers
                 //rece.Data = (2014,12,12);
                 rece.UsuarioID = Convert.ToInt32(Session["UsuarioID"].ToString());
                 contexto.SaveChanges();
-                return RedirectToAction("Geral");
+                //return RedirectToAction("Geral");
             }
-            return View();
+            return PartialView();
         }
 
         public ActionResult Despesas()
