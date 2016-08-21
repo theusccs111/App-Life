@@ -1,4 +1,6 @@
 ﻿@model APP_Life.Models.receita
+
+
 @{
     ViewBag.Title = "CadastrarReceita";
 }
@@ -21,7 +23,7 @@
             <div class="modal-body">
                 <!-- Modal content-->
                 @using (Html.BeginForm("CadastrarReceita", "Login",
-                     FormMethod.Post, new { @class = "" }))
+                 FormMethod.Post, new { @class = "" }))
                 {
                     @Html.ValidationSummary(true);
                     <div class="container">
@@ -43,67 +45,64 @@
                             <!-- Select Basic -->
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <!-- <select id="selectbasic" name="selectbasic"  class="form-control">
 
-                                            <option value="2">Salario</option>
-                                            <option value="3">Por Fora</option>
-                                        </select>
-                                        @@Html.DropDownListFor(model => model., new SelectList(Enum.GetValues(typeof(MyNamespace.Enums.States))))
-                                    -->
-                                    @Html.EditorFor(model => model.categoria.nome, new { htmlAttributes = new { @class = "form-control input-md" } })
+                                    Escolha a Categoria:
+                                    @* Passando o Nome da ViewBag *@
+                                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
 
-
-
-
+                                
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="col-md-6">
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="control-label" for="textinput">Valor</label>
-                                <div class="col-md-12">
-                                    <!--    <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
-                                       -->
-                                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control input-md" } })
+
+                            <div class="container">
+                                <div class="col-md-6">
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        
+                                        <div class="col-md-12">
+                                            <!--    <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
+                                               -->
+                                            Valor:
+                                            @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control input-md" } })
 
 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Text input-->
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <!--  <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="datetime">
+                                            -->
+                                            Data:
+                                          @Html.EditorFor(model => model.Data, new { @type = "date" })
+
+
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Text input-->
-                            <div class="form-group">
+                            <div class="container">
 
-                                <div class="col-md-12">
-                                    <!--  <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="datetime">
-                                    -->
-                                    @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control input-md" } })
-
-
-
-
+                                <div class="col-md-6">
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        
+                                        <div class="col-md-4" style="margin-top:3px;"> 
+                                            <input type="submit" value="Cadastrar" class="btn btn-success" />
+                                        </div>
+                                    </div>
                                 </div>
+
+
+
                             </div>
-                        </div>
-                    </div>
-                    <div class="container">
-
-                        <div class="col-md-6">
-                            <!-- Button -->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="singlebutton">Salvar</label>
-                                <div class="col-md-4">
-                                    <input type="submit" value="Cadastrar" class="btn btn-success" />
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
                 }
             </div>
 

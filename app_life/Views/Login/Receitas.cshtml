@@ -17,9 +17,11 @@
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
-            <th>Valor</th>
-            <th>Descrição</th>
             <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
+
         </tr>
     </thead>
     <tbody>
@@ -27,14 +29,20 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
+                    @Html.DisplayFor(modelItem => item.categoria.nome)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.categoria.nome)
+                    @Html.DisplayFor(modelItem => item.Data)
                 </td>
+                <td>
+                  @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+               
+               
+                
             </tr>
         }
     </tbody>
@@ -50,9 +58,10 @@
     for (var i = 1 ; i < linha.length ; i++) {
         dados = linha[i].cells;
         for (var j = 0 ; j < dados.length ; j++) {
-            sessionStorage.setItem('valor' + [i], dados[j  ].innerText);
+            sessionStorage.setItem('categoria' + [i], dados[j  ].innerText);
 			 sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
-            sessionStorage.setItem('categoria' + [i], dados[j + 2].innerText);
+			 sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
+			 sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
            break;
         }
     }
@@ -61,31 +70,33 @@
     var array = [];
     var array2 = [];
 	var array3 =[];
-
+	var array4 = [];
 
     for (var i = 1; i < sessionStorage.length; i++) {
         if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
             array[i] = sessionStorage.getItem('valor' + [i]);
             array2[i] = sessionStorage.getItem('descricao' + [i]);
             array3[i] = sessionStorage.getItem('categoria' + [i]);
+            array4[i] = sessionStorage.getItem('data' + [i]);
            }
     }
 
 
     google.charts.setOnLoadCallback(drawChart);
 
-    google.charts.load('43', { 'packages': ['corechart'] });
+    google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
      function drawChart() {
 
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Receitas');
-        data.addColumn('number', 'Valor');
-
+        data.addColumn('string', 'data');
+       // data.addColumn('string', 'Receitas');
+        data.addColumn('string', 'Valor');
+        
 
         for (var i = 1; i < array.length; i++) {
 
             data.addRows([
-            [String(array2[i]), parseFloat(array[i])]
+            [String(array4[i]),String(array[i])]
 
             ]);
         }
@@ -94,8 +105,8 @@
 
         var options = {
             title: 'Receitas',
-            vAxis: { title: 'Visitas' },
-			hAxis: { title: 'dados' },
+            vAxis: { title: 'Valor', format: 'currency' },
+			hAxis: { title: 'Data' },
             seriesType: 'bars',
             legend: { position: 'bottom' }
 

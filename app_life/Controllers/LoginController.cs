@@ -74,6 +74,11 @@ namespace APP_Life.Controllers
         {
             if (Session["usuarioLogadoID"] != null)
             {
+
+
+
+
+
                 return View(contexto.receitas.ToList());
             }
             else
@@ -85,8 +90,16 @@ namespace APP_Life.Controllers
 
         public ActionResult CadastrarReceita()
         {
+            ViewBag.CategoriaID = new SelectList
+                 (
+                     contexto.categorias.ToList(),
+                     "CategoriaID",
+                     "nome"
+                 );
             var rece = new receita();
             return View(rece);
+           
+
         }
 
         [HttpPost]
@@ -95,6 +108,8 @@ namespace APP_Life.Controllers
             if (ModelState.IsValid)
             {
                 contexto.receitas.Add(rece);
+                //rece.Data = (2014,12,12);
+                rece.UsuarioID = Convert.ToInt32(Session["UsuarioID"].ToString());
                 contexto.SaveChanges();
                 return RedirectToAction("Geral");
             }
