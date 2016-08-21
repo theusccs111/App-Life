@@ -66,7 +66,7 @@
 
     google.charts.setOnLoadCallback(drawChart);
 
-    google.charts.load('43', { 'packages': ['corechart'] });
+    google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
      function drawChart() {
 
         var data = new google.visualization.DataTable();
@@ -86,7 +86,7 @@
 
         var options = {
             title: 'Despesas',
-            vAxis: { title: 'Visitas' },
+            vAxis: { title: 'Visitas', format: 'currency' },
 			hAxis: { title: 'dados' },
             seriesType: 'bars',
             legend: { position: 'bottom' }
