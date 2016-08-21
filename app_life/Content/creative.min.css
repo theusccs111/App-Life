@@ -251,7 +251,7 @@ header {
         color: #fff;
         opacity: 0;
         display: block;
-        background: rgba(240,95,64,.9);
+        background: rgba(240,95,64,1.0);
         position: absolute;
         bottom: 0;
         text-align: center;
