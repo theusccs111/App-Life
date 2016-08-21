@@ -1,4 +1,4 @@
-﻿
+﻿@model APP_Life.Models.receita
 @{
     ViewBag.Title = "CadastrarReceita";
 }
@@ -21,7 +21,7 @@
             <div class="modal-body">
                 <!-- Modal content-->
                 @using (Html.BeginForm("CadastrarReceita", "Login",
-                     FormMethod.Post, new { @class = "login" }))
+                     FormMethod.Post, new { @class = "" }))
                 {
                     @Html.ValidationSummary(true);
                     <div class="container">

@@ -4,34 +4,33 @@
 
 }
 @section login{
-   @using (Html.BeginForm("Index", "Login",
-             new { ReturnUrl = ViewBag.ReturnUrl },
-             FormMethod.Post, new { @class = "login" }))
-   {
-                    @Html.ValidationSummary(true);
-        <div class="container">
-            <div class="col-md-12">
-         
-                    <p class="form-title"> Vamos Começar!</p>
-   
-                <div>
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
-                    @Html.ValidationMessageFor(model => model.email)
-                </div>
+  @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+  FormMethod.Post, new { @class = "login" }))
+  {
+    @Html.ValidationSummary(true);
+    <div class="container">
+        <div class="col-md-3">
 
-                <div>
-                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
-                    @Html.ValidationMessageFor(model => model.senha)
-                </div>
-                <p>
-                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
-                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
-                </p>
-                <p>
-                    <input type="submit" value="Cadastre-se" class="btn btn-primary" />
-                </p>
-</div>
-          
-      </div>
+            <p class="form-title"> Vamos Começar!</p>
 
-    }}
+            <div>
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+
+            <div>
+                @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                @Html.ValidationMessageFor(model => model.senha)
+            </div>
+            <p>
+                <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
+            </p>
+            <p>
+                <input type="submit" value="Cadastre-se" style="background: #337ab7" class="btn btn-primary" />
+            </p>
+        </div>
+
+    </div>
+
+  }}

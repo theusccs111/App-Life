@@ -7245,9 +7245,9 @@ p.form-title
 form
 {
     width: 300px;
-    margin: 200px auto;
+    margin: 0px auto;
     left: 200px;
-    background: rgba(75, 117, 177, 0.4);
+    //background: rgba(75, 117, 177, 0.4);
 }
 
 form.login input[type="text"], form.login input[type="password"]
@@ -7396,3 +7396,26 @@ form.login a:hover
 }
 
  
+.window{
+    display:none;
+    width:300px;
+    height:300px;
+    position:absolute;
+    left:0;
+    top:0;
+   // background:#FFF;
+    z-index:9900;
+    padding:10px;
+    border-radius:10px;
+}
+ 
+#mascara{
+    display:none;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+}
+ 
+.fechar{display:block; text-align:right;}

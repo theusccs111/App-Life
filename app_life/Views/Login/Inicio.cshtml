@@ -1,4 +1,4 @@
-﻿
+﻿@model APP_Life.Models.usuario
 @{
     ViewBag.Title = "Inicio";
     Layout = "";
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="~/Content/magnific-popup.css" type="text/css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="~/Content/creative.css" type="text/css">
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,6 +32,40 @@
     <![endif]-->
 </head>
 <body id="page-top">
+    <script>
+        $(document).ready(function () {
+            $("a[rel=modal]").click(function (ev) {
+                ev.preventDefault();
+
+                var id = $(this).attr("href");
+
+                var alturaTela = $(document).height();
+                var larguraTela = $(window).width();
+
+                //colocando o fundo preto
+                $('#mascara').css({ 'width': larguraTela, 'height': alturaTela });
+                $('#mascara').fadeIn(1000);
+                $('#mascara').fadeTo("slow", 0.8);
+
+                var left = ($(window).width() / 2) - ($(id).width() / 2);
+                var top = ($(window).height() / 2) - ($(id).height() / 2);
+
+                $(id).css({ 'top': top, 'left': left });
+                $(id).show();
+            });
+
+            $("#mascara").click(function () {
+                $(this).hide();
+                $(".window").hide();
+            });
+
+            $('.fechar').click(function (ev) {
+                ev.preventDefault();
+                $("#mascara").hide();
+                $(".window").hide();
+            });
+        });
+    </script>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,8 +77,50 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">App Life</a>
-                <a href="Index" style ="background:black;color:white;"class="btn btn-default btn-xl sr-button">Começar!</a>
+
+                <a href="#janela1" rel="modal" class="btn btn-default btn-xl sr-button">Começar!</a>
+
+                <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;background:rgba(255,255,255,0.1);">
+                    <a href="#" class="fechar">X</a>
+                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, new { @class = "login" }))
+                    {
+                        @Html.ValidationSummary(true);
+                        <div class="container">
+                            <div class="col-md-3">
+
+                                <p class="form-title"> Vamos Começar!</p>
+
+                                <div>
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                                    @Html.ValidationMessageFor(model => model.email)
+                                </div>
+
+                                <div>
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                                    @Html.ValidationMessageFor(model => model.senha)
+                                </div>
+                                <p>
+                                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
+                                </p>
+                                <p>
+                                    <input type="submit" value="Cadastre-se" style="background: #337ab7" class="btn btn-primary" />
+                                </p>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+
+
+                <!-- mascara para cobrir o site -->
+                <div id="mascara"></div>
+
             </div>
+
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -61,8 +138,8 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.navbar-collapse -->
         <!-- /.container-fluid -->
     </nav>
     <!--
@@ -76,7 +153,7 @@
                 </div>
             </div>
         </header>-->
-    
+
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -91,7 +168,7 @@
             </div>
         </div>
     </header>
-      
+
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
