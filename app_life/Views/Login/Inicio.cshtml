@@ -48,9 +48,9 @@
                 $('#mascara').fadeTo("slow", 0.8);
 
                 var left = ($(window).width() / 2) - ($(id).width() / 2);
-                var top = ($(window).height() / 2) - ($(id).height() / 2);
+                /*var top = ($(window).height() / 2) - ($(id).height() / 2);*/
 
-                $(id).css({ 'top': top, 'left': left });
+                $(id).css({ '250%': top, 'left': left });
                 $(id).show();
             });
 
@@ -80,8 +80,8 @@
 
                 <a href="#janela1" rel="modal" class="btn btn-default btn-xl sr-button">Começar!</a>
 
-                <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;background:rgba(255,255,255,0.1);">
-                    <a href="#" class="fechar">X</a>
+                <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
+                    <a href="#" class="fechar">x</a>
                     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "login" }))
                     {
@@ -105,7 +105,7 @@ FormMethod.Post, new { @class = "login" }))
                                     <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
                                 </p>
                                 <p>
-                                    <input type="submit" value="Cadastre-se" style="" class="btn btn-primary" />
+                                    <input type="submit" value="Cadastre-se" class="btn btn-primarydois" />
                                 </p>
                             </div>
 
@@ -160,8 +160,8 @@ FormMethod.Post, new { @class = "login" }))
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3" style="margin-left:800px;">
-                            <p style="font-size:20px; color:#06921c;">Controlar suas finanças pode ser feita de forma fácil, utilizando o App Life, que além disso irá te auxiliar na sua alimentação diária.</p>
-                            <a href="#about" class="btn btn-primary btn-xl page-scroll" style="background-color:#06921c">Saiba Mais</a>
+                            <p style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; font-size:20px; font-weight:600; color:white;">Controlar suas finanças pode ser feita de forma fácil, utilizando o App Life, que além disso irá auxiliar na sua alimentação diária.</p>
+                            <a href="#about" class="btn btn-primary btn-xl page-scroll" style="background-color:#06921c;">Saiba mais</a>
                         </div>
                     </div>
                 </div>
@@ -173,9 +173,9 @@ FormMethod.Post, new { @class = "login" }))
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Nós temos oque você precisa!</h2>
+                    <h2 class="section-heading">Nós temos o que você precisa!</h2>
                     <hr class="light">
-                    <p class="text-faded">O App Life é tudo oque você precisa para gerenciar suas finanças e controlar sua alimentação!Tudo de forma integrada e de fácil utilização!</p>
+                    <p class="text-faded">O App Life é tudo o que você precisa para gerenciar suas finanças e controlar sua alimentação. Isso de forma integrada e muito fácil de utilizar!</p>
                     <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Vamos lá!</a>
                 </div>
             </div>
