@@ -42,7 +42,7 @@ namespace APP_Life.Controllers
                     }
                     else
                     {
-                       // return View(user);
+                        return RedirectToAction("Inicio");
                     }
                 }
             }
@@ -65,7 +65,7 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Inicio");
             }
             
         }
@@ -83,7 +83,7 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Inicio");
             }
 
         }
@@ -124,7 +124,7 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Inicio");
             }
 
         }
@@ -169,7 +169,7 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Inicio");
             }
 
         }
