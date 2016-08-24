@@ -11,43 +11,50 @@ namespace APP_Life.Controllers
     {
         app_lifeContext contexto = new app_lifeContext();
         // GET: Lancamento
+
+            public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult Receitas()
         {
             if (Session["usuarioLogadoID"] != null)
             {
                 ViewBag.listaReceita = contexto.receitas.ToList();
+                ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
                 return View();
             }
             else
             {
-                return RedirectToAction("Inicio");
+                return RedirectToAction("Inicio", "Login");
             }
 
         }
 
-        public PartialViewResult CadastrarReceita()
+        public ActionResult CadastrarReceita()
         {
-            ViewBag.CategoriaID = new SelectList
-                 (
-                     contexto.categorias.ToList(),
-                     "CategoriaID",
-                     "nome"
-                 );
+           
             var rece = new receita();
-            return PartialView(rece);
+            return View(rece);
 
 
         }
 
         [HttpPost]
-        public PartialViewResult CadastrarReceita(receita rece)
+        public ActionResult CadastrarReceita(receita rece)
         {
             if (ModelState.IsValid)
             {
-              
+                receita x = new receita();
+                x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
                 //return RedirectToAction("Geral");
             }
-            return PartialView();
+            return RedirectToAction("Receitas");
         }
 
         public ActionResult Despesas()
@@ -58,7 +65,8 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Inicio");
+
+                return RedirectToAction("Inicio", "Login");
             }
 
         }
@@ -103,7 +111,8 @@ namespace APP_Life.Controllers
             }
             else
             {
-                return RedirectToAction("Inicio");
+
+                return RedirectToAction("Inicio", "Login");
             }
 
         }

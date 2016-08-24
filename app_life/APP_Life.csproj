@@ -195,6 +195,7 @@
     <Content Include="Content\less\creative.less" />
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\variables.less" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -272,6 +273,7 @@
     <Content Include="Views\Lancamento\Despesas.cshtml" />
     <Content Include="Views\Lancamento\Geral.cshtml" />
     <Content Include="Views\Usuario\CadastrarUsuario.cshtml" />
+    <Content Include="Views\Lancamento\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
