@@ -19,12 +19,7 @@ namespace APP_Life.Controllers
             return View(user);
         }
 
-        public ActionResult teste()
-        {
-            return View();
-
-        }
-
+      
         [HttpPost]
         public ActionResult Index(usuario user)
         {
@@ -57,150 +52,10 @@ namespace APP_Life.Controllers
             return View();
         }
 
-        public ActionResult Lancamento()
-        {
-            if (Session["usuarioLogadoID"] != null)
-            {
-                return View(contexto.receitas.ToList());
-            }
-            else
-            {
-                return RedirectToAction("Inicio");
-            }
-            
-        }
+   
 
-        public ActionResult Receitas()
-        {
-            if (Session["usuarioLogadoID"] != null)
-            {
-
-
-
-
-
-                return View(contexto.receitas.ToList());
-            }
-            else
-            {
-                return RedirectToAction("Inicio");
-            }
-
-        }
-     
-        public PartialViewResult CadastrarReceita()
-        {
-            ViewBag.CategoriaID = new SelectList
-                 (
-                     contexto.categorias.ToList(),
-                     "CategoriaID",
-                     "nome"
-                 );
-            var rece = new receita();
-            return PartialView(rece);
-           
-
-        }
-
-        [HttpPost]
-        public PartialViewResult CadastrarReceita(receita rece)
-        {
-            if (ModelState.IsValid)
-            {
-                contexto.receitas.Add(rece);
-                //rece.Data = (2014,12,12);
-                rece.UsuarioID = Convert.ToInt32(Session["UsuarioID"].ToString());
-                contexto.SaveChanges();
-                //return RedirectToAction("Geral");
-            }
-            return PartialView();
-        }
-
-        public ActionResult Despesas()
-        {
-            if (Session["usuarioLogadoID"] != null)
-            {
-                return View(contexto.despesas.ToList());
-            }
-            else
-            {
-                return RedirectToAction("Inicio");
-            }
-
-        }
-
-        public ActionResult Geral()
-        {
-            if (Session["usuarioLogadoID"] != null)
-            {
-                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
-                var query = from u in contexto.receitas
-                            where u.UsuarioID == id
-                            select new
-                            {
-
-                                valor = u.Valor,
-
-                            };
-                Double total = 0;
-              foreach(var u in query)
-                {
-                    total += Convert.ToDouble(u.valor);
-                }
-                Session["receitaTotal"] = total;
-
-                var query2 = from u in contexto.despesas
-                            where u.UsuarioID == id
-                            select new
-                            {
-
-                                valor = u.Valor,
-
-                            };
-                Double total2 = 0;
-                foreach (var u2 in query2)
-                {
-                    total2 += Convert.ToDouble(u2.valor);
-                }
-                Session["despesaTotal"] = total2;
-
-                var query3 = from u in contexto.despesas  orderby u.Data select u ;
-                return View(query3);
-            }
-            else
-            {
-                return RedirectToAction("Inicio");
-            }
-
-        }
-
-
-
-
-        public ActionResult Resultado(usuario user)
-        {
-
-            return View(user);
-        }
-
-        public ActionResult CadastrarUsuario()
-        {
-            var user = new usuario();
-            return View(user);
-        }
-
-        [HttpPost]
-        public ActionResult CadastrarUsuario(usuario user)
-        {
-            if (ModelState.IsValid)
-            {
-                contexto.usuarios.Add(user);
-                contexto.SaveChanges();
-                return RedirectToAction("Geral");
-            }
-            return View();
-        }
-
+      
+       
       
 
     }

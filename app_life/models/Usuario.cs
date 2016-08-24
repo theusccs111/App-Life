@@ -15,6 +15,12 @@ namespace APP_Life.Models
             this.receitas = new List<receita>();
         }
 
+        public void CadastrarUsuario(usuario user)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            contexto.usuarios.Add(user);
+            contexto.SaveChanges();
+        }
 
       //  [DisplayName("Código")]
         public int usuarioID { get; set; }

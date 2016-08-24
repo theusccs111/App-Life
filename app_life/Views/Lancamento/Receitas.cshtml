@@ -7,9 +7,8 @@
 
 <h2>Receitas</h2>
 <style>
-
-    .container{
-        padding-top:3%;
+    .container {
+        padding-top: 3%;
     }
 </style>
 
@@ -29,7 +28,7 @@
         });
     }
 
-  
+
 </script>
 
 <div>
@@ -67,11 +66,11 @@
                     @Html.DisplayFor(modelItem => item.Data)
                 </td>
                 <td>
-                  @Html.DisplayFor(modelItem => item.Valor)
+                    @Html.DisplayFor(modelItem => item.Valor)
                 </td>
-               
-               
-                
+
+
+
             </tr>
         }
     </tbody>
@@ -120,7 +119,7 @@
         data.addColumn('string', 'data');
        // data.addColumn('string', 'Receitas');
         data.addColumn('string', 'Valor');
-        
+
 
         for (var i = 1; i < array.length; i++) {
 

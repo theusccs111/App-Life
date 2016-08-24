@@ -22,6 +22,15 @@ namespace APP_Life.Models
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
+        public void CadastrarReceita(receita rece, int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            rece.UsuarioID = id;
+            contexto.receitas.Add(rece);
+
+            contexto.SaveChanges();
+        }
+
         List<receita> receitasLista;
 
         public IEnumerator<receita> GetEnumerator()
