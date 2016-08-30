@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace APP_Life.Models
 {
-    public partial class usuario:IEnumerable<usuario>
+    public partial class usuario : IEnumerable<usuario>
     {
         public usuario()
         {
@@ -22,17 +22,17 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
-      //  [DisplayName("Código")]
+        //  [DisplayName("Código")]
         public int usuarioID { get; set; }
 
-     //   [DisplayName("Email")]
+        //   [DisplayName("Email")]
         public string email { get; set; }
 
-   //     [DisplayName("Senha")]
+        //     [DisplayName("Senha")]
         public string senha { get; set; }
 
         //[DisplayName("Confirmar Senha")]
-       // public string confirmaSenha { get; set; }
+        // public string confirmaSenha { get; set; }
 
         [DisplayName("Nome")]
         public string nome { get; set; }
