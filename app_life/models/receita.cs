@@ -31,6 +31,17 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
+        public void RemoverReceita(int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            receita main = contexto.receitas.Find(id);
+            contexto.receitas.Remove(main);
+            contexto.SaveChanges();
+        }
+
+       
+
+
         List<receita> receitasLista;
 
         public IEnumerator<receita> GetEnumerator()

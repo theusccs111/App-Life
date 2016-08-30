@@ -140,7 +140,6 @@
 </div>
 
 
-
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
@@ -155,6 +154,9 @@
         @foreach (var item in (ViewBag.listaReceita))
         {
             <tr>
+                <td id="@item.ReceitaID">
+                    @item.ReceitaID
+                </td>
                 <td>
                     @item.categoria.nome
                 </td>
@@ -168,15 +170,67 @@
                     @item.Valor
                 </td>
 
-
-
+                <td>
+                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    --><a href="" id="Delete" onclick="deletar(@item.ReceitaID)">Delete</a>
+                    <a href="" id="Update" onclick="update(@item.ReceitaID)">Update</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
+
+
+
+
 <script>
 
+   // $(document).delegate('#Delete', 'click', function (e) {
+
+     //   e.preventDefault();
+    
+    function deletar(objet) {
+        $.ajax({
+            type: "post",
+            url: "@Url.Action("Delete","Lancamento")",
+            ajaxasync: true,
+            //  data: { id : $('#idField').text() },
+            data: { id : objet },
+            success: function () {
+
+                alert("EBAAA!!!");
+
+                // Perform redirect
+                //window.location.replace(@@Url.Action("Receitas","Lancamento"));
+            },
+            error: function (data) {
+                alert("Opa deu erro");
+            }
+        });
+        //  });
+    };
+
+    function update(objet) {
+        $.ajax({
+            type: "post",
+            url: "@Url.Action("Update", "Lancamento")",
+            ajaxasync: true,
+        //  data: { id : $('#idField').text() },
+        data: { id : objet },
+        success: function () {
+
+            alert("EBAAA!!!");
+
+            // Perform redirect
+            //window.location.replace(@@Url.Action("Receitas","Lancamento"));
+        },
+        error: function (data) {
+            alert("Opa deu erro");
+        }
+    });
+    //  });
+    };
 
 
     sessionStorage.clear();
@@ -217,13 +271,13 @@
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'data');
        // data.addColumn('string', 'Receitas');
-        data.addColumn('string', 'Valor');
+        data.addColumn('number', 'Valor');
 
 
         for (var i = 1; i < array.length; i++) {
 
             data.addRows([
-            [String(array4[i]),String(array[i])]
+            [String(array4[i]),parseFloat(array[i])]
 
             ]);
         }

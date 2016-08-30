@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using APP_Life.Models;
+using System.Net;
 
 namespace APP_Life.Controllers
 {
@@ -35,6 +36,63 @@ namespace APP_Life.Controllers
             }
 
         }
+        //
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            receita main = contexto.receitas.Find(id);
+            if (main == null)
+            {
+                return HttpNotFound();
+            }
+            return View(main);
+        }
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            receita rece = new receita();
+            rece.RemoverReceita(id);
+          
+            return RedirectToAction("Index");
+        }
+        //
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            receita main = contexto.receitas.Find(id);
+            if (main == null)
+            {
+                return HttpNotFound();
+            }
+            return View(main);
+        }
+        [HttpPost, ActionName("Update")]
+        public ActionResult UpdateConfirmed(int id)
+        {
+           // receita rece = new receita();
+           // rece.RemoverReceita(id);
+
+            //
+            var query = from u in contexto.receitas where u.ReceitaID == id select u;
+            foreach (var item in query)
+            {
+                item.Descricao = "descricao Nova";
+                
+            }
+            contexto.SaveChanges();
+
+            //
+
+            return RedirectToAction("Index");
+        }
+        //
+
 
         public ActionResult CadastrarReceita()
         {
