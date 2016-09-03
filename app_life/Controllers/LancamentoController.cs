@@ -96,13 +96,19 @@ namespace APP_Life.Controllers
 
         public ActionResult CadastrarReceita()
         {
-           
-            var rece = new receita();
-            return View(rece);
+            ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+
+            return PartialView();
 
 
         }
 
+  
         [HttpPost]
         public ActionResult CadastrarReceita(receita rece)
         {
@@ -110,9 +116,9 @@ namespace APP_Life.Controllers
             {
                 receita x = new receita();
                 x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                //return RedirectToAction("Geral");
+                return RedirectToAction("Geral");
             }
-            return RedirectToAction("Receitas");
+            return View();
         }
 
         public ActionResult Despesas()

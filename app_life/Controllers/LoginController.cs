@@ -53,7 +53,10 @@ namespace APP_Life.Controllers
         }
 
    
-
+        public ActionResult CadastrarUsuario()
+        {
+            return View();
+        }
       
        
       

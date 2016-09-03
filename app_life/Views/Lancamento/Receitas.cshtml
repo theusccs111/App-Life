@@ -5,139 +5,22 @@
     ViewBag.Title = "Receitas";
 }
 
-<script src="~/Scripts/jquery-2.2.4.min.js"></script>
-       
+
+
+
+
 <h2>Receitas</h2>
 <style>
     .container {
         padding-top: 3%;
     }
 </style>
+<div id="dialog-edit" style="display: none"></div>
 
-<script>
-        $(document).ready(function () {
-            $("a[rel=modal]").click(function (ev) {
-                ev.preventDefault();
+<p>
+    @Html.ActionLink("Create New", "CadastrarReceita", null, new { id = "lnkCreate" })
+</p>
 
-                var id = $(this).attr("href");
-
-                var alturaTela = $(document).height();
-                var larguraTela = $(window).width();
-
-                //colocando o fundo preto
-                $('#mascara').css({ 'width': larguraTela, 'height': alturaTela });
-                $('#mascara').fadeIn(1000);
-                $('#mascara').fadeTo("slow", 0.8);
-
-                var left = ($(window).width() / 2) - ($(id).width() / 2);
-                /*var top = ($(window).height() / 2) - ($(id).height() / 2);*/
-
-                $(id).css({ '250%': top, 'left': left });
-                $(id).show();
-            });
-
-            $("#mascara").click(function () {
-                $(this).hide();
-                $(".window").hide();
-            });
-
-            $('.fechar').click(function (ev) {
-                ev.preventDefault();
-                $("#mascara").hide();
-                $(".window").hide();
-            });
-        });
-</script>
-
-
-<a href="#janela1" rel="modal" class="btn btn-default btn-xl sr-button">Começar!</a>
-
-<div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
-    <a href="#" class="fechar">x</a>
-    <!-- Modal content-->
-    @using (Html.BeginForm("CadastrarReceita", "Lancamento",
-             FormMethod.Post, new { @class = "" }))
-    {
-        @Html.ValidationSummary(true);
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Text input-->
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <!-- <input id="textinput" name="textinput" placeholder="Descrição" class="form-control" type="text">
-                        -->
-                        @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control input-md" } })
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-                    <div class="container">
-                        <div class="col-md-12">
-                            <!-- Select Basic -->
-                            <div class="form-group">
-                                <div class="col-md-12">
-
-                                    Escolha a Categoria:
-                                    @* Passando o Nome da ViewBag *@
-                                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
-
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div class="col-md-6">
-                            <!-- Text input-->
-                            <div class="form-group">
-
-                                <div class="col-md-12">
-                                    <!--    <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
-                                       -->
-                                    Valor:
-                                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control input-md" } })
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- Text input-->
-                            <div class="form-group">
-
-                                <div class="col-md-12">
-                                    <!--  <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="datetime">
-                                    -->
-                                    Data:
-                                    @Html.EditorFor(model => model.Data, new { @type = "date" })
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container">
-
-                        <div class="col-md-6">
-                            <!-- Button -->
-                            <div class="form-group">
-
-                                <div class="col-md-4" style="margin-top:3px;">
-                                    <input type="submit" value="Cadastrar" class="btn btn-success" />
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-    }
-</div>
 
 
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
@@ -172,7 +55,8 @@
 
                 <td>
                     <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    --><a href="" id="Delete" onclick="deletar(@item.ReceitaID)">Delete</a>
+                    -->
+                    <a href="" id="Delete" onclick="deletar(@item.ReceitaID)">Delete</a>
                     <a href="" id="Update" onclick="update(@item.ReceitaID)">Update</a>
                 </td>
             </tr>
@@ -182,14 +66,138 @@
 
 
 
+<script>
+    $(document).ready(function () {
+        var url = "";
+        $("#dialog-alert").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: 170,
+            width: 350,
+            show: { effect: 'drop', direction: "up" },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) {
+                $(".ui-dialog-titlebar-close").hide();
+            },
+            buttons: {
+                "OK": function () {
+                    $(this).dialog("close");
+
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        if ('@TempData["msg"]' != "") {
+            $("#dialog-alert").dialog('open');
+        }
+
+        $("#dialog-edit").dialog({
+            title: 'Create User',
+            autoOpen: false,
+            resizable: false,
+            width: 400,
+            show: { effect: 'drop', direction: "up" },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) {
+                $(".ui-dialog-titlebar-close").hide();
+                $(this).load(url);
+            }
+        });
+
+        $("#dialog-confirm").dialog({
+            autoOpen: false,
+            resizable: false,
+            height: 170,
+            width: 350,
+            show: { effect: 'drop', direction: "up" },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) {
+                $(".ui-dialog-titlebar-close").hide();
+
+            },
+            buttons: {
+                "OK": function () {
+                    $(this).dialog("close");
+                    window.location.href = url;
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#dialog-detail").dialog({
+            title: 'View User',
+            autoOpen: false,
+            resizable: false,
+            width: 400,
+            show: { effect: 'drop', direction: "up" },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) {
+                $(".ui-dialog-titlebar-close").hide();
+                $(this).load(url);
+            },
+            buttons: {
+                "Close": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#lnkCreate").live("click", function (e) {
+            //e.preventDefault(); //use this or return false
+            url = $(this).attr('href');
+            $("#dialog-edit").dialog('open');
+
+            return false;
+        });
+
+        $(".lnkEdit").live("click", function (e) {
+            // e.preventDefault(); use this or return false
+            url = $(this).attr('href');
+            $(".ui-dialog-title").html("Update User");
+            $("#dialog-edit").dialog('open');
+
+            return false;
+        });
+
+        $(".lnkDelete").live("click", function (e) {
+            // e.preventDefault(); use this or return false
+            url = $(this).attr('href');
+            $("#dialog-confirm").dialog('open');
+
+            return false;
+        });
+
+        $(".lnkDetail").live("click", function (e) {
+            // e.preventDefault(); use this or return false
+            url = $(this).attr('href');
+            $("#dialog-detail").dialog('open');
+
+            return false;
+        });
+
+        $("#btncancel").live("click", function (e) {
+            $("#dialog-edit").dialog("close");
+            return false;
+        });
+    });
+</script>
 
 
 <script>
 
-   // $(document).delegate('#Delete', 'click', function (e) {
+    // $(document).delegate('#Delete', 'click', function (e) {
 
-     //   e.preventDefault();
-    
+    //   e.preventDefault();
+
     function deletar(objet) {
         $.ajax({
             type: "post",
@@ -216,20 +224,20 @@
             type: "post",
             url: "@Url.Action("Update", "Lancamento")",
             ajaxasync: true,
-        //  data: { id : $('#idField').text() },
-        data: { id : objet },
-        success: function () {
+            //  data: { id : $('#idField').text() },
+            data: { id : objet },
+            success: function () {
 
-            alert("EBAAA!!!");
+                alert("EBAAA!!!");
 
-            // Perform redirect
-            //window.location.replace(@@Url.Action("Receitas","Lancamento"));
-        },
-        error: function (data) {
-            alert("Opa deu erro");
-        }
-    });
-    //  });
+                // Perform redirect
+                //window.location.replace(@@Url.Action("Receitas","Lancamento"));
+            },
+            error: function (data) {
+                alert("Opa deu erro");
+            }
+        });
+        //  });
     };
 
 
@@ -240,18 +248,18 @@
         dados = linha[i].cells;
         for (var j = 0 ; j < dados.length ; j++) {
             sessionStorage.setItem('categoria' + [i], dados[j  ].innerText);
-			 sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
-			 sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
-			 sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
-           break;
+            sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
+            sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
+            sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
+            break;
         }
     }
 
 
     var array = [];
     var array2 = [];
-	var array3 =[];
-	var array4 = [];
+    var array3 =[];
+    var array4 = [];
 
     for (var i = 1; i < sessionStorage.length; i++) {
         if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
@@ -259,18 +267,18 @@
             array2[i] = sessionStorage.getItem('descricao' + [i]);
             array3[i] = sessionStorage.getItem('categoria' + [i]);
             array4[i] = sessionStorage.getItem('data' + [i]);
-           }
+        }
     }
 
 
     google.charts.setOnLoadCallback(drawChart);
 
     google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
-     function drawChart() {
+    function drawChart() {
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'data');
-       // data.addColumn('string', 'Receitas');
+        // data.addColumn('string', 'Receitas');
         data.addColumn('number', 'Valor');
 
 
@@ -287,7 +295,7 @@
         var options = {
             title: 'Receitas',
             vAxis: { title: 'Valor', format: 'currency' },
-			hAxis: { title: 'Data' },
+            hAxis: { title: 'Data' },
             seriesType: 'bars',
             legend: { position: 'bottom' }
 
