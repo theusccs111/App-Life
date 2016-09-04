@@ -1,0 +1,85 @@
+﻿@model APP_Life.Models.despesa
+
+@{
+
+    ViewBag.Title = "Edit";
+}<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm("DespesaUpdate", "Lancamento", new { @class = "" },
+                                  FormMethod.Post))
+        {
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Editar produto</h4>
+            </div>
+
+            @Html.AntiForgeryToken()
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DespesaID, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.DespesaID, new { @class = "form-control"/*, @readonly = "readonly"*/ })
+                            @Html.ValidationMessageFor(model => model.DespesaID)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Descricao)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Valor)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.Data, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Data)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.categoria.nome, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.categoria.nome)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.UsuarioID, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UsuarioID)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(model => model.CategoriaID, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoriaID)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                </div>
+        }
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

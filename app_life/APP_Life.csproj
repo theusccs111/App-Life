@@ -349,6 +349,8 @@
     <Content Include="Views\Login\CadastrarUsuario.cshtml" />
     <Content Include="Views\Lancamento\_ReceitaUpdate.cshtml" />
     <Content Include="Views\Lancamento\edit.cshtml" />
+    <Content Include="Views\Lancamento\_CadastrarDespesa.cshtml" />
+    <Content Include="Views\Lancamento\_DespesaUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

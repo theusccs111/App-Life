@@ -14,7 +14,7 @@ namespace APP_Life.Controllers
         app_lifeContext contexto = new app_lifeContext();
         // GET: Lancamento
 
-            public ActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }
@@ -66,7 +66,7 @@ namespace APP_Life.Controllers
             return RedirectToAction("Geral");
         }
 
-        //
+        
         public ActionResult ReceitaDelete(int? id)
         {
             if (id == null)
@@ -78,51 +78,15 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
-            return View(main);
-        }
-        [HttpPost, ActionName("Delete")]
-        public ActionResult ReceitaDeleteConfirmed(int id)
-        {
+         
             receita rece = new receita();
-            rece.RemoverReceita(id);
-          
-            return RedirectToAction("Index");
+            rece.RemoverReceita(main.ReceitaID);
+
+            return RedirectToAction("Receitas");
         }
-        //
-        /* public ActionResult ReceitaUpdate(int? id)
-         {
-             if (id == null)
-             {
-                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-             }
-             receita main = contexto.receitas.Find(id);
-             if (main == null)
-             {
-                 return HttpNotFound();
-             }
-             return View(main);
-         }
-         [HttpPost, ActionName("ReceitaUpdate")]
-         public ActionResult ReceitaUpdateConfirmed(int id)
-         {
-            // receita rece = new receita();
-            // rece.RemoverReceita(id);
+       
 
-             //
-             var query = from u in contexto.receitas where u.ReceitaID == id select u;
-             foreach (var item in query)
-             {
-                // item.Descricao = "descricao Nova";
-
-             }
-             contexto.SaveChanges();
-
-             //
-
-             return RedirectToAction("Index");
-         }*/
-         //
-         // this action result returns the partial containing the modal
+       
         public ActionResult ReceitaUpdate(int? id)
         {
             if (id == null)
@@ -134,7 +98,7 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("_ReceitaUpdate",rece);
+            return PartialView("_ReceitaUpdate", rece);
         }
 
         [HttpPost] // this action takes the viewModel from the modal
@@ -155,55 +119,106 @@ namespace APP_Life.Controllers
             contexto.SaveChanges();
             return RedirectToAction("Receitas");
         }
-        /*
-        // GET: GradeModeloes/Edit/5
-        public ActionResult Edit(int? id)
+      
+        public ActionResult Despesas()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+                ViewBag.listaDespesa = contexto.despesas.ToList();
+                ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Login");
+            }
+
+        }
+
+        public ActionResult CadastrarDespesa()
+        {
+            ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+
+            return PartialView("_CadastrarDespesa");
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult CadastrarDespesa(despesa rece)
+        {
+            if (ModelState.IsValid)
+            {
+                despesa x = new despesa();
+                x.CadastrarDespesa(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                return RedirectToAction("Despesas");
+            }
+            return RedirectToAction("Geral");
+        }
+
+
+        public ActionResult DespesaDelete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            receita gradeModelo = contexto.receitas.Find(id);
-            if (gradeModelo == null)
+            despesa main = contexto.despesas.Find(id);
+            if (main == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(gradeModelo);
+
+            despesa rece = new despesa();
+            rece.RemoverDespesa(main.DespesaID);
+
+            return RedirectToAction("Despesas");
         }
 
-        // POST: GradeModeloes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Valor,Descricao,Data")] receita gradeModelo)
+        public ActionResult DespesaUpdate(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                contexto.Entry(gradeModelo).State = EntityState.Modified;
-                contexto.SaveChanges();
-                return RedirectToAction("receitas");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(gradeModelo);
+            despesa rece = contexto.despesas.Find(id);
+            if (rece == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_DespesaUpdate", rece);
         }
-        */
 
-
-
-
-        public ActionResult Despesas()
+        [HttpPost] // this action takes the viewModel from the modal
+        public ActionResult DespesaUpdate(despesa rece)
         {
-            if (Session["usuarioLogadoID"] != null)
-            {
-                return View(contexto.despesas.ToList());
-            }
-            else
-            {
 
-                return RedirectToAction("Inicio", "Login");
-            }
+            var query = from u in contexto.despesas where u.DespesaID == rece.DespesaID select u;
+            foreach (var item in query)
+            {
+                item.Descricao = rece.Descricao;
+                item.Valor = rece.Valor;
+                item.Data = rece.Data;
+                //item.categoria.nome = rece.categoria.nome;
+                item.UsuarioID = rece.UsuarioID;
+                item.CategoriaID = rece.CategoriaID;
 
+            }
+            contexto.SaveChanges();
+            return RedirectToAction("Despesas");
         }
+
 
         public ActionResult Geral()
         {
@@ -252,7 +267,7 @@ namespace APP_Life.Controllers
         }
 
 
-       
+
 
     }
 }
