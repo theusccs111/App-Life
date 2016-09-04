@@ -36,8 +36,37 @@ namespace APP_Life.Controllers
             }
 
         }
+
+
+        public ActionResult CadastrarReceita()
+        {
+            ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+
+            return PartialView("_CadastrarReceita");
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult CadastrarReceita(receita rece)
+        {
+            if (ModelState.IsValid)
+            {
+                receita x = new receita();
+                x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                return RedirectToAction("Receitas");
+            }
+            return RedirectToAction("Geral");
+        }
+
         //
-        public ActionResult Delete(int? id)
+        public ActionResult ReceitaDelete(int? id)
         {
             if (id == null)
             {
@@ -51,7 +80,7 @@ namespace APP_Life.Controllers
             return View(main);
         }
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult ReceitaDeleteConfirmed(int id)
         {
             receita rece = new receita();
             rece.RemoverReceita(id);
@@ -59,66 +88,73 @@ namespace APP_Life.Controllers
             return RedirectToAction("Index");
         }
         //
-        public ActionResult Update(int? id)
+        /* public ActionResult ReceitaUpdate(int? id)
+         {
+             if (id == null)
+             {
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+             receita main = contexto.receitas.Find(id);
+             if (main == null)
+             {
+                 return HttpNotFound();
+             }
+             return View(main);
+         }
+         [HttpPost, ActionName("ReceitaUpdate")]
+         public ActionResult ReceitaUpdateConfirmed(int id)
+         {
+            // receita rece = new receita();
+            // rece.RemoverReceita(id);
+
+             //
+             var query = from u in contexto.receitas where u.ReceitaID == id select u;
+             foreach (var item in query)
+             {
+                // item.Descricao = "descricao Nova";
+
+             }
+             contexto.SaveChanges();
+
+             //
+
+             return RedirectToAction("Index");
+         }
+         //*/
+         // this action result returns the partial containing the modal
+        public ActionResult ReceitaUpdate(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            receita main = contexto.receitas.Find(id);
-            if (main == null)
-            {
-                return HttpNotFound();
-            }
-            return View(main);
-        }
-        [HttpPost, ActionName("Update")]
-        public ActionResult UpdateConfirmed(int id)
-        {
-           // receita rece = new receita();
-           // rece.RemoverReceita(id);
-
-            //
-            var query = from u in contexto.receitas where u.ReceitaID == id select u;
-            foreach (var item in query)
-            {
-                item.Descricao = "descricao Nova";
-                
-            }
-            contexto.SaveChanges();
-
-            //
-
-            return RedirectToAction("Index");
-        }
-        //
-
-
-        public ActionResult CadastrarReceita()
-        {
-            ViewBag.CategoriaID = new SelectList
-                (
-                    contexto.categorias.ToList(),
-                    "CategoriaID",
-                    "nome"
-                );
-
-            return PartialView();
-
-
+            receita rece = new receita();
+           rece =  contexto.receitas.Find(id);
+            return PartialView(rece);
         }
 
-  
-        [HttpPost]
-        public ActionResult CadastrarReceita(receita rece)
+        [HttpPost] // this action takes the viewModel from the modal
+        public ActionResult ReceitaUpdate(receita rece)
         {
             if (ModelState.IsValid)
             {
-                receita x = new receita();
-                x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                return RedirectToAction("Geral");
+                var toUpdate = contexto.receitas.Find(rece.ReceitaID);
+                var query = from u in contexto.receitas where u.ReceitaID == toUpdate.ReceitaID select u;
+                foreach (var item in query)
+                {
+                     item.Descricao = toUpdate.Descricao;
+                    item.Valor = toUpdate.Valor;
+                    item.Data = toUpdate.Data;
+
+
+                }
+                //query de atualização
+
+                contexto.SaveChanges();
+                return View("Receitas");
             }
-            return View();
+            return View("Geral");
+        }
+
+        public PartialViewResult edit()
+        {
+            return PartialView();
         }
 
         public ActionResult Despesas()
@@ -181,6 +217,8 @@ namespace APP_Life.Controllers
 
         }
 
+
+       
 
     }
 }

@@ -15,12 +15,46 @@
         padding-top: 3%;
     }
 </style>
-<div id="dialog-edit" style="display: none"></div>
 
-<p>
-    @Html.ActionLink("Create New", "CadastrarReceita", null, new { id = "lnkCreate" })
-</p>
+<style>
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
 
+@Html.ActionLink("ADD ", "CadastrarReceita", "Lancamento", null, new { @class = "modal-link btn btn-success" })
+<div id="modal-container" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        // Initialize numeric spinner input boxes
+        //$(".numeric-spinner").spinedit();
+        // Initialize modal dialog
+        // attach modal-container bootstrap attributes to links with .modal-link class.
+        // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+        $('body').on('click', '.modal-link', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+        // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+        //clear modal cache, so that new content can be loaded
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+</script>
 
 
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
@@ -57,142 +91,33 @@
                     <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     -->
                     <a href="" id="Delete" onclick="deletar(@item.ReceitaID)">Delete</a>
-                    <a href="" id="Update" onclick="update(@item.ReceitaID)">Update</a>
-                </td>
+                    <button class="btn btn-primary edit" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+
             </tr>
         }
     </tbody>
 </table>
 
+<div class="modal" id="modal">
+
+    @Html.Partial("_ReceitaUpdate");
+
+</div>
+
+
 
 
 <script>
-    $(document).ready(function () {
-        var url = "";
-        $("#dialog-alert").dialog({
-            autoOpen: false,
-            resizable: false,
-            height: 170,
-            width: 350,
-            show: { effect: 'drop', direction: "up" },
-            modal: true,
-            draggable: true,
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close").hide();
-            },
-            buttons: {
-                "OK": function () {
-                    $(this).dialog("close");
-
-                },
-                "Cancel": function () {
-                    $(this).dialog("close");
-                }
-            }
-        });
-
-        if ('@TempData["msg"]' != "") {
-            $("#dialog-alert").dialog('open');
-        }
-
-        $("#dialog-edit").dialog({
-            title: 'Create User',
-            autoOpen: false,
-            resizable: false,
-            width: 400,
-            show: { effect: 'drop', direction: "up" },
-            modal: true,
-            draggable: true,
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close").hide();
-                $(this).load(url);
-            }
-        });
-
-        $("#dialog-confirm").dialog({
-            autoOpen: false,
-            resizable: false,
-            height: 170,
-            width: 350,
-            show: { effect: 'drop', direction: "up" },
-            modal: true,
-            draggable: true,
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close").hide();
-
-            },
-            buttons: {
-                "OK": function () {
-                    $(this).dialog("close");
-                    window.location.href = url;
-                },
-                "Cancel": function () {
-                    $(this).dialog("close");
-                }
-            }
-        });
-
-        $("#dialog-detail").dialog({
-            title: 'View User',
-            autoOpen: false,
-            resizable: false,
-            width: 400,
-            show: { effect: 'drop', direction: "up" },
-            modal: true,
-            draggable: true,
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close").hide();
-                $(this).load(url);
-            },
-            buttons: {
-                "Close": function () {
-                    $(this).dialog("close");
-                }
-            }
-        });
-
-        $("#lnkCreate").live("click", function (e) {
-            //e.preventDefault(); //use this or return false
-            url = $(this).attr('href');
-            $("#dialog-edit").dialog('open');
-
-            return false;
-        });
-
-        $(".lnkEdit").live("click", function (e) {
-            // e.preventDefault(); use this or return false
-            url = $(this).attr('href');
-            $(".ui-dialog-title").html("Update User");
-            $("#dialog-edit").dialog('open');
-
-            return false;
-        });
-
-        $(".lnkDelete").live("click", function (e) {
-            // e.preventDefault(); use this or return false
-            url = $(this).attr('href');
-            $("#dialog-confirm").dialog('open');
-
-            return false;
-        });
-
-        $(".lnkDetail").live("click", function (e) {
-            // e.preventDefault(); use this or return false
-            url = $(this).attr('href');
-            $("#dialog-detail").dialog('open');
-
-            return false;
-        });
-
-        $("#btncancel").live("click", function (e) {
-            $("#dialog-edit").dialog("close");
-            return false;
-        });
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("ReceitaUpdate?id=" + id, function () {
+            $("#modal").modal();
+        })
     });
+
 </script>
-
-
 <script>
+
 
     // $(document).delegate('#Delete', 'click', function (e) {
 
@@ -201,16 +126,16 @@
     function deletar(objet) {
         $.ajax({
             type: "post",
-            url: "@Url.Action("Delete","Lancamento")",
+            url: "@Url.Action("ReceitaDelete","Lancamento")",
             ajaxasync: true,
             //  data: { id : $('#idField').text() },
-            data: { id : objet },
+            data: { id: objet },
             success: function () {
 
                 alert("EBAAA!!!");
 
                 // Perform redirect
-                //window.location.replace(@@Url.Action("Receitas","Lancamento"));
+                //  window.location.replace(@Url.Action("ReceitaUpdate","Lancamento"));
             },
             error: function (data) {
                 alert("Opa deu erro");
@@ -219,26 +144,7 @@
         //  });
     };
 
-    function update(objet) {
-        $.ajax({
-            type: "post",
-            url: "@Url.Action("Update", "Lancamento")",
-            ajaxasync: true,
-            //  data: { id : $('#idField').text() },
-            data: { id : objet },
-            success: function () {
 
-                alert("EBAAA!!!");
-
-                // Perform redirect
-                //window.location.replace(@@Url.Action("Receitas","Lancamento"));
-            },
-            error: function (data) {
-                alert("Opa deu erro");
-            }
-        });
-        //  });
-    };
 
 
     sessionStorage.clear();
@@ -247,7 +153,7 @@
     for (var i = 1 ; i < linha.length ; i++) {
         dados = linha[i].cells;
         for (var j = 0 ; j < dados.length ; j++) {
-            sessionStorage.setItem('categoria' + [i], dados[j  ].innerText);
+            sessionStorage.setItem('categoria' + [i], dados[j].innerText);
             sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
             sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
             sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
@@ -258,7 +164,7 @@
 
     var array = [];
     var array2 = [];
-    var array3 =[];
+    var array3 = [];
     var array4 = [];
 
     for (var i = 1; i < sessionStorage.length; i++) {
@@ -285,7 +191,7 @@
         for (var i = 1; i < array.length; i++) {
 
             data.addRows([
-            [String(array4[i]),parseFloat(array[i])]
+            [String(array4[i]), parseFloat(array[i])]
 
             ]);
         }

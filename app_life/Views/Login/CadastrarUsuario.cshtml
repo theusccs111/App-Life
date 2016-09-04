@@ -1,7 +1,12 @@
-﻿
-@{
-    ViewBag.Title = "CadastrarUsuario";
-}
+﻿@model  APP_Life.Models.usuario
 
-<h2>CadastrarUsuario</h2>
 
+
+
+<form id="myForm">
+    <div id="AddUserForm">
+        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control input-md" } })
+
+
+    </div>
+</form>
