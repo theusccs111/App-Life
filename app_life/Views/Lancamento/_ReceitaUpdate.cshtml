@@ -50,6 +50,30 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(model => model.categoria.nome, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.categoria.nome)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.HiddenFor(model => model.UsuarioID, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UsuarioID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.HiddenFor(model => model.CategoriaID, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CategoriaID)
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">

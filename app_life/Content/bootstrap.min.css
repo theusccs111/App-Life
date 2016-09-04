@@ -7402,7 +7402,7 @@ form {
     background-color: #000;
 }
 
-.fechar {
+.fechar,.fechar2 {
     display: block;
     text-align: right;
 }

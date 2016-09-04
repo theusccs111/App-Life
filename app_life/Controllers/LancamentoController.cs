@@ -129,25 +129,31 @@ namespace APP_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            receita gradeModelo = contexto.receitas.Find(id);
-            if (gradeModelo == null)
+            receita rece = contexto.receitas.Find(id);
+            if (rece == null)
             {
                 return HttpNotFound();
             }
-            return PartialView("_ReceitaUpdate",gradeModelo);
+            return PartialView("_ReceitaUpdate",rece);
         }
 
         [HttpPost] // this action takes the viewModel from the modal
-        public ActionResult ReceitaUpdate([Bind(Include = "ReceitaId,Descricao,Valor,Data")] receita gradeModelo)
+        public ActionResult ReceitaUpdate(receita rece)
         {
 
-            if (ModelState.IsValid)
+            var query = from u in contexto.receitas where u.ReceitaID == rece.ReceitaID select u;
+            foreach (var item in query)
             {
-                contexto.Entry(gradeModelo).State = EntityState.Modified;
-                contexto.SaveChanges();
-                return RedirectToAction("receitas");
+                item.Descricao = rece.Descricao;
+                item.Valor = rece.Valor;
+                item.Data = rece.Data;
+                //item.categoria.nome = rece.categoria.nome;
+                item.UsuarioID = rece.UsuarioID;
+                item.CategoriaID = rece.CategoriaID;
+
             }
-            return View(gradeModelo);
+            contexto.SaveChanges();
+            return RedirectToAction("Receitas");
         }
         /*
         // GET: GradeModeloes/Edit/5
