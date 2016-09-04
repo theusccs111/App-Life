@@ -64,6 +64,20 @@
                 $("#mascara").hide();
                 $(".window").hide();
             });
+
+            $('.fechar2').click(function (ev) {
+                ev.preventDefault();
+                //$("#mascara").hide();
+                $("#janela2").hide();
+                $("#janela1").show();
+            });
+
+            $('#cadastro').click(function (ev) {
+                ev.preventDefault();
+              //  $("#mascara").hide();
+                $("#janela1").hide();
+            });
+
         });
     </script>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -105,7 +119,45 @@ FormMethod.Post, new { @class = "login" }))
                                     <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
                                 </p>
                                 <p>
-                                    <input type="submit" value="Cadastre-se" class="btn btn-primarydois" />
+                                    <a href="#janela2" rel="modal" id="cadastro" class="btn btn-primarydois">COMEÇAR A USAR</a>
+                                    <!--<a href="#janela2" rel="modal" id="cadastro" class="btn">Cadastre</a>-->
+                                </p>
+                            </div>
+
+                        </div>
+
+                    }
+                </div>
+
+                <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
+                    <a href="#" class="fechar2">X</a>
+                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, new { @class = "login" }))
+                    {
+                        @Html.ValidationSummary(true);
+                        <div class="container">
+                            <div class="col-md-3">
+
+                                <p class="form-title">Cadastre-se</p>
+
+                                <div>
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                                    @Html.ValidationMessageFor(model => model.email)
+                                </div>
+
+                                <div>
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                                    @Html.ValidationMessageFor(model => model.senha)
+                                </div>
+                                <div>
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Confirmar Senha" })
+                                    @Html.ValidationMessageFor(model => model.senha)
+                                </div>
+                                <p>
+                                    <input type="submit" value="COMEÇAR A USAR" class="btn btn-primary btn-success" />
+                                </p>
+                                <p>
+                                   <!--<input type="submit" value="Concluído" class="btn btn-primarydois" />-->
                                 </p>
                             </div>
 
