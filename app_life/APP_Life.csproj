@@ -136,6 +136,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\creative.css" />
     <Content Include="Content\creative.min.css" />
+    <Content Include="Content\dataTable\dataTables.bootstrap.css" />
+    <Content Include="Content\dataTable\dataTables.responsive.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
