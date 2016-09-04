@@ -39,7 +39,8 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
-       
+     
+
 
 
         List<receita> receitasLista;

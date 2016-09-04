@@ -1,3 +1,4 @@
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using APP_Life.Models.Mapping;
@@ -40,5 +41,7 @@ namespace APP_Life.Models
             modelBuilder.Configurations.Add(new receitaMap());
             modelBuilder.Configurations.Add(new usuarioMap());
         }
+
+      
     }
 }

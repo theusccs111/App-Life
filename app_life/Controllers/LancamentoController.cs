@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using APP_Life.Models;
 using System.Net;
+using System.Data.Entity;
 
 namespace APP_Life.Controllers
 {
@@ -119,43 +120,70 @@ namespace APP_Life.Controllers
              //
 
              return RedirectToAction("Index");
-         }
-         //*/
+         }*/
+         //
          // this action result returns the partial containing the modal
-        public ActionResult ReceitaUpdate(int id)
+        public ActionResult ReceitaUpdate(int? id)
         {
-            receita rece = new receita();
-           rece =  contexto.receitas.Find(id);
-            return PartialView(rece);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            receita gradeModelo = contexto.receitas.Find(id);
+            if (gradeModelo == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ReceitaUpdate",gradeModelo);
         }
 
         [HttpPost] // this action takes the viewModel from the modal
-        public ActionResult ReceitaUpdate(receita rece)
+        public ActionResult ReceitaUpdate([Bind(Include = "ReceitaId,Descricao,Valor,Data")] receita gradeModelo)
+        {
+
+            if (ModelState.IsValid)
+            {
+                contexto.Entry(gradeModelo).State = EntityState.Modified;
+                contexto.SaveChanges();
+                return RedirectToAction("receitas");
+            }
+            return View(gradeModelo);
+        }
+        /*
+        // GET: GradeModeloes/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            receita gradeModelo = contexto.receitas.Find(id);
+            if (gradeModelo == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(gradeModelo);
+        }
+
+        // POST: GradeModeloes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Valor,Descricao,Data")] receita gradeModelo)
         {
             if (ModelState.IsValid)
             {
-                var toUpdate = contexto.receitas.Find(rece.ReceitaID);
-                var query = from u in contexto.receitas where u.ReceitaID == toUpdate.ReceitaID select u;
-                foreach (var item in query)
-                {
-                     item.Descricao = toUpdate.Descricao;
-                    item.Valor = toUpdate.Valor;
-                    item.Data = toUpdate.Data;
-
-
-                }
-                //query de atualização
-
+                contexto.Entry(gradeModelo).State = EntityState.Modified;
                 contexto.SaveChanges();
-                return View("Receitas");
+                return RedirectToAction("receitas");
             }
-            return View("Geral");
+            return View(gradeModelo);
         }
+        */
 
-        public PartialViewResult edit()
-        {
-            return PartialView();
-        }
+
+
 
         public ActionResult Despesas()
         {

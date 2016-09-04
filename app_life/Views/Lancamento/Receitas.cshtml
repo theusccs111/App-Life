@@ -91,7 +91,7 @@
                     <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     -->
                     <a href="" id="Delete" onclick="deletar(@item.ReceitaID)">Delete</a>
-                    <button class="btn btn-primary edit" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-primary edit" id="eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
         }
@@ -100,7 +100,7 @@
 
 <div class="modal" id="modal">
 
-    @Html.Partial("_ReceitaUpdate");
+    @Html.Partial("_ReceitaUpdate",Model);
 
 </div>
 
