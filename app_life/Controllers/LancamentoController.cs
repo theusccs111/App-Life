@@ -105,18 +105,7 @@ namespace APP_Life.Controllers
         public ActionResult ReceitaUpdate(receita rece)
         {
 
-            var query = from u in contexto.receitas where u.ReceitaID == rece.ReceitaID select u;
-            foreach (var item in query)
-            {
-                item.Descricao = rece.Descricao;
-                item.Valor = rece.Valor;
-                item.Data = rece.Data;
-                //item.categoria.nome = rece.categoria.nome;
-                item.UsuarioID = rece.UsuarioID;
-                item.CategoriaID = rece.CategoriaID;
-
-            }
-            contexto.SaveChanges();
+            rece.UpdateReceita(rece);
             return RedirectToAction("Receitas");
         }
       
@@ -204,17 +193,7 @@ namespace APP_Life.Controllers
         public ActionResult DespesaUpdate(despesa rece)
         {
 
-            var query = from u in contexto.despesas where u.DespesaID == rece.DespesaID select u;
-            foreach (var item in query)
-            {
-                item.Descricao = rece.Descricao;
-                item.Valor = rece.Valor;
-                item.Data = rece.Data;
-                //item.categoria.nome = rece.categoria.nome;
-                item.UsuarioID = rece.UsuarioID;
-                item.CategoriaID = rece.CategoriaID;
-
-            }
+            rece.UpdateDespesa(rece);
             contexto.SaveChanges();
             return RedirectToAction("Despesas");
         }

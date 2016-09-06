@@ -22,6 +22,15 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
+        public void RemoverUsuario(int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            usuario main = contexto.usuarios.Find(id);
+            contexto.usuarios.Remove(main);
+            contexto.SaveChanges();
+        }
+
+
         //  [DisplayName("Código")]
         public int usuarioID { get; set; }
 

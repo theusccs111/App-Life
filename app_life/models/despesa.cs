@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace APP_Life.Models
 {
@@ -37,7 +38,21 @@ namespace APP_Life.Models
         }
 
 
+        public void UpdateDespesa(despesa rece)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            var query = from u in contexto.despesas where u.DespesaID == rece.DespesaID select u;
+            foreach (var item in query)
+            {
+                item.Descricao = rece.Descricao;
+                item.Valor = rece.Valor;
+                item.Data = rece.Data;
+                //item.categoria.nome = rece.categoria.nome;
+                item.UsuarioID = rece.UsuarioID;
+                item.CategoriaID = rece.CategoriaID;
 
+            }
+        }
 
 
         List<despesa> despesaLista;
