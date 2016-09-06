@@ -59,12 +59,12 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 9999;
+            teste.ReceitaID = 99;
 
 
             //Execução
             teste.CadastrarReceita(teste, 1);
-            teste.RemoverReceita(9999);
+            atual.RemoverReceita(99);
 
             var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
             foreach (var item in query)
@@ -78,7 +78,7 @@ namespace APP_Life.Models.Tests
             }
 
             //teste
-            Assert.AreNotSame(teste, atual);
+            Assert.AreNotSame(teste.ReceitaID, atual.ReceitaID);
         }
 
         [TestMethod()]
@@ -92,7 +92,7 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 9999;
+           
 
             receita atualizado = new receita();
             atualizado.Descricao = "Mudado";
