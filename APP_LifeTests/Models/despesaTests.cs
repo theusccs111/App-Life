@@ -40,6 +40,7 @@ namespace APP_Life.Models.Tests
 
             //teste
             Assert.AreEqual(teste.DespesaID, atual.DespesaID);
+            teste.RemoverDespesa(teste.DespesaID);
         }
 
         [TestMethod()]

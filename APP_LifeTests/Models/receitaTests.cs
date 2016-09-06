@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 
 namespace APP_Life.Models.Tests
 {
+   
+
     [TestClass()]
     public class receitaTests
     {
+       
         [TestMethod()]
         public void CadastrarReceitaTest()
         {
@@ -22,6 +25,7 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
+            teste.ReceitaID = 999;
           
 
             //Execução
@@ -35,11 +39,13 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
-               
+                atual.ReceitaID = item.ReceitaID;
+
             }
 
             //teste
             Assert.AreEqual(teste.ReceitaID, atual.ReceitaID);
+            teste.RemoverReceita(teste.ReceitaID);
         }
 
         [TestMethod()]
@@ -53,12 +59,12 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 999;
+            teste.ReceitaID = 9999;
 
 
             //Execução
             teste.CadastrarReceita(teste, 1);
-            teste.RemoverReceita(999);
+            teste.RemoverReceita(9999);
 
             var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
             foreach (var item in query)
@@ -68,7 +74,7 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
-
+                atual.ReceitaID = item.ReceitaID;
             }
 
             //teste
@@ -86,7 +92,7 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 999;
+            teste.ReceitaID = 9999;
 
             receita atualizado = new receita();
             atualizado.Descricao = "Mudado";
@@ -108,6 +114,7 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
+                atual.ReceitaID = item.ReceitaID;
 
             }
             teste.UpdateReceita(atualizado);

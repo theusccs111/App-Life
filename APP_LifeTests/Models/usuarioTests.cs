@@ -13,8 +13,8 @@ namespace APP_Life.Models.Tests
     [TestClass()]
     public class usuarioTests
     {
+       
 
-      
         [TestMethod()]
         public void CadastrarUsuarioTest()
         {
@@ -35,6 +35,7 @@ namespace APP_Life.Models.Tests
             teste.cidade = "teste";
             teste.estado = "teste";
             teste.Calorias = 12;
+            
 
             //Execução
             teste.CadastrarUsuario(teste);
@@ -60,7 +61,7 @@ namespace APP_Life.Models.Tests
                 //teste
                 Assert.AreEqual(teste.usuarioID,atual.usuarioID);
 
-        
+            teste.RemoverUsuario(teste.usuarioID);
 
 
         }
@@ -85,6 +86,7 @@ namespace APP_Life.Models.Tests
             teste.cidade = "teste";
             teste.estado = "teste";
             teste.Calorias = 12;
+            teste.usuarioID = 9999;
 
             //Execução
             teste.CadastrarUsuario(teste);
@@ -111,11 +113,9 @@ namespace APP_Life.Models.Tests
             //teste
             Assert.AreNotSame(teste, atual);
 
-
-           
-
         }
 
+          
 
     }
 }

@@ -235,7 +235,7 @@ namespace APP_Life.Controllers
                 Session["despesaTotal"] = total2;
 
                 var query3 = from u in contexto.despesas orderby u.Data select u;
-                return View(query3);
+                return View(contexto.despesas.ToList());
             }
             else
             {
