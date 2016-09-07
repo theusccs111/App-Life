@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
-    public partial class categoria:IEnumerable<categoria>
+    public partial class categoria : IEnumerable<categoria>
     {
         public categoria()
         {

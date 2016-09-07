@@ -11,11 +11,11 @@ namespace APP_Life.Models.Mapping
             this.HasKey(t => t.ReceitaID);
 
             // Properties
-            this.Property(t => t.ReceitaID)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
             this.Property(t => t.Descricao)
                 .HasMaxLength(100);
+
+            this.Property(t => t.Data)
+                .HasMaxLength(10);
 
             // Table & Column Mappings
             this.ToTable("receita", "app_life");
