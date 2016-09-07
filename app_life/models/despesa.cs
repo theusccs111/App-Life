@@ -52,6 +52,7 @@ namespace APP_Life.Models
                 item.CategoriaID = rece.CategoriaID;
 
             }
+            contexto.SaveChanges();
         }
 
 

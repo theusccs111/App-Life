@@ -194,7 +194,7 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateDespesa(rece);
-            contexto.SaveChanges();
+         
             return RedirectToAction("Despesas");
         }
 
