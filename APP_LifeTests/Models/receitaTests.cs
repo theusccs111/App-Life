@@ -59,12 +59,12 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 99;
+          
 
 
             //Execução
             teste.CadastrarReceita(teste, 1);
-            atual.RemoverReceita(99);
+            atual.RemoverReceita(teste.ReceitaID);
 
             var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
             foreach (var item in query)
@@ -120,6 +120,8 @@ namespace APP_Life.Models.Tests
             teste.UpdateReceita(atualizado);
             //teste
             Assert.AreNotSame(teste, atual);
+
+            teste.RemoverReceita(teste.ReceitaID);
         }
 
 

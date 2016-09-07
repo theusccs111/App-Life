@@ -114,6 +114,8 @@ namespace APP_Life.Models.Tests
             teste.UpdateDespesa(atualizado);
             //teste
             Assert.AreNotSame(teste, atual);
+
+            teste.RemoverDespesa(teste.DespesaID);
         }
 
 
