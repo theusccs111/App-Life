@@ -45,15 +45,18 @@ namespace APP_Life.Models
         {
 
             app_lifeContext contexto = new app_lifeContext();
-            var query = from u in contexto.receitas where u.ReceitaID == rece.ReceitaID select u;
+            var query = from u in contexto.receitas select u;
             foreach (var item in query)
             {
-                item.Descricao = rece.Descricao;
-                item.Valor = rece.Valor;
-                item.Data = rece.Data;
+                if (item.ReceitaID == rece.ReceitaID)
+                {
+                    item.Descricao = rece.Descricao;
+                    item.Valor = rece.Valor;
+                    item.Data = rece.Data;
 
-                item.UsuarioID = rece.UsuarioID;
-                item.CategoriaID = rece.CategoriaID;
+                    item.UsuarioID = rece.UsuarioID;
+                    item.CategoriaID = rece.CategoriaID;
+                }
 
             }
             contexto.SaveChanges();

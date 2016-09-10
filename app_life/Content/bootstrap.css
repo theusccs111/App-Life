@@ -8192,4 +8192,12 @@ button.close {
         display: none !important;
     }
 }
+
+table.sortable thead {
+    background-color:#eee;
+    color:#000;
+    font-weight: bold;
+    cursor: default;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

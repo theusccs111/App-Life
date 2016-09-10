@@ -98,7 +98,7 @@ namespace APP_Life.Models.Tests
             atualizado.Descricao = "Mudado";
             atualizado.Valor = 54321;
             atualizado.CategoriaID = 2;
-            atualizado.UsuarioID = 3;
+            atualizado.UsuarioID = 1;
             atualizado.Data = "09/09/1515";
 
 
@@ -115,6 +115,7 @@ namespace APP_Life.Models.Tests
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
                 atual.ReceitaID = item.ReceitaID;
+                atualizado.ReceitaID = item.ReceitaID;
 
             }
             teste.UpdateReceita(atualizado);

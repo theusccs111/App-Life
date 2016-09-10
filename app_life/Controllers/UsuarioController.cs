@@ -30,5 +30,20 @@ namespace APP_Life.Controllers
             return View();
         }
 
+        public ActionResult InfoUsuario()
+        {
+            int id = Convert.ToInt32(Session["usuarioLogadoID"]);
+            var query = from u in contexto.usuarios where id == u.usuarioID select u;
+            var user = new usuario();
+
+
+            foreach (var item in query)
+            {
+                user = item;
+            }
+
+            return View(user);
+        }
+
     }
 }

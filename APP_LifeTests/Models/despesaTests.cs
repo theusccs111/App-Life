@@ -61,15 +61,18 @@ namespace APP_Life.Models.Tests
             teste.CadastrarDespesa(teste, 1);
             teste.RemoverDespesa(teste.DespesaID);
 
-            var query = from u in contexto.despesas where u.DespesaID == teste.DespesaID select u;
+            var query = from u in contexto.despesas  select u;
             foreach (var item in query)
             {
-                atual.Descricao = item.Descricao;
-                atual.Valor = item.Valor;
-                atual.Data = item.Data;
-                atual.CategoriaID = item.CategoriaID;
-                atual.UsuarioID = item.UsuarioID;
-                atual.DespesaID = item.DespesaID;
+                if (item.DespesaID == teste.DespesaID)
+                {
+                    atual.Descricao = item.Descricao;
+                    atual.Valor = item.Valor;
+                    atual.Data = item.Data;
+                    atual.CategoriaID = item.CategoriaID;
+                    atual.UsuarioID = item.UsuarioID;
+                    atual.DespesaID = item.DespesaID;
+                }
             }
 
             //teste
@@ -87,15 +90,14 @@ namespace APP_Life.Models.Tests
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.DespesaID = 999;
 
             despesa atualizado = new despesa();
             atualizado.Descricao = "Mudado";
             atualizado.Valor = 54321;
             atualizado.CategoriaID = 2;
-            atualizado.UsuarioID = 3;
+            atualizado.UsuarioID = 1;
             atualizado.Data = "09/09/1515";
-
+            atualizado.DespesaID = teste.DespesaID;
 
             //Execução
             teste.CadastrarDespesa(teste, 1);
@@ -104,18 +106,22 @@ namespace APP_Life.Models.Tests
             var query = from u in contexto.despesas where u.DespesaID == teste.DespesaID select u;
             foreach (var item in query)
             {
-                atual.Descricao = item.Descricao;
-                atual.Valor = item.Valor;
-                atual.Data = item.Data;
-                atual.CategoriaID = item.CategoriaID;
-                atual.UsuarioID = item.UsuarioID;
+                if (item.DespesaID == teste.DespesaID)
+                {
+                    atual.Descricao = item.Descricao;
+                    atual.Valor = item.Valor;
+                    atual.Data = item.Data;
+                    atual.CategoriaID = item.CategoriaID;
+                    atual.UsuarioID = item.UsuarioID;
+                    atualizado.DespesaID = item.DespesaID;
+                }
 
             }
             teste.UpdateDespesa(atualizado);
             //teste
             Assert.AreNotSame(teste, atual);
 
-            teste.RemoverDespesa(teste.DespesaID);
+        teste.RemoverDespesa(teste.DespesaID);
         }
 
 
