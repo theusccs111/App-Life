@@ -345,8 +345,8 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_MenuLateral.cshtml" />
     <Content Include="Views\Login\Inicio.cshtml" />
-    <Content Include="Views\Lancamento\Receitas.cshtml" />
-    <Content Include="Views\Lancamento\Despesas.cshtml" />
+    <Content Include="Views\Lancamento\_Receitas.cshtml" />
+    <Content Include="Views\Lancamento\_Despesas.cshtml" />
     <Content Include="Views\Lancamento\Geral.cshtml" />
     <Content Include="Views\Lancamento\Index.cshtml" />
     <Content Include="Views\Login\CadastrarUsuario.cshtml" />

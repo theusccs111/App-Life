@@ -149,17 +149,21 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="Geral"><i class="fa fa-bar-chart-o fa-fw"></i>Visão Geral</a>
-                            </li>
+                           
+                                <a href="@Url.Action("Geral", "Lancamento")">
+                                  
+                                    <span class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></span>
+                                    Visão Geral
+                                </a>
+                            
+                              </li>
                             <li>
                                 <a href="Lancamento"><i class="fa fa-dashboard fa-fw"></i>Lançamentos<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        @Html.ActionLink("Receitas", "Receitas", "Lancamento", null, new { @class = "" })
+                                        @Html.ActionLink("Finanças", "Index", "Lancamento", null, new { @class = "" })
                                     </li>
-                                    <li>
-                                        @Html.ActionLink("Despesa", "Despesa", "Lancamento", null, new { @class = "" })
-                                  </li>
+                                    
                                     <li>
                                   @Html.ActionLink("Projetado", "Projetado", "Projetado", null, new { @class = "" })
   </li>

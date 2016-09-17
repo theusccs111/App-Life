@@ -111,7 +111,7 @@ ter saldo de receita e despesa e projeções
         }
 
 
-
+         /*
         var options = {
             title: 'Geral',
            format:'currency',
@@ -119,7 +119,16 @@ ter saldo de receita e despesa e projeções
             vAsix: {height:100},
             legend: { position: 'bottom', }
 
+        };*/
+
+
+        var options = {
+            title: 'Geral',
+            format: 'currency',
+            seriesType: 'bars',
+            series: { 0: { type: 'line' } }
         };
+
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);

@@ -16,7 +16,13 @@ namespace APP_Life.Controllers
         {
             if (Session["usuarioLogadoID"] != null)
             {
-                ViewBag.listaProjetado = contexto.projetadoes.ToList();
+                //ViewBag.listaProjetado = contexto.projetadoes.ToList();
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+                ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == true && x.UsuarioID == id);
+
+                ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == false && x.UsuarioID == id);
+
+
                 ViewBag.CategoriaID = new SelectList
                 (
                     contexto.categorias.ToList(),

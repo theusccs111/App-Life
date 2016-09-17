@@ -16,6 +16,14 @@ namespace APP_Life.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.listaReceita = contexto.receitas.ToList();
+            ViewBag.listaDespesa = contexto.despesas.ToList();
+            ViewBag.CategoriaID = new SelectList
+            (
+                contexto.categorias.ToList(),
+                "CategoriaID",
+                "nome"
+            );
             return View();
         }
         public ActionResult Receitas()
@@ -29,7 +37,7 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
-                return View();
+                return PartialView("_Receitas");
             }
             else
             {
@@ -120,7 +128,7 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
-                return View();
+                return PartialView("_Despesas");
             }
             else
             {

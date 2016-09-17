@@ -32,7 +32,7 @@ namespace APP_Life.Controllers
                     {
                         Session["usuarioLogadoID"] = item.usuarioID.ToString();
                         Session["nomeUsuarioLogado"] = item.nome.ToString();
-                        return RedirectToAction("Receitas", "Lancamento");
+                        return RedirectToAction("Geral", "Lancamento");
                         //      return View("Lancamento");
                     }
                     else

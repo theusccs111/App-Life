@@ -1,0 +1,112 @@
+﻿@model APP_Life.Models.despesa
+@{
+    ViewBag.Title = "Despesas";
+}
+
+<h2>Despesas</h2>
+
+<style>
+    .container {
+        padding-top: 3%;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
+
+@Html.ActionLink("Adicionar Despesa", "CadastrarDespesa", "Lancamento", null, new { @class = "modal-link btn btn-success d" })
+<div id="modal-containerd" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+
+<table id="tabelaDespesa" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
+          
+            <th>Código</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Ações</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (ViewBag.listaDespesa))
+        {
+            <tr>
+                <td id="@item.DespesaID">
+                    @item.DespesaID
+                </td>
+                <td>
+                    @item.categoria.nome
+                </td>
+                <td>
+                    @item.Descricao
+                </td>
+                <td>
+                    @item.Data
+                </td>
+                <td>
+                    @item.Valor
+                </td>
+
+                <td>
+
+                    <a href="@Url.Action("DespesaDelete","Lancamento",new { id = @item.DespesaID})" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                    <button class="btn btn-primary edit" id="eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal" id="modald">
+
+    @Html.Partial("_DespesaUpdate", Model);
+
+</div>
+
+
+<script type="text/javascript">
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modald").load("DespesaUpdate?id=" + id, function () {
+            $("#modald").modal();
+        })
+    });
+
+
+    $(function () {
+        $('body').on('click', '.d', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containerd');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+
+</script>
+
+
+
