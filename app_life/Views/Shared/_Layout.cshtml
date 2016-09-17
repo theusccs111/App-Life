@@ -155,11 +155,14 @@
                                 <a href="Lancamento"><i class="fa fa-dashboard fa-fw"></i>Lançamentos<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="Receitas">Receitas</a>
+                                        @Html.ActionLink("Receitas", "Receitas", "Lancamento", null, new { @class = "" })
                                     </li>
                                     <li>
-                                        <a href="Despesas">Despesas</a>
-                                    </li>
+                                        @Html.ActionLink("Despesa", "Despesa", "Lancamento", null, new { @class = "" })
+                                  </li>
+                                    <li>
+                                  @Html.ActionLink("Projetado", "Projetado", "Projetado", null, new { @class = "" })
+  </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>

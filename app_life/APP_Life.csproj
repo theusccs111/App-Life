@@ -309,6 +309,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LancamentoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProjetadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -354,6 +355,9 @@
     <Content Include="Views\Lancamento\_DespesaUpdate.cshtml" />
     <Content Include="Views\Lancamento\_CadastrarReceita.cshtml" />
     <Content Include="Views\Usuario\InfoUsuario.cshtml" />
+    <Content Include="Views\Projetado\_ProjetadoUpdate.cshtml" />
+    <Content Include="Views\Projetado\_CadastrarProjetado.cshtml" />
+    <Content Include="Views\Projetado\Projetado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
