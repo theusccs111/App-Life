@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe das Projeções
+    /// </summary>
     public partial class projetado : IEnumerable<projetado>
     {
         public int ProjetadoID { get; set; }
@@ -20,6 +23,11 @@ namespace APP_Life.Models
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
+        /// <summary>
+        /// Método de Cadastro das Projeções
+        /// </summary>
+        /// <param name="rece">Objeto do Tipo Projeção</param>
+        /// <param name="id">ID do usuário logado</param>
         public void CadastrarProjetado(projetado rece, int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -28,7 +36,10 @@ namespace APP_Life.Models
 
             contexto.SaveChanges();
         }
-
+        /// <summary>
+        /// Método de Remoção da Projeção
+        /// </summary>
+        /// <param name="id">ID da Projeção a ser removida</param>
         public void RemoverProjetado(int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -37,7 +48,10 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
-
+        /// <summary>
+        /// Método de Alteração de uma Projeção já cadastrada
+        /// </summary>
+        /// <param name="rece">Objeto do tipo Projeção</param>
         public void UpdateProjetado(projetado rece)
         {
             app_lifeContext contexto = new app_lifeContext();

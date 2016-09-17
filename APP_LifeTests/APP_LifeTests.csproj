@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\APP_LifeTests.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -86,6 +87,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\despesaTests.cs" />
+    <Compile Include="Models\projetadoTests.cs" />
     <Compile Include="Models\receitaTests.cs" />
     <Compile Include="Models\usuarioTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

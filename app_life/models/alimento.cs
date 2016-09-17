@@ -3,8 +3,14 @@ using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe dos Alimentos
+    /// </summary>
     public partial class alimento
     {
+        /// <summary>
+        /// Método que busca as informações dos alimentos cadastrados no banco de dados.
+        /// </summary>
         public alimento()
         {
             this.dietaxalimentoxusuarios = new List<dietaxalimentoxusuario>();

@@ -8,35 +8,35 @@ using System.Threading.Tasks;
 
 namespace APP_Life.Models.Tests
 {
-   
     /// <summary>
-    /// Classe de Teste das Receitas
+    /// Classe de Teste das Projeções
     /// </summary>
     [TestClass()]
-    public class receitaTests
+    public class projetadoTests
     {
         /// <summary>
-        /// Método de Teste do Cadastro das Receitas, instanciando a variável para ser testada e comparada. 
+        /// Método de Teste do Cadastro das Projeções, instanciando a variável para ser testada e comparada. 
         /// Logo após dos testes exclui a informação nova cadastrada do banco de dados.
         /// </summary>
         [TestMethod()]
-        public void CadastrarReceitaTest()
+        public void CadastrarProjetadoTest()
         {
             app_lifeContext contexto = new app_lifeContext();
-            receita teste = new receita();
-            receita atual = new receita();
+            projetado teste = new projetado();
+            projetado atual = new projetado();
             teste.Descricao = "teste";
             teste.Valor = 12345;
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-            teste.ReceitaID = 999;
-          
+            teste.ProjetadoID = 999;
+
+
 
             //Execução
-            teste.CadastrarReceita(teste,1);
-     
-            var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
+            teste.CadastrarProjetado(teste, 1);
+
+            var query = from u in contexto.projetadoes where u.ProjetadoID == teste.ProjetadoID select u;
             foreach (var item in query)
             {
                 atual.Descricao = item.Descricao;
@@ -44,36 +44,36 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
-                atual.ReceitaID = item.ReceitaID;
-
+                atual.ProjetadoID = item.ProjetadoID;
             }
 
             //teste
-            Assert.AreEqual(teste.ReceitaID, atual.ReceitaID);
-            teste.RemoverReceita(teste.ReceitaID);
+            Assert.AreEqual(teste.ProjetadoID, atual.ProjetadoID);
+            teste.RemoverProjetado(teste.ProjetadoID);
         }
+
         /// <summary>
-        /// Método de Teste da Remoção das Receitas, instanciando a variável para ser testada e comparada. 
+        /// Método de Teste da Remoção das Projeções, instanciando a variável para ser testada e comparada. 
         /// </summary>
         [TestMethod()]
-        public void RemoverReceitaTest()
+        public void RemoverProjetadoTest()
         {
             app_lifeContext contexto = new app_lifeContext();
-            receita teste = new receita();
-            receita atual = new receita();
+            projetado teste = new projetado();
+            projetado atual = new projetado();
             teste.Descricao = "teste";
             teste.Valor = 12345;
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-          
+
 
 
             //Execução
-            teste.CadastrarReceita(teste, 1);
-            atual.RemoverReceita(teste.ReceitaID);
+            teste.CadastrarProjetado(teste, 1);
+            atual.RemoverProjetado(teste.ProjetadoID);
 
-            var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
+            var query = from u in contexto.projetadoes where u.ProjetadoID == teste.ProjetadoID select u;
             foreach (var item in query)
             {
                 atual.Descricao = item.Descricao;
@@ -81,30 +81,30 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
-                atual.ReceitaID = item.ReceitaID;
+                atual.ProjetadoID = item.ProjetadoID;
             }
 
             //teste
-            Assert.AreNotSame(teste.ReceitaID, atual.ReceitaID);
+            Assert.AreNotSame(teste.ProjetadoID, atual.ProjetadoID);
         }
         /// <summary>
-        /// Método de Teste da Alteração das Receitas, instanciando a variável para ser testada e comparada. 
+        /// Método de Teste da Alteração das Projeções, instanciando a variável para ser testada e comparada. 
         /// Logo após dos testes exclui a informação nova cadastrada do banco de dados.
         /// </summary>
         [TestMethod()]
-        public void UpdateReceitaTest()
+        public void UpdateProjetadoTest()
         {
             app_lifeContext contexto = new app_lifeContext();
-            receita teste = new receita();
-            receita atual = new receita();
+            projetado teste = new projetado();
+            projetado atual = new projetado();
             teste.Descricao = "teste";
             teste.Valor = 12345;
             teste.Data = "12/12/1212";
             teste.CategoriaID = 1;
             teste.UsuarioID = 1;
-           
 
-            receita atualizado = new receita();
+
+            projetado atualizado = new projetado();
             atualizado.Descricao = "Mudado";
             atualizado.Valor = 54321;
             atualizado.CategoriaID = 2;
@@ -113,10 +113,10 @@ namespace APP_Life.Models.Tests
 
 
             //Execução
-            teste.CadastrarReceita(teste, 1);
-           
+            teste.CadastrarProjetado(teste, 1);
 
-            var query = from u in contexto.receitas where u.ReceitaID == teste.ReceitaID select u;
+
+            var query = from u in contexto.projetadoes where u.ProjetadoID == teste.ProjetadoID select u;
             foreach (var item in query)
             {
                 atual.Descricao = item.Descricao;
@@ -124,17 +124,15 @@ namespace APP_Life.Models.Tests
                 atual.Data = item.Data;
                 atual.CategoriaID = item.CategoriaID;
                 atual.UsuarioID = item.UsuarioID;
-                atual.ReceitaID = item.ReceitaID;
-                atualizado.ReceitaID = item.ReceitaID;
+                atual.ProjetadoID = item.ProjetadoID;
+                atualizado.ProjetadoID = item.ProjetadoID;
 
             }
-            teste.UpdateReceita(atualizado);
+            teste.UpdateProjetado(atualizado);
             //teste
             Assert.AreNotSame(teste, atual);
 
-            teste.RemoverReceita(teste.ReceitaID);
+            teste.RemoverProjetado(teste.ProjetadoID);
         }
-
-
     }
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe de relação entre Dieta, Alimento e Usuário
+    /// </summary>
     public partial class dietaxalimentoxusuario
     {
         public int DietaID { get; set; }

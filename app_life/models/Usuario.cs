@@ -5,8 +5,14 @@ using System.ComponentModel;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe de Usuário
+    /// </summary>
     public partial class usuario : IEnumerable<usuario>
     {
+        /// <summary>
+        /// Método que busca as informações no banco de dados relacionadas ao usuário logado.
+        /// </summary>
         public usuario()
         {
             this.despesas = new List<despesa>();
@@ -14,14 +20,20 @@ namespace APP_Life.Models
             this.projetadoes = new List<projetado>();
             this.receitas = new List<receita>();
         }
-
+        /// <summary>
+        /// Método que realiza o cadastro do Usuário
+        /// </summary>
+        /// <param name="user">Objeto do Tipo Usuário</param>
         public void CadastrarUsuario(usuario user)
         {
             app_lifeContext contexto = new app_lifeContext();
             contexto.usuarios.Add(user);
             contexto.SaveChanges();
         }
-
+        /// <summary>
+        /// Método que exclui o usuário cadastrado
+        /// </summary>
+        /// <param name="id">ID do usuário a ser excluido</param>
         public void RemoverUsuario(int id)
         {
             app_lifeContext contexto = new app_lifeContext();
