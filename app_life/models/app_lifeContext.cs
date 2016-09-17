@@ -4,6 +4,9 @@ using APP_Life.Models.Mapping;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe de Contexto do Banco de Dados
+    /// </summary>
     public partial class app_lifeContext : DbContext
     {
         static app_lifeContext()

@@ -10,11 +10,17 @@ using System.Data.Entity;
 
 namespace APP_Life.Models.Tests
 {
+    /// <summary>
+    /// Classe de Teste de Usuários
+    /// </summary>
     [TestClass()]
     public class usuarioTests
     {
-       
 
+        /// <summary>
+        /// Método de Teste do Cadastro de Usuários, instanciando a variável para ser testada e comparada. 
+        /// Logo após dos testes exclui a informação nova cadastrada do banco de dados.
+        /// </summary>
         [TestMethod()]
         public void CadastrarUsuarioTest()
         {
@@ -65,7 +71,9 @@ namespace APP_Life.Models.Tests
 
 
         }
-
+        /// <summary>
+        /// Método de Teste da Remoção de Usuário, instanciando a variável para ser testada e comparada. 
+        /// </summary>
         [TestMethod()]
         public void RemoverUsuarioTest()
         {
