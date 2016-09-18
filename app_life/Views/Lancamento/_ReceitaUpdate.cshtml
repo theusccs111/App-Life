@@ -1,16 +1,20 @@
 ﻿@model APP_Life.Models.receita
 
 @{
-   
+
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/bootstrap.css" type="text/css">
+
     ViewBag.Title = "Edit";
 }<div class="modal-dialog">
     <div class="modal-content">
-        @using (Html.BeginForm("ReceitaUpdate", "Lancamento", new { @class = "" },
-                              FormMethod.Post))
+        @using (Html.BeginForm("ReceitaUpdate", "Lancamento", null, 
+                              FormMethod.Post , new { @class = "login" }))
         {
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Editar produto</h4>
+                <h4 class="modal-title">Alteração de dados</h4>
             </div>
 
                 @Html.AntiForgeryToken()
@@ -29,8 +33,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Descricao)
+                                <style .login {color: black;}>
+                                @Html.TextBoxFor(model => model.Descricao, new { @class = "text-box single-line"})
+                                @Html.ValidationMessageFor(model => model.Descricao) </style>
                             </div>
                         </div>
 

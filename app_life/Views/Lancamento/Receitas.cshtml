@@ -17,7 +17,7 @@
     }
 </style>
 
-@Html.ActionLink("ADD ", "CadastrarReceita", "Lancamento", null, new { @class = "modal-link btn btn-success" })
+@Html.ActionLink("+", "CadastrarReceita", "Lancamento", null, new { @class = "modal-link btn btn-success" })
 <div id="modal-container" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
@@ -62,8 +62,7 @@
                     <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                     -->
                     <a href="@Url.Action("ReceitaDelete","Lancamento",new { id = @item.ReceitaID})" class="btn btn-warning">
-                        link text
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
 
                  

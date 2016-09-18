@@ -16,7 +16,7 @@
     }
 </style>
 
-@Html.ActionLink("ADD ", "CadastrarDespesa", "Lancamento", null, new { @class = "modal-link btn btn-success" })
+@Html.ActionLink("+", "CadastrarDespesa", "Lancamento", null, new { @class = "modal-link btn btn-success" })
 <div id="modal-container" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
@@ -63,8 +63,7 @@
                 <td>
                  
                     <a href="@Url.Action("DespesaDelete","Lancamento",new { id = @item.DespesaID})" class="btn btn-warning">
-                        link text
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
     <button class="btn btn-primary edit" id="eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
 
