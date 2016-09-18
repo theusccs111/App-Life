@@ -59,10 +59,10 @@
                 <td>
                     @item.Nome
                 </td>
-                <td style="display:none" id="ValorTotal">
+                <td style="" id="ValorTotal">
                     @item.ValorTotal
                 </td>
-                <td style="display:none" id="ValorAtual">
+                <td style="" id="ValorAtual">
                     @item.ValorAtual
                 </td>
                 <td>
@@ -107,8 +107,8 @@
         for (var i = 1 ; i < linhao.length ; i++) {
             dadoso = linhao[i].cells;
             for (var j = 0 ; j < dadoso.length ; j++) {
-                sessionStorage.setItem('valorAtual' + [i], dadoso[j + 2].innerText);
-                sessionStorage.setItem('valorTotal' + [i], dadoso[j + 3].innerText);
+                sessionStorage.setItem('valorTotal' + [i], dadoso[j + 2].innerText);
+                sessionStorage.setItem('valorAtual' + [i], dadoso[j + 3].innerText);
                 break;
             }
         }

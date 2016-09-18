@@ -59,9 +59,9 @@
 
                 <td>
                  
-                    <a href="@Url.Action("DespesaDelete","Lancamento",new { id = @item.DespesaID})" class="btn btn-warning">
-                        link text
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
     <button class="btn btn-primary edit" id="eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
 
