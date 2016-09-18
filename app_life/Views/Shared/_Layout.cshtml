@@ -16,18 +16,26 @@
     <link href="../Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
-
+    
+ 
+    <script src="~/Scripts/sortable.js"></script>
+    <!-- jQuery -->
     <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Scripts/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Scripts/sb-admin-2.js"></script>
 
     <script src="~/Scripts/jquery-ui.min.js"></script>
-
-   
-
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/loader.js"></script>
 
-  
+ 
+
+    
 
 </head>
 
@@ -141,17 +149,24 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="Geral"><i class="fa fa-bar-chart-o fa-fw"></i>Visão Geral</a>
-                            </li>
+                           
+                                <a href="@Url.Action("Geral", "Lancamento")">
+                                  
+                                    <span class="fa fa-bar-chart-o fa-fw" aria-hidden="true"></span>
+                                    Visão Geral
+                                </a>
+                            
+                              </li>
                             <li>
-                                <a href="Lancamento"><i class="fa fa-file-text-o"></i> Lançamentos<span class="fa arrow"></span></a>
+                                <a href="Lancamento"><i class="fa fa-money"></i> Finanças<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="Receitas">Receitas</a>
+                                        @Html.ActionLink("Lançamentos", "Index", "Lancamento", null, new { @class = "" })
                                     </li>
+                                    
                                     <li>
-                                        <a href="Despesas">Despesas</a>
-                                    </li>
+                                  @Html.ActionLink("Projetado", "Projetado", "Projetado", null, new { @class = "" })
+  </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -210,13 +225,6 @@
         </div>
     }
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="~/Scripts/metisMenu.min.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="~/Scripts/sb-admin-2.js"></script>
+
 </body>
 </html>

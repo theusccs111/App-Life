@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    ///Classe das Receitas
+    /// </summary>
     public partial class receita : IEnumerable<receita>
     {
 
@@ -22,6 +26,11 @@ namespace APP_Life.Models
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
+        /// <summary>
+        /// Método de Cadastro das Receitas 
+        /// </summary>
+        /// <param name="rece">Objeto do Tipo receita</param>
+        /// <param name="id">ID do usuário logado</param>
         public void CadastrarReceita(receita rece, int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -30,7 +39,10 @@ namespace APP_Life.Models
 
             contexto.SaveChanges();
         }
-
+        /// <summary>
+        /// Método de remoção da receita cadastrada
+        /// </summary>
+        /// <param name="id">ID do usuário logado</param>
         public void RemoverReceita(int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -39,8 +51,30 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
-     
+        /// <summary>
+        /// Método de alteração da receita já cadastrada
+        /// </summary>
+        /// <param name="rece">Obejto do Tipo Receita</param>
+        public void UpdateReceita(receita rece)
+        {
 
+            app_lifeContext contexto = new app_lifeContext();
+            var query = from u in contexto.receitas select u;
+            foreach (var item in query)
+            {
+                if (item.ReceitaID == rece.ReceitaID)
+                {
+                    item.Descricao = rece.Descricao;
+                    item.Valor = rece.Valor;
+                    item.Data = rece.Data;
+
+                    item.UsuarioID = rece.UsuarioID;
+                    item.CategoriaID = rece.CategoriaID;
+                }
+
+            }
+            contexto.SaveChanges();
+        }
 
 
         List<receita> receitasLista;

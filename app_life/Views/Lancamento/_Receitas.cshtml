@@ -1,0 +1,124 @@
+﻿@model APP_Life.Models.receita
+@{
+    ViewBag.Title = "Receita";
+}
+
+<h2>Receita</h2>
+
+
+
+
+<style>
+    .container {
+        padding-top: 3%;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
+
+@Html.ActionLink("Adicionar Receita", "CadastrarReceita", "Lancamento", null, new { @class = "modal-link btn btn-success r" })
+<br />
+
+<div id="modal-container" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table id="tabelaReceita" class="table table-striped sortable" cellspacing="0" style="width: 100%;">
+        <thead style="">
+        <tr>
+
+            <th>Código</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
+                <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (ViewBag.listaReceita))
+        {
+            <tr>
+                <td id="@item.ReceitaID">
+                    @item.ReceitaID
+                </td>
+                <td>
+                    @item.categoria.nome
+                </td>
+                <td>
+                    @item.Descricao
+                </td>
+                <td>
+                    @item.Data
+                </td>
+                <td>
+                    @item.Valor
+                </td>
+
+                <td>
+                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    -->
+                    <a href="@Url.Action("ReceitaDelete","Lancamento",new { id = @item.ReceitaID})" class="btn btn-warning">
+                        link text
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    </a>
+
+                        <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
+                 
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </a>
+                     <button class="btn btn-primary edit" id="eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+<div class="modal" id="modal">
+
+    @Html.Partial("_ReceitaUpdate", Model);
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("ReceitaUpdate?id=" + id, function () {
+            $("#modal").modal();
+        })
+    });
+
+
+
+    $(function () {
+        $('body').on('click', '.r', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-container').modal('hide');
+        });
+
+        $('#modal-container').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+
+</script>
+
+
+

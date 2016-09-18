@@ -14,6 +14,9 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Descricao)
                 .HasMaxLength(100);
 
+            this.Property(t => t.Data)
+                .HasMaxLength(10);
+
             // Table & Column Mappings
             this.ToTable("despesa", "app_life");
             this.Property(t => t.DespesaID).HasColumnName("DespesaID");

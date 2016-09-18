@@ -19,7 +19,7 @@ namespace APP_Life.Controllers
             return View(user);
         }
 
-      
+
         [HttpPost]
         public ActionResult Index(usuario user)
         {
@@ -32,8 +32,8 @@ namespace APP_Life.Controllers
                     {
                         Session["usuarioLogadoID"] = item.usuarioID.ToString();
                         Session["nomeUsuarioLogado"] = item.nome.ToString();
-                        return RedirectToAction("Receitas","Lancamento");
-                  //      return View("Lancamento");
+                        return RedirectToAction("Geral", "Lancamento");
+                        //      return View("Lancamento");
                     }
                     else
                     {
@@ -52,14 +52,23 @@ namespace APP_Life.Controllers
             return View();
         }
 
-   
-        public ActionResult CadastrarUsuario()
+        [HttpPost]
+        public ActionResult CadastrarUsuario(usuario user)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                usuario x = new usuario();
+                x.CadastrarUsuario(user);
+                Session["usuarioLogadoID"] = user.usuarioID.ToString();
+                //Session["nomeUsuarioLogado"] = user.nome.ToString();
+                return RedirectToAction("Receitas", "Lancamento");
+            }
+            return RedirectToAction("Inicio");
+
         }
-      
-       
-      
+
+
+
 
     }
 

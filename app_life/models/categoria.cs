@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 namespace APP_Life.Models
 {
-    public partial class categoria:IEnumerable<categoria>
+    /// <summary>
+    /// Classe das Categorias Financeiras
+    /// </summary>
+    public partial class categoria : IEnumerable<categoria>
     {
+        /// <summary>
+        /// Método que busca as informações no banco de dados relacionadas ao usuário logado.
+        /// </summary>
         public categoria()
         {
             this.despesas = new List<despesa>();

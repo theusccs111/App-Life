@@ -135,7 +135,7 @@ FormMethod.Post, new { @class = "login" }))
 
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar2">X</a>
-                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+                    @using (Html.BeginForm("CadastrarUsuario", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "login" }))
                     {
                         @Html.ValidationSummary(true);

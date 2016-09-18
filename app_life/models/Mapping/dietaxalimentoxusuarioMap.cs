@@ -32,6 +32,9 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Medida).HasColumnName("Medida");
 
             // Relationships
+            this.HasRequired(t => t.alimento)
+                .WithMany(t => t.dietaxalimentoxusuarios)
+                .HasForeignKey(d => d.AlimentoID);
             this.HasRequired(t => t.dieta)
                 .WithMany(t => t.dietaxalimentoxusuarios)
                 .HasForeignKey(d => d.DietaID);

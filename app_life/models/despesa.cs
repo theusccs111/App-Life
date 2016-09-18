@@ -2,9 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace APP_Life.Models
 {
+    /// <summary>
+    /// Classe das Despesas
+    /// </summary>
     public partial class despesa : IEnumerable<despesa>
     {
         public int DespesaID { get; set; }
@@ -19,6 +23,11 @@ namespace APP_Life.Models
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
+        /// <summary>
+        /// Método de Cadastro das Despesas
+        /// </summary>
+        /// <param name="rece">Objeto do Tipo Despesa</param>
+        /// <param name="id">ID do Usuário logado</param>
         public void CadastrarDespesa(despesa rece, int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -27,7 +36,10 @@ namespace APP_Life.Models
 
             contexto.SaveChanges();
         }
-
+        /// <summary>
+        /// Método de Remoção da Despesa
+        /// </summary>
+        /// <param name="id">ID da Despesa a ser excluída</param>
         public void RemoverDespesa(int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -36,8 +48,26 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
+        /// <summary>
+        /// Método de Alteração de uma Despesa já cadastrada.
+        /// </summary>
+        /// <param name="rece">Objeto do Tipo Despesa</param>
+        public void UpdateDespesa(despesa rece)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            var query = from u in contexto.despesas where u.DespesaID == rece.DespesaID select u;
+            foreach (var item in query)
+            {
+                item.Descricao = rece.Descricao;
+                item.Valor = rece.Valor;
+                item.Data = rece.Data;
+                //item.categoria.nome = rece.categoria.nome;
+                item.UsuarioID = rece.UsuarioID;
+                item.CategoriaID = rece.CategoriaID;
 
-
+            }
+            contexto.SaveChanges();
+        }
 
 
         List<despesa> despesaLista;
@@ -52,6 +82,6 @@ namespace APP_Life.Models
             return GetEnumerator();
         }
 
-      
+
     }
 }

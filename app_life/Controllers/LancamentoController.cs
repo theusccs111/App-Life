@@ -16,6 +16,14 @@ namespace APP_Life.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.listaReceita = contexto.receitas.ToList();
+            ViewBag.listaDespesa = contexto.despesas.ToList();
+            ViewBag.CategoriaID = new SelectList
+            (
+                contexto.categorias.ToList(),
+                "CategoriaID",
+                "nome"
+            );
             return View();
         }
         public ActionResult Receitas()
@@ -29,7 +37,7 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
-                return View();
+                return PartialView("_Receitas");
             }
             else
             {
@@ -105,18 +113,7 @@ namespace APP_Life.Controllers
         public ActionResult ReceitaUpdate(receita rece)
         {
 
-            var query = from u in contexto.receitas where u.ReceitaID == rece.ReceitaID select u;
-            foreach (var item in query)
-            {
-                item.Descricao = rece.Descricao;
-                item.Valor = rece.Valor;
-                item.Data = rece.Data;
-                //item.categoria.nome = rece.categoria.nome;
-                item.UsuarioID = rece.UsuarioID;
-                item.CategoriaID = rece.CategoriaID;
-
-            }
-            contexto.SaveChanges();
+            rece.UpdateReceita(rece);
             return RedirectToAction("Receitas");
         }
       
@@ -131,7 +128,7 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
-                return View();
+                return PartialView("_Despesas");
             }
             else
             {
@@ -204,18 +201,8 @@ namespace APP_Life.Controllers
         public ActionResult DespesaUpdate(despesa rece)
         {
 
-            var query = from u in contexto.despesas where u.DespesaID == rece.DespesaID select u;
-            foreach (var item in query)
-            {
-                item.Descricao = rece.Descricao;
-                item.Valor = rece.Valor;
-                item.Data = rece.Data;
-                //item.categoria.nome = rece.categoria.nome;
-                item.UsuarioID = rece.UsuarioID;
-                item.CategoriaID = rece.CategoriaID;
-
-            }
-            contexto.SaveChanges();
+            rece.UpdateDespesa(rece);
+         
             return RedirectToAction("Despesas");
         }
 
@@ -256,7 +243,7 @@ namespace APP_Life.Controllers
                 Session["despesaTotal"] = total2;
 
                 var query3 = from u in contexto.despesas orderby u.Data select u;
-                return View(query3);
+                return View(contexto.despesas.ToList());
             }
             else
             {

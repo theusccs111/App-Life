@@ -22,12 +22,13 @@ ter saldo de receita e despesa e projeções
 
 -->
 
-<table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;">
+<table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;display:none;">
     <thead>
         <tr>
-            <th>Valor</th>
-            <th>Descrição</th>
             <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
         </tr>
     </thead>
     <tbody>
@@ -35,16 +36,18 @@ ter saldo de receita e despesa e projeções
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
+                    @Html.DisplayFor(modelItem => item.categoria.nome)
                 </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.categoria.nome)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
                 </td>
             </tr>
         }
@@ -61,10 +64,10 @@ ter saldo de receita e despesa e projeções
     for (var i = 1 ; i < linha.length ; i++) {
         dados = linha[i].cells;
         for (var j = 0 ; j < dados.length ; j++) {
-            sessionStorage.setItem('valor' + [i], dados[j  ].innerText);
+            sessionStorage.setItem('valor' + [i], dados[j  +3].innerText);
 			 sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
-			 sessionStorage.setItem('categoria' + [i], dados[j + 2].innerText);
-			 sessionStorage.setItem('data' + [i], dados[j + 3].innerText);
+			 sessionStorage.setItem('categoria' + [i], dados[j].innerText);
+			 sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
            break;
         }
     }
@@ -108,14 +111,24 @@ ter saldo de receita e despesa e projeções
         }
 
 
-
+         /*
         var options = {
             title: 'Geral',
            format:'currency',
-			curveType: 'function',
-            legend: { position: 'bottom' }
+           curveType: 'function',
+            vAsix: {height:100},
+            legend: { position: 'bottom', }
 
+        };*/
+
+
+        var options = {
+            title: 'Geral',
+            format: 'currency',
+            seriesType: 'bars',
+            series: { 0: { type: 'line' } }
         };
+
 
         var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
         chart.draw(data, options);

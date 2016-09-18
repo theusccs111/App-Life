@@ -34,6 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\APP_Life.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -136,6 +137,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\creative.css" />
     <Content Include="Content\creative.min.css" />
+    <Content Include="Content\dataTable\dataTables.bootstrap.css" />
+    <Content Include="Content\dataTable\dataTables.responsive.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -227,6 +230,8 @@
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -293,6 +298,7 @@
     <Content Include="Scripts\sb-admin-2.js" />
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
+    <Content Include="Scripts\sortable.js" />
     <Content Include="Views\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Resultado.cshtml" />
@@ -304,6 +310,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\LancamentoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProjetadoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -311,18 +318,16 @@
     <Compile Include="Models\alimento.cs" />
     <Compile Include="Models\app_lifeContext.cs" />
     <Compile Include="Models\categoria.cs" />
+    <Compile Include="Models\categoriaalimento.cs" />
     <Compile Include="Models\despesa.cs" />
     <Compile Include="Models\dieta.cs" />
     <Compile Include="Models\dietaxalimentoxusuario.cs" />
-    <Compile Include="Models\food.cs" />
-    <Compile Include="Models\foods_components.cs" />
     <Compile Include="Models\Mapping\alimentoMap.cs" />
+    <Compile Include="Models\Mapping\categoriaalimentoMap.cs" />
     <Compile Include="Models\Mapping\categoriaMap.cs" />
     <Compile Include="Models\Mapping\despesaMap.cs" />
     <Compile Include="Models\Mapping\dietaMap.cs" />
     <Compile Include="Models\Mapping\dietaxalimentoxusuarioMap.cs" />
-    <Compile Include="Models\Mapping\foodMap.cs" />
-    <Compile Include="Models\Mapping\foods_componentsMap.cs" />
     <Compile Include="Models\Mapping\projetadoMap.cs" />
     <Compile Include="Models\Mapping\receitaMap.cs" />
     <Compile Include="Models\Mapping\usuarioMap.cs" />
@@ -341,16 +346,19 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_MenuLateral.cshtml" />
     <Content Include="Views\Login\Inicio.cshtml" />
-    <Content Include="Views\Lancamento\Receitas.cshtml" />
-    <Content Include="Views\Lancamento\_CadastrarReceita.cshtml" />
-    <Content Include="Views\Lancamento\Despesas.cshtml" />
+    <Content Include="Views\Lancamento\_Receitas.cshtml" />
+    <Content Include="Views\Lancamento\_Despesas.cshtml" />
     <Content Include="Views\Lancamento\Geral.cshtml" />
     <Content Include="Views\Lancamento\Index.cshtml" />
     <Content Include="Views\Login\CadastrarUsuario.cshtml" />
     <Content Include="Views\Lancamento\_ReceitaUpdate.cshtml" />
-    <Content Include="Views\Lancamento\edit.cshtml" />
     <Content Include="Views\Lancamento\_CadastrarDespesa.cshtml" />
     <Content Include="Views\Lancamento\_DespesaUpdate.cshtml" />
+    <Content Include="Views\Lancamento\_CadastrarReceita.cshtml" />
+    <Content Include="Views\Usuario\InfoUsuario.cshtml" />
+    <Content Include="Views\Projetado\_ProjetadoUpdate.cshtml" />
+    <Content Include="Views\Projetado\_CadastrarProjetado.cshtml" />
+    <Content Include="Views\Projetado\Projetado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -361,6 +369,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
