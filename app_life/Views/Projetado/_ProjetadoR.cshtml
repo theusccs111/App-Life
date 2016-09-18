@@ -1,0 +1,113 @@
+﻿@model APP_Life.Models.projetado
+@{
+    ViewBag.Title = "Projetado";
+}
+
+<h2>Projetado</h2>
+
+<style>
+    .container {
+        padding-top: 3%;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
+
+@Html.ActionLink("Adicionar Projeção", "CadastrarProjetado", "Projetado", null, new { @class = "modal-link btn btn-success pr" })
+<div id="modal-containerpr" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+
+<table id="tabelaProjetado" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
+
+            <th>Código</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th class="sorting" tabindex="0" aria-controls="dataTables-example"
+                rowspan="1" colspan="1" aria-label="Valor:active to sort column ascending"
+                style="width: 171px">
+                Valor
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (ViewBag.listaProjetadoR))
+        {
+            <tr>
+                <td id="@item.ProjetadoID">
+                    @item.ProjetadoID
+                </td>
+                <td>
+                    @item.categoria.nome
+                </td>
+                <td>
+                    @item.Descricao
+                </td>
+                <td>
+                    @item.Data
+                </td>
+                <td>
+                    @item.Valor
+                </td>
+
+                <td>
+
+                    <a href="@Url.Action("ProjetadoDelete","Projetado",new { id = @item.ProjetadoID})" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                    <button class="btn btn-primary edit" id="eita" data-id="@item.ProjetadoID"><i class="glyphicon glyphicon-edit"></i></button>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal" id="modalpr">
+
+    @Html.Partial("_ProjetadoUpdate", Model);
+
+</div>
+
+
+<script type="text/javascript">
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalpr").load("ProjetadoUpdate?id=" + id, function () {
+            $("#modalpr").modal();
+        })
+    });
+
+
+    $(function () {
+        $('body').on('click', '.pr', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containerpr');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-containerpr').modal('hide');
+        });
+
+        $('#modal-containerpr').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+
+</script>

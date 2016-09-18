@@ -28,6 +28,7 @@ namespace APP_Life.Models
         public DbSet<projetado> projetadoes { get; set; }
         public DbSet<receita> receitas { get; set; }
         public DbSet<usuario> usuarios { get; set; }
+        public DbSet<objetivo> objetivos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -40,6 +41,7 @@ namespace APP_Life.Models
             modelBuilder.Configurations.Add(new projetadoMap());
             modelBuilder.Configurations.Add(new receitaMap());
             modelBuilder.Configurations.Add(new usuarioMap());
+            modelBuilder.Configurations.Add(new objetivoMap());
         }
     }
 }

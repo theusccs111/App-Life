@@ -19,6 +19,7 @@ namespace APP_Life.Models
             this.dietaxalimentoxusuarios = new List<dietaxalimentoxusuario>();
             this.projetadoes = new List<projetado>();
             this.receitas = new List<receita>();
+            this.objetivos = new List<objetivo>();
         }
         /// <summary>
         /// Método que realiza o cadastro do Usuário
@@ -91,6 +92,7 @@ namespace APP_Life.Models
         public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public virtual ICollection<projetado> projetadoes { get; set; }
         public virtual ICollection<receita> receitas { get; set; }
+        public virtual ICollection<objetivo> objetivos { get; set; }
 
 
         List<usuario> usuariosLista;

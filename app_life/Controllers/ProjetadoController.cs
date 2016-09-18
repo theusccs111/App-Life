@@ -12,24 +12,53 @@ namespace APP_Life.Controllers
     {
         app_lifeContext contexto = new app_lifeContext();
         // GET: Projetado
-        public ActionResult Projetado()
+
+
+            public ActionResult Index()
+        {
+
+            int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+            ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == true && x.UsuarioID == id);
+
+            ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == false && x.UsuarioID == id);
+
+            ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
+
+
+            ViewBag.CategoriaID = new SelectList
+            (
+                contexto.categorias.ToList(),
+                "CategoriaID",
+                "nome"
+            );
+
+            return View();
+
+        }
+
+       
+
+        public ActionResult ProjetadoR()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+               
+                return PartialView("_ProjetadoR");
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Login");
+            }
+
+        }
+
+        public ActionResult ProjetadoD()
         {
             if (Session["usuarioLogadoID"] != null)
             {
                 //ViewBag.listaProjetado = contexto.projetadoes.ToList();
-                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
-                ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == true && x.UsuarioID == id);
-
-                ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == false && x.UsuarioID == id);
-
-
-                ViewBag.CategoriaID = new SelectList
-                (
-                    contexto.categorias.ToList(),
-                    "CategoriaID",
-                    "nome"
-                );
-                return View();
+                
+                return PartialView("_ProjetadoD");
             }
             else
             {
@@ -108,5 +137,92 @@ namespace APP_Life.Controllers
             rece.UpdateProjetado(rece);
             return RedirectToAction("Projetado");
         }
+
+
+
+        //objetivo
+        public ActionResult Objetivo()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+
+       
+
+                return PartialView("_Objetivo");
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Login");
+            }
+
+        }
+        public ActionResult CadastrarObjetivo()
+        {
+      
+
+            return PartialView("_CadastrarObjetivo");
+
+
+        }
+
+
+        [HttpPost]
+        public ActionResult CadastrarObjetivo(objetivo rece)
+        {
+            if (ModelState.IsValid)
+            {
+                objetivo x = new objetivo();
+                x.CadastrarObjetivo(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Geral");
+        }
+
+
+        public ActionResult ObjetivoDelete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            objetivo main = contexto.objetivos.Find(id);
+            if (main == null)
+            {
+                return HttpNotFound();
+            }
+
+            objetivo rece = new objetivo();
+            rece.RemoverObjetivo(main.ObjetivoID);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        public ActionResult ObjetivoUpdate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            objetivo rece = contexto.objetivos.Find(id);
+            if (rece == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView("_ObjetivoUpdate", rece);
+        }
+
+        [HttpPost] // this action takes the viewModel from the modal
+        public ActionResult ObjetivoUpdate(objetivo rece)
+        {
+
+            rece.UpdateObjetivo(rece);
+            return RedirectToAction("Index");
+        }
+
+
+
+
     }
 }
