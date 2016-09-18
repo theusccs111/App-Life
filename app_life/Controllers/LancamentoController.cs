@@ -16,8 +16,8 @@ namespace APP_Life.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.listaReceita = contexto.receitas.ToList();
-            ViewBag.listaDespesa = contexto.despesas.ToList();
+            ViewBag.listaReceita = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+            ViewBag.listaDespesa = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])); ;
             ViewBag.CategoriaID = new SelectList
             (
                 contexto.categorias.ToList(),
