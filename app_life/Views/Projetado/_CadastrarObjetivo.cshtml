@@ -9,8 +9,11 @@
 
     <!-- Modal content-->
     @using (Html.BeginForm("CadastrarObjetivo", "Projetado", new { @class = "" },
-                                             FormMethod.Post))
-    {
+                                                     FormMethod.Post))
+    {<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Adicionar Objetivo</h4>
+    </div>
         @Html.ValidationSummary(true);
         <div class="container">
             <div class="col-md-12">
@@ -37,7 +40,7 @@
                     <div class="col-md-12">
                         <!--    <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
                            -->
-                        Valor Atual:
+                        Disponível:
                         @Html.EditorFor(model => model.ValorAtual, new { htmlAttributes = new { @class = "form-control input-md" } })
 
 
@@ -51,7 +54,7 @@
                     <div class="col-md-12">
                         <!--  <input id="textinput" name="textinput" placeholder="" class="form-control input-md" type="datetime">
                         -->
-                       Valor Total:
+                       Custo:
                         @Html.EditorFor(model => model.ValorTotal, new { htmlAttributes = new { @class = "form-control input-md" } })
 
 

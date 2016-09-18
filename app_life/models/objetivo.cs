@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -15,8 +16,9 @@ namespace APP_Life.Models
   
         public string Nome { get; set; }
 
+        [DisplayName("Custo")]
         public Nullable<float> ValorTotal { get; set; }
-
+        [DisplayName("Disponível")]
         public Nullable<float> ValorAtual { get; set; }
 
         public Nullable<int> UsuarioID { get; set; }

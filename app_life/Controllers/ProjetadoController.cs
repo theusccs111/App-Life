@@ -173,7 +173,7 @@ namespace APP_Life.Controllers
             {
                 objetivo x = new objetivo();
                 x.CadastrarObjetivo(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                return RedirectToAction("_Objetivo");
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Geral");
         }
@@ -194,7 +194,7 @@ namespace APP_Life.Controllers
             objetivo rece = new objetivo();
             rece.RemoverObjetivo(main.ObjetivoID);
 
-            return RedirectToAction("_Objetivo");
+            return RedirectToAction("Index");
         }
 
 
@@ -210,7 +210,7 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView("_Objetivo", rece);
+            return PartialView("_ObjetivoUpdate", rece);
         }
 
         [HttpPost] // this action takes the viewModel from the modal
@@ -218,7 +218,7 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateObjetivo(rece);
-            return RedirectToAction("_Objetivo");
+            return RedirectToAction("Index");
         }
 
 

@@ -16,8 +16,8 @@
     }
 </style>
 
-@Html.ActionLink("Adicionar Projeção", "CadastrarProjetado", "Projetado", null, new { @class = "modal-link btn btn-success" })
-<div id="modal-container" class="modal fade"
+@Html.ActionLink("Adicionar Projeção", "CadastrarProjetado", "Projetado", null, new { @class = "modal-link btn btn-success pr" })
+<div id="modal-containerpr" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
     </div>
@@ -74,7 +74,7 @@
 </table>
 
 
-<div class="modal" id="modal">
+<div class="modal" id="modalpr">
 
     @Html.Partial("_ProjetadoUpdate", Model);
 
@@ -84,24 +84,24 @@
 <script type="text/javascript">
     $(".edit").click(function () {
         var id = $(this).attr("data-id");
-        $("#modal").load("ProjetadoUpdate?id=" + id, function () {
-            $("#modal").modal();
+        $("#modalpr").load("ProjetadoUpdate?id=" + id, function () {
+            $("#modalpr").modal();
         })
     });
 
 
     $(function () {
-        $('body').on('click', '.modal-link', function (e) {
+        $('body').on('click', '.pr', function (e) {
             e.preventDefault();
-            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-target', '#modal-containerpr');
             $(this).attr('data-toggle', 'modal');
         });
 
         $('body').on('click', '.modal-close-btn', function () {
-            $('#modal-container').modal('hide');
+            $('#modal-containerpr').modal('hide');
         });
 
-        $('#modal-container').on('hidden.bs.modal', function () {
+        $('#modal-containerpr').on('hidden.bs.modal', function () {
             $(this).removeData('bs.modal');
         });
         $('#CancelModal').on('click', function () {
