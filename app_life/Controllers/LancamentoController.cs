@@ -16,15 +16,22 @@ namespace APP_Life.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.listaReceita = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
-            ViewBag.listaDespesa = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])); ;
-            ViewBag.CategoriaID = new SelectList
-            (
-                contexto.categorias.ToList(),
-                "CategoriaID",
-                "nome"
-            );
-            return View();
+            if (Session["usuarioLogadoID"] != null)
+            {
+                ViewBag.listaReceita = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+                ViewBag.listaDespesa = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])); ;
+                ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Login");
+            }
         }
         public ActionResult Receitas()
         {
@@ -74,7 +81,7 @@ namespace APP_Life.Controllers
             return RedirectToAction("Geral");
         }
 
-        
+
         public ActionResult ReceitaDelete(int? id)
         {
             if (id == null)
@@ -86,15 +93,15 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
-         
+
             receita rece = new receita();
             rece.RemoverReceita(main.ReceitaID);
 
             return RedirectToAction("Receitas");
         }
-       
 
-       
+
+
         public ActionResult ReceitaUpdate(int? id)
         {
             if (id == null)
@@ -116,7 +123,7 @@ namespace APP_Life.Controllers
             rece.UpdateReceita(rece);
             return RedirectToAction("Receitas");
         }
-      
+
         public ActionResult Despesas()
         {
             if (Session["usuarioLogadoID"] != null)
@@ -202,7 +209,7 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateDespesa(rece);
-         
+
             return RedirectToAction("Despesas");
         }
 
