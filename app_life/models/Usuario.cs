@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace APP_Life.Models
 {
@@ -40,6 +41,30 @@ namespace APP_Life.Models
             app_lifeContext contexto = new app_lifeContext();
             usuario main = contexto.usuarios.Find(id);
             contexto.usuarios.Remove(main);
+            contexto.SaveChanges();
+        }
+
+        public void UpdateUsuario(usuario rece)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            var query = from u in contexto.usuarios where u.usuarioID == rece.usuarioID select u;
+            foreach (var item in query)
+            {
+
+                item.email = rece.email;
+                item.senha = rece.senha;
+                item.nome = rece.nome;
+                item.sobrenome = rece.sobrenome;
+                item.datanasc = rece.datanasc;
+                item.sexo = rece.sexo;
+                item.telefone = rece.telefone;
+                item.rua = rece.rua;
+                item.numero = rece.numero;
+                item.bairro = rece.bairro;
+                item.cidade = rece.cidade;
+                item.estado = rece.estado;
+              //  item.Calorias = rece.Calorias;
+            }
             contexto.SaveChanges();
         }
 

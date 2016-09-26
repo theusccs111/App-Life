@@ -25,24 +25,29 @@ namespace APP_Life.Controllers
         {
             if (ModelState.IsValid)
             {
+                Session["ErroLogin"] = null;
+
                 var query = from u in contexto.usuarios select u;
                 foreach (var item in query)
                 {
-                    if (item.email == user.email)
+                    if ((item.email == user.email) && (item.senha == user.senha))
                     {
                         Session["usuarioLogadoID"] = item.usuarioID.ToString();
                         Session["nomeUsuarioLogado"] = item.nome.ToString();
                         return RedirectToAction("Geral", "Lancamento");
-                        //      return View("Lancamento");
+                 
                     }
                     else
                     {
-                        return RedirectToAction("Inicio");
+                        ModelState.AddModelError("CustomError", "Login ou senha incorretos");
+                        return View("Inicio");
                     }
                 }
             }
             return View(user);
         }
+
+  
 
 
         public ActionResult Inicio()

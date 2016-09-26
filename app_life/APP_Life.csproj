@@ -358,7 +358,6 @@
     <Content Include="Views\Lancamento\_CadastrarDespesa.cshtml" />
     <Content Include="Views\Lancamento\_DespesaUpdate.cshtml" />
     <Content Include="Views\Lancamento\_CadastrarReceita.cshtml" />
-    <Content Include="Views\Usuario\InfoUsuario.cshtml" />
     <Content Include="Views\Projetado\_ProjetadoUpdate.cshtml" />
     <Content Include="Views\Projetado\_CadastrarProjetado.cshtml" />
     <Content Include="Views\Projetado\_ProjetadoR.cshtml" />
@@ -367,6 +366,7 @@
     <Content Include="Views\Projetado\_Objetivo.cshtml" />
     <Content Include="Views\Projetado\_ObjetivoUpdate.cshtml" />
     <Content Include="Views\Projetado\_CadastrarObjetivo.cshtml" />
+    <Content Include="Views\Usuario\InfoUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -45,5 +45,14 @@ namespace APP_Life.Controllers
             return View(user);
         }
 
+        [HttpPost]
+        public ActionResult InfoUsuario(usuario rece)
+        {
+            rece.UpdateUsuario(rece);
+
+            return RedirectToAction("InfoUsuario","Usuario");
+        }
+
+
     }
 }
