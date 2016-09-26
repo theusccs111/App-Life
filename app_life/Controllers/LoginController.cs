@@ -66,7 +66,7 @@ namespace APP_Life.Controllers
                 x.CadastrarUsuario(user);
                 Session["usuarioLogadoID"] = user.usuarioID.ToString();
                 //Session["nomeUsuarioLogado"] = user.nome.ToString();
-                return RedirectToAction("Receitas", "Lancamento");
+                return RedirectToAction("Geral", "Lancamento");
             }
             return RedirectToAction("Inicio");
 
