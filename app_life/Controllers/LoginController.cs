@@ -21,13 +21,11 @@ namespace APP_Life.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(string email, string senha)
+        public String Logar(string email, string senha)
         {
             if (ModelState.IsValid)
             {
-                //  Session["ErroLogin"] = null;
-                try
-                {
+             
                     var query = from u in contexto.usuarios select u;
                     foreach (var item in query)
                     {
@@ -35,19 +33,17 @@ namespace APP_Life.Controllers
                         {
                             Session["usuarioLogadoID"] = item.usuarioID.ToString();
                             Session["nomeUsuarioLogado"] = item.nome.ToString();
-                            return Json("OK");
-
-                        }
+                        return "OK";
+                       
 
                     }
+                  
+
                 }
-                catch (Exception ex)
-                {
-                    return Json(ex.Message);
-                    //string erro = ;
-                }
+          
+              
             }
-            return Json("Nada");
+            return "OK";
         }
 
   

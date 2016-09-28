@@ -100,43 +100,22 @@
                 <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar">x</a>
                     <script>
-                        function loginUsuario(){
-
-                            alert();
-
-                            if(($('#email').text() != "") && ( $("#senha").val() != "")){
-                                resultado = { "email": $('#email').val(), "senha": $('#senha').val() };
-                            }
-                                
-                            else
-                                return;
-
-                            $.ajax({
-                                url: '/Login/Index',
-                                datatype: 'json',
-                                contentType: "application/json; charset=utf-8",
-                                type: "POST",
-                                data: JSON.stringify(resultado), // passe simplesmente o JSON serializado em string
-                                success: function (data) {
-                                    if (data == "OK") {
-                                        alert('Login realizado com sucesso!!');
-                                        window.location.href = "/Lancamento/Geral";
-                                    }
-                                },
-                                error: function (error) {
-                                    loading(0, "");
+                        $(document).on("click",'#logar',function(){
+                            var url = "/Login/Logar";
+                            var nome = $("#email").val();
+                            var endereco = $("#senha").val();
+                            $.post(url, { email: email, senha: senha }, function (data) {
+                                if (data == "OK") {
+                                    console.log("sucesso");
                                 }
                             });
-                        }
+                        })
 
-                        $('form#login').on('submit', function (e) {
-                            e.preventDefault();
-                            loginUsuario();
-                        });
+
                     </script>
 
-                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-FormMethod.Post, new { @class = "login",@id="login" }))
+                    @using (Html.BeginForm("Logar", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, new { @class = "login" }))
                     {
                         @Html.ValidationSummary(true);
                         <div class="container">
@@ -145,9 +124,9 @@ FormMethod.Post, new { @class = "login",@id="login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                @*    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
-                                *@  <input class="text-box single-line" id="email" name="email" placeholder="Usuário" type="text">
-                                       @Html.ValidationMessageFor(model => model.email)
+                                    @*    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
+                                    *@  <input class="text-box single-line" id="email" name="email" placeholder="Usuário" type="text">
+                                    @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
                                 <div>
@@ -155,7 +134,7 @@ FormMethod.Post, new { @class = "login",@id="login" }))
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <p>
-                                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                                    <input type="submit" value="Login" id="logar" class="btn btn-primary btn-success" />
                                     <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
                                 </p>
                                 <p>
@@ -167,6 +146,8 @@ FormMethod.Post, new { @class = "login",@id="login" }))
                         </div>
 
                     }
+                    <button id="logar" class="btn btn-primary btn-success" >Login</button>
+
                 </div>
 
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
