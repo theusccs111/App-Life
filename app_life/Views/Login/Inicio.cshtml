@@ -75,7 +75,7 @@
 
             $('#cadastro').click(function (ev) {
                 ev.preventDefault();
-              //  $("#mascara").hide();
+                //  $("#mascara").hide();
                 $("#janela1").hide();
             });
 
@@ -99,8 +99,44 @@
 
                 <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar">x</a>
+                    <script>
+                        function loginUsuario(){
+
+                            alert();
+
+                            if(($('#email').text() != "") && ( $("#senha").val() != "")){
+                                resultado = { "email": $('#email').val(), "senha": $('#senha').val() };
+                            }
+                                
+                            else
+                                return;
+
+                            $.ajax({
+                                url: '/Login/Index',
+                                datatype: 'json',
+                                contentType: "application/json; charset=utf-8",
+                                type: "POST",
+                                data: JSON.stringify(resultado), // passe simplesmente o JSON serializado em string
+                                success: function (data) {
+                                    if (data == "OK") {
+                                        alert('Login realizado com sucesso!!');
+                                        window.location.href = "/Lancamento/Geral";
+                                    }
+                                },
+                                error: function (error) {
+                                    loading(0, "");
+                                }
+                            });
+                        }
+
+                        $('form#login').on('submit', function (e) {
+                            e.preventDefault();
+                            loginUsuario();
+                        });
+                    </script>
+
                     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-FormMethod.Post, new { @class = "login" }))
+FormMethod.Post, new { @class = "login",@id="login" }))
                     {
                         @Html.ValidationSummary(true);
                         <div class="container">
@@ -109,12 +145,13 @@ FormMethod.Post, new { @class = "login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
-                                    @Html.ValidationMessageFor(model => model.email)
+                                @*    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
+                                *@  <input class="text-box single-line" id="email" name="email" placeholder="Usuário" type="text">
+                                       @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
                                 <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <p>
@@ -135,7 +172,7 @@ FormMethod.Post, new { @class = "login" }))
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar2">X</a>
                     @using (Html.BeginForm("CadastrarUsuario", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-FormMethod.Post, new { @class = "login" }))
+FormMethod.Post, new { @class = "login", @id = "cadastro" }))
                     {
                         @Html.ValidationSummary(true);
                         <div class="container">
@@ -160,7 +197,7 @@ FormMethod.Post, new { @class = "login" }))
                                     <input type="submit" value="COMEÇAR A USAR" class="btn btn-primary btn-success" />
                                 </p>
                                 <p>
-                                   <!--<input type="submit" value="Concluído" class="btn btn-primarydois" />-->
+                                    <!--<input type="submit" value="Concluído" class="btn btn-primarydois" />-->
                                 </p>
                             </div>
 
@@ -414,5 +451,3 @@ FormMethod.Post, new { @class = "login" }))
     <script src="~/Scripts/creative.js"></script>
 </body>
 </html>
-
-

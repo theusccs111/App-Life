@@ -21,30 +21,33 @@ namespace APP_Life.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(usuario user)
+        public ActionResult Index(string email, string senha)
         {
             if (ModelState.IsValid)
             {
-                Session["ErroLogin"] = null;
-
-                var query = from u in contexto.usuarios select u;
-                foreach (var item in query)
+                //  Session["ErroLogin"] = null;
+                try
                 {
-                    if ((item.email == user.email) && (item.senha == user.senha))
+                    var query = from u in contexto.usuarios select u;
+                    foreach (var item in query)
                     {
-                        Session["usuarioLogadoID"] = item.usuarioID.ToString();
-                        Session["nomeUsuarioLogado"] = item.nome.ToString();
-                        return RedirectToAction("Geral", "Lancamento");
-                 
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("CustomError", "Login ou senha incorretos");
-                        return View("Inicio");
+                        if ((item.email == email) && (item.senha == senha))
+                        {
+                            Session["usuarioLogadoID"] = item.usuarioID.ToString();
+                            Session["nomeUsuarioLogado"] = item.nome.ToString();
+                            return Json("OK");
+
+                        }
+
                     }
                 }
+                catch (Exception ex)
+                {
+                    return Json(ex.Message);
+                    //string erro = ;
+                }
             }
-            return View(user);
+            return Json("Nada");
         }
 
   
