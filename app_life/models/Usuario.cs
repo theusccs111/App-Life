@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace APP_Life.Models
@@ -73,46 +74,57 @@ namespace APP_Life.Models
         public int usuarioID { get; set; }
 
         //   [DisplayName("Email")]
+        [Required(ErrorMessage = "Digite seu Email")]
         public string email { get; set; }
-
+        [Required(ErrorMessage = "Digte sua Senha")]
         //     [DisplayName("Senha")]
         public string senha { get; set; }
 
         //[DisplayName("Confirmar Senha")]
         // public string confirmaSenha { get; set; }
-
+      //  [Required(ErrorMessage = "Digite seu Nome")]
         [DisplayName("Nome")]
         public string nome { get; set; }
 
+      //  [Required(ErrorMessage = "Digite seu Sobrenome")]
         [DisplayName("Sobrenome")]
         public string sobrenome { get; set; }
 
+      //  [Required(ErrorMessage = "Digite sua Data de Nascimento")]
         [DisplayName("Data de Nascimento")]
         public Nullable<System.DateTime> datanasc { get; set; }
 
+     //   [Required(ErrorMessage = "Informe seu sexo")]
         [DisplayName("Sexo")]
         public string sexo { get; set; }
 
+     //   [Required(ErrorMessage = "Digite seu Telefone")]
         [DisplayName("Telefone")]
         public Nullable<long> telefone { get; set; }
 
+//[Required(ErrorMessage = "Digite o nome da rua em que você mora")]
         [DisplayName("Rua")]
         public string rua { get; set; }
 
+      //  [Required(ErrorMessage = "Digite o nome o número da rua em que você mora")]
         [DisplayName("Número da Rua")]
         public Nullable<int> numero { get; set; }
 
+      //  [Required(ErrorMessage = "Digite o nome do bairro em que você mora")]
         [DisplayName("Bairro")]
         public string bairro { get; set; }
 
+       // [Required(ErrorMessage = "Digite o nome da cidade em que você mora")]
         [DisplayName("Cidade")]
         public string cidade { get; set; }
 
+       // [Required(ErrorMessage = "Digite o nome do estado em que você mora")]
         [DisplayName("Estado")]
         public string estado { get; set; }
 
         [DisplayName("Calorias")]
         public Nullable<float> Calorias { get; set; }
+
         public virtual ICollection<despesa> despesas { get; set; }
         public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public virtual ICollection<projetado> projetadoes { get; set; }

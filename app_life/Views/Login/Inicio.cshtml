@@ -99,22 +99,9 @@
 
                 <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar">x</a>
-                    <script>
-                        $(document).on("click",'#logar',function(){
-                            var url = "/Login/Logar";
-                            var nome = $("#email").val();
-                            var endereco = $("#senha").val();
-                            $.post(url, { email: email, senha: senha }, function (data) {
-                                if (data == "OK") {
-                                    console.log("sucesso");
-                                }
-                            });
-                        })
+             
 
-
-                    </script>
-
-                    @using (Html.BeginForm("Logar", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "login" }))
                     {
                         @Html.ValidationSummary(true);
@@ -124,8 +111,7 @@ FormMethod.Post, new { @class = "login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                    @*    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
-                                    *@  <input class="text-box single-line" id="email" name="email" placeholder="Usuário" type="text">
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
                                     @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
@@ -146,8 +132,7 @@ FormMethod.Post, new { @class = "login" }))
                         </div>
 
                     }
-                    <button id="logar" class="btn btn-primary btn-success" >Login</button>
-
+                 
                 </div>
 
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">

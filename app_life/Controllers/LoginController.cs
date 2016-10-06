@@ -21,7 +21,7 @@ namespace APP_Life.Controllers
 
 
         [HttpPost]
-        public String Logar(string email, string senha)
+        public ActionResult Index(usuario user)
         {
             if (ModelState.IsValid)
             {
@@ -29,11 +29,11 @@ namespace APP_Life.Controllers
                     var query = from u in contexto.usuarios select u;
                     foreach (var item in query)
                     {
-                        if ((item.email == email) && (item.senha == senha))
+                        if ((item.email == user.email) && (item.senha == user.senha))
                         {
                             Session["usuarioLogadoID"] = item.usuarioID.ToString();
                             Session["nomeUsuarioLogado"] = item.nome.ToString();
-                        return "OK";
+                        return RedirectToAction("Geral","Lancamento");
                        
 
                     }
@@ -43,7 +43,7 @@ namespace APP_Life.Controllers
           
               
             }
-            return "OK";
+            return RedirectToAction("Inicio", "Login");
         }
 
   

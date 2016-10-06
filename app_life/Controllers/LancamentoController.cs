@@ -72,13 +72,19 @@ namespace APP_Life.Controllers
         [HttpPost]
         public ActionResult CadastrarReceita(receita rece)
         {
+
             if (ModelState.IsValid)
             {
                 receita x = new receita();
                 x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
                 return RedirectToAction("Receitas");
             }
-            return RedirectToAction("Geral");
+            else
+            {
+                ModelState.AddModelError(string.Empty, "erro locao");
+                return PartialView("_CadastrarReceita");
+            }
+          
         }
 
 

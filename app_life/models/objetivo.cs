@@ -13,11 +13,15 @@ namespace APP_Life.Models
     public partial class objetivo : IEnumerable<objetivo>
     {
         public int ObjetivoID { get; set; }
-  
+
+        [Required(ErrorMessage = "Digite o Nome do Objetivo")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "Digite o Custo do Objetivo")]
         [DisplayName("Custo")]
         public Nullable<float> ValorTotal { get; set; }
+
+        [Required(ErrorMessage = "Digite o Saldo Disponivel do Objetivo")]
         [DisplayName("Disponível")]
         public Nullable<float> ValorAtual { get; set; }
 

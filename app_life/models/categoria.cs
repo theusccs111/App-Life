@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace APP_Life.Models
 {
@@ -20,6 +21,8 @@ namespace APP_Life.Models
         }
 
         public int CategoriaID { get; set; }
+
+        [Required(ErrorMessage = "Informe o Nome da Categoria")]
         public string nome { get; set; }
         public Nullable<bool> tipo { get; set; }
         public virtual ICollection<despesa> despesas { get; set; }

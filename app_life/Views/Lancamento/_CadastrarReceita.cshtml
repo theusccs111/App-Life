@@ -20,7 +20,7 @@
                         <!-- <input id="textinput" name="textinput" placeholder="Descrição" class="form-control" type="text">
                         -->
                         @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control input-md" } })
-
+                        @Html.ValidationMessageFor(model => model.Descricao)
 
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         Escolha a Categoria:
                         @* Passando o Nome da ViewBag *@
                         @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
-
+                     
 
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                            -->
                         Valor:
                         @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control input-md" } })
-
+                        @Html.ValidationMessageFor(model => model.Valor)
 
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         -->
                         Data:
                         @Html.EditorFor(model => model.Data, new { @type = "date" })
-
+                        @Html.ValidationMessageFor(model => model.Data)
 
 
                     </div>
