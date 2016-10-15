@@ -14,12 +14,19 @@ namespace APP_Life.Models
         public int DespesaID { get; set; }
         public Nullable<int> CategoriaID { get; set; }
         public Nullable<int> UsuarioID { get; set; }
+
+        [Required(ErrorMessage = "Digite o Valor")]
         public Nullable<float> Valor { get; set; }
+
+        [Required(ErrorMessage = "Digite a Descricao")]
         public string Descricao { get; set; }
 
+        [Required(ErrorMessage = "Digite a Data")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string Data { get; set; }
+
+
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 

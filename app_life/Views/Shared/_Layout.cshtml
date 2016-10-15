@@ -3,37 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
    
 
     <!-- Bootstrap Core CSS -->
-    <link href="../Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
     <!-- MetisMenu CSS -->
-    <link href="../Content/metisMenu.min.css" rel="stylesheet">
+    <link href="~/Content/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../Content/sb-admin-2.css" rel="stylesheet">
+    <link href="~/Content/sb-admin-2.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="../Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
     
- 
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+
+
+
+
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+
     <script src="~/Scripts/sortable.js"></script>
     <!-- jQuery -->
-    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
     <script src="~/Scripts/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/Scripts/sb-admin-2.js"></script>
 
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/loader.js"></script>
 
- 
+ <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
     
 
@@ -119,7 +125,13 @@
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li>
-                                <a href="Resultado"><i class="fa fa-user fa-fw"></i>Perfil do Usuário</a>
+                          
+                                <a href="@Url.Action("InfoUsuario", "Usuario")">
+
+                                    <span class="fa fa-user fa-fw" aria-hidden="true"></span>
+                                Perfil do Usuário
+                                </a>
+
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-gear fa-fw"></i>Configurações</a>
@@ -187,7 +199,12 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="CadastrarUsuario"><i class="fa fa-user"></i> Perfil</a>
+                              
+                                <a href="@Url.Action("InfoUsuario", "Usuario")">
+
+                                    <span class="fa fa-user" aria-hidden="true"></span>
+                                    Perfil
+                                </a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i>Configurações<span class="fa arrow"></span></a>

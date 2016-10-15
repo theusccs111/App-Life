@@ -16,13 +16,19 @@ namespace APP_Life.Models
         public Nullable<int> UsuarioID { get; set; }
         public Nullable<int> CategoriaID { get; set; }
 
+        [Required(ErrorMessage = "Digite o Valor")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
         public Nullable<float> Valor { get; set; }
+
+        [Required(ErrorMessage = "Digite a Descrição")]
         public string Descricao { get; set; }
 
+        [Required(ErrorMessage = "Digite a data")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string Data { get; set; }
+
+
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
@@ -59,18 +65,15 @@ namespace APP_Life.Models
         {
 
             app_lifeContext contexto = new app_lifeContext();
-            var query = from u in contexto.receitas select u;
+            var query = from u in contexto.receitas where u.ReceitaID == rece.ReceitaID select u;
             foreach (var item in query)
             {
-                if (item.ReceitaID == rece.ReceitaID)
-                {
-                    item.Descricao = rece.Descricao;
-                    item.Valor = rece.Valor;
-                    item.Data = rece.Data;
-
-                    item.UsuarioID = rece.UsuarioID;
-                    item.CategoriaID = rece.CategoriaID;
-                }
+                item.Descricao = rece.Descricao;
+                item.Valor = rece.Valor;
+                item.Data = rece.Data;
+                //item.categoria.nome = rece.categoria.nome;
+                item.UsuarioID = rece.UsuarioID;
+                item.CategoriaID = rece.CategoriaID;
 
             }
             contexto.SaveChanges();

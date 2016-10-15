@@ -25,24 +25,28 @@ namespace APP_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                var query = from u in contexto.usuarios select u;
-                foreach (var item in query)
-                {
-                    if (item.email == user.email)
+             
+                    var query = from u in contexto.usuarios select u;
+                    foreach (var item in query)
                     {
-                        Session["usuarioLogadoID"] = item.usuarioID.ToString();
-                        Session["nomeUsuarioLogado"] = item.nome.ToString();
-                        return RedirectToAction("Geral", "Lancamento");
-                        //      return View("Lancamento");
+                        if ((item.email == user.email) && (item.senha == user.senha))
+                        {
+                            Session["usuarioLogadoID"] = item.usuarioID.ToString();
+                            Session["nomeUsuarioLogado"] = item.nome.ToString();
+                        return RedirectToAction("Geral","Lancamento");
+                       
+
                     }
-                    else
-                    {
-                        return RedirectToAction("Inicio");
-                    }
+                  
+
                 }
+          
+              
             }
-            return View(user);
+            return RedirectToAction("Inicio", "Login");
         }
+
+  
 
 
         public ActionResult Inicio()
@@ -61,7 +65,7 @@ namespace APP_Life.Controllers
                 x.CadastrarUsuario(user);
                 Session["usuarioLogadoID"] = user.usuarioID.ToString();
                 //Session["nomeUsuarioLogado"] = user.nome.ToString();
-                return RedirectToAction("Receitas", "Lancamento");
+                return RedirectToAction("Geral", "Lancamento");
             }
             return RedirectToAction("Inicio");
 

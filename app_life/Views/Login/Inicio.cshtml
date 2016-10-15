@@ -75,13 +75,12 @@
 
             $('#cadastro').click(function (ev) {
                 ev.preventDefault();
-              //  $("#mascara").hide();
+                //  $("#mascara").hide();
                 $("#janela1").hide();
             });
 
         });
     </script>
-  
 
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -100,6 +99,8 @@
 
                 <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar">x</a>
+             
+
                     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "login" }))
                     {
@@ -110,16 +111,16 @@ FormMethod.Post, new { @class = "login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
                                     @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
                                 <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <p>
-                                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                                    <input type="submit" value="Login" id="logar" class="btn btn-primary btn-success" />
                                     <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
                                 </p>
                                 <p>
@@ -131,12 +132,13 @@ FormMethod.Post, new { @class = "login" }))
                         </div>
 
                     }
+                 
                 </div>
 
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar2">X</a>
                     @using (Html.BeginForm("CadastrarUsuario", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-FormMethod.Post, new { @class = "login" }))
+FormMethod.Post, new { @class = "login", @id = "cadastro" }))
                     {
                         @Html.ValidationSummary(true);
                         <div class="container">
@@ -161,7 +163,7 @@ FormMethod.Post, new { @class = "login" }))
                                     <input type="submit" value="COMEÇAR A USAR" class="btn btn-primary btn-success" />
                                 </p>
                                 <p>
-                                   <!--<input type="submit" value="Concluído" class="btn btn-primarydois" />-->
+                                    <!--<input type="submit" value="Concluído" class="btn btn-primarydois" />-->
                                 </p>
                             </div>
 
@@ -415,5 +417,3 @@ FormMethod.Post, new { @class = "login" }))
     <script src="~/Scripts/creative.js"></script>
 </body>
 </html>
-
-
