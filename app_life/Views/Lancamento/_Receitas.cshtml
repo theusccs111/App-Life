@@ -17,9 +17,17 @@
         width: 600px !important;
         margin: 30px auto !important;
     }
+
+    .r {
+        margin-left: 70%;
+        margin-bottom: 50px;
+    }
 </style>
 
-@Html.ActionLink("Adicionar Receita", "CadastrarReceita", "Lancamento", null, new { @class = "modal-link btn btn-success r" })
+<a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn btn-success r">
+
+    <span class="fa fa-plus" aria-hidden="true"></span></a>
+
 <br />
 
 <div id="modal-containerr" class="modal fade"
