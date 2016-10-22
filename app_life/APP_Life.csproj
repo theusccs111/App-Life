@@ -311,6 +311,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatePickerHelperBundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ExcelController.cs" />
     <Compile Include="Controllers\LancamentoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProjetadoController.cs" />
@@ -369,6 +370,7 @@
     <Content Include="Views\Projetado\_ObjetivoUpdate.cshtml" />
     <Content Include="Views\Projetado\_CadastrarObjetivo.cshtml" />
     <Content Include="Views\Usuario\InfoUsuario.cshtml" />
+    <Content Include="Views\Excel\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
