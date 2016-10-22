@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using APP_Life.Models;
 using System.Net;
 using System.Data.Entity;
+using System.Web.UI.WebControls;
 
 namespace APP_Life.Controllers
 {
@@ -257,6 +258,9 @@ namespace APP_Life.Controllers
 
                 var query3 = from u in contexto.despesas orderby u.Data select u;
                 return View(contexto.despesas.ToList());
+
+ 
+
             }
             else
             {
@@ -265,7 +269,6 @@ namespace APP_Life.Controllers
             }
 
         }
-
 
 
 
