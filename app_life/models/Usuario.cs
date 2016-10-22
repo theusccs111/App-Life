@@ -73,11 +73,11 @@ namespace APP_Life.Models
         //  [DisplayName("Código")]
         public int usuarioID { get; set; }
 
-        //   [DisplayName("Email")]
+        [DisplayName("Email")]
         [Required(ErrorMessage = "Digite seu Email")]
         public string email { get; set; }
         [Required(ErrorMessage = "Digte sua Senha")]
-        //     [DisplayName("Senha")]
+        [DisplayName("Senha")]
         public string senha { get; set; }
 
         //[DisplayName("Confirmar Senha")]
@@ -91,7 +91,7 @@ namespace APP_Life.Models
         public string sobrenome { get; set; }
 
       //  [Required(ErrorMessage = "Digite sua Data de Nascimento")]
-        [DisplayName("Data de Nascimento")]
+        [DisplayName("Nasc.")]
         public Nullable<System.DateTime> datanasc { get; set; }
 
      //   [Required(ErrorMessage = "Informe seu sexo")]
@@ -103,11 +103,11 @@ namespace APP_Life.Models
         public Nullable<long> telefone { get; set; }
 
 //[Required(ErrorMessage = "Digite o nome da rua em que você mora")]
-        [DisplayName("Rua")]
+        [DisplayName("Endereço")]
         public string rua { get; set; }
 
       //  [Required(ErrorMessage = "Digite o nome o número da rua em que você mora")]
-        [DisplayName("Número da Rua")]
+        [DisplayName("Número")]
         public Nullable<int> numero { get; set; }
 
       //  [Required(ErrorMessage = "Digite o nome do bairro em que você mora")]
