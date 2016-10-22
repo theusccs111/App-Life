@@ -13,15 +13,15 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 
-    <div class="modal-dialog">
-        <div class="modal-content">
-            @using (Html.BeginForm("ReceitaUpdate", "Lancamento", new { @class = "" },
-                                      FormMethod.Post))
-            {
-                <div class="modal-header">
-                    <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Editar</h4>
-                </div>
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm("ReceitaUpdate", "Lancamento", new { @class = "" },
+                                          FormMethod.Post))
+        {
+            <div class="modal-header">
+                <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Editar</h4>
+            </div>
 
                 @Html.AntiForgeryToken()
 
@@ -90,7 +90,31 @@
                     <input type="submit" value="Salvar" class="btn btn-primary" />
                     <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
                 </div>
-            }
-        </div><!-- /.modal-content -->
-    </div>
-   
+        }
+    </div><!-- /.modal-content -->
+</div>
+
+
+<script type="text/javascript">
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('#modalr').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+    });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalr').addClass('in');
+
+    });
+
+
+</script>
