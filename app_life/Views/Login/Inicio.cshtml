@@ -31,6 +31,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
 </head>
 <body id="page-top">
     <script>
@@ -82,6 +84,13 @@
         });
     </script>
 
+    <style>
+        .field-validation-error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -99,7 +108,7 @@
 
                 <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
                     <a href="#" class="fechar">x</a>
-             
+
 
                     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
 FormMethod.Post, new { @class = "login" }))
@@ -111,7 +120,7 @@ FormMethod.Post, new { @class = "login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário",@id = "usuario" } })
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @id = "usuario" } })
                                     @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
@@ -132,7 +141,7 @@ FormMethod.Post, new { @class = "login" }))
                         </div>
 
                     }
-                 
+
                 </div>
 
                 <div class="window" id="janela2" style="/*border:solid 1px white;*/width:30%;height:355%;top:250%/*background:rgba(255,255,255,0.1)*/;">
@@ -415,5 +424,12 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
     <script src="~/Scripts/jquery.magnific-popup.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="~/Scripts/creative.js"></script>
+
+
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 </body>
 </html>
