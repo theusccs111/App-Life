@@ -101,3 +101,27 @@
         </div><!-- /.modal-content -->
     </div>
    
+
+<script type="text/javascript">
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('#modalr').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+    });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalr').addClass('in');
+
+    });
+
+
+</script>

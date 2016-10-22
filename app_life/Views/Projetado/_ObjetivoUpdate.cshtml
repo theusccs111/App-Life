@@ -15,7 +15,7 @@
                                           FormMethod.Post))
         {
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <button type="button" id="close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title">Editar Objetivo</h4>
             </div>
 
@@ -67,8 +67,34 @@
             </div>
             <div class="modal-footer">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
-                <input type="button" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
             </div>
         }
     </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->
+
+
+
+<script type="text/javascript">
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('#modalr').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+    });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalr').addClass('in');
+
+    });
+
+
+</script>
