@@ -90,7 +90,7 @@ namespace APP_Life.Controllers
             {
                 projetado x = new projetado();
                 x.CadastrarProjetado(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                return RedirectToAction("Projetado");
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Geral");
         }
@@ -111,7 +111,7 @@ namespace APP_Life.Controllers
             projetado rece = new projetado();
             rece.RemoverProjetado(main.ProjetadoID);
 
-            return RedirectToAction("Projetado");
+            return RedirectToAction("Index");
         }
 
 
@@ -135,7 +135,7 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateProjetado(rece);
-            return RedirectToAction("Projetado");
+            return RedirectToAction("Index");
         }
 
 

@@ -19,72 +19,59 @@ namespace APP_Life.Controllers
         // GET: Excel
         public ActionResult Index()
         {
-
-            // excel bolado
-            var despesaExcel = contexto.despesas.ToList();
-            GridView gv = new GridView();
-            gv.DataSource = despesaExcel;
-            gv.DataBind();
-            Session["ExcelDespesa"] = gv;
-
-            var receitaExcel = contexto.receitas.ToList();
-            GridView gv2 = new GridView();
-            gv2.DataSource = receitaExcel;
-            gv2.DataBind();
-            Session["ExcelDespesa"] = gv2;
-
             return View();
+
         }
 
 
 
-        public class DownloadResult : ActionResult
+        //controller Action
+        public void Excel()
         {
-            public GridView excelGridView { get; set; }
-            public string nomeArquivo { get; set; }
-            //public object HttpContext { get; private set; }
-            HttpContext curContext;
+            var model = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+            var model2 = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
-            public DownloadResult(GridView gv, string nomearquivo)
+
+
+            Export export = new Export();
+
+            Export export2 = new Export();
+            export.ToExcel(Response, model);
+
+            export2.ToExcel(Response, model2);
+
+        }
+
+        public void Excel2()
+        {
+            var model2 = contexto.despesas.ToList().Where(
+                x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+            
+            
+            Export export2 = new Export();
+           
+            export2.ToExcel(Response, model2);
+
+        }
+
+        //helper class
+        public class Export
+        {
+            public void ToExcel(HttpResponseBase Response, object clientsList)
             {
-                excelGridView = gv;
-                nomeArquivo = nomearquivo;
-            }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                //Criar um fluxo para gravar o arquivo do Excel
-
-                HttpContext curContext = System.Web.HttpContext.Current;
-                curContext.Response.Clear();
-                curContext.Response.AddHeader("nome do arquivo", nomeArquivo);
-                curContext.Response.Charset = "UTF-8";
-                curContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                curContext.Response.ContentType = "application / vnd.openxmlformats - officedocument.spreadsheetml.sheet";
-
-                //Renderiza o GridView
+                var grid = new System.Web.UI.WebControls.GridView();
+                grid.DataSource = clientsList;
+                grid.DataBind();
+                Response.ClearContent();
+                Response.AddHeader("content-disposition", "attachment; filename=Relatório_AppLife.xls");
+                Response.ContentType = "application/excel";
                 StringWriter sw = new StringWriter();
                 HtmlTextWriter htw = new HtmlTextWriter(sw);
-                excelGridView.RenderControl(htw);
 
-                byte[] byteArray = Encoding.ASCII.GetBytes(sw.ToString());
-                MemoryStream s = new MemoryStream(byteArray);
-                StreamReader sr = new StreamReader(s, Encoding.ASCII);
-
-                curContext.Response.Write(sr.ReadToEnd());
-                curContext.Response.End();
+                grid.RenderControl(htw);
+                Response.Write(sw.ToString());
+                Response.End();
             }
-        }
-
-        public ActionResult Download(string nomeArquivo)
-        {
-            if (Session["ExcelDespesa"] != null)
-            {
-                return new DownloadResult((GridView)Session["ExcelDespesa"], nomeArquivo);
-
-            }
-            else
-                return RedirectToAction("Geral");
         }
 
 
