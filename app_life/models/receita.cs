@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -16,19 +17,22 @@ namespace APP_Life.Models
         public Nullable<int> UsuarioID { get; set; }
         public Nullable<int> CategoriaID { get; set; }
 
+        [DisplayName("Valor")]
         [Required(ErrorMessage = "Digite o Valor")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
         public Nullable<float> Valor { get; set; }
-
+        
+        [DisplayName("Descrição")] 
         [Required(ErrorMessage = "Digite a Descrição")]
         public string Descricao { get; set; }
 
+        [DisplayName("Data")]
         [Required(ErrorMessage = "Digite a data")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public string Data { get; set; }
 
-
+        [DisplayName("Categoria")]
         public virtual categoria categoria { get; set; }
         public virtual usuario usuario { get; set; }
 
