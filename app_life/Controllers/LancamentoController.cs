@@ -17,7 +17,7 @@ namespace APP_Life.Controllers
 
         public ActionResult Index()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || ViewBag.usuarioFacebookID != null)
             {
                 ViewBag.listaReceita = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
                 ViewBag.listaDespesa = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])); ;
@@ -36,7 +36,7 @@ namespace APP_Life.Controllers
         }
         public ActionResult Receitas()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
                 ViewBag.listaReceita = contexto.receitas.ToList();
                 ViewBag.CategoriaID = new SelectList
@@ -133,7 +133,7 @@ namespace APP_Life.Controllers
 
         public ActionResult Despesas()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
                 ViewBag.listaDespesa = contexto.despesas.ToList();
                 ViewBag.CategoriaID = new SelectList
@@ -225,10 +225,16 @@ namespace APP_Life.Controllers
         }
 
 
+
+
+
+
         public ActionResult Geral()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
+
+
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
                 var query = from u in contexto.receitas
                             where u.UsuarioID == id

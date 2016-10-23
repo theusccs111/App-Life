@@ -19,6 +19,13 @@ namespace APP_Life.Controllers
             return View(user);
         }
 
+        public ActionResult LoginFacebook()
+        {
+
+            return View();
+        }
+
+
 
         [HttpPost]
         public ActionResult Index(usuario user)

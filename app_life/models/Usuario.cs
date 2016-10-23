@@ -125,6 +125,10 @@ namespace APP_Life.Models
         [DisplayName("Calorias")]
         public Nullable<float> Calorias { get; set; }
 
+
+        public Nullable<Int64> idfacebook { get; set; }
+
+
         public virtual ICollection<despesa> despesas { get; set; }
         public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
         public virtual ICollection<projetado> projetadoes { get; set; }

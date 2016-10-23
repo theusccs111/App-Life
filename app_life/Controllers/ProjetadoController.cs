@@ -40,9 +40,9 @@ namespace APP_Life.Controllers
 
         public ActionResult ProjetadoR()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-               
+
                 return PartialView("_ProjetadoR");
             }
             else
@@ -54,10 +54,10 @@ namespace APP_Life.Controllers
 
         public ActionResult ProjetadoD()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
                 //ViewBag.listaProjetado = contexto.projetadoes.ToList();
-                
+
                 return PartialView("_ProjetadoD");
             }
             else
@@ -143,10 +143,10 @@ namespace APP_Life.Controllers
         //objetivo
         public ActionResult Objetivo()
         {
-            if (Session["usuarioLogadoID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
 
-       
+
 
                 return PartialView("_Objetivo");
             }

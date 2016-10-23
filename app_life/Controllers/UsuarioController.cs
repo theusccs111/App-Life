@@ -53,6 +53,27 @@ namespace APP_Life.Controllers
             return RedirectToAction("InfoUsuario","Usuario");
         }
 
+        public ActionResult Sincronizar()
+        {
+
+            int id = Convert.ToInt32(Session["usuarioLogadoID"]);
+
+            Int64 idFacebook = Convert.ToInt64(Session["usuarioFacebookID"]);
+
+
+            var queryU = from u in contexto.usuarios where id == u.usuarioID select u;
+            foreach (var item in queryU)
+            {
+                item.idfacebook = idFacebook;
+            }
+            contexto.SaveChanges();
+
+
+            return RedirectToAction("Geral","Lancamento");
+
+        }
+
+
 
     }
 }
