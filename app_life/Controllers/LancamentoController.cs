@@ -120,6 +120,16 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+
+
+
             return PartialView("_ReceitaUpdate", rece);
         }
 
@@ -212,6 +222,15 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CategoriaID = new SelectList
+                            (
+                                contexto.categorias.ToList(),
+                                "CategoriaID",
+                                "nome"
+                            );
+
+
             return PartialView("_DespesaUpdate", rece);
         }
 
