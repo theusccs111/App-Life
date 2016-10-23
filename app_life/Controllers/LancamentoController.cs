@@ -78,7 +78,7 @@ namespace APP_Life.Controllers
             {
                 receita x = new receita();
                 x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                return RedirectToAction("Receitas");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -104,7 +104,7 @@ namespace APP_Life.Controllers
             receita rece = new receita();
             rece.RemoverReceita(main.ReceitaID);
 
-            return RedirectToAction("Receitas");
+            return RedirectToAction("Index");
         }
 
 
@@ -128,7 +128,7 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateReceita(rece);
-            return RedirectToAction("Receitas");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Despesas()
@@ -173,9 +173,13 @@ namespace APP_Life.Controllers
             {
                 despesa x = new despesa();
                 x.CadastrarDespesa(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
-                return RedirectToAction("Despesas");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Geral");
+            else
+            {
+                ModelState.AddModelError(string.Empty, "erro locao");
+                return PartialView("_CadastrarDespesa");
+            }
         }
 
 
@@ -194,7 +198,7 @@ namespace APP_Life.Controllers
             despesa rece = new despesa();
             rece.RemoverDespesa(main.DespesaID);
 
-            return RedirectToAction("Despesas");
+            return RedirectToAction("Index");
         }
 
         public ActionResult DespesaUpdate(int? id)
@@ -217,7 +221,7 @@ namespace APP_Life.Controllers
 
             rece.UpdateDespesa(rece);
 
-            return RedirectToAction("Despesas");
+            return RedirectToAction("Index");
         }
 
 
