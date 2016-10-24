@@ -21,11 +21,26 @@ namespace APP_Life.Controllers
 
         public ActionResult LoginFacebook()
         {
-
             return View();
         }
 
+        [HttpPost]
+        public ActionResult LoginFacebook(usuario user)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+            var query = from u in contexto.usuarios where u.usuarioID == id select u;
+            foreach (var item in query)
+            {
 
+                item.idfacebook = user.idfacebook;
+            
+             
+            }
+            contexto.SaveChanges();
+        
+            return RedirectToAction("Geral","Lancamento");
+        }
 
         [HttpPost]
         public ActionResult Index(usuario user)

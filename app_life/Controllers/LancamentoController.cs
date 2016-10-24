@@ -248,11 +248,27 @@ namespace APP_Life.Controllers
 
 
 
-        public ActionResult Geral()
+        public ActionResult Geral(Int64 idf)
         {
-            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
+
+            //se login com face sucesso
+           /* var query = from u in contexto.usuarios where u.usuarioID == id select u;
+            foreach (var item in query)
             {
 
+                item.idfacebook = user.idfacebook;
+
+
+            }
+            contexto.SaveChanges();
+            */
+
+
+            //se nao retorna erro
+
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
+            {
+                
 
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
                 var query = from u in contexto.receitas

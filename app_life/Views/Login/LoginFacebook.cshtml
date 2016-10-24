@@ -1,4 +1,7 @@
 ﻿
+@model  APP_Life.Models.usuario
+
+
     <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -78,12 +81,10 @@
         'Thanks for logging in, ' + response.name + '!';
 
 
-        @ViewBag.usuarioFacebookID = response.id;
-         
+      $('#codigo').val(response.id);
+      $('#codigo').css("display","none");
 
-      window.location.href = '/Lancamento/Geral/';
-        
-
+    //  window.location.href = '/Lancamento/Geral/';
     });
   }
     </script>
@@ -99,3 +100,14 @@
 
     <div id="status">
     </div>
+@using (Html.BeginForm("LoginFacebook", "Login", new { @class = "" },
+                                         FormMethod.Post))
+{
+@Html.EditorFor(model => model.idfacebook, new { htmlAttributes = new { @id = "codigo" } })
+
+
+
+
+<input type="submit" value="Sincronizar"/>
+
+}
