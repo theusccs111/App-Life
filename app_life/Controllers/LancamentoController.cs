@@ -7,7 +7,7 @@ using APP_Life.Models;
 using System.Net;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
-
+using Facebook;
 namespace APP_Life.Controllers
 {
     public class LancamentoController : Controller
@@ -248,25 +248,46 @@ namespace APP_Life.Controllers
 
 
 
-        public ActionResult Geral(Int64 idf)
+        public ActionResult Geral(Int64? idf)
         {
 
             //se login com face sucesso
-           /* var query = from u in contexto.usuarios where u.usuarioID == id select u;
-            foreach (var item in query)
+            var queryface = from u in contexto.usuarios where u.idfacebook == idf select u;
+            foreach (var item in queryface)
             {
 
-                item.idfacebook = user.idfacebook;
+                try
+                {
+                    if (item.idfacebook == idf)
+                    {
+                        Session["usuarioLogadoID"] = item.usuarioID;
+                    }
+                }
+                catch
+                {
 
+                    //deslogar do face
 
+                    //mandar para pagina de inicio
+                    return RedirectToAction("Inicio", "Login");
+                }
+               
+              
             }
-            contexto.SaveChanges();
-            */
 
+
+
+            if (Session["usuarioLogadoID"] == null){
+                return RedirectToAction("Inicio", "Login");
+            }else
+            {
+                Session["usuarioFacebookID"] = idf;
+            }
+ 
 
             //se nao retorna erro
 
-            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
+                if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
                 
 
