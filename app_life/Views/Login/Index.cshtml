@@ -1,41 +1,81 @@
 ﻿@model APP_Life.Models.usuario
+
 @{
     ViewBag.Title = "Login";
 
+    Layout = "";
 }
-@section login{
-  @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-  FormMethod.Post, new { @class = "login" }))
-  {
-    @Html.ValidationSummary(true);
-    <div class="container">
-        <div class="col-md-3">
 
-            @Html.ValidationMessage("CustomError")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
 
-            <p class="form-title"> Vamos Começar!</p>
 
-            <div>
-                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
-                @Html.ValidationMessageFor(model => model.email)
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+    <!-- MetisMenu CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
+
+
+
+
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+
+</head>
+
+
+<body>
+
+    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+                      FormMethod.Post, new { @class = "login" }))
+    {
+        @Html.ValidationSummary(true);
+        <div class="container">
+            <div class="col-md-3">
+
+                @Html.ValidationMessage("CustomError")
+
+                <p class="form-title"> Vamos Começar!</p>
+
+                <div>
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+
+                <div>
+                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                    @Html.ValidationMessageFor(model => model.senha)
+                </div>
+                <p>
+                    <input type="submit" value="Login" class="btn btn-primary btn-success" />
+                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
+                </p>
+                <p>
+                    <input type="submit" value="Cadastre-se" style="background: #337ab7" class="btn btn-primary" />
+                </p>
             </div>
 
-            <div>
-                @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
-                @Html.ValidationMessageFor(model => model.senha)
-            </div>
-            <p>
-                <input type="submit" value="Login" class="btn btn-primary btn-success" />
-                <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
-            </p>
-            <p>
-                <input type="submit" value="Cadastre-se" style="background: #337ab7" class="btn btn-primary" />
-            </p>
         </div>
 
-    </div>
-
-  }
-   
-
     }
+
+
+    </body>
+</html>
+
+<style>
+    body{
+        background-color:gray;
+    }
+</style>

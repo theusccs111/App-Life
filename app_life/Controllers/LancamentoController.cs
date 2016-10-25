@@ -258,7 +258,7 @@ namespace APP_Life.Controllers
 
                 try
                 {
-                    if (item.idfacebook == idf)
+                    if (item.idfacebook == idf && item.idfacebook != null)
                     {
                         Session["usuarioLogadoID"] = item.usuarioID;
                     }
@@ -278,7 +278,7 @@ namespace APP_Life.Controllers
 
 
             if (Session["usuarioLogadoID"] == null){
-                return RedirectToAction("Inicio", "Login");
+                return RedirectToAction("Index", "Login");
             }else
             {
                 Session["usuarioFacebookID"] = idf;
