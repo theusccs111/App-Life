@@ -41,7 +41,7 @@ namespace APP_Life.Models.Tests
             teste.cidade = "teste";
             teste.estado = "teste";
             teste.Calorias = 12;
-            
+            teste.idfacebook = 0; 
 
             //Execução
             teste.CadastrarUsuario(teste);
@@ -62,6 +62,7 @@ namespace APP_Life.Models.Tests
                 atual.cidade = item.cidade;
                 atual.estado = item.estado;
                 atual.Calorias = item.Calorias;
+                atual.idfacebook = item.idfacebook;
             }
 
                 //teste
@@ -95,7 +96,7 @@ namespace APP_Life.Models.Tests
             teste.estado = "teste";
             teste.Calorias = 12;
             teste.usuarioID = 9999;
-
+            teste.idfacebook = 0;
             //Execução
             teste.CadastrarUsuario(teste);
             teste.RemoverUsuario(teste.usuarioID);
@@ -116,6 +117,7 @@ namespace APP_Life.Models.Tests
                 atual.cidade = item.cidade;
                 atual.estado = item.estado;
                 atual.Calorias = item.Calorias;
+                atual.idfacebook = item.idfacebook;
             }
 
             //teste

@@ -5,9 +5,6 @@
 
 <h2>Receita</h2>
 
-
-
-
 <style>
     .container {
         padding-top: 3%;
@@ -80,7 +77,7 @@
                  
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         </a>
-                    <button class="btn btn-primary edit" id="eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-primary edit eita"  data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
         }
@@ -98,7 +95,7 @@
 
 <script type="text/javascript">
 
-    $("#eita").click(function () {
+    $(".eita").click(function () {
         var id = $(this).attr("data-id");
         $("#modalr").load("ReceitaUpdate?id=" + id, function () {
            

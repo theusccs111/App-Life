@@ -94,7 +94,7 @@
 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
-                    <button class="btn btn-primary edit" id="eita" data-id="@item.ObjetivoID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-primary edit eita" data-id="@item.ObjetivoID"><i class="glyphicon glyphicon-edit"></i></button>
                 </td>
             </tr>
             i++;
@@ -161,13 +161,12 @@
 
 <div class="modal" id="modalo">
 
-    @Html.Partial("_ObjetivoUpdate", Model);
-
+    
 </div>
 
 
 <script type="text/javascript">
-    $(".edit").click(function () {
+    $(".eita").click(function () {
         var id = $(this).attr("data-id");
         $("#modalo").load("ObjetivoUpdate?id=" + id, function () {
             $("#modalo").modal();
