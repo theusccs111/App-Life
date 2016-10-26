@@ -1,0 +1,117 @@
+﻿@model IEnumerable<APP_Life.Models.dieta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dietas</h2>
+
+
+<style>
+    .container {
+        padding-top: 3%;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+
+    .dietaC {
+        margin-left: 70%;
+        margin-bottom: 50px;
+    }
+</style>
+
+<a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC">
+
+    <span class="fa fa-plus" aria-hidden="true"></span>
+</a>
+
+<br />
+
+
+<div id="modal-containerDieta" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+<table id="tabelaReceita" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+    <thead style="">
+        <tr>
+            <th></th>
+            <th>Dietas</th>
+          <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (ViewBag.listaDieta))
+        {
+            <tr>
+                <td id="@item.DietaID">
+                    @item.DietaID
+                </td>
+                <td>
+                    @item.Nome
+                </td>
+               
+                <td>
+                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    -->
+
+
+                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                    <button class="btn btn-primary edit eita" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="modalDi">
+
+
+
+</div>
+
+
+<script type="text/javascript">
+
+    $(".eita").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalDi").load("DietaUpdate?id=" + id, function () {
+
+            $("#modalDi").modal();
+        })
+    });
+
+
+
+
+    $(function () {
+        $('body').on('click', '.dietaC', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containerDieta');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-containerDieta').modal('hide');
+        });
+
+        $('#modal-containerDieta').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+
+</script>
+

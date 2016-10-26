@@ -1,0 +1,95 @@
+﻿@model APP_Life.Models.dieta
+
+@{
+    ViewBag.Title = "DietaUpdate";
+}
+
+<h2>DietaUpdate</h2>
+
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<style>
+    .modal-footer {
+        margin-right: 10%;
+    }
+
+    .modal-title {
+        margin-left: 30%;
+        color: #06921c;
+    }
+
+    .control-label {
+        text-align: left;
+    }
+</style>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm("DietaUpdate", "Dieta", new { @class = "" },
+                                              FormMethod.Post))
+        {
+            <div class="modal-header">
+                <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Editar Dieta</h4>
+            </div>
+
+            @Html.AntiForgeryToken()
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-9">
+                            @Html.HiddenFor(model => model.DietaID, new { @class = "form-control"/*, @readonly = "readonly"*/ })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Nome, new { @class = "form-control"/*, @readonly = "readonly"*/ })
+    </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                    <input type="submit" value="Salvar" class="btn btn-success" />
+                </div>
+        }
+    </div><!-- /.modal-content -->
+</div>
+
+
+<script type="text/javascript">
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('#modalr').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+    });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalr').addClass('in');
+
+    });
+
+
+</script>

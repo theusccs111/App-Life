@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace APP_Life.Models
 { /// <summary>
@@ -15,6 +16,38 @@ namespace APP_Life.Models
         {
             this.lista_alimentos = new List<lista_alimentos>();
         }
+
+        public void CadastrarDieta(dieta rece, int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            rece.UsuarioID = id;
+            contexto.dietas.Add(rece);
+
+            contexto.SaveChanges();
+        }
+
+        public void RemoverDieta(int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            dieta main = contexto.dietas.Find(id);
+            contexto.dietas.Remove(main);
+            contexto.SaveChanges();
+        }
+
+        public void UpdateDieta(dieta rece)
+        {
+
+            app_lifeContext contexto = new app_lifeContext();
+            var query = from u in contexto.dietas where u.DietaID == rece.DietaID select u;
+            foreach (var item in query)
+            {
+                item.Nome = rece.Nome;
+           
+
+            }
+            contexto.SaveChanges();
+        }
+
 
         public int DietaID { get; set; }
         public string Nome { get; set; }

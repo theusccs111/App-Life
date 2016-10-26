@@ -378,6 +378,9 @@
     <Content Include="Views\Excel\Index.cshtml" />
     <Content Include="Views\Login\LoginFacebook.cshtml" />
     <Content Include="Views\Login\RetornoFb.cshtml" />
+    <Content Include="Views\Dieta\_CadastrarDieta.cshtml" />
+    <Content Include="Views\Dieta\Index.cshtml" />
+    <Content Include="Views\Dieta\_DietaUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -388,7 +391,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
-    <Folder Include="Views\Dieta\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
