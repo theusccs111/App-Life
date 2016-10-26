@@ -10,10 +10,9 @@ namespace APP_Life.Models
     /// Classe das Categorias Financeiras
     /// </summary>
     public partial class categoria : IEnumerable<categoria>
-    {
-        /// <summary>
-        /// Método que busca as informações no banco de dados relacionadas ao usuário logado.
-        /// </summary>
+    { /// <summary>
+      /// Método que busca as informações no banco de dados relacionadas ao usuário logado.
+      /// </summary>
         public categoria()
         {
             this.despesas = new List<despesa>();

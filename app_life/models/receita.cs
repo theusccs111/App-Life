@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
+
 namespace APP_Life.Models
 {
     /// <summary>
@@ -12,7 +13,6 @@ namespace APP_Life.Models
     /// </summary>
     public partial class receita : IEnumerable<receita>
     {
-
         public int ReceitaID { get; set; }
         public Nullable<int> UsuarioID { get; set; }
         public Nullable<int> CategoriaID { get; set; }
@@ -21,8 +21,8 @@ namespace APP_Life.Models
         [Required(ErrorMessage = "Digite o Valor")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
         public Nullable<float> Valor { get; set; }
-        
-        [DisplayName("Descrição")] 
+
+        [DisplayName("Descrição")]
         [Required(ErrorMessage = "Digite a Descrição")]
         public string Descricao { get; set; }
 
@@ -95,5 +95,6 @@ namespace APP_Life.Models
         {
             return GetEnumerator();
         }
+
     }
 }

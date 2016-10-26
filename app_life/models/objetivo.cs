@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,19 +22,16 @@ namespace APP_Life.Models
         public Nullable<float> ValorTotal { get; set; }
 
         [Required(ErrorMessage = "Digite o Saldo Disponivel do Objetivo")]
-        [DisplayName("Dispon√≠vel")]
+        [DisplayName("DisponÌvel")]
         public Nullable<float> ValorAtual { get; set; }
-
         public Nullable<int> UsuarioID { get; set; }
-
-      
         public virtual usuario usuario { get; set; }
 
         /// <summary>
-        /// M√©todo de Cadastro das Objetivo
+        /// MÈtodo de Cadastro das Objetivo
         /// </summary>
         /// <param name="rece">Objeto do Tipo OBjetivo</param>
-        /// <param name="id">ID do Usu√°rio logado</param>
+        /// <param name="id">ID do Usu·rio logado</param>
         public void CadastrarObjetivo(objetivo rece, int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -44,9 +41,9 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
         /// <summary>
-        /// M√©todo de Remo√ß√£o da Objetivo
+        /// MÈtodo de RemoÁ„o da Objetivo
         /// </summary>
-        /// <param name="id">ID da Objetivo a ser exclu√≠da</param>
+        /// <param name="id">ID da Objetivo a ser excluÌda</param>
         public void RemoverObjetivo(int id)
         {
             app_lifeContext contexto = new app_lifeContext();
@@ -56,7 +53,7 @@ namespace APP_Life.Models
         }
 
         /// <summary>
-        /// M√©todo de Altera√ß√£o de uma Objetivo j√° cadastrada.
+        /// MÈtodo de AlteraÁ„o de uma Objetivo j· cadastrada.
         /// </summary>
         /// <param name="rece">Objeto do Tipo Objetivo</param>
         public void UpdateObjetivo(objetivo rece)
@@ -70,12 +67,12 @@ namespace APP_Life.Models
                 item.ValorTotal = rece.ValorTotal;
                 //item.categoria.nome = rece.categoria.nome;
                 item.UsuarioID = rece.UsuarioID;
-               
+
 
             }
             contexto.SaveChanges();
         }
-      
+
 
         List<objetivo> objetivoLista;
 
@@ -88,6 +85,5 @@ namespace APP_Life.Models
         {
             return GetEnumerator();
         }
-
     }
 }

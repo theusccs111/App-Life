@@ -88,8 +88,5 @@ namespace APP_Life.Models
         {
             return GetEnumerator();
         }
-
-
-
     }
 }

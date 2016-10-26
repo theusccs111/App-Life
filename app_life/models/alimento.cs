@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace APP_Life.Models
@@ -6,14 +7,14 @@ namespace APP_Life.Models
     /// <summary>
     /// Classe dos Alimentos
     /// </summary>
-    public partial class alimento
+    public partial class alimento : IEnumerable<alimento>
     {
         /// <summary>
         /// Método que busca as informações dos alimentos cadastrados no banco de dados.
         /// </summary>
         public alimento()
         {
-            this.dietaxalimentoxusuarios = new List<dietaxalimentoxusuario>();
+            this.lista_alimentos = new List<lista_alimentos>();
         }
 
         public int ID { get; set; }
@@ -45,6 +46,18 @@ namespace APP_Life.Models
         public string Piridoxina { get; set; }
         public string Niacina { get; set; }
         public string VitaminaC { get; set; }
-        public virtual ICollection<dietaxalimentoxusuario> dietaxalimentoxusuarios { get; set; }
+        public virtual ICollection<lista_alimentos> lista_alimentos { get; set; }
+
+        List<alimento> alimentosLista;
+
+        public IEnumerator<alimento> GetEnumerator()
+        {
+            return alimentosLista.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
