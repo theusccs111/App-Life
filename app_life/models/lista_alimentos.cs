@@ -14,6 +14,18 @@ namespace APP_Life.Models
         public virtual alimento alimento { get; set; }
         public virtual dieta dieta { get; set; }
 
+        public void CadastrarItens(lista_alimentos rece)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            //rece.IDDieta = id;
+            contexto.lista_alimentos.Add(rece);
+
+            contexto.SaveChanges();
+        }
+
+
+
+
         List<lista_alimentos> listaAlimentosLista;
 
         public IEnumerator<lista_alimentos> GetEnumerator()

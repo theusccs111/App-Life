@@ -18,7 +18,7 @@ namespace APP_Life.Controllers
             if (Session["usuarioLogadoID"] != null)
             {
                 ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
-              
+
                 return View();
             }
             else
@@ -27,9 +27,42 @@ namespace APP_Life.Controllers
             }
         }
 
+        public ActionResult CadastrarItens(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            dieta rece = contexto.dietas.Find(id);
+            if (rece == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.IDAlimento = new SelectList
+                (
+                    contexto.alimentos.ToList(),
+                    "ID",
+                    "Nome"
+                );
+
+
+
+            return PartialView("_CadastrarItens", rece);
+        }
+
+        [HttpPost] // this action takes the viewModel from the modal
+        public ActionResult CadastrarItens(lista_alimentos rece)
+        {
+
+            rece.CadastrarItens(rece);
+            return RedirectToAction("Index");
+        }
+
+
         public ActionResult CadastrarDieta()
         {
-           
+
 
             return PartialView("_CadastrarDieta");
 
@@ -87,7 +120,7 @@ namespace APP_Life.Controllers
                 return HttpNotFound();
             }
 
-          
+
             return PartialView("_DietaUpdate", rece);
         }
 

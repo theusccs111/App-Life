@@ -57,14 +57,16 @@
                 </td>
                
                 <td>
-                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    -->
+                   
+                    <button class="btn btn-primary edit eitaCI" data-id="@item.DietaID"><i class="glyphicon glyphicon-plus"></i></button>
+
 
 
                     <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger">
 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
+
                     <button class="btn btn-primary edit eita" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
@@ -79,6 +81,12 @@
 
 </div>
 
+<div class="modal fade" id="modalCi">
+
+
+
+</div>
+
 
 <script type="text/javascript">
 
@@ -87,6 +95,14 @@
         $("#modalDi").load("DietaUpdate?id=" + id, function () {
 
             $("#modalDi").modal();
+        })
+    });
+
+    $(".eitaCI").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalCi").load("CadastrarItens?id=" + id, function () {
+
+            $("#modalCi").modal();
         })
     });
 
@@ -110,6 +126,9 @@
         $('#CancelModal').on('click', function () {
             return false;
         });
+
+
+     
     });
 
 
