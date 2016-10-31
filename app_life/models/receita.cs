@@ -19,8 +19,8 @@ namespace APP_Life.Models
 
         [DisplayName("Valor")]
         [Required(ErrorMessage = "Digite o Valor")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:c}")]
-        public Nullable<float> Valor { get; set; }
+     
+        public decimal Valor { get; set; }
 
         [DisplayName("Descrição")]
         [Required(ErrorMessage = "Digite a Descrição")]

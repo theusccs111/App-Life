@@ -19,11 +19,11 @@ namespace APP_Life.Models
 
         [Required(ErrorMessage = "Digite o Custo do Objetivo")]
         [DisplayName("Custo")]
-        public Nullable<float> ValorTotal { get; set; }
+        public decimal ValorTotal { get; set; }
 
         [Required(ErrorMessage = "Digite o Saldo Disponivel do Objetivo")]
         [DisplayName("Disponível")]
-        public Nullable<float> ValorAtual { get; set; }
+        public decimal ValorAtual { get; set; }
         public Nullable<int> UsuarioID { get; set; }
         public virtual usuario usuario { get; set; }
 

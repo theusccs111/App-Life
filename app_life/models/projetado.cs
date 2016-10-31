@@ -16,7 +16,7 @@ namespace APP_Life.Models
         public Nullable<int> CategoriaID { get; set; }
 
         [Required(ErrorMessage = "Digite o Valor")]
-        public Nullable<float> Valor { get; set; }
+        public decimal Valor { get; set; }
 
         [Required(ErrorMessage = "Digite a Descrição")]
         public string Descricao { get; set; }
