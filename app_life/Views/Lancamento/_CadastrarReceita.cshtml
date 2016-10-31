@@ -26,31 +26,27 @@
         </div>
 
         @Html.ValidationSummary(true);
-        <div class="container">
-            <div class="col-md-12">
-                <!-- Text input-->
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <!-- <input id="textinput" name="textinput" placeholder="Descrição" class="form-control" type="text">
-                        -->
-                        @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control input-md" } })
-                        @Html.ValidationMessageFor(model => model.Descricao)
+        <div class="modal-body">
+            <div class="form-horizontal">
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Descricao)
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="container">
             <div class="col-md-12">
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <div class="col-md-12">
-
-                        
+                    @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">                     
                         @* Passando o Nome da ViewBag *@
                         @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
-                     
-
                     </div>
                 </div>
 
@@ -61,11 +57,8 @@
             <div class="col-md-6">
                 <!-- Text input-->
                 <div class="form-group">
-
-                    <div class="col-md-12">
-                        <!--    <input id="textinput" name="textinput" placeholder="placeholder" class="form-control input-md" type="text">
-                           -->
-                        Valor:
+                    @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
                         @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control input-md" } })
                         @Html.ValidationMessageFor(model => model.Valor)
 
