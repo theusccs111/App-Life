@@ -103,14 +103,7 @@
 </table>
 
 
-@*
 
-    //valor total = 100
-           //valor atual = x
-           // ((vA * 100 )/vT )/100
-
-
-*@
 
 <script>
 
@@ -142,14 +135,14 @@
 
         for (var i = 1; i < arrayo.length; i++) {
 
-            var porcentagem = parseInt(((arrayo[i] * 100) / array2o[i]));
+            var porcentagem = parseInt(((parseInt(arrayo[i]) * 100) / parseInt(array2o[i])));
 
            // document.getElementById('barrinhaLoka' + i).innerText = String(porcentagem) + "%";
 
             document.getElementById('barrinhaLoka' + i).innerText = (String((porcentagem)) + "%");
             $("#fullRodda" + i).addClass("p" + porcentagem);
 
-            document.getElementById('Restante' + i).innerText = String(parseFloat(document.getElementById('ValorTotal' + i).innerText) - document.getElementById('ValorAtual' + i).innerText)
+            document.getElementById('Restante' + i).innerText = (parseFloat(parseFloat(document.getElementById('ValorTotal' + i).innerText) - parseFloat(document.getElementById('ValorAtual' + i).innerText)));
            // $("#barrinhaLoka" + i).css("aria-valuenow", parseInt(porcentagem));
         }
 

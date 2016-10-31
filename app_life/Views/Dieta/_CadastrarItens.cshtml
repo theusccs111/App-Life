@@ -8,34 +8,16 @@
     ViewBag.Title = "Edit";
 }
 
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-<style>
-    .modal-footer {
-        margin-right: 10%;
-    }
 
-    .modal-title {
-        margin-left: 30%;
-        color: #06921c;
-    }
-
-    .control-label {
-        text-align: left;
-    }
-</style>
-
-<div class="modal-dialog">
-    <div class="modal-content">
-        @using (Html.BeginForm("CadastrarItens", "Dieta", new { @class = "" },
-                                              FormMethod.Post))
-        {
-            <div class="modal-header">
-                <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Editar Receita</h4>
-            </div>
+<div class="modal-body">
+    @using (Html.BeginForm("CadastrarItens", "Dieta", new { @class = "" },
+                                                      FormMethod.Post))
+    {
+        <div class="modal-header">
+            <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Editar Receita</h4>
+        </div>
 
             @Html.AntiForgeryToken()
 
@@ -43,13 +25,13 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
 
-
-
                     <div class="form-group">
+                        @Html.LabelFor(model => model.alimento.Nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.HiddenFor(model => model.IDDieta, new { @class = "form-control"/*, @readonly = "readonly"*/ })
+                            @Html.DropDownList("Dieta", null, new { @class = "form-control" })
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.alimento.Nome, new { @class = "control-label col-md-3" })
@@ -74,39 +56,26 @@
                         </div>
                     </div>
 
-                    
+
 
                 </div>
             </div>
-                <div class="modal-footer">
-                    <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
-                    <input type="submit" value="Salvar" class="btn btn-success" />
-                </div>
-        }
-    </div><!-- /.modal-content -->
-</div>
+            <div class="modal-footer">
+                <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
+            </div>
+    }
+</div><!-- /.modal-content -->
 
 
 <script type="text/javascript">
-
-    $('#cancelar').click(function () {
-        $('.modal-dialog').css('display', 'none');
-        $('#modalr').removeClass('out');
-        $('#modalr').addClass('in');
-
-        $('.modal-backdrop').removeClass('in');
-
-        $('.modal-backdrop').removeClass('modal-backdrop');
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-containerDietaCI').modal('hide');
+        });
     });
-    $('#close').click(function () {
-        $('.modal-dialog').css('display', 'none');
-        $('#modalr').removeClass('out');
-        $('.modal-backdrop').removeClass('in');
-
-        $('.modal-backdrop').removeClass('modal-backdrop');
-        $('#modalr').addClass('in');
-
-    });
-
-
 </script>
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

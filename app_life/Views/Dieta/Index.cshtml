@@ -23,15 +23,25 @@
     }
 </style>
 
-<a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC">
+<a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" title="Cadastrar Dieta">
 
     <span class="fa fa-plus" aria-hidden="true"></span>
 </a>
 
 <br />
 
+<a href="@Url.Action("CadastrarItens", "Dieta")" class="modal-link btn btn-danger dietaCI" title="Cadastrar Itens">
+
+    <span class="fa fa-plus" aria-hidden="true"></span>
+</a>
 
 <div id="modal-containerDieta" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+    </div>
+</div>
+
+<div id="modal-containerDietaCI" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
     </div>
@@ -58,16 +68,16 @@
                
                 <td>
                    
-                    <button class="btn btn-primary edit eitaCI" data-id="@item.DietaID"><i class="glyphicon glyphicon-plus"></i></button>
+                    <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
 
 
 
-                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger">
+                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar">
 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
 
-                    <button class="btn btn-primary edit eita" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
         }
@@ -81,11 +91,12 @@
 
 </div>
 
-<div class="modal fade" id="modalCi">
+<div class="modal fade" id="modalAI">
 
 
 
 </div>
+
 
 
 <script type="text/javascript">
@@ -98,14 +109,13 @@
         })
     });
 
-    $(".eitaCI").click(function () {
+    $(".eitaD").click(function () {
         var id = $(this).attr("data-id");
-        $("#modalCi").load("CadastrarItens?id=" + id, function () {
+        $("#modalAI").load("ListarDieta?id=" + id, function () {
 
-            $("#modalCi").modal();
+            $("#modalAI").modal();
         })
     });
-
 
 
 
@@ -121,6 +131,24 @@
         });
 
         $('#modal-containerDieta').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+
+
+        $('body').on('click', '.dietaCI', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containerDietaCI');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-containerDietaCI').modal('hide');
+        });
+
+        $('#modal-containerDietaCI').on('hidden.bs.modal', function () {
             $(this).removeData('bs.modal');
         });
         $('#CancelModal').on('click', function () {

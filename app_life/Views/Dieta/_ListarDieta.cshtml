@@ -1,0 +1,85 @@
+﻿@model IEnumerable<APP_Life.Models.lista_alimentos>
+
+@{
+    ViewBag.Title = "ListarDieta";
+}
+
+<h2>ListarDieta</h2>
+
+
+<style>
+    .modal-footer {
+        margin-right: 10%;
+    }
+
+    .modal-title {
+        margin-left: 30%;
+        color: #06921c;
+    }
+
+    .control-label {
+        text-align: left;
+    }
+</style>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+
+
+        <table id="tabelaReceita" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+            <thead style="">
+                <tr>
+                    <th>Alimento</th>
+                    <th>Quantidade</th>
+                    <th>Medida</th>
+                    <th>Dieta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (ViewBag.ListaAlimentos))
+                {
+                    <tr>
+
+                        <td>
+                            @item.alimento.nome
+                        </td>
+                        <td>
+                            @item.quantidade
+                        </td>
+                        <td>
+                            @item.medida
+                        </td>
+                        <td>
+                            @item.dieta.nome
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('#modalr').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+    });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalr').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalr').addClass('in');
+
+    });
+
+
+</script>

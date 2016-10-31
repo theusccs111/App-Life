@@ -382,6 +382,7 @@
     <Content Include="Views\Dieta\Index.cshtml" />
     <Content Include="Views\Dieta\_DietaUpdate.cshtml" />
     <Content Include="Views\Dieta\_CadastrarItens.cshtml" />
+    <Content Include="Views\Dieta\_ListarDieta.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -27,18 +27,19 @@ namespace APP_Life.Controllers
             }
         }
 
-        public ActionResult CadastrarItens(int? id)
+        public ActionResult ListarDieta(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            dieta rece = contexto.dietas.Find(id);
-            if (rece == null)
-            {
-                return HttpNotFound();
-            }
+        
+            ViewBag.ListaAlimentos = contexto.lista_alimentos.ToList().Where(x => x.IDDieta == id);
+           
+        
+            return PartialView("_ListarDieta");
+        }
 
+
+        public ActionResult CadastrarItens()
+        {
+         
             ViewBag.IDAlimento = new SelectList
                 (
                     contexto.alimentos.ToList(),
@@ -46,9 +47,16 @@ namespace APP_Life.Controllers
                     "Nome"
                 );
 
+            ViewBag.Dieta = new SelectList
+               (
+                   contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])),
+                   "DietaID",
+                   "Nome"
+               );
 
 
-            return PartialView("_CadastrarItens", rece);
+
+            return PartialView("_CadastrarItens");
         }
 
         [HttpPost] // this action takes the viewModel from the modal
