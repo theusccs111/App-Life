@@ -10,15 +10,36 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
+<style>
+    .modal-footer {
+        margin-right: 10%;
+    }
+
+    .modal-title {
+        margin-left: 30%;
+        color: #06921c;
+    }
+
+    .modal-header {
+        margin-bottom: 15px;
+        padding-bottom: 2px;
+    }
+
+    .control-label {
+        text-align: left;
+    }
+</style>
+
+
 
 <div class="modal-dialog">
     <div class="modal-content">
         @using (Html.BeginForm("DespesaUpdate", "Lancamento", new { @class = "" },
-                                  FormMethod.Post))
+                                          FormMethod.Post))
         {
             <div class="modal-header">
-                <button type="button" id="close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Editar</h4>
+                <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Editar Despesa</h4>
             </div>
 
             @Html.AntiForgeryToken()
@@ -27,10 +48,9 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)
                     <div class="form-group">
-                        @Html.LabelFor(model => model.DespesaID, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.DespesaID, new { @class = "form-control"/*, @readonly = "readonly"*/ })
-                            @Html.ValidationMessageFor(model => model.DespesaID)
+                            @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
                         </div>
                     </div>
 
@@ -41,7 +61,6 @@
                             @Html.ValidationMessageFor(model => model.Descricao)
                         </div>
                     </div>
-
                     <div class="form-group">
                         @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
@@ -53,39 +72,31 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.Data, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "date" })
                             @Html.ValidationMessageFor(model => model.Data)
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
+                        @Html.HiddenFor(model => model.UsuarioID, new { @class = "" })
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.categoria.nome, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.categoria.nome)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.HiddenFor(model => model.UsuarioID, new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "form-control" })
+                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "" })
                             @Html.ValidationMessageFor(model => model.UsuarioID)
                         </div>
                     </div>
-
                     <div class="form-group">
-                        @Html.HiddenFor(model => model.CategoriaID, new { @class = "control-label col-md-3" })
+                        @Html.HiddenFor(model => model.CategoriaID, new { @class = "" })
                         <div class="col-md-9">
-                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "form-control" })
+                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "" })
                             @Html.ValidationMessageFor(model => model.CategoriaID)
                         </div>
                     </div>
 
                 </div>
+
             </div>
                 <div class="modal-footer">
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="submit" value="Salvar" class="btn btn-success" />
                     <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
                 </div>
         }
