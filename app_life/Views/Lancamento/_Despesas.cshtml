@@ -16,7 +16,10 @@
     }
 </style>
 
-@Html.ActionLink("Adicionar Despesa", "CadastrarDespesa", "Lancamento", null, new { @class = "modal-link btn btn-success d" })
+<a href="@Url.Action("Adicionar Despesa", "CadastrarDespesa", "Lancamento") " class="modal-link btn btn-success d">
+    <span class="fa fa-plus" aria-hidden="true"> Adicionar Despesa</span>
+</a>
+
 <div id="modal-containerd" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
@@ -27,7 +30,7 @@
 <table id="tabelaDespesa" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
-          
+
             <th>Código</th>
             <th>Categoria</th>
             <th>Descrição</th>
@@ -58,12 +61,12 @@
                 </td>
 
                 <td>
-                 
+
                     <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
-    <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
         }
