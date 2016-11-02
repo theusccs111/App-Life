@@ -15,11 +15,17 @@
 <style>
     .modal-footer {
         margin-right: 10%;
+
     }
 
     .modal-title {
         margin-left: 30%;
         color: #06921c;
+    }
+
+    .modal-header {
+        margin-bottom: 15px;
+        padding-bottom: 2px;
     }
 
     .control-label {
@@ -39,7 +45,6 @@
 
                 @Html.AntiForgeryToken()
 
-                <div class="modal-body">
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true)
 
@@ -83,22 +88,22 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "control-label col-md-3" })
+                            @Html.HiddenFor(model => model.UsuarioID, new { @class = "" })
                             <div class="col-md-9">
-                                @Html.HiddenFor(model => model.UsuarioID, new { @class = "form-control" })
+                                @Html.HiddenFor(model => model.UsuarioID, new { @class = "" })
                                 @Html.ValidationMessageFor(model => model.UsuarioID)
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "control-label col-md-3" })
+                            @Html.HiddenFor(model => model.CategoriaID, new { @class = "" })
                             <div class="col-md-9">
-                                @Html.HiddenFor(model => model.CategoriaID, new { @class = "form-control" })
+                                @Html.HiddenFor(model => model.CategoriaID, new { @class = "" })
                                 @Html.ValidationMessageFor(model => model.CategoriaID)
                             </div>
                         </div>
 
                     </div>
-                </div>
+ 
                 <div class="modal-footer">
                     <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
                     <input type="submit" value="Salvar" class="btn btn-success" />
