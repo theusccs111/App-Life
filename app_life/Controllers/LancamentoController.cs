@@ -323,7 +323,7 @@ namespace APP_Life.Controllers
                 Session["despesaTotal"] = total2;
 
                 var query3 = from u in contexto.despesas orderby u.Data select u;
-                return View(contexto.despesas.ToList());
+                return View(contexto.despesas.ToList().Where(x => x.UsuarioID == id));
 
  
 

@@ -274,8 +274,8 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Confirmar Senha" })
-                                    @Html.ValidationMessageFor(model => model.senha)
+                                    @Html.PasswordFor(model => model.confirmarSenha, new { @placeholder = "Confirmar Senha" })
+                                    @Html.ValidationMessageFor(model => model.confirmarSenha)
                                 </div>
                                 <p>
                                     <input type="submit" value="COMEÇAR A USAR" class="btn btn-primary btn-success" />
@@ -534,11 +534,10 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
     <!-- Custom Theme JavaScript -->
     <script src="~/Scripts/creative.js"></script>
 
-
-
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
 
 </body>
 </html>
