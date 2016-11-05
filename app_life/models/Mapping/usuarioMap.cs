@@ -38,6 +38,9 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.estado)
                 .HasMaxLength(100);
 
+            this.Property(t => t.confirmarSenha)
+                .HasMaxLength(100);
+
             // Table & Column Mappings
             this.ToTable("usuario", "app_life");
             this.Property(t => t.usuarioID).HasColumnName("usuarioID");
@@ -55,6 +58,8 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.estado).HasColumnName("estado");
             this.Property(t => t.Calorias).HasColumnName("Calorias");
             this.Property(t => t.idfacebook).HasColumnName("idfacebook");
+            this.Property(t => t.confirmarSenha).HasColumnName("confirmarSenha");
+
         }
     }
 }
