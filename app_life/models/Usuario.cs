@@ -81,6 +81,11 @@ namespace APP_Life.Models
         [DisplayName("Senha")]
         public string senha { get; set; }
 
+        [DisplayName("Confirmar Senha")]
+        [Required(ErrorMessage = "Digite A Confirmação de Senha")]
+        [Compare("senha", ErrorMessage = "Senhas não Correspondem")]
+        public string confirmarSenha { get; set; }
+
         [DisplayName("Nome")]
         public string nome { get; set; }
 
