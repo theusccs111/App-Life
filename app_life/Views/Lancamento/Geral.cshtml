@@ -3,7 +3,14 @@
     ViewBag.Title = "Geral";
 }
 
+<style>
 
+    .segundaparte {
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 20px;
+    }
+
+</style>
 
 <h3 id="receitaTotal" style="display:none;">
     @Session["receitaTotal"].ToString()
@@ -28,11 +35,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.categoria.nome)
                 </td>
-               
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
-               
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Data)
                 </td>
@@ -54,27 +61,27 @@
     for (var i = 1 ; i < linha.length ; i++) {
         dados = linha[i].cells;
         for (var j = 0 ; j < dados.length ; j++) {
-            sessionStorage.setItem('valor' + [i], dados[j  +3].innerText);
-			 sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
-			 sessionStorage.setItem('categoria' + [i], dados[j].innerText);
-			 sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
-           break;
+            sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
+            sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
+            sessionStorage.setItem('categoria' + [i], dados[j].innerText);
+            sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
+            break;
         }
     }
 
 
     var array = [];
     var array2 = [];
-	var array3 =[];
+    var array3 = [];
 
-	var array4 = [];
+    var array4 = [];
     for (var i = 1; i < sessionStorage.length; i++) {
         if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
             array[i] = sessionStorage.getItem('valor' + [i]);
             array2[i] = sessionStorage.getItem('descricao' + [i]);
             array3[i] = sessionStorage.getItem('categoria' + [i]);
             array4[i] = sessionStorage.getItem('data' + [i]);
-           }
+        }
     }
 
     total = document.getElementById('receitaTotal').innerText;
@@ -82,8 +89,8 @@
 
     google.charts.setOnLoadCallback(drawChart);
 
-    google.charts.load('43', { 'packages': ['corechart'],'language':'pt-br' });
-     function drawChart() {
+    google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
+    function drawChart() {
 
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Data');
@@ -95,21 +102,21 @@
             auxSoma = parseFloat(auxSoma) + parseFloat(array[i]);
 
             data.addRows([
-            [String(array4[i]), parseFloat(total),parseFloat(auxSoma)]
+            [String(array4[i]), parseFloat(total), parseFloat(auxSoma)]
 
             ]);
         }
 
 
-         /*
-        var options = {
-            title: 'Geral',
-           format:'currency',
-           curveType: 'function',
-            vAsix: {height:100},
-            legend: { position: 'bottom', }
+        /*
+       var options = {
+           title: 'Geral',
+          format:'currency',
+          curveType: 'function',
+           vAsix: {height:100},
+           legend: { position: 'bottom', }
 
-        };*/
+       };*/
 
 
         var options = {
@@ -131,25 +138,25 @@
 </script>
 
 
+
+<div id="grafico" class="segundaparte">
     <div class="col-md-9">
         <div id="chart_div" style="width:100%;height:100%;">
         </div>
     </div>
-
-<div class="container">
-    <div class="col-md-3">
-
-        @Html.ActionLink("Exportar para Excel - Despesas", "Excel2", "Excel")
-           </div>
-<div class="col-md-3">
-    @Html.ActionLink("Exportar para Excel - Receitas", "Excel", "Excel")
-
-
+    <div class="container">
+        <div class="col-md-3">
+            <a href="@Url.Action("Exportar para Excel - Receitas", "Excel", "Excel")" class="modal-link btn btn-success btn-block d">
+                <span class="fa fa-file-excel-o"> Exportar Receitas</span>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="@Url.Action("Exportar para Excel - Despesas", "Excel2", "Excel")" class="modal-link btn btn-danger btn-block d">
+                <span class="fa fa-file-excel-o"> Exportar Despesas</span>
+            </a>
+        </div>
+    </div>
 </div>
-
-
-</div>
-
 
 
 
