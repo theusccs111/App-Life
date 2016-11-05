@@ -4,10 +4,21 @@
 }
 
 <style>
-
     .segundaparte {
         border-bottom: 1px solid #e5e5e5;
         padding-bottom: 20px;
+    }
+
+    h1 {
+        color: #06921c;
+    }
+
+    .container {
+        margin-left: 30px;
+    }
+
+    .b {
+        margin-top: 50px;
     }
 
 </style>
@@ -140,17 +151,22 @@
 
 
 <div id="grafico" class="segundaparte">
-    <div class="col-md-9">
+
+    <div class="col-md-3">
+        <h1>Resumo de situação financeira</h1>
+        <h3>Veja como anda suas finanças através deste resumo e aproveite para se programar de forma a não deixar faltar!</h3>
+    </div>
+    <div class="col-md-9 b">
         <div id="chart_div" style="width:100%;height:100%;">
         </div>
     </div>
     <div class="container">
-        <div class="col-md-3">
-            <a href="@Url.Action("Exportar para Excel - Receitas", "Excel", "Excel")" class="modal-link btn btn-success btn-block d">
+        <div class="col-md-3 lateral">
+            <a href="@Url.Action("Exportar para Excel - Receitas", "Excel", "Excel")" class="modal-link btn btn-success btn-block d lateral">
                 <span class="fa fa-file-excel-o"> Exportar Receitas</span>
             </a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 lateral">
             <a href="@Url.Action("Exportar para Excel - Despesas", "Excel2", "Excel")" class="modal-link btn btn-danger btn-block d">
                 <span class="fa fa-file-excel-o"> Exportar Despesas</span>
             </a>
