@@ -92,10 +92,13 @@
                 <td>
                     <a href="@Url.Action("CadastrarItens", "Dieta")" class="modal-link btn btn-danger dietaCI" title="Cadastrar Itens">
                         <span class="fa fa-plus" aria-hidden="true"></span></a>
-                    <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID">
+                  
+                      <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID">
                     <i class="glyphicon glyphicon-edit"></i></button>
+                    
                     <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    
                     <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
 
 
@@ -120,6 +123,13 @@
 
 </div>
 
+
+<div class="modal fade" id="modalCadI">
+
+
+
+</div>
+
 <div class="alert">
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
     Incluído com sucesso!
@@ -137,9 +147,9 @@
 
     $(".CadItens").click(function () {
         var id = $(this).attr("data-id");
-        $("#modalDi").load("DietaUpdate?id=" + id, function () {
+        $("#modalCadI").load("CadastrarItens?id=" + id, function () {
 
-            $("#modalDi").modal();
+            $("#modalCadI").modal();
         })
     });
 
@@ -217,3 +227,9 @@
         }
     }
 </script>
+
+
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

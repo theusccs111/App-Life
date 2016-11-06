@@ -10,14 +10,30 @@
 
 
 
-<div class="modal-body">
-    @using (Html.BeginForm("CadastrarItens", "Dieta", new { @class = "" },
-                                                      FormMethod.Post))
-    {
-        <div class="modal-header">
-            <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Cadastrar Itens</h4>
-        </div>
+<style>
+    .modal-footer {
+        margin-right: 10%;
+    }
+
+    .modal-title {
+        margin-left: 30%;
+        color: #06921c;
+    }
+
+    .control-label {
+        text-align: left;
+    }
+</style>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        @using (Html.BeginForm("CadastrarItens", "Dieta", new { @class = "" },
+                                                              FormMethod.Post))
+        {
+            <div class="modal-header">
+                <button type="button" class="close" id="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Cadastrar Itens</h4>
+            </div>
 
             @Html.AntiForgeryToken()
 
@@ -28,9 +44,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.dieta.Nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.DropDownList("Dieta", null, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.IDDieta)
-
+                            @Html.DropDownList("IDDieta", null, new { @class = "form-control" })
 
                         </div>
                     </div>
@@ -40,7 +54,6 @@
                         @Html.LabelFor(model => model.alimento.Nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
                             @Html.DropDownList("IDAlimento", null, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.IDAlimento)
                         </div>
                     </div>
 
@@ -68,17 +81,34 @@
                 <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
                 <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
-    }
-</div><!-- /.modal-content -->
-
+        }
+    </div><!-- /.modal-content -->
+</div>
 
 <script type="text/javascript">
-    $(function () {
-        $('#approve-btn').click(function () {
-            $('#modal-containerDietaCI').modal('hide');
-        });
+
+    $('#cancelar').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalCadI').removeClass('out');
+        $('#modalCadI').addClass('in');
+
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
     });
+    $('#close').click(function () {
+        $('.modal-dialog').css('display', 'none');
+        $('#modalCadI').removeClass('out');
+        $('.modal-backdrop').removeClass('in');
+
+        $('.modal-backdrop').removeClass('modal-backdrop');
+        $('#modalCadI').addClass('in');
+
+    });
+
+
 </script>
+
 
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
