@@ -94,6 +94,10 @@
             font-weight: bold;
         }
 
+        *{
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    border: none;
+        }
 
     </style>
 
@@ -115,7 +119,7 @@
 
         <div id="wrapper">
             <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #337ab7;">
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #06921c;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="sr-only">Toggle navigation</span>
@@ -130,30 +134,23 @@
 
 
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <a class="dropdown-toggle" style="background-color:#06921c; color:white;" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li>
-                          
+                            <li>                      
                                 <a href="@Url.Action("InfoUsuario", "Usuario")">
-
                                     <span class="fa fa-user fa-fw" aria-hidden="true"></span>
                                 Perfil do Usuário
                                 </a>
-
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-gear fa-fw"></i>Configurações</a>
                             </li>
-                            <li class="divider"></li>
                             <li>
                                 <a href="@Url.Action("Inicio", "Login")">
-
                                     <i class="fa fa-sign-out fa-fw"></i>Sair
                                 </a>
-
-                                        <a href="Login/Inicio"><i class="fa fa-sign-out fa-fw"></i>Sair</a>
                             </li>
                         </ul>
                         <!-- /.dropdown-user -->

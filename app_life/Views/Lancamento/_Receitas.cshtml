@@ -22,7 +22,7 @@
 </style>
 
 <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn btn-success r">
-    <span class="fa fa-plus" aria-hidden="true"> Adicionar Receita</span>
+    <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Adicionar Receita</span>
 </a>
 
 <div id="modal-containerr" class="modal fade"
@@ -36,7 +36,7 @@
     <thead style="">
         <tr>
 
-            <th>Código</th>
+            <th style="display:none;">Código</th>
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Data</th>
@@ -48,7 +48,7 @@
         @foreach (var item in (ViewBag.listaReceita))
         {
             <tr>
-                <td id="@item.ReceitaID">
+                <td id="@item.ReceitaID" style="display:none;">
                     @item.ReceitaID
                 </td>
                 <td>
