@@ -38,27 +38,27 @@ namespace APP_Life.Controllers
         }
 
 
-             public ActionResult CadastrarItens(int? id)
-                {
+        public ActionResult CadastrarItens(int? id)
+        {
 
-                    ViewBag.IDDieta = new SelectList
-                       (
-                           contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) && x.DietaID == id),
-                           "DietaID",
-                           "Nome"
-                       );
-
-
-                    ViewBag.IDAlimento = new SelectList
-            (
-                contexto.alimentos.ToList(),
-                "ID",
-                "Nome"
-            );
+            ViewBag.IDDieta = new SelectList
+               (
+                   contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) && x.DietaID == id),
+                   "DietaID",
+                   "Nome"
+               );
 
 
-                    return PartialView("_CadastrarItens");
-                }
+            ViewBag.IDAlimento = new SelectList
+    (
+        contexto.alimentos.ToList(),
+        "ID",
+        "Nome"
+    );
+
+
+            return PartialView("_CadastrarItens");
+        }
 
         [HttpPost] // this action takes the viewModel from the modal
         public ActionResult CadastrarItens(lista_alimentos rece)
@@ -74,16 +74,16 @@ namespace APP_Life.Controllers
         }
 
 
-                public ActionResult CadastrarDieta()
-                {
+        public ActionResult CadastrarDieta()
+        {
 
 
-                    return PartialView("_CadastrarDieta");
+            return PartialView("_CadastrarDieta");
 
 
-                }
-                
-       
+        }
+
+
 
         [HttpPost]
         public ActionResult CadastrarDieta(dieta rece)
@@ -146,6 +146,32 @@ namespace APP_Life.Controllers
             rece.UpdateDieta(rece);
             return RedirectToAction("Index");
         }
+
+        public ActionResult ConsultarNutrientesDieta()
+        {
+            if (Session["usuarioLogadoID"] != null)
+            {
+                ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == 
+                Convert.ToInt32(Session["usuarioLogadoID"]));
+
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Inicio", "Login");
+            }
+
+        }
+        public ActionResult ConsultarNutrientes(int? id)
+        {
+            ViewBag.listaAlimentosDetalhes = contexto.lista_alimentos.ToList().Where(x => 
+            x.IDDieta == id);
+
+            return PartialView("_ConsultarNutrientes");
+        }
+
+
 
     }
 }
