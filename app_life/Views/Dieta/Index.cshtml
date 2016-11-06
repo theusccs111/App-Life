@@ -59,10 +59,6 @@
 
 <br />
 
-<a href="@Url.Action("CadastrarItens", "Dieta")" class="modal-link btn btn-danger dietaCI" title="Cadastrar Itens">
-
-    <span class="fa fa-plus" aria-hidden="true"></span>
-</a>
 
 <div id="modal-containerDieta" class="modal fade"
      tabindex="-1" role="dialog">
@@ -107,7 +103,11 @@
                     </a>
 
                     <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
+                   
 
+                    <button class="btn btn-primary edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="glyphicon glyphicon-apple"></i></button>
+
+                 </td>
             </tr>
         }
     </tbody>
@@ -134,6 +134,14 @@
 <script type="text/javascript">
 
     $(".eita").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalDi").load("DietaUpdate?id=" + id, function () {
+
+            $("#modalDi").modal();
+        })
+    });
+
+    $(".CadItens").click(function () {
         var id = $(this).attr("data-id");
         $("#modalDi").load("DietaUpdate?id=" + id, function () {
 

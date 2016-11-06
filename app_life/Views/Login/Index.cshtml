@@ -53,8 +53,14 @@
                 </div>
 
                 <div>
-                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha",@id = "Senha" })
                     @Html.ValidationMessageFor(model => model.senha)
+                </div>
+
+
+                <div>
+                    @Html.HiddenFor(model => model.confirmarSenha, new { @placeholder = "Senha",@id="ConfirmarSenha" })
+                    @Html.ValidationMessageFor(model => model.confirmarSenha)
                 </div>
                 <p>
                     <input type="submit" value="Login" class="btn btn-primary btn-success" />
@@ -68,6 +74,16 @@
         </div>
 
     }
+
+    <script>
+        $('#Senha').change(function () {
+            $('#ConfirmarSenha').val($('#Senha').val());
+        });
+    </script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 
     </body>

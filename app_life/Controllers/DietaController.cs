@@ -19,6 +19,7 @@ namespace APP_Life.Controllers
             {
                 ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
+
                 return View();
             }
             else
@@ -29,23 +30,16 @@ namespace APP_Life.Controllers
 
         public ActionResult ListarDieta(int? id)
         {
-        
+
             ViewBag.ListaAlimentos = contexto.lista_alimentos.ToList().Where(x => x.IDDieta == id);
-           
-        
+
+
             return PartialView("_ListarDieta");
         }
 
 
         public ActionResult CadastrarItens()
         {
-         
-            ViewBag.IDAlimento = new SelectList
-                (
-                    contexto.alimentos.ToList(),
-                    "ID",
-                    "Nome"
-                );
 
             ViewBag.Dieta = new SelectList
                (
@@ -54,6 +48,12 @@ namespace APP_Life.Controllers
                    "Nome"
                );
 
+            ViewBag.IDAlimento = new SelectList
+    (
+        contexto.alimentos.ToList(),
+        "ID",
+        "Nome"
+    );
 
 
             return PartialView("_CadastrarItens");
@@ -62,8 +62,8 @@ namespace APP_Life.Controllers
         [HttpPost] // this action takes the viewModel from the modal
         public ActionResult CadastrarItens(lista_alimentos rece)
         {
-
-            rece.CadastrarItens(rece);
+            lista_alimentos x = new lista_alimentos();
+            x.CadastrarItens(rece);
             return RedirectToAction("Index");
         }
 
