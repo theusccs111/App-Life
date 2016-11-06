@@ -102,9 +102,7 @@
 
                 </td>
                 <td>
-                    <a href="@Url.Action("CadastrarItens", "Dieta")" class="modal-link btn btn-danger dietaCI" title="Cadastrar Itens">
-                        <span class="fa fa-plus" aria-hidden="true"></span>
-                    </a>
+
                     <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID">
                         <i class="glyphicon glyphicon-edit"></i>
                     </button>
@@ -114,7 +112,7 @@
                     <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
 
 
-                    <button class="btn btn-primary edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="glyphicon glyphicon-apple"></i></button>
+                    <button class="btn btn-danger edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
 
                  </td>
             </tr>
