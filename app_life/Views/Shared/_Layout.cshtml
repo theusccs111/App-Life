@@ -202,10 +202,12 @@
                                         @Html.ActionLink("Dietas", "Index", "Dieta", null, new { @class = "" })
                                     </li>
                                     <li>
-                                        <a href="ConsNutri">Consultar Nutrientes</a>
+                                        @Html.ActionLink("Consultar Nutrientes", "ConsultarNutrientesDieta", "Dieta", null, new { @class = "" })
+
                                     </li>
                                     <li>
-                                        <a href="Dicas">Dicas Alimentares</a>
+                                        @Html.ActionLink("Dicas Alimentares", "Dicas", "Dieta", null, new { @class = "" })
+
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
