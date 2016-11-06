@@ -38,45 +38,52 @@ namespace APP_Life.Controllers
         }
 
 
-        public ActionResult CadastrarItens()
-        {
+             public ActionResult CadastrarItens(int? id)
+                {
 
-            ViewBag.Dieta = new SelectList
-               (
-                   contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])),
-                   "DietaID",
-                   "Nome"
-               );
-
-            ViewBag.IDAlimento = new SelectList
-    (
-        contexto.alimentos.ToList(),
-        "ID",
-        "Nome"
-    );
+                    ViewBag.IDDieta = new SelectList
+                       (
+                           contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) && x.DietaID == id),
+                           "DietaID",
+                           "Nome"
+                       );
 
 
-            return PartialView("_CadastrarItens");
-        }
+                    ViewBag.IDAlimento = new SelectList
+            (
+                contexto.alimentos.ToList(),
+                "ID",
+                "Nome"
+            );
+
+
+                    return PartialView("_CadastrarItens");
+                }
 
         [HttpPost] // this action takes the viewModel from the modal
         public ActionResult CadastrarItens(lista_alimentos rece)
         {
-            lista_alimentos x = new lista_alimentos();
-            x.CadastrarItens(rece);
+            if (ModelState.IsValid)
+            {
+
+                lista_alimentos x = new lista_alimentos();
+                x.CadastrarItens(rece);
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
 
 
-        public ActionResult CadastrarDieta()
-        {
+                public ActionResult CadastrarDieta()
+                {
 
 
-            return PartialView("_CadastrarDieta");
+                    return PartialView("_CadastrarDieta");
 
 
-        }
-
+                }
+                
+       
 
         [HttpPost]
         public ActionResult CadastrarDieta(dieta rece)

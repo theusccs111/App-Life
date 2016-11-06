@@ -19,34 +19,34 @@
         margin-bottom: 50px;
     }
 
-    .alert {
-        padding: 20px;
-        background-color: #f44336; /* Red */
-        color: white;
-        margin-bottom: 15px;
-    }
+     .alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
 
-    /* The close button */
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-        /* When moving the mouse over the close button */
-        .closebtn:hover {
-            color: black;
-        }
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
 
-    .alert {
-        opacity: 1;
-        transition: opacity 0.6s; /* 600ms to fade out */
-    }
+.alert {
+    opacity: 1;
+    transition: opacity 0.6s; /* 600ms to fade out */
+}
 
     .cab {
         text-align:center;
@@ -84,7 +84,7 @@
             <th>Código</th>
             <th>Dietas</th>
             <th>Dia</th>
-            <th>Ações</th>
+          <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -116,7 +116,7 @@
 
                     <button class="btn btn-primary edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="glyphicon glyphicon-apple"></i></button>
 
-                </td>
+                 </td>
             </tr>
         }
     </tbody>
@@ -130,6 +130,13 @@
 </div>
 
 <div class="modal fade" id="modalAI">
+
+
+
+</div>
+
+
+<div class="modal fade" id="modalCadI">
 
 
 
@@ -152,9 +159,9 @@
 
     $(".CadItens").click(function () {
         var id = $(this).attr("data-id");
-        $("#modalDi").load("DietaUpdate?id=" + id, function () {
+        $("#modalCadI").load("CadastrarItens?id=" + id, function () {
 
-            $("#modalDi").modal();
+            $("#modalCadI").modal();
         })
     });
 
@@ -205,7 +212,7 @@
         });
 
 
-
+     
     });
 
 
@@ -232,3 +239,9 @@
         }
     }
 </script>
+
+
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

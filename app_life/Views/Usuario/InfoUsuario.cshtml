@@ -63,10 +63,17 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.senha, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(model => model.senha, new { @class = "form-control" })
+                        @Html.PasswordFor(model => model.senha, new { @class = "form-control", @id = "Senha" })
                         @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
                     </div>
                 </div>
+
+
+                <div>
+                    @Html.HiddenFor(model => model.confirmarSenha, new { @placeholder = "Senha", @id = "ConfirmarSenha" })
+                    @Html.ValidationMessageFor(model => model.confirmarSenha)
+                </div>
+
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -178,6 +185,12 @@
 
                 </div>
             </div>
+
+            <script>
+        $('#Senha').change(function () {
+            $('#ConfirmarSenha').val($('#Senha').val());
+        });
+            </script>
 
         </div>
     </div>
