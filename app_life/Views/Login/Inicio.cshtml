@@ -106,7 +106,42 @@
 
                 <a href="#janela1" rel="modal" class="btn btn-default btn-xl sr-button">Começar!</a>
 
-                <script>
+                <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
+                    <a href="#" class="fechar">x</a>
+
+                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, new { @class = "login" }))
+                    {
+                        @Html.ValidationSummary(true);
+                        <div class="container">
+                            <div class="col-md-3">
+
+                                <p class="form-title"> Vamos Começar!</p>
+
+                                <div>
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @id = "usuario" } })
+                                    @Html.ValidationMessageFor(model => model.email)
+                                </div>
+
+                                <div>
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
+                                    @Html.ValidationMessageFor(model => model.senha)
+                                </div>
+                                <p>
+                                    <input type="submit" value="Login" id="logar" class="btn btn-primary btn-success" />
+                                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
+                                </p>
+
+                                <p>
+                                    <a href="#janela2" rel="modal" id="cadastro" class="btn btn-primarydois">COMEÇAR A USAR</a>
+                                    <!--<a href="#janela2" rel="modal" id="cadastro" class="btn">Cadastre</a>-->
+                                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                                    </fb:login-button>
+
+
+                                </p>
+
+                                <script>
                     // This is called with the results from from FB.getLoginStatus().
                     function statusChangeCallback(response) {
                         console.log('statusChangeCallback');
@@ -193,44 +228,13 @@
                             }
                         });
                     }
-                </script>
+                                </script>
 
-                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                </fb:login-button>
-
-                <div id="status">
-                </div>
-
-                <div class="window" id="janela1" style="/*border:solid 1px white;*/width:30%;height:350%;top:250%/*background:rgba(255,255,255,0.1)*/;">
-                    <a href="#" class="fechar">x</a>
-
-                    @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
-FormMethod.Post, new { @class = "login" }))
-                    {
-                        @Html.ValidationSummary(true);
-                        <div class="container">
-                            <div class="col-md-3">
-
-                                <p class="form-title"> Vamos Começar!</p>
-
-                                <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @id = "usuario" } })
-                                    @Html.ValidationMessageFor(model => model.email)
+                                <div id="status">
                                 </div>
 
-                                <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
-                                    @Html.ValidationMessageFor(model => model.senha)
-                                </div>
-                                <p>
-                                    <input type="submit" value="Login" id="logar" class="btn btn-primary btn-success" />
-                                    <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
-                                </p>
 
-                                <p>
-                                    <a href="#janela2" rel="modal" id="cadastro" class="btn btn-primarydois">COMEÇAR A USAR</a>
-                                    <!--<a href="#janela2" rel="modal" id="cadastro" class="btn">Cadastre</a>-->
-                                </p>
+
                             </div>
 
                         </div>
