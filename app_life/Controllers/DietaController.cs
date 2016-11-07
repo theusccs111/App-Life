@@ -171,6 +171,11 @@ namespace APP_Life.Controllers
             return PartialView("_ConsultarNutrientes");
         }
 
+        public ActionResult dicas()
+        {
+            return View();
+        }
+
 
 
     }

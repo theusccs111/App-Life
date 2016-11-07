@@ -206,7 +206,7 @@ FormMethod.Post, new { @class = "login" }))
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/en_US/sdk.js";
+                        js.src = "//connect.facebook.net/pt_BR/sdk.js";
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
 
@@ -217,7 +217,7 @@ FormMethod.Post, new { @class = "login" }))
                         FB.api('/me', function (response) {
                             console.log('Successful login for: ' + response.name + response.id);
                             document.getElementById('status').innerHTML =
-                              'Thanks for logging in, ' + response.name + '!';
+                              'Obrigado por Logar, ' + response.name + '!';
 
                             $('#codigo').val(response.id);
                             $('#codigo').css("display", "none");
