@@ -120,23 +120,23 @@
         }
     </div>
 </div>
-
-<script>
-    $(function () {
-        var linha = document.getElementById('tabelaAlimentos').rows;
-        var dados = null;
-        for (var i = 1 ; i < linha.length ; i++) {
-            dados = linha[i].cells;
-            for (var j = 0 ; j < dados.length ; j++) {
-                 $('#totalCarboidrato').val(parseFloat(parseFloat($('#totalCarboidrato').val()) + parseFloat(dados[j].innerText)));
-            }
-        }
-    });
-   
-</script>
-
-
 @*
+    <script>
+        $(function () {
+            var linha = document.getElementById('tabelaAlimentos').rows;
+            var dados = null;
+            for (var i = 1 ; i < linha.length ; i++) {
+                dados = linha[i].cells;
+                for (var j = 0 ; j < dados.length ; j++) {
+                     $('#totalCarboidrato').val(parseFloat(parseFloat($('#totalCarboidrato').val()) + parseFloat(dados[j].innerText)));
+                }
+            }
+        });
+
+    </script>
+*@
+
+
 <script>
 
     sessionStorage.clear();
@@ -197,32 +197,30 @@
         var data = new google.visualization.DataTable();
         //   data.addColumn('string', 'data');
         //    data.addColumn('string', 'Receitas');
-        data.addColumn('string', 'Nutrientes')
+        //data.addColumn('string', 'Nutrientes')
         data.addColumn('number', 'Carboidratos');
-        /* data.addColumn('number', 'Proteínas');
+         data.addColumn('number', 'Proteínas');
          data.addColumn('number', 'Fibra Alimentar');
          data.addColumn('number', 'Sódio');
          data.addColumn('number', 'Cálcio');
          data.addColumn('number', 'Ferro');
          data.addColumn('number', 'Potássio');
          data.addColumn('number', 'Zinco');
-         data.addColumn('number', 'Vitamina C');*/
+         data.addColumn('number', 'Vitamina C');
 
 
         for (var i = 1; i < array.length; i++) {
 
-            data.addRows([
-            [String('Carboidratos'), parseFloat(array[i])]
-
-            ]);
+        
 
 
-            /*   data.addRows([
-           [/*String('Nutrientes'),parseFloat(array[i]), parseFloat(array2[i]), parseFloat(array3[i]), parseFloat(array4[i])
+             data.addRows([
+           [parseFloat(array[i]), parseFloat(array2[i]), parseFloat(array3[i]), parseFloat(array4[i])
            , parseFloat(array5[i]), parseFloat(array6[i]), parseFloat(array7[i]), parseFloat(array8[i])
            , parseFloat(array9[i])]
 
-               ]);*/
+               ]);
+
         }
 
 
@@ -239,11 +237,10 @@
         };
 
 
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.comboChart(document.getElementById('chart_div'));
         chart.draw(data, options);
 
 
     }
 
 </script>
-*@
