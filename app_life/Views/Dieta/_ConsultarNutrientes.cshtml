@@ -128,7 +128,7 @@
         for (var i = 1 ; i < linha.length ; i++) {
             dados = linha[i].cells;
             for (var j = 0 ; j < dados.length ; j++) {
-                $('#totalCarboidrato').val(parseFloat($('#totalCarboidrato').val()) + parseFloat(dados[j].innerText));
+                 $('#totalCarboidrato').val(parseFloat(parseFloat($('#totalCarboidrato').val()) + parseFloat(dados[j].innerText)));
             }
         }
     });
