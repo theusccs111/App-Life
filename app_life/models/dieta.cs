@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace APP_Life.Models
@@ -50,6 +51,7 @@ namespace APP_Life.Models
 
 
         public int DietaID { get; set; }
+        [DisplayName("Dieta")]
         public string Nome { get; set; }
         public Nullable<int> UsuarioID { get; set; }
         public virtual ICollection<lista_alimentos> lista_alimentos { get; set; }
