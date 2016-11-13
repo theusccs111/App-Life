@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace APP_Life.Models
 {
@@ -18,6 +19,7 @@ namespace APP_Life.Models
         }
 
         public int ID { get; set; }
+        [DisplayName("Alimento")]
         public string Nome { get; set; }
         public string Umidade { get; set; }
         public string Kcal { get; set; }
