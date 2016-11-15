@@ -32,6 +32,23 @@ namespace APP_Life.Controllers
                 "nome"
             );
 
+            if (Session["messProjetadoR"] == null)
+            {
+                Session["messProjetadoR"] = "nada";
+            }
+
+            if (Session["messProjetadoD"] == null)
+            {
+                Session["messProjetadoD"] = "nada";
+            }
+
+            if (Session["messObjetivo"] == null)
+            {
+                Session["messObjetivo"] = "nada";
+
+            }
+
+
             return View();
 
         }
@@ -90,6 +107,9 @@ namespace APP_Life.Controllers
             {
                 projetado x = new projetado();
                 x.CadastrarProjetado(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                Session["messProjetadoR"] = "Incluido";
+                Session["messProjetadoD"] = "Incluido";
+
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Geral");
@@ -110,6 +130,8 @@ namespace APP_Life.Controllers
 
             projetado rece = new projetado();
             rece.RemoverProjetado(main.ProjetadoID);
+            Session["messProjetadoR"] = "Deletado";
+            Session["messProjetadoD"] = "Deletado";
 
             return RedirectToAction("Index");
         }
@@ -135,6 +157,9 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateProjetado(rece);
+            Session["messProjetadoR"] = "Atualizado";
+            Session["messProjetadoD"] = "Atualizado";
+
             return RedirectToAction("Index");
         }
 
@@ -146,8 +171,7 @@ namespace APP_Life.Controllers
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
 
-
-
+                
                 return PartialView("_Objetivo");
             }
             else
@@ -173,7 +197,10 @@ namespace APP_Life.Controllers
             {
                 objetivo x = new objetivo();
                 x.CadastrarObjetivo(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+
+                Session["messObjetivo"] = "Incluido";
                 return RedirectToAction("Index");
+
             }
             return RedirectToAction("Geral");
         }
@@ -194,6 +221,7 @@ namespace APP_Life.Controllers
             objetivo rece = new objetivo();
             rece.RemoverObjetivo(main.ObjetivoID);
 
+            Session["messObjetivo"] = "Deletado";
             return RedirectToAction("Index");
         }
 
@@ -218,6 +246,8 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateObjetivo(rece);
+
+            Session["messObjetivo"] = "Atualizado";
             return RedirectToAction("Index");
         }
 

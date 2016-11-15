@@ -19,6 +19,16 @@ namespace APP_Life.Controllers
             {
                 ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
+                if (Session["messDieta"] == null)
+                {
+                    Session["messDieta"] = "nada";
+                }
+
+                if (Session["messDietaitens"] == null)
+                {
+                    Session["messDietaitens"] = "nada";
+                }
+
 
                 return View();
             }
@@ -68,6 +78,9 @@ namespace APP_Life.Controllers
 
                 lista_alimentos x = new lista_alimentos();
                 x.CadastrarItens(rece);
+                Session["messDietaitens"] = "Incluido";
+
+
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
@@ -93,6 +106,8 @@ namespace APP_Life.Controllers
             {
                 dieta x = new dieta();
                 x.CadastrarDieta(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                Session["messDieta"] = "Incluido";
+
                 return RedirectToAction("Index");
             }
             else
@@ -117,6 +132,7 @@ namespace APP_Life.Controllers
 
             dieta rece = new dieta();
             rece.RemoverDieta(main.DietaID);
+            Session["messDieta"] = "Deletado";
 
             return RedirectToAction("Index");
         }
@@ -144,6 +160,9 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateDieta(rece);
+
+            Session["messDieta"] = "Atualizado";
+
             return RedirectToAction("Index");
         }
 

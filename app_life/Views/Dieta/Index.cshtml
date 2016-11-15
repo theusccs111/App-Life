@@ -18,37 +18,37 @@
         margin-bottom: 10px;
     }
 
-     .alert {
-    padding: 20px;
-    background-color: #f44336; /* Red */
-    color: white;
-    margin-bottom: 15px;
-}
+    .alert {
+        padding: 20px;
+        background-color: #f44336; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
 
-/* The close button */
-.closebtn {
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
 
-/* When moving the mouse over the close button */
-.closebtn:hover {
-    color: black;
-}
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
 
-.alert {
-    opacity: 1;
-    transition: opacity 0.6s; /* 600ms to fade out */
-}
+    .alert {
+        opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+    }
 
     .cab {
-        text-align:center;
+        text-align: center;
         font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
         border-radius: 300px;
         font-weight: 700;
@@ -58,7 +58,7 @@
 
 <div id="cabeçalho" class="cab" style="color:#337ab7;">
     <h2>Dietas</h2>
-    <p>Controle de dietas</p> 
+    <p>Controle de dietas</p>
     <p>
         <a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" title="Cadastrar Dieta">
             <span class="fa fa-plus"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Adicionar Dieta</span>
@@ -97,14 +97,13 @@
                 <td>
                     @item.Nome
                 </td>
-                <td>
-                </td>
+                <td></td>
                 <td>
                     <button class="btn btn-success edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
                     <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
-                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>                   
+                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
-                 </td>
+                </td>
             </tr>
         }
     </tbody>
@@ -130,106 +129,150 @@
 
 </div>
 
-<div class="alert">
-    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-    Incluído com sucesso!
-</div>
-
-<script type="text/javascript">
-
-    $(".eita").click(function () {
-        var id = $(this).attr("data-id");
-        $("#modalDi").load("DietaUpdate?id=" + id, function () {
-
-            $("#modalDi").modal();
-        })
-    });
-
-    $(".CadItens").click(function () {
-        var id = $(this).attr("data-id");
-        $("#modalCadI").load("CadastrarItens?id=" + id, function () {
-
-            $("#modalCadI").modal();
-        })
-    });
-
-    $(".eitaD").click(function () {
-        var id = $(this).attr("data-id");
-        $("#modalAI").load("ListarDieta?id=" + id, function () {
-
-            $("#modalAI").modal();
-        })
-    });
 
 
 
-    $(function () {
-        $('body').on('click', '.dietaC', function (e) {
-            e.preventDefault();
-            $(this).attr('data-target', '#modal-containerDieta');
-            $(this).attr('data-toggle', 'modal');
-        });
+@if (Session["messDieta"].ToString() == "Incluido")
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Dieta Incluída com sucesso!
+    </div>
+    Session["messDieta"] = "nada";
 
-        $('body').on('click', '.modal-close-btn', function () {
-            $('#modal-containerDieta').modal('hide');
-        });
+}
 
-        $('#modal-containerDieta').on('hidden.bs.modal', function () {
-            $(this).removeData('bs.modal');
-        });
-        $('#CancelModal').on('click', function () {
-            return false;
-        });
+@if (Session["messDieta"].ToString() == "Deletado")
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Dieta Deletada com sucesso!
+    </div>
+    Session["messDieta"] = "nada";
 
+}
 
-        $('body').on('click', '.dietaCI', function (e) {
-            e.preventDefault();
-            $(this).attr('data-target', '#modal-containerDietaCI');
-            $(this).attr('data-toggle', 'modal');
-        });
+@if (Session["messDieta"].ToString() == "Atualizado")
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        Dieta Atualizada com sucesso!
+    </div>
+    Session["messDieta"] = "nada";
 
-        $('body').on('click', '.modal-close-btn', function () {
-            $('#modal-containerDietaCI').modal('hide');
-        });
+}
 
-        $('#modal-containerDietaCI').on('hidden.bs.modal', function () {
-            $(this).removeData('bs.modal');
-        });
-        $('#CancelModal').on('click', function () {
-            return false;
-        });
+    @*
+        dieta em cima, itens da dieta em baixo
 
+    *@
 
-     
-    });
+    @if (Session["messDietaitens"].ToString() == "Incluido")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Item  Incluído com sucesso!
+        </div>
+        Session["messDietaitens"] = "nada";
 
-
-</script>
-
-<script>
-    // Get all elements with class="closebtn"
-    var close = document.getElementsByClassName("closebtn");
-    var i;
-
-    // Loop through all close buttons
-    for (i = 0; i < close.length; i++) {
-        // When someone clicks on a close button
-        close[i].onclick = function () {
-
-            // Get the parent of <span class="closebtn"> (<div class="alert">)
-            var div = this.parentElement;
-
-            // Set the opacity of div to 0 (transparent)
-            div.style.opacity = "0";
-
-            // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
-            setTimeout(function () { div.style.display = "none"; }, 600);
-        }
     }
-</script>
+
+
+    <script type="text/javascript">
+
+        $(".eita").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modalDi").load("DietaUpdate?id=" + id, function () {
+
+                $("#modalDi").modal();
+            })
+        });
+
+        $(".CadItens").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modalCadI").load("CadastrarItens?id=" + id, function () {
+
+                $("#modalCadI").modal();
+            })
+        });
+
+        $(".eitaD").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modalAI").load("ListarDieta?id=" + id, function () {
+
+                $("#modalAI").modal();
+            })
+        });
 
 
 
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        $(function () {
+            $('body').on('click', '.dietaC', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-containerDieta');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-containerDieta').modal('hide');
+            });
+
+            $('#modal-containerDieta').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+
+
+            $('body').on('click', '.dietaCI', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-containerDietaCI');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-containerDietaCI').modal('hide');
+            });
+
+            $('#modal-containerDietaCI').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+
+
+
+        });
+
+
+    </script>
+
+    <script>
+        // Get all elements with class="closebtn"
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        // Loop through all close buttons
+        for (i = 0; i < close.length; i++) {
+            // When someone clicks on a close button
+            close[i].onclick = function () {
+
+                // Get the parent of <span class="closebtn"> (<div class="alert">)
+                var div = this.parentElement;
+
+                // Set the opacity of div to 0 (transparent)
+                div.style.opacity = "0";
+
+                // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+                setTimeout(function () { div.style.display = "none"; }, 600);
+            }
+        }
+    </script>
+
+
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>

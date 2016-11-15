@@ -27,6 +27,19 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
+
+
+                if (Session["messReceita"] == null)
+                {
+                    Session["messReceita"] = "nada";
+                }
+
+                if (Session["messDespesa"] == null)
+                {
+                    Session["messDespesa"] = "nada";
+                }
+
+
                 return View();
             }
             else
@@ -45,6 +58,9 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
+
+
+
                 return PartialView("_Receitas");
             }
             else
@@ -78,6 +94,9 @@ namespace APP_Life.Controllers
             {
                 receita x = new receita();
                 x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                Session["messReceita"] = "Incluido";
+
+
                 return RedirectToAction("Index");
             }
             else
@@ -85,7 +104,7 @@ namespace APP_Life.Controllers
                 ModelState.AddModelError(string.Empty, "erro locao");
                 return PartialView("_CadastrarReceita");
             }
-          
+
         }
 
 
@@ -103,6 +122,7 @@ namespace APP_Life.Controllers
 
             receita rece = new receita();
             rece.RemoverReceita(main.ReceitaID);
+            Session["messReceita"] = "Deletado";
 
             return RedirectToAction("Index");
         }
@@ -138,6 +158,8 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateReceita(rece);
+            Session["messReceita"] = "Atualizado";
+
             return RedirectToAction("Index");
         }
 
@@ -152,6 +174,9 @@ namespace APP_Life.Controllers
                     "CategoriaID",
                     "nome"
                 );
+
+
+
                 return PartialView("_Despesas");
             }
             else
@@ -183,6 +208,7 @@ namespace APP_Life.Controllers
             {
                 despesa x = new despesa();
                 x.CadastrarDespesa(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
+                Session["messDespesa"] = "Incluido";
                 return RedirectToAction("Index");
             }
             else
@@ -207,7 +233,7 @@ namespace APP_Life.Controllers
 
             despesa rece = new despesa();
             rece.RemoverDespesa(main.DespesaID);
-
+            Session["messDespesa"] = "Deletado";
             return RedirectToAction("Index");
         }
 
@@ -239,14 +265,9 @@ namespace APP_Life.Controllers
         {
 
             rece.UpdateDespesa(rece);
-
+            Session["messDespesa"] = "Atualizado";
             return RedirectToAction("Index");
         }
-
-
-
-
-
 
         public ActionResult Geral(Int64? idf)
         {
@@ -271,25 +292,27 @@ namespace APP_Life.Controllers
                     //mandar para pagina de inicio
                     return RedirectToAction("Inicio", "Login");
                 }
-               
-              
+
+
             }
 
 
 
-            if (Session["usuarioLogadoID"] == null){
+            if (Session["usuarioLogadoID"] == null)
+            {
                 return RedirectToAction("Index", "Login");
-            }else
+            }
+            else
             {
                 Session["usuarioFacebookID"] = idf;
             }
- 
+
 
             //se nao retorna erro
 
-                if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
+            if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-                
+
 
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
                 var query = from u in contexto.receitas
@@ -325,7 +348,7 @@ namespace APP_Life.Controllers
                 var query3 = from u in contexto.despesas orderby u.Data select u;
                 return View(contexto.despesas.ToList().Where(x => x.UsuarioID == id));
 
- 
+
 
             }
             else
