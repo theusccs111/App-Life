@@ -41,8 +41,8 @@ namespace APP_Life.Models.Tests
             teste.cidade = "teste";
             teste.estado = "teste";
             teste.Calorias = 12;
-            teste.idfacebook = 0; 
-
+            teste.idfacebook = 0;
+            teste.confirmarSenha = "12345";
             //Execução
             teste.CadastrarUsuario(teste);
             var query = from u in contexto.usuarios where u.usuarioID == teste.usuarioID  select u;
@@ -97,6 +97,8 @@ namespace APP_Life.Models.Tests
             teste.Calorias = 12;
             teste.usuarioID = 9999;
             teste.idfacebook = 0;
+            teste.confirmarSenha = "12345";
+            
             //Execução
             teste.CadastrarUsuario(teste);
             teste.RemoverUsuario(teste.usuarioID);

@@ -22,12 +22,19 @@
     }
 </style>
 
+
+
 <h3 id="receitaTotal" style="display:none;">
     @Session["receitaTotal"].ToString()
 </h3>
+
+
 <h3 id="despesaTotal" style="display:none;">
     @Session["despesaTotal"].ToString()
 </h3>
+
+
+
 
 <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;display:none;">
     <thead>
@@ -118,15 +125,6 @@
         }
 
 
-        /*
-       var options = {
-           title: 'Geral',
-          format:'currency',
-          curveType: 'function',
-           vAsix: {height:100},
-           legend: { position: 'bottom', }
-
-       };*/
 
 
         var options = {
@@ -159,7 +157,12 @@
         <div id="chart_div" style="width:100%;height:100%;">
         </div>
     </div>
+
+
+
     <div class="container">
+
+      
             <div class="col-md-3 lateral">
                 <a href="@Url.Action("Excel", "Excel")" class="modal-link btn btn-success btn-block d lateral">
                     <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Receitas</span>

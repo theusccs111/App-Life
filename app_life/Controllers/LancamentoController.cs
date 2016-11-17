@@ -19,8 +19,25 @@ namespace APP_Life.Controllers
         {
             if (Session["usuarioLogadoID"] != null || ViewBag.usuarioFacebookID != null)
             {
-                ViewBag.listaReceita = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
-                ViewBag.listaDespesa = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])); ;
+                int mes = DateTime.Now.Month;
+
+                
+
+
+                ViewBag.listaReceita = contexto.receitas.ToList().Where(x =>
+
+                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
+                x.Data.Split('/')[1] == Convert.ToString(mes)
+
+                );
+                ViewBag.listaDespesa = contexto.despesas.ToList().Where(x =>
+                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])
+                &&
+                x.Data.Split('/')[1] == Convert.ToString(mes)
+
+                );
+
+                ;
                 ViewBag.CategoriaID = new SelectList
                 (
                     contexto.categorias.ToList(),
@@ -312,7 +329,7 @@ namespace APP_Life.Controllers
 
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-
+                int mes = DateTime.Now.Month;
 
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
                 var query = from u in contexto.receitas
@@ -345,8 +362,12 @@ namespace APP_Life.Controllers
                 }
                 Session["despesaTotal"] = total2;
 
-                var query3 = from u in contexto.despesas orderby u.Data select u;
-                return View(contexto.despesas.ToList().Where(x => x.UsuarioID == id));
+                return View(contexto.despesas.ToList().Where(x =>
+                x.UsuarioID == id &&
+                x.Data.Split('/')[1] == Convert.ToString(mes)
+
+
+                ));
 
 
 
