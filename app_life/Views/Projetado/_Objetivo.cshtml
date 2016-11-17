@@ -3,7 +3,6 @@
     ViewBag.Title = "Objetivos";
 }
 
-<h2>Projetado</h2>
 <link rel="stylesheet" href="~/Content/circle.css">
 
 <style>
@@ -57,9 +56,16 @@
 
 </style>
 
-<a href="@Url.Action("CadastrarObjetivo", "Projetado")" class="modal-link btn btn-success o">
-    <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Adicionar Objetivo</span>
-</a>
+<div id="cabeçalho" class="cab" style="color:#337ab7;">
+    <h2>Objetivos</h2>
+    <p>Lançamento de objetivos</p>
+    <p>
+        <a href="@Url.Action("CadastrarObjetivo", "Projetado")" class="modal-link btn btn-success o">
+            <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Objetivo</span>
+        </a>
+    </p>
+</div>
+
 <div id="modal-containero" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">

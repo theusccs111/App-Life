@@ -3,8 +3,6 @@
     ViewBag.Title = "Projetado";
 }
 
-<h2>Projetado</h2>
-
 <style>
     .container {
         padding-top: 3%;
@@ -56,7 +54,16 @@
 
 </style>
 
-@Html.ActionLink("Adicionar Projeção", "CadastrarProjetado", "Projetado", null, new { @class = "modal-link btn btn-success pd" })
+<div id="cabeçalho" class="cab" style="color:#337ab7;">
+    <h2>Projeção de Despesas</h2>
+    <p>Lançamento de projeções de despesas</p>
+    <p>
+        <a href="@Url.Action("CadastrarProjetado", "Projetado")" class="modal-link btn btn-success pr">
+            <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Projeção</span>
+        </a>
+    </p>
+</div>
+
 <div id="modal-containerpd" class="modal fade"
      tabindex="-1" role="dialog">
     <div class="modal-content">
