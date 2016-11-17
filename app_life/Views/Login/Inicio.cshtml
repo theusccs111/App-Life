@@ -127,6 +127,10 @@ FormMethod.Post, new { @class = "login" }))
                                     @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
+                                <div>
+                                    @Html.HiddenFor(model => model.confirmarSenha, new { @placeholder = "Senha", @id = "ConfirmarSenha" })
+                                    @Html.ValidationMessageFor(model => model.confirmarSenha)
+                                </div>
                                 <p>
                                     <input type="submit" value="Login" id="logar" class="btn btn-primary btn-success" />
                                     <a href="#" style="height:20px;"> Esqueceu sua senha? </a>
@@ -528,6 +532,10 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-
+    <script>
+        $('#senha').change(function () {
+            $('#ConfirmarSenha').val($('#senha').val());
+        });
+    </script>
 </body>
 </html>
