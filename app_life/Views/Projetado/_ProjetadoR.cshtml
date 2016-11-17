@@ -104,7 +104,7 @@
     <thead>
         <tr>
 
-            <th>Código</th>
+            <th style="display:none">Código</th>
             <th>Categoria</th>
             <th>Descrição</th>
             <th>Data</th>
@@ -120,7 +120,7 @@
         @foreach (var item in (ViewBag.listaProjetadoR))
         {
             <tr>
-                <td id="@item.ProjetadoID">
+                <td id="@item.ProjetadoID" style="display:none">
                     @item.ProjetadoID
                 </td>
                 <td>
