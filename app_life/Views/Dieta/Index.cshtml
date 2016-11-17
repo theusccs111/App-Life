@@ -83,7 +83,7 @@
         <tr>
             <th style="display:none;">Código</th>
             <th>Dietas</th>
-            <th>Dia</th>
+            
             <th>Ações</th>
         </tr>
     </thead>
@@ -97,8 +97,8 @@
                 <td>
                     @item.Nome
                 </td>
-                <td></td>
-                <td>
+            
+                    <td>
                     <button class="btn btn-success edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
                     <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
                     <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>

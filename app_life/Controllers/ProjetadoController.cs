@@ -14,13 +14,22 @@ namespace APP_Life.Controllers
         // GET: Projetado
 
 
-            public ActionResult Index()
+        public ActionResult Index()
         {
+            int mes = DateTime.Now.Month;
 
             int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
-            ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == true && x.UsuarioID == id);
+            ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x =>
+            x.categoria.tipo == true && x.UsuarioID == id
+            &&
+                x.Data.Split('/')[1] == Convert.ToString(mes)
 
-            ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x => x.categoria.tipo == false && x.UsuarioID == id);
+            );
+
+            ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x =>
+            x.categoria.tipo == false && x.UsuarioID == id &&
+                x.Data.Split('/')[1] == Convert.ToString(mes)
+);
 
             ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
 
@@ -53,7 +62,7 @@ namespace APP_Life.Controllers
 
         }
 
-       
+
 
         public ActionResult ProjetadoR()
         {
@@ -171,7 +180,7 @@ namespace APP_Life.Controllers
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
 
-                
+
                 return PartialView("_Objetivo");
             }
             else
@@ -182,7 +191,7 @@ namespace APP_Life.Controllers
         }
         public ActionResult CadastrarObjetivo()
         {
-      
+
 
             return PartialView("_CadastrarObjetivo");
 

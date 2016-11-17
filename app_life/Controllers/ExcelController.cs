@@ -28,14 +28,19 @@ namespace APP_Life.Controllers
         //controller Action
         public void Excel()
         {
-            var model = contexto.receitas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
-            var model2 = contexto.despesas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+            var model = contexto.receitas.ToList().Where(x =>
+            x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+
+            var model2 = contexto.despesas.ToList().Where(x =>
+            x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
 
 
             Export export = new Export();
 
             Export export2 = new Export();
+
+
             export.ToExcel(Response, model);
 
             export2.ToExcel(Response, model2);
