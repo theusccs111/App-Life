@@ -4,7 +4,7 @@
     ViewBag.Title = "ConsultarNutrientes";
 }
 
-<h2>ConsultarNutrientes</h2>
+<h2>Consultar Nutrientes</h2>
 
 
 <script src="~/Scripts/jquery.validate.js"></script>
@@ -55,56 +55,14 @@
                     {
                         <tr>
                             <td>
-                                @item.alimento.Carboidrato
-                            </td>
-                            <td>
-                                @item.alimento.Proteina
-                            </td>
-                            <td>
-                                @item.alimento.FibraAlimentar
-                            </td>
-                            <td>
-                                @item.alimento.Sodio
-                            </td>
-
-
-                            <td>
-                                @item.alimento.Calcio
-                            </td>
-
-
-                            <td>
-                                @item.alimento.Ferro
-                            </td>
-
-
-                            <td>
-                                @item.alimento.Potassio
-                            </td>
-
-
-                            <td>
-                                @item.alimento.Zinco
-                            </td>
-
-
-                            <td>
-                                @item.alimento.VitaminaC
-                            </td>
+                              @item.CarboidratoS
+                                 
+                          </td>
+                        
                         </tr>
                     }
 
-                    <tr>
-                        <td id="totalCarboidrato"></td>
-                        <td id="totalProteina"></td>
-                        <td id="totalFibra"></td>
-                        <td id="totalSodio"></td>
-                        <td id="totalCalcio"></td>
-                        <td id="totalFerro"></td>
-                        <td id="totalPotassio"></td>
-                        <td id="totalZinco"></td>
-                        <td id="totalVitaminaC"></td>
-                    </tr>
+                
 
 
                 </table>
@@ -134,7 +92,7 @@
         });
 
     </script>
-*@
+
 
 
 <script>
@@ -244,3 +202,4 @@
     }
 
 </script>
+*@

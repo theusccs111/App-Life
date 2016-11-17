@@ -60,7 +60,7 @@
     <h2>Dietas</h2>
     <p>Controle de dietas</p>
     <p>
-        <a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" title="Cadastrar Dieta">
+        <a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" data-toggle="tooltip" title="Cadastrar Dieta">
             <span class="fa fa-plus"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Adicionar Dieta</span>
         </a>
     </p>
@@ -99,10 +99,10 @@
                 </td>
             
                     <td>
-                    <button class="btn btn-success edit CadItens" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
-                    <button class="btn btn-primary edit eita" title="Editar" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
-                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" title="Deletar"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    <button class="btn btn-primary edit eitaD" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
+                    <button class="btn btn-success edit CadItens" data-toggle="tooltip" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-primary edit eita" data-toggle="tooltip" title="Editar Dieta" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
+                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" data-toggle="tooltip" title="Deletar Dieta"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    <button class="btn btn-primary edit eitaD" data-toggle="tooltip" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
                 </td>
             </tr>
         }

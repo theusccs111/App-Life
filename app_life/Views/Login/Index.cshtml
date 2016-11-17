@@ -36,7 +36,11 @@
 
 
 <body>
-
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
                       FormMethod.Post, new { @class = "login" }))
     {
@@ -48,12 +52,12 @@
                 <p class="form-title"> Vamos Começar!</p>
 
                 <div>
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" ,@data_toggle = "tooltip", @title = "Informe seu Usuário ex: joao@gmail.com" } })
                     @Html.ValidationMessageFor(model => model.email)
                 </div>
 
                 <div>
-                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha",@id = "Senha" })
+                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha",@id = "Senha", @data_toggle = "tooltip", @title = "Informe sua senha ex: senha123" })
                     @Html.ValidationMessageFor(model => model.senha)
                 </div>
 

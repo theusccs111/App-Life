@@ -27,7 +27,7 @@ namespace APP_Life.Models
         public string Proteina { get; set; }
         public string Lipideos { get; set; }
         public string Colesterol { get; set; }
-        public string Carboidrato { get; set; }
+        public decimal Carboidrato { get; set; }
         public string FibraAlimentar { get; set; }
         public string Cinzas { get; set; }
         public string Calcio { get; set; }

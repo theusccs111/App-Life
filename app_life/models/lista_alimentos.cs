@@ -10,7 +10,7 @@ namespace APP_Life.Models
         public int id { get; set; }
         public Nullable<int> IDAlimento { get; set; }
         [DisplayName("Quant")]
-        public Nullable<float> Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
         public string Medida { get; set; }
         public Nullable<int> IDDieta { get; set; }
         public virtual alimento alimento { get; set; }

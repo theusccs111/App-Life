@@ -32,8 +32,7 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Colesterol)
                 .HasMaxLength(10);
 
-            this.Property(t => t.Carboidrato)
-                .HasMaxLength(9);
+            
 
             this.Property(t => t.FibraAlimentar)
                 .HasMaxLength(9);

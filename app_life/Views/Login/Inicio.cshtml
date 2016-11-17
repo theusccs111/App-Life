@@ -119,12 +119,12 @@ FormMethod.Post, new { @class = "login" }))
                                 <p class="form-title"> Vamos Começar!</p>
 
                                 <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @id = "usuario" } })
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @id = "usuario", @data_toggle = "tooltip", @title = "Informe seu Usuário ex: joao@gmail.com" } })
                                     @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
                                 <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha" })
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @id = "senha", @data_toggle = "tooltip", @title = "Informe sua Senha ex: senha123" })
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <div>
@@ -259,16 +259,16 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
                                 <p class="form-title">Cadastre-se</p>
 
                                 <div>
-                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário" } })
+                                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Usuário", @data_toggle = "tooltip", @title = "Informe seu Usuário ex: joao@gmail.com" } })
                                     @Html.ValidationMessageFor(model => model.email)
                                 </div>
 
                                 <div>
-                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha" })
+                                    @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha", @data_toggle = "tooltip", @title = "Informe sua Senha ex: senha123" })
                                     @Html.ValidationMessageFor(model => model.senha)
                                 </div>
                                 <div>
-                                    @Html.PasswordFor(model => model.confirmarSenha, new { @placeholder = "Confirmar Senha" })
+                                    @Html.PasswordFor(model => model.confirmarSenha, new { @placeholder = "Confirmar Senha", @data_toggle = "tooltip", @title = "Informe sua Senha novamente" })
                                     @Html.ValidationMessageFor(model => model.confirmarSenha)
                                 </div>
                                 <p>

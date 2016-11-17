@@ -53,7 +53,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.EditorFor(model => model.Nome, new { @class = "form-control"/*, @readonly = "readonly"*/ })
+                            @Html.EditorFor(model => model.Nome, new { @class = "form-control", @data_toggle = "tooltip", @title = "Troque o nome de sua Dieta" })
     </div>
                     </div>
 

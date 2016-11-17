@@ -184,8 +184,28 @@ namespace APP_Life.Controllers
         }
         public ActionResult ConsultarNutrientes(int? id)
         {
-            ViewBag.listaAlimentosDetalhes = contexto.lista_alimentos.ToList().Where(x => 
-            x.IDDieta == id);
+
+            ViewBag.listaAlimentosDetalhes = from c in contexto.lista_alimentos
+                        join o in contexto.alimentos on c.IDAlimento equals o.ID
+
+                        where c.IDDieta == id
+                        group o by new
+                        {
+                            o.Carboidrato
+                        } into g
+                                             select new
+                        {
+
+                            CarboidratoS = g.Sum(a => (a.Carboidrato))
+                        };/*
+            var query = contexto.lista_alimentos.Join(
+                contexto.alimentos,
+                 s => s.IDAlimento,
+                 c => c.ID,
+                 (s, c) => new { s, c }
+                ).ToList().Where(x => x.s.IDDieta == id).Sum(y => y.c.Carboidrato);
+                */
+
 
             return PartialView("_ConsultarNutrientes");
         }
