@@ -209,7 +209,7 @@
     if (Model.idfacebook == null)
     {
 
-        @Html.EditorFor(model => model.idfacebook, new { htmlAttributes = new { @id = "codigo" } })
+        @Html.HiddenFor(model => model.idfacebook, new { htmlAttributes = new { @id = "codigo" } })
 
         <input type="submit" value="Sincronizar" />
 
