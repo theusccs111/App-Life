@@ -9,6 +9,33 @@
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/method_PT.js"></script>
+<script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+</script>
+<script>
+function mascaraData( campo, e )
+{
+	var kC = (document.all) ? event.keyCode : e.keyCode;
+	var data = campo.value;
+
+	if( kC!=8 && kC!=46 )
+	{
+		if( data.length==2 )
+		{
+			campo.value = data += '/';
+		}
+		else if( data.length==5 )
+		{
+			campo.value = data += '/';
+		}
+		else
+			campo.value = data;
+	}
+}
+</script>
+
 
 <style>
     .modal-footer {
@@ -78,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" ,@type = "text", @onkeypress = "mascaraData( this, event )", @maxlength = "10" })
                         <div class="col-md-9">
                             @Html.TextBoxFor(model => model.Data, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Data)
