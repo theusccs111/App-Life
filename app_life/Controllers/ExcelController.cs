@@ -38,12 +38,12 @@ namespace APP_Life.Controllers
 
             Export export = new Export();
 
-            Export export2 = new Export();
+            //Export export2 = new Export();
 
 
             export.ToExcel(Response, model);
 
-            export2.ToExcel(Response, model2);
+            //export2.ToExcel(Response, model2);
 
         }
 

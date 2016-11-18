@@ -3,6 +3,7 @@
     ViewBag.Title = "Index";
 }
 
+
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Receitas</a></li>
     <li><a data-toggle="tab" href="#menu1">Despesas</a></li>
@@ -13,15 +14,171 @@
 
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-        @Html.Partial("_ProjetadoR")
+        <div class="container">
+            <div class="col-md-2">
+                <select id="mesReceitaP" class="form-control">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+
+
+                <button id="enviarReceitaP" class="btn btn-success"></button>
+            </div>
+        </div>
+        <div id="ReceitaP">
+
+
+        </div>
+
 
     </div>
     <div id="menu1" class="tab-pane fade">
-        @Html.Partial("_ProjetadoD")
+        <div class="container">
+            <div class="col-md-2">
+                <select id="mesDespesaP" class="form-control">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+
+
+                <button id="enviarDespesaP" class="btn btn-success"></button>
+            </div>
+        </div>
+        <div id="DespesaP">
+
+
+        </div>
     </div>
     <div id="menu2" class="tab-pane fade">
 
-        <script>
+    
+
+
+        <table id="tabelaProjetado" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
+            <thead>
+                <tr>
+
+                    <th style="display:none">Código</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTables-example"
+                        rowspan="1" colspan="1" aria-label="Valor:active to sort column ascending"
+                        style="width: 171px">
+                        Valor
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (ViewBag.listaProjetadoR2))
+                {
+                    <tr>
+                        <td id="@item.ProjetadoID" style="display:none">
+                            @item.ProjetadoID
+                        </td>
+                        <td>
+                            @item.categoria.nome
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            @item.Data
+                        </td>
+                        <td>
+                            @item.Valor
+                        </td>
+
+                        <td>
+
+                            <a href="@Url.Action("ProjetadoDelete","Projetado",new { id = @item.ProjetadoID})" class="btn btn-danger">
+
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                            <button class="btn btn-primary edit eita" data-id="@item.ProjetadoID"><i class="glyphicon glyphicon-edit"></i></button>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        <table id="tabelaProjetado2" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
+            <thead>
+                <tr>
+
+                    <th>Código</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTables-example"
+                        rowspan="1" colspan="1" aria-label="Valor:active to sort column ascending"
+                        style="width: 171px">
+                        Valor
+                    </th>
+                    <th>Ações</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (ViewBag.listaProjetadoD2))
+                {
+                    <tr>
+                        <td id="@item.ProjetadoID">
+                            @item.ProjetadoID
+                        </td>
+                        <td>
+                            @item.categoria.nome
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            @item.Data
+                        </td>
+                        <td>
+                            @item.Valor
+                        </td>
+
+                        <td>
+
+                            <a href="@Url.Action("ProjetadoDelete","Projetado",new { id = @item.ProjetadoID})" class="btn btn-danger">
+
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </a>
+                            <button class="btn btn-primary edit eita" data-id="@item.ProjetadoID"><i class="glyphicon glyphicon-edit"></i></button>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        
+            <script>
+
+
 
             sessionStorage.clear();
             var linha = document.getElementById('tabelaProjetado').rows;
@@ -179,3 +336,31 @@
     </div> 
     
 </div>
+
+
+<script>
+
+
+            $('#enviarReceitaP').click(function () {
+                var mes = $('#mesReceitaP').val();
+                var url = "/Projetado/ProjetadoR?mes=" + mes;
+
+            // alert(mes)
+             $.post(url, { mes: mes }, function (data) {
+                    $("#ReceitaP").html(data);
+                });
+            })
+
+            $('#enviarDespesaP').click(function () {
+                var mes = $('#mesDespesaP').val();
+                var url = "/Projetado/ProjetadoD?mes=" + mes;
+
+              //  alert(mes)
+                $.post(url, { mes: mes }, function (data) {
+                    $("#DespesaP").html(data);
+                });
+            })
+
+
+
+</script>
