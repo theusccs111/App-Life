@@ -18,162 +18,203 @@
     }
 
     .b {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 </style>
 
-
-
-<h3 id="receitaTotal" style="display:none;">
-    @Session["receitaTotal"].ToString()
-</h3>
-
-
-<h3 id="despesaTotal" style="display:none;">
-    @Session["despesaTotal"].ToString()
-</h3>
-
-
-
-
-<table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;display:none;">
-    <thead>
-        <tr>
-            <th>Categoria</th>
-            <th>Descrição</th>
-            <th>Data</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.categoria.nome)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Data)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Valor)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<script>
-
-
-
-    sessionStorage.clear();
-    var linha = document.getElementById('tb').rows;
-    var dados = null;
-    for (var i = 1 ; i < linha.length ; i++) {
-        dados = linha[i].cells;
-        for (var j = 0 ; j < dados.length ; j++) {
-            sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
-            sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
-            sessionStorage.setItem('categoria' + [i], dados[j].innerText);
-            sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
-            break;
-        }
-    }
-
-
-    var array = [];
-    var array2 = [];
-    var array3 = [];
-
-    var array4 = [];
-    for (var i = 1; i < sessionStorage.length; i++) {
-        if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
-            array[i] = sessionStorage.getItem('valor' + [i]);
-            array2[i] = sessionStorage.getItem('descricao' + [i]);
-            array3[i] = sessionStorage.getItem('categoria' + [i]);
-            array4[i] = sessionStorage.getItem('data' + [i]);
-        }
-    }
-
-    total = document.getElementById('receitaTotal').innerText;
-    total2 = document.getElementById('despesaTotal').innerText;
-
-    google.charts.setOnLoadCallback(drawChart);
-
-    google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
-    function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Data');
-        data.addColumn('number', 'Total Receita');
-        data.addColumn('number', 'Despesa');
-
-        var auxSoma = 0;
-        for (var i = 1; i < array.length; i++) {
-            auxSoma = parseFloat(auxSoma) + parseFloat(array[i]);
-
-            data.addRows([
-            [String(array4[i]), parseFloat(total), parseFloat(auxSoma)]
-
-            ]);
-        }
-
-
-
-
-        var options = {
-            title: 'Geral',
-            format: 'currency',
-            seriesType: 'bars',
-            series: { 0: { type: 'line' } }
-        };
-
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-
-
-
-
-    }
-
-</script>
-
-
-
-<div id="grafico" class="segundaparte">
-
+<div class="col-md-12 b">
     <div class="col-md-3">
-        <h1>Resumo de situação financeira</h1>
-        <h3>Veja como anda suas finanças através deste resumo e aproveite para se programar de forma a não deixar faltar!</h3>
+        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#1F861F;
+        padding: 100px; border-radius: 0px; text-decoration:none;"><span class="fa fa-plus"></span></a>
     </div>
-    <div class="col-md-9 b">
+    <div class="col-md-3">
+        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#47A547;
+        padding: 100px; border-radius: 0px; text-decoration:none;"><span class="fa fa-plus"></span></a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#70C270;
+        padding: 100px; border-radius: 0px; text-decoration:none;"><span class="fa fa-plus"></span></a>
+    </div>
+    <div class="col-md-3">
+        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#A1DFA1;
+        padding: 100px; border-radius: 0px;"><span class="fa fa-sign-out fa-fw"></span></a>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="col-md-8 b">
+        <p style="background:#e8e8e8;
+              padding: 10px;
+              font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+              font-weight: 700;
+              color:#337ab7;">Estatísticas</p>
+
+        <h3 id="receitaTotal" style="display:none;">
+            @Session["receitaTotal"].ToString()
+        </h3>
+
+        <h3 id="despesaTotal" style="display:none;">
+            @Session["despesaTotal"].ToString()
+        </h3>
+
+        <table id="tb" class="table table-striped" cellspacing="0" style="width: 100%;display:none;">
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.categoria.nome)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Descricao)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <script>
+
+            sessionStorage.clear();
+            var linha = document.getElementById('tb').rows;
+            var dados = null;
+            for (var i = 1 ; i < linha.length ; i++) {
+                dados = linha[i].cells;
+                for (var j = 0 ; j < dados.length ; j++) {
+                    sessionStorage.setItem('valor' + [i], dados[j + 3].innerText);
+                    sessionStorage.setItem('descricao' + [i], dados[j + 1].innerText);
+                    sessionStorage.setItem('categoria' + [i], dados[j].innerText);
+                    sessionStorage.setItem('data' + [i], dados[j + 2].innerText);
+                    break;
+                }
+            }
+
+            var array = [];
+            var array2 = [];
+            var array3 = [];
+
+            var array4 = [];
+            for (var i = 1; i < sessionStorage.length; i++) {
+                if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
+                    array[i] = sessionStorage.getItem('valor' + [i]);
+                    array2[i] = sessionStorage.getItem('descricao' + [i]);
+                    array3[i] = sessionStorage.getItem('categoria' + [i]);
+                    array4[i] = sessionStorage.getItem('data' + [i]);
+                }
+            }
+
+            total = document.getElementById('receitaTotal').innerText;
+            total2 = document.getElementById('despesaTotal').innerText;
+
+            google.charts.setOnLoadCallback(drawChart);
+
+            google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
+            function drawChart() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Data');
+                data.addColumn('number', 'Total Receita');
+                data.addColumn('number', 'Despesa');
+
+                var auxSoma = 0;
+                for (var i = 1; i < array.length; i++) {
+                    auxSoma = parseFloat(auxSoma) + parseFloat(array[i]);
+
+                    data.addRows([
+                    [String(array4[i]), parseFloat(total), parseFloat(auxSoma)]
+
+                    ]);
+                }
+
+                var options = {
+                    title: 'Geral',
+                    format: 'currency',
+                    seriesType: 'bars',
+                    series: { 0: { type: 'line' } }
+                };
+
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+
+            }
+
+        </script>
+
+
+        <!-- <div class="col-md-3">
+             <h1>Resumo de situação financeira</h1>
+             <h3>Veja como andam suas finanças através deste resumo e aproveite para se programar de forma que nada venha faltar!</h3>
+         </div> -->
+
+
         <div id="chart_div" style="width:100%;height:100%;">
         </div>
     </div>
 
+    <div class="col-md-4 b">
+        <p style="background:#e8e8e8;
+              padding: 10px;
+              font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+              font-weight: 700;
+              color:#337ab7;">Relatórios</p>
 
-
-    <div class="container">
-
-      
-            <div class="col-md-3 lateral">
-                <a href="@Url.Action("Excel", "Excel")" class="modal-link btn btn-success btn-block d lateral">
-                    <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Receitas</span>
-                </a>
-            </div>
-            <div class="col-md-3 lateral">
-                <a href="@Url.Action("Excel2", "Excel")" class="modal-link btn btn-danger btn-block d">
-                    <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Despesas</span>
-                </a>
-            </div>
+        <div class="col-md-10" style="margin: 20px;">
+            <a href="@Url.Action("Excel", "Excel")" class="modal-link btn btn-success btn-block d">
+                <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Receitas</span>
+            </a>
         </div>
+        <div class="col-md-10" style="margin: 20px;">
+
+            <a href="@Url.Action("Excel2", "Excel")" class="modal-link btn btn-danger btn-block d">
+                <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Despesas</span>
+            </a>
+
+        </div>
+        <!--
+                <a href="~/Views/Lancamento/_Receitas.cshtml" style="background:#e8e8e8;
+                      padding: 10px;
+                      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+                      font-weight: 700;
+                      color:#337ab7;">Ver detalhes <span class="fa fa-arrow-right"></span></a>
+
+                </div>-->
     </div>
 
+    <div class="col-md-12">
+
+        <div class="col-md-4 b">
+            <p style="background:#e8e8e8;
+              padding: 10px;
+              font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+              font-weight: 700;
+              color:#337ab7;">Status de Objetivo</p>
+        </div>
+
+        <div class="col-md-4 b">
+            <p style="background:#e8e8e8;
+              padding: 10px;
+              font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+              font-weight: 700;
+              color:#337ab7;">Dieta do Dia</p>
+        </div>
+
+    </div>
 
