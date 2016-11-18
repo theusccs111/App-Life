@@ -32,64 +32,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-
 </head>
 <body id="page-top">
 
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
 
-    <script>
-        $(document).ready(function () {
-            $("a[rel=modal]").click(function (ev) {
-                ev.preventDefault();
-
-                var id = $(this).attr("href");
-
-                var alturaTela = $(document).height();
-                var larguraTela = $(window).width();
-
-                //colocando o fundo preto
-                $('#mascara').css({ 'width': larguraTela, 'height': alturaTela });
-                $('#mascara').fadeIn(1000);
-                $('#mascara').fadeTo("slow", 0.8);
-
-                var left = ($(window).width() / 2) - ($(id).width() / 2);
-                /*var top = ($(window).height() / 2) - ($(id).height() / 2);*/
-
-                $(id).css({ '250%': top, 'left': left });
-                $(id).show();
-            });
-
-            $("#mascara").click(function () {
-                $(this).hide();
-                $(".window").hide();
-            });
-
-            $('.fechar').click(function (ev) {
-                ev.preventDefault();
-                $("#mascara").hide();
-                $(".window").hide();
-            });
-
-            $('.fechar2').click(function (ev) {
-                ev.preventDefault();
-                //$("#mascara").hide();
-                $("#janela2").hide();
-                $("#janela1").show();
-            });
-
-            $('#cadastro').click(function (ev) {
-                ev.preventDefault();
-                //  $("#mascara").hide();
-                $("#janela1").hide();
-            });
-
-        });
-    </script>
 
     <style>
         .field-validation-error {
@@ -152,94 +98,7 @@ FormMethod.Post, new { @class = "login" }))
 
                                 </p>
 
-                                <script>
-                    // This is called with the results from from FB.getLoginStatus().
-                    function statusChangeCallback(response) {
-                        console.log('statusChangeCallback');
-                        console.log(response);
-                        // The response object is returned with a status field that lets the
-                        // app know the current login status of the person.
-                        // Full docs on the response object can be found in the documentation
-                        // for FB.getLoginStatus().
-                        if (response.status === 'connected') {
-                            // Logged into your app and Facebook.
-                            testAPI();
-                        } else if (response.status === 'not_authorized') {
-                            // The person is logged into Facebook, but not your app.
-                            document.getElementById('status').innerHTML = 'Please log ' +
-                              'into this app.';
-                        } else {
-                            // The person is not logged into Facebook, so we're not sure if
-                            // they are logged into this app or not.
-                            document.getElementById('status').innerHTML = 'Please log ' +
-                              'into Facebook.';
-                        }
-                    }
 
-                    // This function is called when someone finishes with the Login
-                    // Button.  See the onlogin handler attached to it in the sample
-                    // code below.
-                    function checkLoginState() {
-                        FB.getLoginStatus(function (response) {
-                            statusChangeCallback(response);
-                        });
-                    }
-
-                    window.fbAsyncInit = function () {
-                        FB.init({
-                            appId: '106066606476284',
-                            cookie: true,  // enable cookies to allow the server to access
-                            // the session
-                            xfbml: true,  // parse social plugins on this page
-                            version: 'v2.5' // use graph api version 2.5
-                        });
-
-                        // Now that we've initialized the JavaScript SDK, we call
-                        // FB.getLoginStatus().  This function gets the state of the
-                        // person visiting this page and can return one of three states to
-                        // the callback you provide.  They can be:
-                        //
-                        // 1. Logged into your app ('connected')
-                        // 2. Logged into Facebook, but not your app ('not_authorized')
-                        // 3. Not logged into Facebook and can't tell if they are logged into
-                        //    your app or not.
-                        //
-                        // These three cases are handled in the callback function.
-
-                        FB.getLoginStatus(function (response) {
-                            statusChangeCallback(response);
-                        });
-
-                    };
-
-                    // Load the SDK asynchronously
-                    (function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) return;
-                        js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/pt_BR/sdk.js";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));
-
-                    // Here we run a very simple test of the Graph API after login is
-                    // successful.  See statusChangeCallback() for when this call is made.
-                    function testAPI() {
-                        console.log('Welcome!  Fetching your information.... ');
-                        FB.api('/me', function (response) {
-                            console.log('Successful login for: ' + response.name + response.id);
-                            document.getElementById('status').innerHTML =
-                              'Obrigado por Logar, ' + response.name + '!';
-
-                            $('#codigo').val(response.id);
-                            $('#codigo').css("display", "none");
-
-                            if ($('#codigo').val(response.id) != null) {
-
-                                window.location.href = '/Lancamento/Geral?idf=' + response.id;
-                            }
-                        });
-                    }
-                                </script>
 
                                 <div id="status">
                                 </div>
@@ -523,8 +382,9 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
             </div>
         </div>
     </section>
-    <!-- jQuery -->
-    <script src="~/Scripts/jquery.js"></script>
+
+    <script src="~/Scripts/jquery-2.2.4.min.js"></script>
+    
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
@@ -543,6 +403,148 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
         $('#senha').change(function () {
             $('#ConfirmarSenha').val($('#senha').val());
         });
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function () {
+            $("a[rel=modal]").click(function (ev) {
+                ev.preventDefault();
+
+                var id = $(this).attr("href");
+
+                var alturaTela = $(document).height();
+                var larguraTela = $(window).width();
+
+                //colocando o fundo preto
+                $('#mascara').css({ 'width': larguraTela, 'height': alturaTela });
+                $('#mascara').fadeIn(1000);
+                $('#mascara').fadeTo("slow", 0.8);
+
+                var left = ($(window).width() / 2) - ($(id).width() / 2);
+                /*var top = ($(window).height() / 2) - ($(id).height() / 2);*/
+
+                $(id).css({ '250%': top, 'left': left });
+                $(id).show();
+            });
+
+            $("#mascara").click(function () {
+                $(this).hide();
+                $(".window").hide();
+            });
+
+            $('.fechar').click(function (ev) {
+                ev.preventDefault();
+                $("#mascara").hide();
+                $(".window").hide();
+            });
+
+            $('.fechar2').click(function (ev) {
+                ev.preventDefault();
+                //$("#mascara").hide();
+                $("#janela2").hide();
+                $("#janela1").show();
+            });
+
+            $('#cadastro').click(function (ev) {
+                ev.preventDefault();
+                //  $("#mascara").hide();
+                $("#janela1").hide();
+            });
+
+        });
+
+        // This is called with the results from from FB.getLoginStatus().
+        function statusChangeCallback(response) {
+            console.log('statusChangeCallback');
+            console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                testAPI();
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                  'into this app.';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Please log ' +
+                  'into Facebook.';
+            }
+        }
+
+        // This function is called when someone finishes with the Login
+        // Button.  See the onlogin handler attached to it in the sample
+        // code below.
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+        }
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '106066606476284',
+                cookie: true,  // enable cookies to allow the server to access
+                // the session
+                xfbml: true,  // parse social plugins on this page
+                version: 'v2.5' // use graph api version 2.5
+            });
+
+            // Now that we've initialized the JavaScript SDK, we call
+            // FB.getLoginStatus().  This function gets the state of the
+            // person visiting this page and can return one of three states to
+            // the callback you provide.  They can be:
+            //
+            // 1. Logged into your app ('connected')
+            // 2. Logged into Facebook, but not your app ('not_authorized')
+            // 3. Not logged into Facebook and can't tell if they are logged into
+            //    your app or not.
+            //
+            // These three cases are handled in the callback function.
+
+            FB.getLoginStatus(function (response) {
+                statusChangeCallback(response);
+            });
+
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // Here we run a very simple test of the Graph API after login is
+        // successful.  See statusChangeCallback() for when this call is made.
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+                console.log('Successful login for: ' + response.name + response.id);
+                document.getElementById('status').innerHTML =
+                  'Obrigado por Logar, ' + response.name + '!';
+
+                $('#codigo').val(response.id);
+                $('#codigo').css("display", "none");
+
+                if ($('#codigo').val(response.id) != null) {
+
+                    window.location.href = '/Lancamento/Geral?idf=' + response.id;
+                }
+            });
+        }
     </script>
+
+
+
+
 </body>
 </html>

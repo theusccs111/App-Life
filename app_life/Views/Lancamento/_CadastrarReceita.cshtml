@@ -5,12 +5,15 @@
 @{
     ViewBag.Title = "CadastrarReceita";
 }
+
+
+<script src="~/Scripts/jquery-2.2.4.min.js"></script>
+
 <script>
-        $(document).ready(function () {
+      /*  $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
-</script>
-<script>
+        */
 function mascaraData( campo, e )
 {
 	var kC = (document.all) ? event.keyCode : e.keyCode;
@@ -67,7 +70,7 @@ function mascaraData( campo, e )
                 @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
                 <div class="col-md-9">
                     @* Passando o Nome da ViewBag *@
-                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
+                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control", @data_toggle = "tooltip", @title = "Selecione uma das Categorias" })
                 </div>
             </div>
         </div>
