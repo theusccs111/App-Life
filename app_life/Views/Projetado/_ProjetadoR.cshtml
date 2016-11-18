@@ -3,7 +3,6 @@
     ViewBag.Title = "Projetado";
 }
 
-
 <style>
     .container {
         padding-top: 3%;
@@ -55,11 +54,13 @@
 
 <div id="cabeçalho" class="cab" style="color:#337ab7;">
     <h2>Projeção de Receitas</h2>
-    <p>Lançamento de projeções de receitas</p>
+    <p style="background:#e8e8e8; padding: 10px;">Lançamento de projeções de receitas</p>
     <p>
-        <a href="@Url.Action("CadastrarProjetado", "Projetado")" class="modal-link btn btn-success pr">
-            <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Projeção</span>
-        </a>
+        <div class="col-md-3">
+            <a href="@Url.Action("CadastrarProjetado", "Projetado")" class="modal-link btn btn-success pr">
+                <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Projeção</span>
+            </a>
+        </div>
     </p>
 </div>
 
