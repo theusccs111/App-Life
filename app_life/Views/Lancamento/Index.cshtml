@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Index";
 }
-
-
+<script src="~/Scripts/jquery-2.2.4.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Receitas</a></li>
@@ -14,11 +14,61 @@
 
 <div class="tab-content">
     <div id="home" class="tab-pane fade in active">
-        @Html.Partial("_Receitas")
+        <div class="container">
+            <div class="col-md-2">
+                <select id="mes" class="form-control">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+
+
+                <button id="enviarReceita" class="btn btn-success">Carregar</button>
+    </div>
+            </div>
+        <div id="Receita">
+          
+               
+               </div>
 
     </div>
     <div id="menu1" class="tab-pane fade">
-        @Html.Partial("_Despesas")
+  
+        
+        <div class="container">
+            <div class="col-md-2">
+                <select id="mesDespesa" class="form-control">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+
+
+                <button id="enviarDespesa" class="btn btn-success">Carregar</button>
+            </div>
+        </div>
+        <div id="Despesa">
+          
+
+        </div>
     </div>
     <div id="menu2" class="tab-pane fade">
 
@@ -27,7 +77,110 @@
             <p style="background:#e8e8e8; padding: 10px;">Resumo de receitas e despesas</p>
             <p>
 
+
+            <table id="tabelaReceita" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                <thead style="">
+                    <tr>
+
+                        <th style="display:none;">Código</th>
+                        <th>Categoria</th>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (ViewBag.listaReceita2))
+                    {
+                        <tr>
+                            <td id="@item.ReceitaID" style="display:none;">
+                                @item.ReceitaID
+                            </td>
+                            <td>
+                                @item.categoria.nome
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.Data
+                            </td>
+                            <td>
+                                @item.Valor
+                            </td>
+
+                            <td>
+                                <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        -->
+
+
+                                <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
+
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </a>
+                                <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+            <table id="tabelaDespesa" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+
+                        <th style="display:none;">Código</th>
+                        <th>Categoria</th>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in (ViewBag.listaDespesa2))
+            {
+                        <tr>
+                            <td id="@item.DespesaID" style="display:none;">
+                                @item.DespesaID
+                            </td>
+                            <td>
+                                @item.categoria.nome
+                            </td>
+                            <td>
+                                @item.Descricao
+                            </td>
+                            <td>
+                                @item.Data
+                            </td>
+                            <td>
+                                @item.Valor
+                            </td>
+
+                            <td>
+
+                                <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </a>
+                                <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
                 <script>
+
+
+
+
 
                     sessionStorage.clear();
                     var linha = document.getElementById('tabelaReceita').rows;
@@ -128,7 +281,7 @@
                             vAxis: { format: 'currency' },
                             hAxis: { textPosition: 'none' },
                             seriesType: 'bars',
-                            'width': 900,
+                        'width': 800,
                             'height': 400,
                             colors: ['green']
 
@@ -141,7 +294,7 @@
                             vAxis: { format: 'currency' },
                             hAxis: { textPosition: 'none' },
                             seriesType: 'bars',
-                            'width': 900,
+                        'width': 800,
                             'height': 400,
                             colors: ['red']
                         };
@@ -179,3 +332,40 @@
 
         </div>
     </div>
+</div>
+
+<script>
+            /*
+            $('#enviar').click(function (){
+                var url = "/Lancamento/Receitas?mes=" + $('#mes').val();
+                $.get(url, null, function (data) {
+
+                    $("#rData").html(data);
+
+                });
+            });
+            */
+
+            $('#enviarReceita').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+              
+            // alert(mes)
+             $.post(url, { mes: mes }, function (data) {
+                    $("#Receita").html(data);
+                });
+            })
+
+            $('#enviarDespesa').click(function () {
+                var mes = $('#mesDespesa').val();
+                var url = "/Lancamento/Despesas?mes=" + mes;
+
+            //    alert(mes)
+                $.post(url, { mes: mes }, function (data) {
+                    $("#Despesa").html(data);
+                });
+            })
+
+
+
+</script>

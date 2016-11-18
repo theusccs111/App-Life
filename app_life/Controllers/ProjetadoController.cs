@@ -19,17 +19,17 @@ namespace APP_Life.Controllers
             int mes = DateTime.Now.Month;
 
             int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
-            ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x =>
-            x.categoria.tipo == true && x.UsuarioID == id
-            &&
-                x.Data.Split('/')[1] == Convert.ToString(mes)
 
-            );
 
-            ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x =>
-            x.categoria.tipo == false && x.UsuarioID == id &&
-                x.Data.Split('/')[1] == Convert.ToString(mes)
-);
+
+            ViewBag.listaProjetadoR2 = contexto.projetadoes.ToList().Where(x =>
+        x.categoria.tipo == true && x.UsuarioID == id);
+
+
+
+            ViewBag.listaProjetadoD2 = contexto.projetadoes.ToList().Where(x =>
+            x.categoria.tipo == false && x.UsuarioID == id);
+
 
             ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
 
@@ -64,10 +64,31 @@ namespace APP_Life.Controllers
 
 
 
-        public ActionResult ProjetadoR()
+        public ActionResult ProjetadoR(int? mes)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
+
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+
+                string mesA = "";
+                if (mes < 10)
+                {
+                    mesA = "0" + Convert.ToString(mes);
+                }
+                else
+                {
+                    mesA = Convert.ToString(mes);
+                }
+
+
+
+                ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x =>
+            x.categoria.tipo == true && x.UsuarioID == id
+            &&
+                x.Data.Split('/')[1] == (mesA)
+
+            );
 
                 return PartialView("_ProjetadoR");
             }
@@ -78,11 +99,29 @@ namespace APP_Life.Controllers
 
         }
 
-        public ActionResult ProjetadoD()
+        public ActionResult ProjetadoD(int? mes)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-                //ViewBag.listaProjetado = contexto.projetadoes.ToList();
+
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+
+                string mesA = "";
+                if (mes < 10)
+                {
+                    mesA = "0" + Convert.ToString(mes);
+                }
+                else
+                {
+                    mesA = Convert.ToString(mes);
+                }
+
+
+                ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x =>
+                x.categoria.tipo == false && x.UsuarioID == id &&
+                    x.Data.Split('/')[1] == (mesA)
+
+                                );
 
                 return PartialView("_ProjetadoD");
             }

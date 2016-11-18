@@ -24,20 +24,14 @@ namespace APP_Life.Controllers
                 
 
 
-                ViewBag.listaReceita = contexto.receitas.ToList().Where(x =>
+                ViewBag.listaReceita2 = contexto.receitas.ToList().Where(x =>
+                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
-                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
-                x.Data.Split('/')[1] == Convert.ToString(mes)
 
-                );
-                ViewBag.listaDespesa = contexto.despesas.ToList().Where(x =>
-                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"])
-                &&
-                x.Data.Split('/')[1] == Convert.ToString(mes)
+                ViewBag.listaDespesa2 = contexto.despesas.ToList().Where(x =>
+                x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
 
-                );
 
-                ;
                 ViewBag.CategoriaID = new SelectList
                 (
                     contexto.categorias.ToList(),
@@ -64,11 +58,31 @@ namespace APP_Life.Controllers
                 return RedirectToAction("Inicio", "Login");
             }
         }
-        public ActionResult Receitas()
+        [HttpPost]
+        public ActionResult Receitas(int? mes)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-                ViewBag.listaReceita = contexto.receitas.ToList();
+                string mesA = "";
+                if (mes < 10)
+                {
+                    mesA = "0" + Convert.ToString(mes);
+                }
+                else
+                {
+                    mesA = Convert.ToString(mes);
+                }
+
+                ViewBag.listaReceita = contexto.receitas.ToList().Where(x =>
+
+           x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
+           x.Data.Split('/')[1] == (mesA)
+
+           );
+
+
+
+               // ViewBag.listaReceita = contexto.receitas.ToList();
                 ViewBag.CategoriaID = new SelectList
                 (
                     contexto.categorias.ToList(),
@@ -180,11 +194,28 @@ namespace APP_Life.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Despesas()
+        public ActionResult Despesas(int? mes)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
-                ViewBag.listaDespesa = contexto.despesas.ToList();
+                string mesA = "";
+                if (mes < 10)
+                {
+                    mesA = "0" + Convert.ToString(mes);
+                }
+                else
+                {
+                    mesA = Convert.ToString(mes);
+                }
+
+                ViewBag.listaDespesa = contexto.despesas.ToList().Where(x =>
+
+           x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
+           x.Data.Split('/')[1] == (mesA)
+
+           );
+
+
                 ViewBag.CategoriaID = new SelectList
                 (
                     contexto.categorias.ToList(),
