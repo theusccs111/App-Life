@@ -51,6 +51,7 @@ namespace APP_Life.Models
         public virtual ICollection<lista_alimentos> lista_alimentos { get; set; }
 
         List<alimento> alimentosLista;
+        
 
         public IEnumerator<alimento> GetEnumerator()
         {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APP_Life.Models.alimento>
+﻿
 
 @{
     ViewBag.Title = "ConsultarNutrientes";
@@ -10,11 +10,12 @@
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-<script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-</script>
+
+
+
+
+
+
 <style>
     .modal-dialog, .modal-body, form {
         width: 100%;
@@ -59,7 +60,7 @@
                     {
                         <tr>
                             <td>
-                              @item.CarboidratoS
+                              @item.s.c.Carboidrato
                                  
                           </td>
                         
