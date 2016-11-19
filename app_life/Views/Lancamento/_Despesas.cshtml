@@ -12,7 +12,7 @@
         width: 600px !important;
         margin: 30px auto !important;
     }
-        
+
     .alert {
         padding: 20px;
         background-color: #f44336; /* Red */
@@ -49,110 +49,106 @@
         font-weight: 700;
         text-transform: uppercase;
     }
-
 </style>
 
-<div id="cabeçalho" class="cab" style="color:#337ab7;">
-    <h2>Despesas</h2>
-    <p style="background:#e8e8e8; padding: 10px;">Controle de despesas</p>
-    <p>
-        <a href="@Url.Action("CadastrarDespesa", "Lancamento")" class="modal-link btn btn-success d">
-            <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Despesa</span>
-        </a>
-    </p>
+<div class="col-md-12"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3"></div>
+<div class="col-md-3">
+
+    <a href="@Url.Action("CadastrarDespesa", "Lancamento")" class="modal-link btn btn-success d" style="margin-left:15px; margin-bottom:10px;">
+        <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Despesa</span>
+    </a>
 </div>
-    <div id="modal-containerd" class="modal fade"
-         tabindex="-1" role="dialog">
-        <div class="modal-content">
-        </div>
+
+<div id="modal-containerd" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
     </div>
+</div>
 
+<table id="tabelaDespesa" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
 
+            <th style="display:none;">Código</th>
+            <th>Categoria</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Ações</th>
 
-
-
-
-    <table id="tabelaDespesa" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-        <thead>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in (ViewBag.listaDespesa))
+            {
             <tr>
+                <td id="@item.DespesaID" style="display:none;">
+                    @item.DespesaID
+                </td>
+                <td>
+                    @item.categoria.nome
+                </td>
+                <td>
+                    @item.Descricao
+                </td>
+                <td>
+                    @item.Data
+                </td>
+                <td>
+                    @item.Valor
+                </td>
 
-                <th style="display:none;">Código</th>
-                <th>Categoria</th>
-                <th>Descrição</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Ações</th>
+                <td>
+
+                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                    <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in (ViewBag.listaDespesa))
-            {
-                <tr>
-                    <td id="@item.DespesaID" style="display:none;">
-                        @item.DespesaID
-                    </td>
-                    <td>
-                        @item.categoria.nome
-                    </td>
-                    <td>
-                        @item.Descricao
-                    </td>
-                    <td>
-                        @item.Data
-                    </td>
-                    <td>
-                        @item.Valor
-                    </td>
+        }
+    </tbody>
+</table>
 
-                    <td>
+<div class="modal" id="modald">
 
-                        <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
-
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </a>
-                        <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
-
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <div class="modal" id="modald">
-
-    </div>
+</div>
 
 
-    <script type="text/javascript">
-        $(".eita").click(function () {
-            var id = $(this).attr("data-id");
-            $("#modald").load("DespesaUpdate?id=" + id, function () {
-                $("#modald").modal();
-            })
+<script type="text/javascript">
+    $(".eita").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modald").load("DespesaUpdate?id=" + id, function () {
+            $("#modald").modal();
+        })
+    });
+
+
+    $(function () {
+        $('body').on('click', '.d', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containerd');
+            $(this).attr('data-toggle', 'modal');
         });
 
-
-        $(function () {
-            $('body').on('click', '.d', function (e) {
-                e.preventDefault();
-                $(this).attr('data-target', '#modal-containerd');
-                $(this).attr('data-toggle', 'modal');
-            });
-
-            $('body').on('click', '.modal-close-btn', function () {
-                $('#modal-containerd').modal('hide');
-            });
-
-            $('#modal-containerd').on('hidden.bs.modal', function () {
-                $(this).removeData('bs.modal');
-            });
-            $('#CancelModal').on('click', function () {
-                return false;
-            });
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-containerd').modal('hide');
         });
 
+        $('#modal-containerd').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
 
-    </script>
+
+</script>
 
 
 
