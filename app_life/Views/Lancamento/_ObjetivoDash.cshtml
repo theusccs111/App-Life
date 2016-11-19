@@ -1,0 +1,201 @@
+﻿@model APP_Life.Models.projetado
+@{
+    ViewBag.Title = "Objetivos";
+}
+
+<link rel="stylesheet" href="~/Content/circle.css">
+
+<style>
+    .container {
+        padding-top: 3%;
+    }
+
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+
+    .alert {
+        padding: 20px;
+        background-color: #f44336; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+</style>
+
+<div id="modal-containero" class="modal fade"
+     tabindex="-1" role="dialog">
+    <div class="modal-content">
+
+    </div>
+</div>
+
+
+
+<table id="tabelaObjetivos" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
+    <thead>
+        <tr>
+            <th style="width:20%">Objetivo</th>
+            <th style="width:11%">Custo</th>
+            <th style="width:11%">Arrecadado</th>
+            <th style="width:11%">Restante</th>
+            <th style="width:11%">Progresso</th>
+            <th style="width:11%">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in (ViewBag.listaObjetivo))
+        {
+            <tr>
+                <td style="display:none" id="@item.ObjetivoID">
+                    @item.ObjetivoID
+                </td>
+                <td style="display:none">
+                    @item.Nome
+                </td>
+                <td style="display:none" id="@("ValorTotal"+i)">
+                    @item.ValorTotal
+                </td>
+                <td style="display:none" id="@("ValorAtual"+i)">
+                    @item.ValorAtual
+                </td>
+                <td style="display:none" id="@("Restante"+i)">
+                    0
+                </td>
+                <td>
+                    @* <div class="progress">
+                            <div class="progress-bar" id="@("barrinhaLoka"+i)" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                0%
+                            </div>
+                        </div>*@
+                    <div id="@("fullRodda"+i)" class="c100 small">
+                        <span style="color:black" id="@("barrinhaLoka"+i)">0%</span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <a href="@Url.Action("ObjetivoDelete","Projetado",new { id = @item.ObjetivoID})" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
+                    <button class="btn btn-primary edit eita" data-id="@item.ObjetivoID"><i class="glyphicon glyphicon-edit"></i></button>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+
+
+
+<script>
+
+    $(function () {
+
+        sessionStorage.clear();
+        var linhao = document.getElementById('tabelaObjetivos').rows;
+        var dadoso = null;
+        for (var i = 1 ; i < linhao.length ; i++) {
+            dadoso = linhao[i].cells;
+            for (var j = 0 ; j < dadoso.length ; j++) {
+                sessionStorage.setItem('valorTotal' + [i], dadoso[j + 2].innerText);
+                sessionStorage.setItem('valorAtual' + [i], dadoso[j + 3].innerText);
+                break;
+            }
+        }
+
+
+        var arrayo = [];
+        var array2o = [];
+
+        for (var i = 1; i < sessionStorage.length; i++) {
+            if ((sessionStorage.getItem('valorAtual' + [i]) != null) && (sessionStorage.getItem('valorTotal' + [i]) != null)) {
+                arrayo[i] = sessionStorage.getItem('valorAtual' + [i]);
+                array2o[i] = sessionStorage.getItem('valorTotal' + [i]);
+
+            }
+        }
+
+        for (var i = 1; i < arrayo.length; i++) {
+
+            var porcentagem = parseInt(((parseInt(arrayo[i]) * 100) / parseInt(array2o[i])));
+
+            // document.getElementById('barrinhaLoka' + i).innerText = String(porcentagem) + "%";
+
+            document.getElementById('barrinhaLoka' + i).innerText = (String((porcentagem)) + "%");
+            $("#fullRodda" + i).addClass("p" + porcentagem);
+
+            document.getElementById('Restante' + i).innerText = (parseFloat(parseFloat(document.getElementById('ValorTotal' + i).innerText) - parseFloat(document.getElementById('ValorAtual' + i).innerText)));
+            // $("#barrinhaLoka" + i).css("aria-valuenow", parseInt(porcentagem));
+        }
+
+
+
+    });
+</script>
+
+
+<div class="modal" id="modalo">
+
+
+</div>
+
+
+<script type="text/javascript">
+    $(".eita").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modalo").load("ObjetivoUpdate?id=" + id, function () {
+            $("#modalo").modal();
+        })
+    });
+
+
+    $(function () {
+        $('body').on('click', '.o', function (e) {
+            e.preventDefault();
+            $(this).attr('data-target', '#modal-containero');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('body').on('click', '.modal-close-btn', function () {
+            $('#modal-containero').modal('hide');
+        });
+
+        $('#modal-containero').on('hidden.bs.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+
+
+</script>
+
+

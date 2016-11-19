@@ -388,6 +388,7 @@
     <Content Include="Views\Dieta\_ConsultarNutrientes.cshtml" />
     <Content Include="Views\Dieta\ConsultarNutrientesDieta.cshtml" />
     <Content Include="Views\Dieta\Dicas.cshtml" />
+    <Content Include="Views\Lancamento\_ObjetivoDash.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
