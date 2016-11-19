@@ -197,7 +197,10 @@ namespace APP_Life.Controllers
                         {
 
                             CarboidratoS = g.Sum(a => (a.Carboidrato))
-                        };/*
+                        };
+            
+            
+            /*
             var query = contexto.lista_alimentos.Join(
                 contexto.alimentos,
                  s => s.IDAlimento,

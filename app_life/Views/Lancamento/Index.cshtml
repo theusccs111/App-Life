@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Index";
 }
-<script src="~/Scripts/jquery-2.2.4.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+
 
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Receitas</a></li>
@@ -34,17 +34,47 @@
 
 
                 <button id="enviarReceita" class="btn btn-success">Carregar</button>
-    </div>
             </div>
+        </div>
+
+        @if (Session["messReceita"].ToString() == "Incluido")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Receita Incluída com sucesso!
+            </div>
+            Session["messReceita"] = "nada";
+
+        }
+
+        @if (Session["messReceita"].ToString() == "Deletado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Receita Deletada com sucesso!
+            </div>
+            Session["messReceita"] = "nada";
+
+        }
+
+        @if (Session["messReceita"].ToString() == "Atualizado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Receita Atualizada com sucesso!
+            </div>
+            Session["messReceita"] = "nada";
+
+        }
         <div id="Receita">
-          
-               
-               </div>
+
+
+        </div>
 
     </div>
     <div id="menu1" class="tab-pane fade">
-  
-        
+
+
         <div class="container">
             <div class="col-md-2">
                 <select id="mesDespesa" class="form-control">
@@ -66,8 +96,41 @@
                 <button id="enviarDespesa" class="btn btn-success">Carregar</button>
             </div>
         </div>
+
+
+        @if (Session["messDespesa"].ToString() == "Incluido")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Incluída com sucesso!
+            </div>
+            Session["messDespesa"] = "nada";
+
+        }
+
+        @if (Session["messDespesa"].ToString() == "Deletado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Deletada com sucesso!
+            </div>
+            Session["messDespesa"] = "nada";
+
+        }
+
+        @if (Session["messDespesa"].ToString() == "Atualizado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Atualizada com sucesso!
+            </div>
+            Session["messDespesa"] = "nada";
+
+        }
+
+
         <div id="Despesa">
-          
+
 
         </div>
     </div>
@@ -79,102 +142,102 @@
             <p>
 
 
-            <table id="tabelaReceita" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-                <thead style="">
-                    <tr>
-
-                        <th style="display:none;">Código</th>
-                        <th>Categoria</th>
-                        <th>Descrição</th>
-                        <th>Data</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in (ViewBag.listaReceita2))
-                    {
+                <table id="tabelaReceita" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                    <thead style="">
                         <tr>
-                            <td id="@item.ReceitaID" style="display:none;">
-                                @item.ReceitaID
-                            </td>
-                            <td>
-                                @item.categoria.nome
-                            </td>
-                            <td>
-                                @item.Descricao
-                            </td>
-                            <td>
-                                @item.Data
-                            </td>
-                            <td>
-                                @item.Valor
-                            </td>
 
-                            <td>
-                                <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        -->
+                            <th style="display:none;">Código</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (ViewBag.listaReceita2))
+                        {
+                            <tr>
+                                <td id="@item.ReceitaID" style="display:none;">
+                                    @item.ReceitaID
+                                </td>
+                                <td>
+                                    @item.categoria.nome
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.Data
+                                </td>
+                                <td>
+                                    @item.Valor
+                                </td>
+
+                                <td>
+                                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    -->
 
 
-                                <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
+                                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
 
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
-                                <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                    <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+
+
+                <table id="tabelaDespesa" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                    <thead>
+                        <tr>
+
+                            <th style="display:none;">Código</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
 
                         </tr>
-                    }
-                </tbody>
-            </table>
-
-
-
-
-            <table id="tabelaDespesa" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-                <thead>
-                    <tr>
-
-                        <th style="display:none;">Código</th>
-                        <th>Categoria</th>
-                        <th>Descrição</th>
-                        <th>Data</th>
-                        <th>Valor</th>
-                        <th>Ações</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in (ViewBag.listaDespesa2))
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (ViewBag.listaDespesa2))
             {
-                        <tr>
-                            <td id="@item.DespesaID" style="display:none;">
-                                @item.DespesaID
-                            </td>
-                            <td>
-                                @item.categoria.nome
-                            </td>
-                            <td>
-                                @item.Descricao
-                            </td>
-                            <td>
-                                @item.Data
-                            </td>
-                            <td>
-                                @item.Valor
-                            </td>
+                            <tr>
+                                <td id="@item.DespesaID" style="display:none;">
+                                    @item.DespesaID
+                                </td>
+                                <td>
+                                    @item.categoria.nome
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.Data
+                                </td>
+                                <td>
+                                    @item.Valor
+                                </td>
 
-                            <td>
+                                <td>
 
-                                <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+                                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
 
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
-                                <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                    <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
 
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
 
                 <script>
@@ -282,7 +345,7 @@
                             vAxis: { format: 'currency' },
                             hAxis: { textPosition: 'none' },
                             seriesType: 'bars',
-                        'width': 800,
+                            'width': 800,
                             'height': 400,
                             colors: ['green']
 
@@ -295,7 +358,7 @@
                             vAxis: { format: 'currency' },
                             hAxis: { textPosition: 'none' },
                             seriesType: 'bars',
-                        'width': 800,
+                            'width': 800,
                             'height': 400,
                             colors: ['red']
                         };
@@ -336,36 +399,36 @@
 </div>
 
 <script>
-            /*
-            $('#enviar').click(function (){
-                var url = "/Lancamento/Receitas?mes=" + $('#mes').val();
-                $.get(url, null, function (data) {
+    /*
+    $('#enviar').click(function (){
+        var url = "/Lancamento/Receitas?mes=" + $('#mes').val();
+        $.get(url, null, function (data) {
 
-                    $("#rData").html(data);
+            $("#rData").html(data);
 
-                });
-            });
-            */
+        });
+    });
+    */
 
-            $('#enviarReceita').click(function () {
-                var mes = $('#mes').val();
-                var url = "/Lancamento/Receitas?mes=" + mes;
-              
-            // alert(mes)
-             $.post(url, { mes: mes }, function (data) {
-                    $("#Receita").html(data);
-                });
-            })
+    $('#enviarReceita').click(function () {
+        var mes = $('#mes').val();
+        var url = "/Lancamento/Receitas?mes=" + mes;
 
-            $('#enviarDespesa').click(function () {
-                var mes = $('#mesDespesa').val();
-                var url = "/Lancamento/Despesas?mes=" + mes;
+        // alert(mes)
+        $.post(url, { mes: mes }, function (data) {
+            $("#Receita").html(data);
+        });
+    })
 
-            //    alert(mes)
-                $.post(url, { mes: mes }, function (data) {
-                    $("#Despesa").html(data);
-                });
-            })
+    $('#enviarDespesa').click(function () {
+        var mes = $('#mesDespesa').val();
+        var url = "/Lancamento/Despesas?mes=" + mes;
+
+        //    alert(mes)
+        $.post(url, { mes: mes }, function (data) {
+            $("#Despesa").html(data);
+        });
+    })
 
 
 

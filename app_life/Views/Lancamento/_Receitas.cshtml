@@ -125,36 +125,6 @@
         <div class="modal fade" id="modalr">
 
         </div>
-
-@if (Session["messReceita"].ToString() == "Incluido")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Receita Incluída com sucesso!
-    </div>
-    Session["messReceita"] = "nada";
-
-}
-
-@if (Session["messReceita"].ToString() == "Deletado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Receita Deletada com sucesso!
-    </div>
-    Session["messReceita"] = "nada";
-
-}
-
-@if (Session["messReceita"].ToString() == "Atualizado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Receita Atualizada com sucesso!
-    </div>
-    Session["messReceita"] = "nada";
-
-}
         <script type="text/javascript">
 
             $(".eita").click(function () {
