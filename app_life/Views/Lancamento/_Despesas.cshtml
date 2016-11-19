@@ -2,11 +2,7 @@
 @{
     ViewBag.Title = "Despesas";
 }
-<script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-</script>
+
 <style>
     .container {
         padding-top: 3%;
@@ -73,37 +69,6 @@
 
 
 
-
-
-@if (Session["messDespesa"].ToString() == "Incluido")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Despesa Incluída com sucesso!
-    </div>
-    Session["messDespesa"] = "nada";
-
-}
-
-@if (Session["messDespesa"].ToString() == "Deletado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Despesa Deletada com sucesso!
-    </div>
-    Session["messDespesa"] = "nada";
-
-}
-
-@if (Session["messDespesa"].ToString() == "Atualizado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Despesa Atualizada com sucesso!
-    </div>
-    Session["messDespesa"] = "nada";
-
-}
 
 
 
