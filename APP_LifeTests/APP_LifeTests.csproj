@@ -87,6 +87,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Models\despesaTests.cs" />
+    <Compile Include="Models\dietaTests.cs" />
+    <Compile Include="Models\lista_alimentosTests.cs" />
+    <Compile Include="Models\objetivoTests.cs" />
     <Compile Include="Models\projetadoTests.cs" />
     <Compile Include="Models\receitaTests.cs" />
     <Compile Include="Models\usuarioTests.cs" />
