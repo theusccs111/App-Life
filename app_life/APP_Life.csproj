@@ -307,6 +307,7 @@
     <Content Include="Scripts\scrollreveal.js" />
     <Content Include="Scripts\scrollreveal.min.js" />
     <Content Include="Scripts\sortable.js" />
+    <Content Include="Scripts\tooltip.js" />
     <Content Include="Views\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Views\Login\Resultado.cshtml" />

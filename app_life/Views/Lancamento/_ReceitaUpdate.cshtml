@@ -13,6 +13,30 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/method_PT.js"></script>
 
+
+<script>
+function mascaraData( campo, e )
+{
+	var kC = (document.all) ? event.keyCode : e.keyCode;
+	var data = campo.value;
+
+	if( kC!=8 && kC!=46 )
+	{
+		if( data.length==2 )
+		{
+			campo.value = data += '/';
+		}
+		else if( data.length==5 )
+		{
+			campo.value = data += '/';
+		}
+		else
+			campo.value = data;
+	}
+}
+</script>
+
+
 <style>
     .modal-footer {
         margin-right: 10%;
@@ -80,7 +104,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                @Html.TextBoxFor(model => model.Data, new { @class = "form-control" , @type = "date" })
+                                @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "text", @onkeypress = "mascaraData( this, event )", @maxlength = "10" })
                                 @Html.ValidationMessageFor(model => model.Data)
                             </div>
                         </div>
