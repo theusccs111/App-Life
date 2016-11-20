@@ -1,4 +1,5 @@
-﻿@model APP_Life.Models.projetado
+﻿
+@model PagedList.IPagedList<APP_Life.Models.objetivo>
 @{
     ViewBag.Title = "Objetivos";
 }
@@ -171,6 +172,82 @@
     </tbody>
 </table>
 
+
+
+<div>
+    Página @(ViewBag.listaObjetivo.PageCount < ViewBag.listaObjetivo.PageNumber ? 0 : ViewBag.listaObjetivo.PageNumber)
+    of @ViewBag.listaObjetivo.PageCount
+
+    @if (ViewBag.listaObjetivo.HasPreviousPage)
+    {
+
+
+        <script>
+            $('#primPaginaObjetivo').click(function () {
+          
+            var url = "/Projetado/Objetivo";
+        // alert(mes)
+            $.post(url, {  pagina:  1 }, function (data) {
+                $("#Objetivo").html(data);
+            });
+            })
+
+            $('#antPaginaObjetivo').click(function () {
+                var url = "/Projetado/Objetivo";
+                // alert(mes)
+                $.post(url, {  pagina: @ViewBag.listaObjetivo.PageNumber - 1 }, function (data) {
+                    $("#Objetivo").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaObjetivo"><<</a>
+
+        @Html.Raw(" ");
+
+        <a id="antPaginaObjetivo">< Anterior</a>
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Anterior
+    }
+
+    @if (ViewBag.listaObjetivo.HasNextPage)
+    {
+        <script>
+            $('#proPaginaObjetivo').click(function () {
+              var url = "/Projetado/Objetivo";
+            $.post(url, {  pagina: @ViewBag.listaObjetivo.PageNumber + 1 }, function (data) {
+                $("#Objetivo").html(data);
+            });
+            })
+
+            $('#ultPaginaObjetivo').click(function () {
+                var url = "/Projetado/Objetivo";
+                // alert(mes)
+                $.post(url, { pagina: @ViewBag.listaObjetivo.PageCount }, function (data) {
+                    $("#Objetivo").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaObjetivo">Proxima ></a>
+        @Html.Raw(" ");
+        <a id="ultPaginaObjetivo">>></a>
+    }
+    else
+    {
+        @:Próxima >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
 
 
 

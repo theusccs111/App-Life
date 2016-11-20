@@ -1,4 +1,5 @@
 ﻿using APP_Life.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,17 @@ namespace APP_Life.Controllers
         app_lifeContext contexto = new app_lifeContext();
 
         // GET: Dieta
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
             if (Session["usuarioLogadoID"] != null)
             {
-                ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]));
+
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
+
+                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID == 
+                Convert.ToInt32(Session["usuarioLogadoID"]))).ToPagedList(paginaNumero,paginaTamanho);
 
                 if (Session["messDieta"] == null)
                 {
@@ -166,12 +173,16 @@ namespace APP_Life.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult ConsultarNutrientesDieta()
+        public ActionResult ConsultarNutrientesDieta(int? pagina)
         {
             if (Session["usuarioLogadoID"] != null)
             {
-                ViewBag.listaDieta = contexto.dietas.ToList().Where(x => x.UsuarioID == 
-                Convert.ToInt32(Session["usuarioLogadoID"]));
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
+
+                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID == 
+                Convert.ToInt32(Session["usuarioLogadoID"]))).ToPagedList(paginaNumero, paginaTamanho);
 
 
                 return View();

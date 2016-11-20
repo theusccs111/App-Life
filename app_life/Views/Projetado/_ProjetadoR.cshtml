@@ -1,4 +1,5 @@
-﻿@model APP_Life.Models.projetado
+﻿
+@model PagedList.IPagedList<APP_Life.Models.projetado>
 @{
     ViewBag.Title = "Projetado";
 }
@@ -149,6 +150,88 @@
         }
     </tbody>
 </table>
+
+
+<div>
+    Página @(ViewBag.listaProjetadoR.PageCount < ViewBag.listaProjetadoR.PageNumber ? 0 : ViewBag.listaProjetadoR.PageNumber)
+    of @ViewBag.listaProjetadoR.PageCount
+
+    @if (ViewBag.listaProjetadoR.HasPreviousPage)
+    {
+
+
+        <script>
+            $('#primPaginaProjetadoR').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Projetado/ProjetadoR?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina:  1 }, function (data) {
+                $("#ReceitaP").html(data);
+            });
+            })
+
+            $('#antPaginaProjetadoR').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Projetado/ProjetadoR?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaProjetadoR.PageNumber - 1 }, function (data) {
+                    $("#ReceitaP").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaProjetadoR"><<</a>
+
+        @Html.Raw(" ");
+
+        <a id="antPaginaProjetadoR">< Anterior</a>
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Anterior
+    }
+
+    @if (ViewBag.listaProjetadoR.HasNextPage)
+    {
+        <script>
+            $('#proPaginaProjetadoR').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Projetado/ProjetadoR?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina: @ViewBag.listaProjetadoR.PageNumber + 1 }, function (data) {
+                $("#ReceitaP").html(data);
+            });
+            })
+
+            $('#ultPaginaProjetadoR').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Projetado/ProjetadoR?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaProjetadoR.PageCount }, function (data) {
+                    $("#ReceitaP").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaProjetadoR">Proxima ></a>
+        @Html.Raw(" ");
+        <a id="ultPaginaProjetadoR">>></a>
+    }
+    else
+    {
+        @:Próxima >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
+
 
 
 <div class="modal" id="modalpr">

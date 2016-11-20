@@ -1,4 +1,5 @@
 ﻿using APP_Life.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace APP_Life.Controllers
         // GET: Projetado
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? pagina)
         {
             int mes = DateTime.Now.Month;
 
@@ -30,9 +31,11 @@ namespace APP_Life.Controllers
             ViewBag.listaProjetadoD2 = contexto.projetadoes.ToList().Where(x =>
             x.categoria.tipo == false && x.UsuarioID == id && x.categoria.tipo == false);
 
+            int paginaTamanho = 4;
+            int paginaNumero = (pagina ?? 1);
 
-            ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
 
+            ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id).ToPagedList(paginaNumero, paginaTamanho);
 
             ViewBag.CategoriaID = new SelectList
             (
@@ -64,7 +67,7 @@ namespace APP_Life.Controllers
 
 
 
-        public ActionResult ProjetadoR(int? mes)
+        public ActionResult ProjetadoR(int? mes, int? pagina)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
@@ -81,6 +84,9 @@ namespace APP_Life.Controllers
                     mesA = Convert.ToString(mes);
                 }
 
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
 
 
                 ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x =>
@@ -88,7 +94,7 @@ namespace APP_Life.Controllers
             && 
                 x.Data.Split('/')[1] == (mesA) && x.categoria.tipo == true
 
-            );
+            ).ToPagedList(paginaNumero, paginaTamanho); 
 
                 return PartialView("_ProjetadoR");
             }
@@ -99,7 +105,7 @@ namespace APP_Life.Controllers
 
         }
 
-        public ActionResult ProjetadoD(int? mes)
+        public ActionResult ProjetadoD(int? mes, int? pagina)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
@@ -116,12 +122,15 @@ namespace APP_Life.Controllers
                     mesA = Convert.ToString(mes);
                 }
 
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
 
                 ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x =>
                 x.categoria.tipo == false && x.UsuarioID == id &&
                     x.Data.Split('/')[1] == (mesA) && x.categoria.tipo == false
 
-                                );
+                                ).ToPagedList(paginaNumero, paginaTamanho); 
 
                 return PartialView("_ProjetadoD");
             }
@@ -214,10 +223,16 @@ namespace APP_Life.Controllers
 
 
         //objetivo
-        public ActionResult Objetivo()
+        public ActionResult Objetivo(int? pagina)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+
+                ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id).ToPagedList(paginaNumero, paginaTamanho); ;
 
 
                 return PartialView("_Objetivo");

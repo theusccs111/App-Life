@@ -376,6 +376,10 @@ namespace APP_Life.Controllers
                 int mes = DateTime.Now.Month;
                
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+
+                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID == id));
+
+
                 ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
                 var query = from u in contexto.receitas
                             where u.UsuarioID == id

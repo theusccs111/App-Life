@@ -59,6 +59,31 @@ namespace APP_Life.Controllers
 
         }
 
+        public void Excel3(int? id)
+        {
+
+            var model3 = contexto.lista_alimentos.ToList().Where(
+                x => x.IDDieta == id).Select(
+                g =>
+new { ID = g.IDDieta,
+NomeDieta = g.dieta.Nome,
+    Alimento = g.alimento.Nome,
+ Quantidade = g.Quantidade,
+ Medida = g.Medida,
+
+                    
+                }
+                );
+
+
+            Export export3 = new Export();
+
+            export3.ToExcel(Response, model3);
+
+        }
+
+
+
         //helper class
         public class Export
         {

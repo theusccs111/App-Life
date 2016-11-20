@@ -1,12 +1,13 @@
-﻿@model IEnumerable<APP_Life.Models.dieta>
+﻿
+@model PagedList.IPagedList<APP_Life.Models.dieta>
 
 @{
     ViewBag.Title = "Index";
 }
 <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 <style>
     .container {
@@ -66,13 +67,13 @@
 
     <div class="col-md-12">
         <div class="col-md-3"></div>
-        
-        
-            <div class="col-md-3">
+
+
+        <div class="col-md-3">
             <a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" data-toggle="tooltip" title="Cadastrar Dieta" style="margin-left: 100px;">
                 <span class="fa fa-plus"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Dieta</span>
             </a>
-        
+
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
@@ -91,36 +92,118 @@
     </div>
 </div>
 
-<table id="tabelaReceita" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-    <thead style="">
-        <tr>
-            <th style="display:none;">Código</th>
-            <th>Dietas</th>
-            
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in (ViewBag.listaDieta))
-        {
+<div id="Dieta">
+    <table id="tabelaReceita" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+        <thead style="">
             <tr>
-                <td id="@item.DietaID" style="display:none;">
-                    @item.DietaID
-                </td>
-                <td>
-                    @item.Nome
-                </td>
-            
-                    <td>
-                    <button class="btn btn-success edit CadItens" data-toggle="tooltip" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
-                    <button class="btn btn-primary edit eita" data-toggle="tooltip" title="Editar Dieta" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
-                    <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" data-toggle="tooltip" title="Deletar Dieta"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    <button class="btn btn-primary edit eitaD" data-toggle="tooltip" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
-                </td>
+                <th style="display:none;">Código</th>
+                <th>Dietas</th>
+
+                <th>Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in (ViewBag.listaDieta))
+            {
+                <tr>
+                    <td id="@item.DietaID" style="display:none;">
+                        @item.DietaID
+                    </td>
+                    <td>
+                        @item.Nome
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success edit CadItens" data-toggle="tooltip" title="Cadastrar Itens" data-id="@item.DietaID"><i class="fa fa-plus"></i></button>
+                        <button class="btn btn-primary edit eita" data-toggle="tooltip" title="Editar Dieta" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
+                        <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" data-toggle="tooltip" title="Deletar Dieta"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        <button class="btn btn-primary edit eitaD" data-toggle="tooltip" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    Página @(ViewBag.listaDieta.PageCount < ViewBag.listaDieta.PageNumber ? 0 : ViewBag.listaDieta.PageNumber)
+    of @ViewBag.listaDieta.PageCount
+
+    @if (ViewBag.listaDieta.HasPreviousPage)
+    {
+
+
+        <script>
+            $('#primPaginaDieta').click(function () {
+                var url = "/Dieta/Index";
+                // alert(mes)
+                $.post(url, {  pagina:  1 }, function (data) {
+                    $("#Dieta").html(data);
+                });
+            })
+
+            $('#antPaginaDieta').click(function () {
+                var url = "/Dieta/Index";
+                // alert(mes)
+                $.post(url, { pagina: @ViewBag.listaDieta.PageNumber - 1 }, function (data) {
+                    $("#Dieta").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaDieta"><<</a>
+
+        @Html.Raw(" ");
+
+        <a id="antPaginaDieta">< Anterior</a>
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Anterior
+    }
+
+    @if (ViewBag.listaDieta.HasNextPage)
+    {
+        <script>
+            $('#proPaginaDieta').click(function () {
+                var url = "/Dieta/Index";
+                // alert(mes)
+                $.post(url, {  pagina: @ViewBag.listaDieta.PageNumber + 1 }, function (data) {
+                    $("#Dieta").html(data);
+                });
+            })
+
+            $('#ultPaginaDieta').click(function () {
+                
+                var url = "/Dieta/Index";
+                
+                $.post(url, { pagina: @ViewBag.listaDieta.PageCount }, function (data) {
+                    $("#Dieta").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaDieta">Proxima ></a>
+        @Html.Raw(" ");
+        <a id="ultPaginaDieta">>></a>
+    }
+    else
+    {
+        @:Próxima >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
+
+
 
 
 <div class="modal fade" id="modalDi">
