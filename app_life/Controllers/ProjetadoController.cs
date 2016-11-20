@@ -23,12 +23,12 @@ namespace APP_Life.Controllers
 
 
             ViewBag.listaProjetadoR2 = contexto.projetadoes.ToList().Where(x =>
-        x.categoria.tipo == true && x.UsuarioID == id);
+        x.categoria.tipo == true && x.UsuarioID == id && x.categoria.tipo == true);
 
 
 
             ViewBag.listaProjetadoD2 = contexto.projetadoes.ToList().Where(x =>
-            x.categoria.tipo == false && x.UsuarioID == id);
+            x.categoria.tipo == false && x.UsuarioID == id && x.categoria.tipo == false);
 
 
             ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
@@ -85,8 +85,8 @@ namespace APP_Life.Controllers
 
                 ViewBag.listaProjetadoR = contexto.projetadoes.ToList().Where(x =>
             x.categoria.tipo == true && x.UsuarioID == id
-            &&
-                x.Data.Split('/')[1] == (mesA)
+            && 
+                x.Data.Split('/')[1] == (mesA) && x.categoria.tipo == true
 
             );
 
@@ -119,7 +119,7 @@ namespace APP_Life.Controllers
 
                 ViewBag.listaProjetadoD = contexto.projetadoes.ToList().Where(x =>
                 x.categoria.tipo == false && x.UsuarioID == id &&
-                    x.Data.Split('/')[1] == (mesA)
+                    x.Data.Split('/')[1] == (mesA) && x.categoria.tipo == false
 
                                 );
 

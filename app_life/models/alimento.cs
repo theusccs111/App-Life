@@ -24,22 +24,22 @@ namespace APP_Life.Models
         public string Umidade { get; set; }
         public string Kcal { get; set; }
         public string KJ { get; set; }
-        public string Proteina { get; set; }
+        public decimal Proteina { get; set; }
         public string Lipideos { get; set; }
         public string Colesterol { get; set; }
         public decimal Carboidrato { get; set; }
-        public string FibraAlimentar { get; set; }
+        public decimal FibraAlimentar { get; set; }
         public string Cinzas { get; set; }
-        public string Calcio { get; set; }
+        public decimal Calcio { get; set; }
         public string Magnesio { get; set; }
         public string Categoria { get; set; }
         public string Manganes { get; set; }
         public string Fosforo { get; set; }
-        public string Ferro { get; set; }
-        public string Sodio { get; set; }
-        public string Potassio { get; set; }
+        public decimal Ferro { get; set; }
+        public decimal Sodio { get; set; }
+        public decimal Potassio { get; set; }
         public string Cobre { get; set; }
-        public string Zinco { get; set; }
+        public decimal Zinco { get; set; }
         public string Retinol { get; set; }
         public string RE { get; set; }
         public string RAE { get; set; }
@@ -47,7 +47,7 @@ namespace APP_Life.Models
         public string Riboflavina { get; set; }
         public string Piridoxina { get; set; }
         public string Niacina { get; set; }
-        public string VitaminaC { get; set; }
+        public decimal VitaminaC { get; set; }
         public virtual ICollection<lista_alimentos> lista_alimentos { get; set; }
 
         List<alimento> alimentosLista;
