@@ -10,6 +10,11 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <script src="~/Scripts/method_PT.js"></script>
 
+<style>
+    .modal-footer {
+        margin-right: 10%;
+    }
+</style>
 
 
 <script>
@@ -91,8 +96,8 @@ function mascaraData( campo, e )
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="submit" value="Salvar" class="btn btn-primary" />
                 <input type="button" id="cancelar" value="Cancelar" class="btn btn-default" data-dismiss="modal" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         }
     </div><!-- /.modal-content -->
