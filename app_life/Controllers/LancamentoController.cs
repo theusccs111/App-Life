@@ -8,6 +8,9 @@ using System.Net;
 using System.Data.Entity;
 using System.Web.UI.WebControls;
 using Facebook;
+using PagedList;
+
+
 namespace APP_Life.Controllers
 {
     public class LancamentoController : Controller
@@ -59,7 +62,7 @@ namespace APP_Life.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Receitas(int? mes)
+        public ActionResult Receitas(int? mes,int? pagina)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
@@ -78,7 +81,7 @@ namespace APP_Life.Controllers
            x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
            x.Data.Split('/')[1] == (mesA)
 
-           );
+           ).ToPagedList(10,10);
 
 
 

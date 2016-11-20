@@ -415,7 +415,7 @@
 
     $('#enviarReceita').click(function () {
         var mes = $('#mes').val();
-        var url = "/Lancamento/Receitas?mes=" + mes;
+        var url = "/Lancamento/Receitas?mes=" + mes +"&?pagina=1";
 
         // alert(mes)
         $.post(url, { mes: mes }, function (data) {
@@ -425,7 +425,7 @@
 
     $('#enviarDespesa').click(function () {
         var mes = $('#mesDespesa').val();
-        var url = "/Lancamento/Despesas?mes=" + mes;
+        var url = "/Lancamento/Despesas?mes=" + mes + "&?pagina=1";
 
         //    alert(mes)
         $.post(url, { mes: mes }, function (data) {
