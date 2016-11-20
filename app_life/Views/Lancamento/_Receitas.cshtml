@@ -106,12 +106,14 @@
                 </td>
 
                 <td>
-                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    -->
-                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
+                   
+                         @Ajax.ActionLink(" ","ReceitaDelete", "Lancamento", new { id = @item.ReceitaID },new AjaxOptions
+    {
+        Confirm = "Você tem certeza que Deseja Excluir ?",
+        HttpMethod = "POST"
+    },new { @class = "btn btn-danger glyphicon glyphicon-trash" })
 
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </a>
+                  
                     <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>
@@ -129,12 +131,12 @@
 
         <script>
             $('#primPaginaReceita').click(function () {
-            var mes = $('#mes').val();
-            var url = "/Lancamento/Receitas?mes=" + mes;
-        // alert(mes)
-            $.post(url, { mes: mes, pagina:  1 }, function (data) {
-            $("#Receita").html(data);
-            });
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina:  1 }, function (data) {
+                    $("#Receita").html(data);
+                });
             })
 
             $('#antPaginaReceita').click(function () {
@@ -154,7 +156,7 @@
         @Html.Raw(" ");
 
         <a id="antPaginaReceita">< Anterior</a>
-         }
+    }
     else
     {
         @:<<
@@ -166,12 +168,12 @@
     {
         <script>
             $('#proPaginaReceita').click(function () {
-            var mes = $('#mes').val();
-            var url = "/Lancamento/Receitas?mes=" + mes;
-        // alert(mes)
-            $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber + 1 }, function (data) {
-            $("#Receita").html(data);
-            });
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber + 1 }, function (data) {
+                    $("#Receita").html(data);
+                });
             })
 
             $('#ultPaginaReceita').click(function () {
@@ -189,7 +191,7 @@
         <a id="proPaginaReceita">Proxima ></a>
         @Html.Raw(" ");
         <a id="ultPaginaReceita">>></a>
-       }
+    }
     else
     {
         @:Próxima >
@@ -200,7 +202,7 @@
 
 
 
-        <div class="modal fade" id="modalr">
+<div class="modal fade" id="modalr">
 
 </div>
 <script type="text/javascript">
