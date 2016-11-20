@@ -1,4 +1,4 @@
-﻿@model APP_Life.Models.projetado
+﻿
 @{
     ViewBag.Title = "Objetivos";
 }
@@ -53,12 +53,12 @@
 <table id="tabelaObjetivos" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" cellspacing="0" style="width: 100%;">
     <thead>
         <tr>
-            <th style="width:20%">Objetivo</th>
-            <th style="width:11%">Custo</th>
-            <th style="width:11%">Arrecadado</th>
-            <th style="width:11%">Restante</th>
-            <th style="width:11%">Progresso</th>
-            <th style="width:11%">Ações</th>
+            <th style="width:20%; display: none;">Objetivo</th>
+            <th style="width:11%; display: none;" >Custo</th>
+            <th style="width:11%; display: none;">Arrecadado</th>
+            <th style="width:11%; display: none;">Restante</th>
+            <th style="width:11%; display: none;">Progresso</th>
+            <th style="width:11%; display: none;">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -71,7 +71,7 @@
                 <td style="display:none" id="@item.ObjetivoID">
                     @item.ObjetivoID
                 </td>
-                <td style="display:none">
+                <td >
                     @item.Nome
                 </td>
                 <td style="display:none" id="@("ValorTotal"+i)">
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </td>
-                <td>
+                <td style="display: none;">
                     <a href="@Url.Action("ObjetivoDelete","Projetado",new { id = @item.ObjetivoID})" class="btn btn-danger">
 
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -109,9 +109,6 @@
         }
     </tbody>
 </table>
-
-
-
 
 <script>
 

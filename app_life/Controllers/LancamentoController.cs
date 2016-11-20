@@ -361,8 +361,9 @@ namespace APP_Life.Controllers
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
                 int mes = DateTime.Now.Month;
-
+               
                 int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+                ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id);
                 var query = from u in contexto.receitas
                             where u.UsuarioID == id
                             select new

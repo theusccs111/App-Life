@@ -24,19 +24,19 @@
 </style>
 
 <div class="col-md-12 b">
-    <div class="col-md-3"style="background:#1F861F;">
+    <div class="col-md-3">
         <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#1F861F;
         padding: 100px; border-radius: 0px; margin-right: 0px;"><span class="fa fa-plus"></span></a>
     </div>
-    <div class="col-md-3" style="background:#47A547;">
+    <div class="col-md-3">
         <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#47A547;
         padding: 100px; border-radius: 0px; text-decoration:none;"><span class="fa fa-plus"></span></a>
     </div>
-    <div class="col-md-3" style="background:#70C270;">
+    <div class="col-md-3">
         <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#70C270;
         padding: 100px; border-radius: 0px; text-decoration:none;"><span class="fa fa-plus"></span></a>
     </div>
-    <div class="col-md-3" style="background:#A1DFA1;">
+    <div class="col-md-3">
         <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#A1DFA1;
         padding: 100px; border-radius: 0px;"><span class="fa fa-sign-out fa-fw"></span></a>
     </div>
@@ -207,6 +207,7 @@
               font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
               font-weight: 700;
               color:#337ab7;">Status de Objetivo</p>
+        @Html.Partial("_ObjetivoDash")
         </div>
 
         <div class="col-md-4 b">

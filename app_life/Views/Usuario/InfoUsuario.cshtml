@@ -30,6 +30,10 @@
     sombra {
         background: #06921c;
     }
+
+    .caps {
+        text-transform: uppercase;
+    }
 </style>
 
 @using (Html.BeginForm("InfoUsuario", "Usuario", new { @class = "" }, FormMethod.Post))
@@ -78,14 +82,14 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.sobrenome, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.sobrenome, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -102,7 +106,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.rua, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.rua, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.rua, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.rua, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -116,21 +120,21 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.bairro, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.cidade, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control caps" } })
                         @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -148,7 +152,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <label class="form-control">Masculino</label>
+                            <label class="form-control">MASCULINO</label>
                             @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -158,7 +162,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.sexo, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <label class="form-control">Feminino</label>
+                            <label class="form-control">FEMININO</label>
                             @Html.ValidationMessageFor(model => model.sexo, "", new { @class = "text-danger" })
                         </div>
                     </div>
