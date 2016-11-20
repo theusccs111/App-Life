@@ -382,17 +382,16 @@
 
     $('#enviarReceita').click(function () {
         var mes = $('#mes').val();
-        var url = "/Lancamento/Receitas?mes=" + mes +"&?pagina=1";
-
+        var url = "/Lancamento/Receitas?mes=" + mes;
         // alert(mes)
-        $.post(url, { mes: mes }, function (data) {
+        $.post(url, { mes: mes,pagina : 1 }, function (data) {
             $("#Receita").html(data);
         });
     })
 
     $('#enviarDespesa').click(function () {
         var mes = $('#mesDespesa').val();
-        var url = "/Lancamento/Despesas?mes=" + mes + "&?pagina=1";
+        var url = "/Lancamento/Despesas?mes=" + mes + "&pagina=1";
 
         //    alert(mes)
         $.post(url, { mes: mes }, function (data) {

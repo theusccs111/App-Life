@@ -66,6 +66,7 @@ namespace APP_Life.Controllers
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
+              
                 string mesA = "";
                 if (mes < 10)
                 {
@@ -76,12 +77,15 @@ namespace APP_Life.Controllers
                     mesA = Convert.ToString(mes);
                 }
 
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
                 ViewBag.listaReceita = contexto.receitas.ToList().Where(x =>
 
            x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
            x.Data.Split('/')[1] == (mesA)
 
-           ).ToPagedList(10,10);
+           ).ToPagedList(paginaNumero, paginaTamanho);
 
 
 
@@ -197,7 +201,7 @@ namespace APP_Life.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Despesas(int? mes)
+        public ActionResult Despesas(int? mes, int? pagina)
         {
             if (Session["usuarioLogadoID"] != null || Session["usuarioFacebookID"] != null)
             {
@@ -211,12 +215,18 @@ namespace APP_Life.Controllers
                     mesA = Convert.ToString(mes);
                 }
 
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
+              
+
                 ViewBag.listaDespesa = contexto.despesas.ToList().Where(x =>
 
            x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) &&
            x.Data.Split('/')[1] == (mesA)
 
-           );
+           ).ToPagedList(paginaNumero, paginaTamanho);
+                ;
 
 
                 ViewBag.CategoriaID = new SelectList

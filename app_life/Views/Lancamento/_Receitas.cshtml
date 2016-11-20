@@ -1,4 +1,10 @@
-﻿@model APP_Life.Models.receita
+﻿
+
+
+
+
+
+
 @model PagedList.IPagedList<APP_Life.Models.receita>
 
 
@@ -114,15 +120,41 @@
 </table>
 
 <div>
-    Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-    of @Model.PageCount
+    Página @(ViewBag.listaReceita.PageCount < ViewBag.listaReceita.PageNumber ? 0 : ViewBag.listaReceita.PageNumber)
+    of @ViewBag.listaReceita.PageCount
 
-    @if (Model.HasPreviousPage)
+    @if (ViewBag.listaReceita.HasPreviousPage)
     {
-        @Html.ActionLink("<<", "Index", new { pagina = 1,mes = 11, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+
+
+        <script>
+            $('#primPaginaReceita').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Receitas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina:  1 }, function (data) {
+            $("#Receita").html(data);
+            });
+            })
+
+            $('#antPaginaReceita').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber - 1 }, function (data) {
+                    $("#Receita").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaReceita"><<</a>
+
         @Html.Raw(" ");
-        @Html.ActionLink("< Anterior", "Index", new { pagina = Model.PageNumber - 1, mes = 11, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-    }
+
+        <a id="antPaginaReceita">< Anterior</a>
+         }
     else
     {
         @:<<
@@ -130,12 +162,34 @@
         @:< Anterior
     }
 
-    @if (Model.HasNextPage)
+    @if (ViewBag.listaReceita.HasNextPage)
     {
-        @Html.ActionLink("Próxima >", "Index", new { pagina = Model.PageNumber + 1, mes = 11, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+        <script>
+            $('#proPaginaReceita').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Receitas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber + 1 }, function (data) {
+            $("#Receita").html(data);
+            });
+            })
+
+            $('#ultPaginaReceita').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageCount }, function (data) {
+                    $("#Receita").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaReceita">Proxima ></a>
         @Html.Raw(" ");
-        @Html.ActionLink(">>", "Index", new { pagina = Model.PageCount,  mes = 11, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-    }
+        <a id="ultPaginaReceita">>></a>
+       }
     else
     {
         @:Próxima >
@@ -179,5 +233,5 @@
     });
 </script>
 
-
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
