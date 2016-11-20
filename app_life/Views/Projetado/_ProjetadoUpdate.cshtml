@@ -81,8 +81,8 @@ function mascaraData( campo, e )
                     <div class="form-group">
                         @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.categoria.nome, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.categoria.nome)
+                            @Html.DropDownList("CategoriaID", null, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.categoria.nome)
                         </div>
                     </div>
 
