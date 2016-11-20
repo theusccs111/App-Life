@@ -1,11 +1,4 @@
-﻿
-
-
-
-
-
-
-@model PagedList.IPagedList<APP_Life.Models.receita>
+﻿@model PagedList.IPagedList<APP_Life.Models.receita>
 
 
 @{
@@ -26,6 +19,17 @@
         margin-left: 70%;
         margin-bottom: 50px;
     }*/
+    .alert.success {
+        background-color: #4CAF50;
+    }
+
+    .alert.warning {
+            background-color: #ff9800;
+    }
+
+    .alert.info {
+        background-color: #2196F3;
+    }
 
     .alert {
         padding: 20px;
@@ -55,6 +59,8 @@
         opacity: 1;
         transition: opacity 0.6s; /* 600ms to fade out */
     }
+
+   
 </style>
 
 <div class="col-md-12"></div>
@@ -123,7 +129,7 @@
 
 <div>
     Página @(ViewBag.listaReceita.PageCount < ViewBag.listaReceita.PageNumber ? 0 : ViewBag.listaReceita.PageNumber)
-    of @ViewBag.listaReceita.PageCount
+    de @ViewBag.listaReceita.PageCount
 
     @if (ViewBag.listaReceita.HasPreviousPage)
     {

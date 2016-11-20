@@ -84,7 +84,7 @@
 
 @if (Session["messObjetivo"].ToString() == "Incluido")
 {
-    <div class="alert">
+    <div class="alert" style="margin-top: 5%; background-color: #4CAF50;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         Objetivo Incluído com sucesso!
     </div>
@@ -94,7 +94,7 @@
 
 @if (Session["messObjetivo"].ToString() == "Deletado")
 {
-    <div class="alert">
+    <div class="alert" style="margin-top: 5%;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         Objetivo Deletado com sucesso!
     </div>
@@ -104,7 +104,7 @@
 
 @if (Session["messObjetivo"].ToString() == "Atualizado")
 {
-    <div class="alert">
+    <div class="alert" style="margin-top: 5%; background-color: #2196F3;">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         Objetivo Atualizado com sucesso!
     </div>
