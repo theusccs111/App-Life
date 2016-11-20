@@ -142,11 +142,11 @@ namespace APP_Life.Controllers
         }
 
 
-        public ActionResult CadastrarProjetado()
+        public ActionResult CadastrarProjetado(bool? cod)
         {
             ViewBag.CategoriaID = new SelectList
                 (
-                    contexto.categorias.ToList(),
+                    contexto.categorias.ToList().Where(x => x.tipo == cod),
                     "CategoriaID",
                     "nome"
                 );
@@ -195,7 +195,7 @@ namespace APP_Life.Controllers
 
 
 
-        public ActionResult ProjetadoUpdate(int? id)
+        public ActionResult ProjetadoUpdate(int? id, bool? cod)
         {
             if (id == null)
             {
@@ -206,6 +206,15 @@ namespace APP_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList().Where(x => x.tipo == cod),
+                    "CategoriaID",
+                    "nome"
+                );
+
+
             return PartialView("_ProjetadoUpdate", rece);
         }
 

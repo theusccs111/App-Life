@@ -30,7 +30,7 @@
 <div class="col-md-3"></div>
 <div class="col-md-3">
 
-            <a href="@Url.Action("CadastrarProjetado", "Projetado")" class="modal-link btn btn-success pr" style="margin-left:15px; margin-bottom:10px;">
+            <a href="@Url.Action("CadastrarProjetado", "Projetado", new { cod = true})" class="modal-link btn btn-success pr" style="margin-left:15px; margin-bottom:10px;">
                 <span class="fa fa-plus" aria-hidden="true"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;">  Projeção</span>
             </a>
         </div>
@@ -182,7 +182,7 @@
 <script type="text/javascript">
     $(".eita").click(function () {
         var id = $(this).attr("data-id");
-        $("#modalpr").load("ProjetadoUpdate?id=" + id, function () {
+        $("#modalpr").load("ProjetadoUpdate?id=" + id+"?cod=true", function () {
             $("#modalpr").modal();
         })
     });

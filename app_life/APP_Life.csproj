@@ -159,6 +159,7 @@
     <Content Include="Content\img\fundo_2.jpg" />
     <Content Include="Content\img\fundo_3.jpg" />
     <Content Include="Content\img\header.jpg" />
+    <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\portfolio\1.jpg" />
     <Content Include="Content\img\portfolio\2.jpeg" />
     <Content Include="Content\img\portfolio\3.jpg" />
