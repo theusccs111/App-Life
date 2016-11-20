@@ -36,7 +36,7 @@
             </div>
             <div class="col-md-2">
                 <button id="enviarReceita" class="btn btn-primary btn-block"><span class="fa fa-list"></span> Exibir</button>
-            </div>
+        </div>
         </div>
 
         @if (Session["messReceita"].ToString() == "Incluido")
@@ -101,273 +101,273 @@
             </div>
             <div class="col-md-2">
                 <button id="enviarDespesa" class="btn btn-primary btn-block"><span class="fa fa-list"></span> Exibir</button>
+        </div>
+        </div>
+
+
+
+        @if (Session["messDespesa"].ToString() == "Incluido")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Incluída com sucesso!
             </div>
-        </div>
-   
+            Session["messDespesa"] = "nada";
 
-
-    @if (Session["messDespesa"].ToString() == "Incluido")
-            {
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Despesa Incluída com sucesso!
-        </div>
-        Session["messDespesa"] = "nada";
-
-    }
-
-    @if (Session["messDespesa"].ToString() == "Deletado")
-            {
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Despesa Deletada com sucesso!
-        </div>
-        Session["messDespesa"] = "nada";
-
-    }
-
-    @if (Session["messDespesa"].ToString() == "Atualizado")
-            {
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Despesa Atualizada com sucesso!
-        </div>
-        Session["messDespesa"] = "nada";
-
-    }
-
-
-    <div id="Despesa">
-
-    </div>
-</div>
-<div id="menu2" class="tab-pane fade">
-    <div id="cabeçalho" class="cab" style="color:#337ab7;">
-        <h2>Gráficos</h2>
-        <p style="background:#e8e8e8; padding: 10px;">Resumo de receitas e despesas</p>
-    </div>
-
-
-    <table id="tabelaReceita" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-        <thead style="">
-            <tr>
-                <th style="display:none;">Código</th>
-                <th>Categoria</th>
-                <th>Descrição</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in (ViewBag.listaReceita2))
-            {
-                <tr>
-                    <td id="@item.ReceitaID" style="display:none;">
-                        @item.ReceitaID
-                    </td>
-                    <td>
-                        @item.categoria.nome
-                    </td>
-                    <td>
-                        @item.Descricao
-                    </td>
-                    <td>
-                        @item.Data
-                    </td>
-                    <td>
-                        @item.Valor
-                    </td>
-
-                    <td>
-                        <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        -->
-                        <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
-
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </a>
-                        <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <table id="tabelaDespesa" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-        <thead>
-            <tr>
-                <th style="display:none;">Código</th>
-                <th>Categoria</th>
-                <th>Descrição</th>
-                <th>Data</th>
-                <th>Valor</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in (ViewBag.listaDespesa2))
-            {
-                <tr>
-                    <td id="@item.DespesaID" style="display:none;">
-                        @item.DespesaID
-                    </td>
-                    <td>
-                        @item.categoria.nome
-                    </td>
-                    <td>
-                        @item.Descricao
-                    </td>
-                    <td>
-                        @item.Data
-                    </td>
-                    <td>
-                        @item.Valor
-                    </td>
-                    <td>
-                        <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
-
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </a>
-                        <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
-                </tr>
-            }
-        </tbody>
-    </table>
-    <script>
-
-        sessionStorage.clear();
-        var linha = document.getElementById('tabelaReceita').rows;
-        var dados = null;
-        for (var i = 1 ; i < linha.length ; i++) {
-            dados = linha[i].cells;
-            for (var j = 0 ; j < dados.length ; j++) {
-                sessionStorage.setItem('categoria' + [i], dados[j + 1].innerText);
-                sessionStorage.setItem('descricao' + [i], dados[j + 2].innerText);
-                sessionStorage.setItem('data' + [i], dados[j + 3].innerText);
-                sessionStorage.setItem('valor' + [i], dados[j + 4].innerText);
-                break;
-            }
         }
 
-        var linha = document.getElementById('tabelaDespesa').rows;
-        var dados = null;
-        for (var i = 1 ; i < linha.length ; i++) {
-            dados = linha[i].cells;
-            for (var j = 0 ; j < dados.length ; j++) {
-                sessionStorage.setItem('categoriad' + [i], dados[j + 1].innerText);
-                sessionStorage.setItem('descricaod' + [i], dados[j + 2].innerText);
-                sessionStorage.setItem('datad' + [i], dados[j + 3].innerText);
-                sessionStorage.setItem('valord' + [i], dados[j + 4].innerText);
-                break;
-            }
-        }
-
-        var array = [];
-        var array2 = [];
-        var array3 = [];
-        var array4 = [];
-
-        var array5 = [];
-        var array6 = [];
-        var array7 = [];
-        var array8 = [];
-
-        for (var i = 1; i < sessionStorage.length; i++) {
-            if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
-                array[i] = sessionStorage.getItem('valor' + [i]);
-                array2[i] = sessionStorage.getItem('descricao' + [i]);
-                array3[i] = sessionStorage.getItem('categoria' + [i]);
-                array4[i] = sessionStorage.getItem('data' + [i]);
-            }
-        }
-
-        for (var i = 1; i < sessionStorage.length; i++) {
-            if ((sessionStorage.getItem('valord' + [i]) != null) && (sessionStorage.getItem('descricaod' + [i]) != null)) {
-                array5[i] = sessionStorage.getItem('valord' + [i]);
-                array6[i] = sessionStorage.getItem('descricaod' + [i]);
-                array7[i] = sessionStorage.getItem('categoriad' + [i]);
-                array8[i] = sessionStorage.getItem('datad' + [i]);
-            }
-        }
-
-        google.charts.setOnLoadCallback(drawChart);
-
-        google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
-        function drawChart() {
-
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'data');
-            //    data.addColumn('string', 'Receitas');
-            data.addColumn('number', 'Valor');
-
-            var data2 = new google.visualization.DataTable();
-            data2.addColumn('string', 'data');
-            // data.addColumn('string', 'Receitas');
-            data2.addColumn('number', 'Valor');
-
-            for (var i = 1; i < array.length; i++) {
-
-                data.addRows([
-                [String(array4[i]), parseFloat(array[i])]
-
-                ]);
-            }
-
-            for (var i = 1; i < array5.length; i++) {
-
-                data2.addRows([
-                [String(array8[i]), parseFloat(array5[i])]
-
-                ]);
-            }
-
-            var options = {
-                title: 'Receita',
-                vAxis: { format: 'currency' },
-                hAxis: { textPosition: 'none' },
-                seriesType: 'bars',
-                'width': 800,
-                'height': 400,
-                colors: ['green']
-            };
-
-            var options2 = {
-                title: 'Despesa',
-                vAxis: { format: 'currency' },
-                hAxis: { textPosition: 'none' },
-                seriesType: 'bars',
-                'width': 800,
-                'height': 400,
-                colors: ['red']
-            };
-
-
-            var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-
-            var chart2 = new google.visualization.ComboChart(document.getElementById('chart_div2'));
-            chart2.draw(data2, options2);
-        }
-
-    </script>
-
-
-    <div class="container">
-        <div class="col-md-12">
-            <div id="chart_div" style="width: 100%; height:100%;">
+        @if (Session["messDespesa"].ToString() == "Deletado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Deletada com sucesso!
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="col-md-12">
-            <div id="chart_div2" style="width: 100%; height:100%;">
+            Session["messDespesa"] = "nada";
+
+        }
+
+        @if (Session["messDespesa"].ToString() == "Atualizado")
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Despesa Atualizada com sucesso!
             </div>
+            Session["messDespesa"] = "nada";
+
+        }
+
+
+        <div id="Despesa">
+
         </div>
-
     </div>
+    <div id="menu2" class="tab-pane fade">
+        <div id="cabeçalho" class="cab" style="color:#337ab7;">
+            <h2>Gráficos</h2>
+            <p style="background:#e8e8e8; padding: 10px;">Resumo de receitas e despesas</p>
+    </div>
+
+
+                <table id="tabelaReceita" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                    <thead style="">
+                        <tr>
+                            <th style="display:none;">Código</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (ViewBag.listaReceita2))
+                        {
+                            <tr>
+                                <td id="@item.ReceitaID" style="display:none;">
+                                    @item.ReceitaID
+                                </td>
+                                <td>
+                                    @item.categoria.nome
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.Data
+                                </td>
+                                <td>
+                                    @item.Valor
+                                </td>
+
+                                <td>
+                                    <!--@@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                    -->
+                                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.ReceitaID })" class="btn btn-danger">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                    <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <table id="tabelaDespesa" style="display:none;" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="display:none;">Código</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                            <th>Data</th>
+                            <th>Valor</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in (ViewBag.listaDespesa2))
+            {
+                            <tr>
+                                <td id="@item.DespesaID" style="display:none;">
+                                    @item.DespesaID
+                                </td>
+                                <td>
+                                    @item.categoria.nome
+                                </td>
+                                <td>
+                                    @item.Descricao
+                                </td>
+                                <td>
+                                    @item.Data
+                                </td>
+                                <td>
+                                    @item.Valor
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    </a>
+                                    <button class="btn btn-primary edit eita" data-id="@item.DespesaID"><i class="glyphicon glyphicon-edit"></i></button>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <script>
+
+                    sessionStorage.clear();
+                    var linha = document.getElementById('tabelaReceita').rows;
+                    var dados = null;
+                    for (var i = 1 ; i < linha.length ; i++) {
+                        dados = linha[i].cells;
+                        for (var j = 0 ; j < dados.length ; j++) {
+                            sessionStorage.setItem('categoria' + [i], dados[j + 1].innerText);
+                            sessionStorage.setItem('descricao' + [i], dados[j + 2].innerText);
+                            sessionStorage.setItem('data' + [i], dados[j + 3].innerText);
+                            sessionStorage.setItem('valor' + [i], dados[j + 4].innerText);
+                            break;
+                        }
+                    }
+
+                    var linha = document.getElementById('tabelaDespesa').rows;
+                    var dados = null;
+                    for (var i = 1 ; i < linha.length ; i++) {
+                        dados = linha[i].cells;
+                        for (var j = 0 ; j < dados.length ; j++) {
+                            sessionStorage.setItem('categoriad' + [i], dados[j + 1].innerText);
+                            sessionStorage.setItem('descricaod' + [i], dados[j + 2].innerText);
+                            sessionStorage.setItem('datad' + [i], dados[j + 3].innerText);
+                            sessionStorage.setItem('valord' + [i], dados[j + 4].innerText);
+                            break;
+                        }
+                    }
+
+                    var array = [];
+                    var array2 = [];
+                    var array3 = [];
+                    var array4 = [];
+
+                    var array5 = [];
+                    var array6 = [];
+                    var array7 = [];
+                    var array8 = [];
+
+                    for (var i = 1; i < sessionStorage.length; i++) {
+                        if ((sessionStorage.getItem('valor' + [i]) != null) && (sessionStorage.getItem('descricao' + [i]) != null)) {
+                            array[i] = sessionStorage.getItem('valor' + [i]);
+                            array2[i] = sessionStorage.getItem('descricao' + [i]);
+                            array3[i] = sessionStorage.getItem('categoria' + [i]);
+                            array4[i] = sessionStorage.getItem('data' + [i]);
+                        }
+                    }
+
+                    for (var i = 1; i < sessionStorage.length; i++) {
+                        if ((sessionStorage.getItem('valord' + [i]) != null) && (sessionStorage.getItem('descricaod' + [i]) != null)) {
+                            array5[i] = sessionStorage.getItem('valord' + [i]);
+                            array6[i] = sessionStorage.getItem('descricaod' + [i]);
+                            array7[i] = sessionStorage.getItem('categoriad' + [i]);
+                            array8[i] = sessionStorage.getItem('datad' + [i]);
+                        }
+                    }
+
+                    google.charts.setOnLoadCallback(drawChart);
+
+                    google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
+                    function drawChart() {
+
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'data');
+                        //    data.addColumn('string', 'Receitas');
+                        data.addColumn('number', 'Valor');
+
+                        var data2 = new google.visualization.DataTable();
+                        data2.addColumn('string', 'data');
+                        // data.addColumn('string', 'Receitas');
+                        data2.addColumn('number', 'Valor');
+
+                        for (var i = 1; i < array.length; i++) {
+
+                            data.addRows([
+                            [String(array4[i]), parseFloat(array[i])]
+
+                            ]);
+                        }
+
+                        for (var i = 1; i < array5.length; i++) {
+
+                            data2.addRows([
+                            [String(array8[i]), parseFloat(array5[i])]
+
+                            ]);
+                        }
+
+                        var options = {
+                            title: 'Receita',
+                            vAxis: { format: 'currency' },
+                            hAxis: { textPosition: 'none' },
+                            seriesType: 'bars',
+                            'width': 800,
+                            'height': 400,
+                            colors: ['green']
+                        };
+
+                        var options2 = {
+                            title: 'Despesa',
+                            vAxis: { format: 'currency' },
+                            hAxis: { textPosition: 'none' },
+                            seriesType: 'bars',
+                            'width': 800,
+                            'height': 400,
+                            colors: ['red']
+                        };
+
+
+                        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+
+                        var chart2 = new google.visualization.ComboChart(document.getElementById('chart_div2'));
+                        chart2.draw(data2, options2);
+                    }
+
+                </script>
+
+
+                <div class="container">
+                    <div class="col-md-12">
+                        <div id="chart_div" style="width: 100%; height:100%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="col-md-12">
+                        <div id="chart_div2" style="width: 100%; height:100%;">
+                        </div>
+                    </div>
+
+                </div>
 </div>
 
 
-</div>
+        </div>
 <script>
     /*
     $('#enviar').click(function (){
