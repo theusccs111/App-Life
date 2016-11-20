@@ -185,11 +185,9 @@ namespace APP_Life.Controllers
         public ActionResult ConsultarNutrientes(int? id)
         {
 
-            ViewBag.listaAlimentosDetalhes = contexto.lista_alimentos.ToList().Join(
-                contexto.alimentos,
-                 s => s.IDAlimento,
-                 c => c.ID,
-                 (s, c) => new { s, c }).Where(x => x.s.IDDieta == id);
+            ViewBag.listaAlimentosDetalhes = contexto.lista_alimentos.ToList().
+                Where(x => x.IDDieta == id);
+               
             
             return PartialView("_ConsultarNutrientes");
         }

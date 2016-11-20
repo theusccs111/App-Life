@@ -61,7 +61,7 @@ namespace APP_Life.Models.Tests
 
             //Execução
             teste.CadastrarObjetivo(teste, 1);
-            teste.RemoverObjetivo(teste.O);
+            teste.RemoverObjetivo(1);
 
             var query = from u in contexto.objetivos select u;
             foreach (var item in query)

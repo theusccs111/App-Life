@@ -54,6 +54,151 @@
         var id = $(this).attr("data-id");
         $("#modalDi").load("ConsultarNutrientes?id=" + id, function () {
 
+            var linha = document.getElementById('tabelaAlimentos').rows;
+            var dados = null;
+            document.getElementById('TotalCarboidrato').innerText = 0;
+
+            document.getElementById('TotalProteina').innerText = 0;
+
+            document.getElementById('TotalFibra').innerText = 0;
+            for (var i = 1 ; i < linha.length ; i++) {
+                dados = linha[i].cells;
+                for (var j = 0 ; j < dados.length ; j++) {
+                    document.getElementById('TotalCarboidrato').innerText = parseFloat(
+                    parseFloat(document.getElementById('TotalCarboidrato').innerText) +
+                    parseFloat(dados[j].innerText)).toFixed(8);
+
+
+                    document.getElementById('TotalProteina').innerText = parseFloat(
+                  parseFloat(document.getElementById('TotalProteina').innerText) +
+                  parseFloat(dados[j+1].innerText)).toFixed(8);
+
+
+                    document.getElementById('TotalFibra').innerText = parseFloat(
+                  parseFloat(document.getElementById('TotalFibra').innerText) +
+                  parseFloat(dados[j+2].innerText)).toFixed(8);
+
+                    document.getElementById('TotalSodio').innerText = parseFloat(
+                parseFloat(document.getElementById('TotalSodio').innerText) +
+                parseFloat(dados[j + 3].innerText)).toFixed(8);
+
+                    document.getElementById('TotalCalcio').innerText = parseFloat(
+                parseFloat(document.getElementById('TotalCalcio').innerText) +
+                parseFloat(dados[j + 4].innerText)).toFixed(8);
+
+                    document.getElementById('TotalFerro').innerText = parseFloat(
+                parseFloat(document.getElementById('TotalFerro').innerText) +
+                parseFloat(dados[j + 5].innerText)).toFixed(8);
+
+                    document.getElementById('TotalPotassio').innerText = parseFloat(
+                parseFloat(document.getElementById('TotalPotassio').innerText) +
+                parseFloat(dados[j + 6].innerText)).toFixed(8);
+
+                    document.getElementById('TotalVitaminaC').innerText = parseFloat(
+                parseFloat(document.getElementById('TotalVitaminaC').innerText) +
+                parseFloat(dados[j + 7].innerText)).toFixed(8);
+
+                    
+
+                    break;
+                }
+            }
+          //  document.getElementById('TotalCarboidrato').innerText = parseFloat(document.getElementById('TotalCarboidrato').innerText / 2);
+
+
+
+
+
+
+            sessionStorage.clear();
+            //18 linhas contando com nome alimento
+            var linha2 = document.getElementById('tabelaAlimentos2').rows;
+            var dados2 = null;
+            for (var i = 1 ; i < linha2.length ; i++) {
+                dados2 = linha2[i].cells;
+                for (var j = 0 ; j < dados2.length ; j++) {
+
+                    sessionStorage.setItem('coluna0' + [i], dados2[j].innerText);
+                    
+                    sessionStorage.setItem('coluna1' + [i], dados2[j + 1].innerText);
+                   // alert(dados2[j + 1].innerText)
+                    sessionStorage.setItem('coluna2' + [i], dados2[j + 2].innerText);
+                    sessionStorage.setItem('coluna3' + [i], dados2[j + 3].innerText);
+                    sessionStorage.setItem('coluna4' + [i], dados2[j + 4].innerText);
+                    sessionStorage.setItem('coluna5' + [i], dados2[j + 5].innerText);
+                    sessionStorage.setItem('coluna6' + [i], dados2[j + 6].innerText);
+                    sessionStorage.setItem('coluna7' + [i], dados2[j + 7].innerText);
+                    /* sessionStorage.setItem('coluna8' + [i], dados2[j + 8].innerText);
+                    */
+                    break;
+                }
+            }
+
+
+            var array = [];
+            var array2 = [];
+            var array3 = [];
+            var array4 = [];
+
+            var array5 = [];
+            var array6 = [];
+            var array7 = [];
+            var array8 = [];
+
+            var array9 = [];
+
+            for (var i = 1; i < sessionStorage.length; i++) {
+                if ((sessionStorage.getItem('coluna0' + [i]) != null)) {
+                    array[i] = sessionStorage.getItem('coluna0' + [i]);
+                   array2[i] = sessionStorage.getItem('coluna1' + [i]);
+                    array3[i] = sessionStorage.getItem('coluna2' + [i]);
+                      array4[i] = sessionStorage.getItem('coluna3' + [i]);
+                    array5[i] = sessionStorage.getItem('coluna4' + [i]);
+                    array6[i] = sessionStorage.getItem('coluna5' + [i]);
+                    array7[i] = sessionStorage.getItem('coluna6' + [i]);
+                    array8[i] = sessionStorage.getItem('coluna7' + [i]);
+                    /*array9[i] = sessionStorage.getItem('coluna8' + [i]);
+                    */
+
+                }
+            }
+          
+
+            google.charts.setOnLoadCallback(drawChart);
+
+            google.charts.load('43', { 'packages': ['corechart'], 'language': 'pt-br' });
+            function drawChart() {
+
+                var data = google.visualization.arrayToDataTable([
+           ['Nutriente', '%'],
+           ['Carboidrato', parseFloat(array[1])],
+          ['Proteina', parseFloat(array2[1])],
+           ['Fibra Alimentar', parseFloat(array3[1])],
+           ['Sodio', parseFloat(array4[1])],
+           ['Calcio', parseFloat(array5[1])],
+           ['Ferro', parseFloat(array6[1])],
+           ['Potassio', parseFloat(array7[1])],
+           ['VitaminaC', parseFloat(array8[1])],
+                ]);
+
+
+                var options = {
+                    title: 'Nutrientes',
+                    is3D: true,
+                    height: '500'
+                  
+                };
+
+
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+
+
+            }
+
+
+
+
             $("#modalDi").modal();
         })
     });

@@ -23,26 +23,16 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.KJ)
                 .HasMaxLength(11);
 
-            this.Property(t => t.Proteina)
-                .HasMaxLength(9);
-
+            
             this.Property(t => t.Lipideos)
                 .HasMaxLength(9);
 
             this.Property(t => t.Colesterol)
                 .HasMaxLength(10);
-
             
-
-            this.Property(t => t.FibraAlimentar)
-                .HasMaxLength(9);
-
             this.Property(t => t.Cinzas)
                 .HasMaxLength(9);
-
-            this.Property(t => t.Calcio)
-                .HasMaxLength(10);
-
+            
             this.Property(t => t.Magnesio)
                 .HasMaxLength(10);
 
@@ -55,19 +45,8 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Fosforo)
                 .HasMaxLength(11);
 
-            this.Property(t => t.Ferro)
-                .HasMaxLength(9);
-
-            this.Property(t => t.Sodio)
-                .HasMaxLength(12);
-
-            this.Property(t => t.Potassio)
-                .HasMaxLength(11);
-
+            
             this.Property(t => t.Cobre)
-                .HasMaxLength(9);
-
-            this.Property(t => t.Zinco)
                 .HasMaxLength(9);
 
             this.Property(t => t.Retinol)
@@ -91,9 +70,7 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Niacina)
                 .HasMaxLength(9);
 
-            this.Property(t => t.VitaminaC)
-                .HasMaxLength(10);
-
+            
             // Table & Column Mappings
             this.ToTable("alimentos", "app_life");
             this.Property(t => t.ID).HasColumnName("ID");
