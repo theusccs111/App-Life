@@ -112,14 +112,18 @@
                 </td>
 
                 <td>
-                   
-                         @Ajax.ActionLink(" ","ReceitaDelete", "Lancamento", new { id = @item.ReceitaID },new AjaxOptions
-    {
-        Confirm = "Você tem certeza que Deseja Excluir ?",
-        HttpMethod = "POST"
-    },new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                   @*Teste de Deletar
+                     @Ajax.ActionLink(" ","ReceitaDelete", "Lancamento", new { id = @item.ReceitaID },new AjaxOptions
+                {
+                    HttpMethod = "GET",
+    Confirm = "Você tem certeza que Deseja Excluir ?"
 
-                  
+                },new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                *@
+                    <a href="@Url.Action("ReceitaDelete", "Lancamento", new { id = @item.DespesaID })" class="btn btn-danger">
+
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
                     <button class="btn btn-primary edit eita" data-id="@item.ReceitaID"><i class="glyphicon glyphicon-edit"></i></button>
 
             </tr>

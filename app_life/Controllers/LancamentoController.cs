@@ -145,7 +145,7 @@ namespace APP_Life.Controllers
 
         }
 
-        [HttpPost]
+        
         public ActionResult ReceitaDelete(int? id)
         {
             if (id == null)
