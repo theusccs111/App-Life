@@ -118,7 +118,7 @@
 
 <div>
     Página @(ViewBag.listaDespesa.PageCount < ViewBag.listaDespesa.PageNumber ? 0 : ViewBag.listaDespesa.PageNumber)
-    of @ViewBag.listaDespesa.PageCount
+    de @ViewBag.listaDespesa.PageCount
 
     @if (ViewBag.listaDespesa.HasPreviousPage)
     {
@@ -194,12 +194,6 @@
         @:>>
     }
 </div>
-
-
-
-
-
-
 
 <div class="modal" id="modald">
 

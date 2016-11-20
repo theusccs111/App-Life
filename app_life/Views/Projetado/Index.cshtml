@@ -42,12 +42,41 @@
                     <button id="enviarReceitaP" class="btn btn-primary btn-block"><span class="fa fa-list"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exibir</span></button>
                 </div>
             </div>
+
+        @if (Session["messProjetadoR"].ToString() == "Incluido")
+        {
+            <div class="alert" style="margin-top: 5%; background-color: #4CAF50;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Projeção Incluída com sucesso!
+            </div>
+            Session["messProjetadoR"] = "nada";
+
+        }
+
+        @if (Session["messProjetadoR"].ToString() == "Deletado")
+        {
+            <div class="alert" style="margin-top: 5%;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Projeção Deletada com sucesso!
+            </div>
+            Session["messProjetadoR"] = "nada";
+
+        }
+
+        @if (Session["messProjetadoR"].ToString() == "Atualizado")
+        {
+            <div class="alert" style="margin-top: 5%; background-color: #2196F3;">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Projeção Atualizada com sucesso!
+            </div>
+            Session["messProjetadoR"] = "nada";
+
+        }
+
+
             <div id="ReceitaP">
 
-
             </div>
-
-
         </div>
     <div id="menu1" class="tab-pane fade">
 
@@ -77,8 +106,37 @@
                     <button id="enviarDespesaP" class="btn btn-primary btn-block"><span class="fa fa-list"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exibir</span></button>
                 </div>
             </div>
-            <div id="DespesaP">
 
+      @if (Session["messProjetadoD"].ToString() == "Incluido")
+      {
+        <div class="alert" style="margin-top: 5%; background-color: #4CAF50;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Projeção Incluída com sucesso!
+        </div>
+          Session["messProjetadoD"] = "nada";
+
+      }
+
+    @if (Session["messProjetadoD"].ToString() == "Deletado")
+    {
+        <div class="alert" style="margin-top: 5%;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Projeção Deletada com sucesso!
+        </div>
+        Session["messProjetadoD"] = "nada";
+
+    }
+
+    @if (Session["messProjetadoD"].ToString() == "Atualizado")
+    {
+        <div class="alert" style="margin-top: 5%; background-color: #2196F3;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Projeção Atualizada com sucesso!
+        </div>
+        Session["messProjetadoD"] = "nada";
+
+    }
+            <div id="DespesaP">
 
             </div>
         </div>

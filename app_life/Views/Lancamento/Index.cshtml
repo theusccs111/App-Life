@@ -3,6 +3,48 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+      .alert.success {
+        background-color: #4CAF50;
+    }
+
+    .alert.warning {
+            background-color: #ff9800;
+    }
+
+    .alert.info {
+        background-color: #2196F3;
+    }
+
+    .alert {
+        padding: 20px;
+        background-color: #f44336; /* Red */
+        color: white;
+        margin-bottom: 15px;
+    }
+
+    /* The close button */
+    .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        /* When moving the mouse over the close button */
+        .closebtn:hover {
+            color: black;
+        }
+
+    .alert {
+        opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+    }
+</style>
 
 <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#home">Receitas</a></li>
@@ -39,40 +81,37 @@
         </div>
         </div>
 
-        @if (Session["messReceita"].ToString() == "Incluido")
-        {
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Receita Incluída com sucesso!
-            </div>
-            Session["messReceita"] = "nada";
 
-        }
+            @if (Session["messReceita"].ToString() == "Incluido")
+            {
+                <div class="alert" style="margin-top: 5%; background-color: #4CAF50;">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Receita Incluída com sucesso!
+                </div>
+                Session["messReceita"] = "nada";
+            }
 
-        @if (Session["messReceita"].ToString() == "Deletado")
-        {
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Receita Deletada com sucesso!
-            </div>
-            Session["messReceita"] = "nada";
+            @if (Session["messReceita"].ToString() == "Deletado")
+            {
+                <div class="alert" style="margin-top: 5%;">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Receita Deletada com sucesso!
+                </div>
+                Session["messReceita"] = "nada";
+            }
 
-        }
+            @if (Session["messReceita"].ToString() == "Atualizado")
+            {
+                <div class="alert" style="margin-top: 5%; background-color: #2196F3;">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    Receita Atualizada com sucesso!
+                </div>
+                Session["messReceita"] = "nada";
+            }
 
-        @if (Session["messReceita"].ToString() == "Atualizado")
-        {
-            <div class="alert">
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                Receita Atualizada com sucesso!
-            </div>
-            Session["messReceita"] = "nada";
-
-        }
         <div id="Receita">
 
-
         </div>
-
     </div>
 
     <div id="menu1" class="tab-pane fade">
@@ -104,11 +143,9 @@
         </div>
         </div>
 
-
-
         @if (Session["messDespesa"].ToString() == "Incluido")
         {
-            <div class="alert">
+            <div class="alert" style="margin-top: 5%; background-color: #4CAF50;">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 Despesa Incluída com sucesso!
             </div>
@@ -118,7 +155,7 @@
 
         @if (Session["messDespesa"].ToString() == "Deletado")
         {
-            <div class="alert">
+            <div class="alert" style="margin-top: 5%;">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 Despesa Deletada com sucesso!
             </div>
@@ -128,7 +165,7 @@
 
         @if (Session["messDespesa"].ToString() == "Atualizado")
         {
-            <div class="alert">
+            <div class="alert" style="margin-top: 5%; background-color: #2196F3;">
                 <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 Despesa Atualizada com sucesso!
             </div>
