@@ -114,6 +114,92 @@
     </tbody>
 </table>
 
+
+<div>
+    Página @(ViewBag.listaDespesa.PageCount < ViewBag.listaDespesa.PageNumber ? 0 : ViewBag.listaDespesa.PageNumber)
+    of @ViewBag.listaDespesa.PageCount
+
+    @if (ViewBag.listaDespesa.HasPreviousPage)
+    {
+
+
+        <script>
+            $('#primPaginaDespesa').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Despesas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina:  1 }, function (data) {
+                $("#Despesa").html(data);
+            });
+            })
+
+            $('#antPaginaDespesa').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Despesas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageNumber - 1 }, function (data) {
+                    $("#Despesa").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaDespesa"><<</a>
+
+        @Html.Raw(" ");
+
+        <a id="antPaginaDespesa">< Anterior</a>
+    }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Anterior
+    }
+
+    @if (ViewBag.listaDespesa.HasNextPage)
+    {
+        <script>
+            $('#proPaginaDespesa').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Despesas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageNumber + 1 }, function (data) {
+                $("#Despesa").html(data);
+            });
+            })
+
+            $('#ultPaginaDespesa').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Despesas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageCount }, function (data) {
+                    $("#Despesa").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaDespesa">Proxima ></a>
+        @Html.Raw(" ");
+        <a id="ultPaginaDespesa">>></a>
+    }
+    else
+    {
+        @:Próxima >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
+
+
+
+
+
+
 <div class="modal" id="modald">
 
 </div>

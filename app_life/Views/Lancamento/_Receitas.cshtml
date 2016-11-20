@@ -1,4 +1,13 @@
-﻿@model APP_Life.Models.receita
+﻿
+
+
+
+
+
+
+@model PagedList.IPagedList<APP_Life.Models.receita>
+
+
 @{
     ViewBag.Title = "Receita";
 }
@@ -110,7 +119,88 @@
     </tbody>
 </table>
 
-<div class="modal fade" id="modalr">
+<div>
+    Página @(ViewBag.listaReceita.PageCount < ViewBag.listaReceita.PageNumber ? 0 : ViewBag.listaReceita.PageNumber)
+    of @ViewBag.listaReceita.PageCount
+
+    @if (ViewBag.listaReceita.HasPreviousPage)
+    {
+
+
+        <script>
+            $('#primPaginaReceita').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Receitas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina:  1 }, function (data) {
+            $("#Receita").html(data);
+            });
+            })
+
+            $('#antPaginaReceita').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber - 1 }, function (data) {
+                    $("#Receita").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="primPaginaReceita"><<</a>
+
+        @Html.Raw(" ");
+
+        <a id="antPaginaReceita">< Anterior</a>
+         }
+    else
+    {
+        @:<<
+        @Html.Raw(" ");
+        @:< Anterior
+    }
+
+    @if (ViewBag.listaReceita.HasNextPage)
+    {
+        <script>
+            $('#proPaginaReceita').click(function () {
+            var mes = $('#mes').val();
+            var url = "/Lancamento/Receitas?mes=" + mes;
+        // alert(mes)
+            $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageNumber + 1 }, function (data) {
+            $("#Receita").html(data);
+            });
+            })
+
+            $('#ultPaginaReceita').click(function () {
+                var mes = $('#mes').val();
+                var url = "/Lancamento/Receitas?mes=" + mes;
+                // alert(mes)
+                $.post(url, { mes: mes, pagina: @ViewBag.listaReceita.PageCount }, function (data) {
+                    $("#Receita").html(data);
+                });
+            })
+
+
+        </script>
+
+        <a id="proPaginaReceita">Proxima ></a>
+        @Html.Raw(" ");
+        <a id="ultPaginaReceita">>></a>
+       }
+    else
+    {
+        @:Próxima >
+        @Html.Raw(" ")
+        @:>>
+    }
+</div>
+
+
+
+        <div class="modal fade" id="modalr">
 
 </div>
 <script type="text/javascript">
@@ -143,5 +233,5 @@
     });
 </script>
 
-
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
