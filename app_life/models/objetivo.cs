@@ -21,6 +21,10 @@ namespace APP_Life.Models
         [DisplayName("Custo")]
         public decimal ValorTotal { get; set; }
 
+        [Required(ErrorMessage = "Digite o Aumento do valor atual do Objetivo")]
+        [DisplayName("Aumento")]
+        public decimal valorADD { get; set; }
+
         [Required(ErrorMessage = "Digite o Saldo Disponivel do Objetivo")]
         [DisplayName("Disponível")]
         public decimal ValorAtual { get; set; }

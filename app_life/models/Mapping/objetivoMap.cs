@@ -21,6 +21,7 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.ValorTotal).HasColumnName("ValorTotal");
             this.Property(t => t.ValorAtual).HasColumnName("ValorAtual");
             this.Property(t => t.UsuarioID).HasColumnName("UsuarioID");
+            this.Property(t => t.valorADD).HasColumnName("valorADD");
 
             // Relationships
             this.HasOptional(t => t.usuario)

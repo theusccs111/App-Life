@@ -43,8 +43,10 @@ namespace APP_Life.Models
             foreach (var item in query)
             {
                 item.Nome = rece.Nome;
-           
-
+                if (rece.Valor != 0)
+                {
+                    item.Valor = rece.Valor;
+                }
             }
             contexto.SaveChanges();
         }
@@ -54,6 +56,13 @@ namespace APP_Life.Models
         [DisplayName("Dieta")]
         public string Nome { get; set; }
         public Nullable<int> UsuarioID { get; set; }
+
+        [DisplayName("Custo da Dieta")]
+        public decimal Valor { get; set; }
+
+        [DisplayName("Duração Mensal")]
+        public int mensalVezes { get; set; }
+
         public virtual ICollection<lista_alimentos> lista_alimentos { get; set; }
         public virtual usuario usuario { get; set; }
 

@@ -23,8 +23,8 @@ namespace APP_Life.Controllers
                 int paginaNumero = (pagina ?? 1);
 
 
-                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID == 
-                Convert.ToInt32(Session["usuarioLogadoID"]))).ToPagedList(paginaNumero,paginaTamanho);
+                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID ==
+                Convert.ToInt32(Session["usuarioLogadoID"]))).ToPagedList(paginaNumero, paginaTamanho);
 
                 if (Session["messDieta"] == null)
                 {
@@ -181,7 +181,7 @@ namespace APP_Life.Controllers
                 int paginaNumero = (pagina ?? 1);
 
 
-                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID == 
+                ViewBag.listaDieta = (contexto.dietas.ToList().Where(x => x.UsuarioID ==
                 Convert.ToInt32(Session["usuarioLogadoID"]))).ToPagedList(paginaNumero, paginaTamanho);
 
 
@@ -198,8 +198,8 @@ namespace APP_Life.Controllers
 
             ViewBag.listaAlimentosDetalhes = contexto.lista_alimentos.ToList().
                 Where(x => x.IDDieta == id);
-               
-            
+
+
             return PartialView("_ConsultarNutrientes");
         }
 
@@ -209,6 +209,70 @@ namespace APP_Life.Controllers
         }
 
 
+
+
+        public ActionResult DietaValor(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            dieta rece = contexto.dietas.Find(id);
+            if (rece == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            return PartialView("_DietaValor", rece);
+        }
+
+        [HttpPost] // this action takes the viewModel from the modal
+        public ActionResult DietaValor(dieta rece)
+        {
+            despesa dp = new despesa();
+
+            rece.UpdateDieta(rece);
+            for (int i = 0; i <= rece.mensalVezes; i++)
+            {
+                dp.CategoriaID = 6;
+                dp.UsuarioID = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+                dp.Valor = rece.Valor;
+                dp.Descricao = "Despesa Alimentar da dieta: " + rece.Nome;
+
+                string mesA = "";
+                if (i < 10)
+                {
+                    mesA = "0" + Convert.ToString(i);
+                }
+                else
+                {
+                    mesA = Convert.ToString(i);
+                }
+
+                if (DateTime.Now.Month + Convert.ToInt32(mesA) > 12)
+                {
+                    dp.Data = Convert.ToString(DateTime.Now.Day) + "/0" + Convert.ToString((DateTime.Now.Month + Convert.ToInt32(mesA)) - 12) + "/" + Convert.ToString(DateTime.Now.Year + 1);
+                }
+                else
+                {
+                    if (DateTime.Now.Month + Convert.ToInt32(mesA) < 10)
+                    {
+                        dp.Data = Convert.ToString(DateTime.Now.Day) + "/0" + Convert.ToString(DateTime.Now.Month + Convert.ToInt32(mesA)) + "/" + Convert.ToString(DateTime.Now.Year);
+                    }
+                    else
+                    {
+                        dp.Data = Convert.ToString(DateTime.Now.Day) + "/" + Convert.ToString(DateTime.Now.Month + Convert.ToInt32(mesA)) + "/" + Convert.ToString(DateTime.Now.Year);
+
+                    }
+                }
+                dp.CadastrarDespesa(dp, Convert.ToInt32(Session["usuarioLogadoID"].ToString()));
+            }
+
+            Session["messDieta"] = "Atualizado";
+
+            return RedirectToAction("Index");
+        }
 
     }
 }

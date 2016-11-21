@@ -20,6 +20,9 @@ namespace APP_Life.Models.Mapping
             this.Property(t => t.Nome).HasColumnName("Nome");
             this.Property(t => t.UsuarioID).HasColumnName("UsuarioID");
 
+            this.Property(t => t.Valor).HasColumnName("Valor");
+            this.Property(t => t.mensalVezes).HasColumnName("mensalVezes");
+
             // Relationships
             this.HasOptional(t => t.usuario)
                 .WithMany(t => t.dietas)

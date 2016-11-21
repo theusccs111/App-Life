@@ -75,7 +75,7 @@ namespace APP_Life.Models
 
         [DisplayName("Email")]
         [Required(ErrorMessage = "Digite seu Email")]
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail em formato inválido.")]
+      //  [DataType(DataType.EmailAddress, ErrorMessage = "E-mail em formato inválido.")]
         public string email { get; set; }
 
         [Required(ErrorMessage = "Digte sua Senha")]

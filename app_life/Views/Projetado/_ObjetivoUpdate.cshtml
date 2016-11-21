@@ -70,10 +70,11 @@ function mascaraData( campo, e )
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.ValorAtual, new { @class = "control-label col-md-3" })
+                        @Html.LabelFor(model => model.valorADD, new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
-                            @Html.TextBoxFor(model => model.ValorAtual, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ValorAtual)
+                            @Html.HiddenFor(model => model.ValorAtual, new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.valorADD, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.valorADD)
                         </div>
                     </div>
 

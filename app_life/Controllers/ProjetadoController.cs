@@ -323,8 +323,26 @@ namespace APP_Life.Controllers
         [HttpPost] // this action takes the viewModel from the modal
         public ActionResult ObjetivoUpdate(objetivo rece)
         {
+            if (ModelState.IsValid)
+            {
+                objetivo x = new objetivo();
+                rece.ValorAtual = rece.ValorAtual + rece.valorADD;
 
-            rece.UpdateObjetivo(rece);
+                rece.UpdateObjetivo(rece);
+
+                despesa dp = new despesa();
+                dp.CategoriaID = 9;
+                dp.UsuarioID = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+                dp.Valor = rece.valorADD;
+                dp.Descricao = "Despesa do objetivo: " + rece.Nome;
+                dp.Data = Convert.ToString(DateTime.Now.Day) + "/" + Convert.ToString(DateTime.Now.Month) + "/" + Convert.ToString(DateTime.Now.Year);
+
+                dp.CadastrarDespesa(dp, Convert.ToInt32(Session["usuarioLogadoID"].ToString()));
+                Session["messObjetivo"] = "Incluido";
+                return RedirectToAction("Index");
+
+            }
+         
 
             Session["messObjetivo"] = "Atualizado";
             return RedirectToAction("Index");

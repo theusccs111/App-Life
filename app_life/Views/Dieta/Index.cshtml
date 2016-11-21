@@ -160,7 +160,9 @@
                         <button class="btn btn-primary edit eita" data-toggle="tooltip" title="Editar Dieta" data-id="@item.DietaID"><i class="glyphicon glyphicon-edit"></i></button>
                         <a href="@Url.Action("DeleteDieta", "Dieta", new { id = @item.DietaID })" class="btn btn-danger" data-toggle="tooltip" title="Deletar Dieta"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                         <button class="btn btn-primary edit eitaD" data-toggle="tooltip" title="Listar" data-id="@item.DietaID"><i class="fa fa-list"></i></button>
-                    </td>
+                        <button class="btn btn-info edit eitaValor" data-toggle="tooltip" title="Inserir Valor" data-id="@item.DietaID"><i class="fa fa-money"></i></button>
+
+                       </td>
                 </tr>
             }
         </tbody>
@@ -256,6 +258,11 @@
 
 </div>
 
+<div class="modal fade" id="modalValor">
+
+</div>
+
+
 
 
 
@@ -282,6 +289,14 @@
             $("#modalAI").load("ListarDieta?id=" + id, function () {
 
                 $("#modalAI").modal();
+            })
+        });
+
+        $(".eitaValor").click(function () {
+            var id = $(this).attr("data-id");
+            $("#modalValor").load("DietaValor?id=" + id, function () {
+
+                $("#modalValor").modal();
             })
         });
 
