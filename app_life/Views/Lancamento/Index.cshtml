@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <style>
       .alert.success {
         background-color: #4CAF50;
@@ -419,7 +421,7 @@
         var mes = $('#mes').val();
         var url = "/Lancamento/Receitas?mes=" + mes;
         // alert(mes)
-        $.post(url, { mes: mes,pagina : 1 }, function (data) {
+        $.post(url, { mes: mes, pagina: 1 }, function (data) {
             $("#Receita").html(data);
         });
     })

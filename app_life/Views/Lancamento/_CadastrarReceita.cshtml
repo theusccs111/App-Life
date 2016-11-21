@@ -6,32 +6,29 @@
     ViewBag.Title = "CadastrarReceita";
 }
 
-
 <script>
-      /*  $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-        */
-function mascaraData( campo, e )
-{
-	var kC = (document.all) ? event.keyCode : e.keyCode;
-	var data = campo.value;
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 
-	if( kC!=8 && kC!=46 )
-	{
-		if( data.length==2 )
-		{
-			campo.value = data += '/';
-		}
-		else if( data.length==5 )
-		{
-			campo.value = data += '/';
-		
-		}
-		else
-			campo.value = data;
-	}
-}
+
+
+    function mascaraData(campo, e) {
+        var kC = (document.all) ? event.keyCode : e.keyCode;
+        var data = campo.value;
+
+        if (kC != 8 && kC != 46) {
+            if (data.length == 2) {
+                campo.value = data += '/';
+            }
+            else if (data.length == 5) {
+                campo.value = data += '/';
+
+            }
+            else
+                campo.value = data;
+        }
+    }
 </script>
 
 <style>
@@ -48,12 +45,20 @@ function mascaraData( campo, e )
     .modal-footer {
         margin-top: 20px;
     }
+
+    .red-tooltip + .tooltip > .tooltip-inner {
+        background-color: black;
+    }
+
+    .red-tooltip + .tooltip > .tooltip-arrow {
+        border-bottom-color: black;
+    }
 </style>
 <div class="modal-body">
 
     <!-- Modal content-->
     @using (Html.BeginForm("CadastrarReceita", "Lancamento", new { @class = "" },
-                                                                                             FormMethod.Post))
+                                                                                                     FormMethod.Post))
     {
         <div class="modal-header">
             <button type="button" class="close" id="close" data-dismiss="modal">
@@ -68,7 +73,7 @@ function mascaraData( campo, e )
                 @Html.LabelFor(model => model.categoria.nome, new { @class = "control-label col-md-3" })
                 <div class="col-md-9">
                     @* Passando o Nome da ViewBag *@
-                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control", @data_toggle = "tooltip", @title = "Selecione uma das Categorias" })
+                    @Html.DropDownList("CategoriaID", null, new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Selecione uma das Categorias" })
                 </div>
             </div>
         </div>
@@ -76,25 +81,25 @@ function mascaraData( campo, e )
             <div class="form-group">
                 @Html.LabelFor(model => model.Descricao, new { @class = "control-label col-md-3" })
                 <div class="col-md-9">
-                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                    @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe a Descrição" })
                     @Html.ValidationMessageFor(model => model.Descricao)
+                </div>
+            </div>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Valor)
                 </div>
             </div>
         </div>
             <div class="form-horizontal">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Valor)
-                    </div>
-                </div>
-            </div>
-            <div class="form-horizontal">
-                <div class="form-group">
                     @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "text", @onkeypress = "mascaraData( this, event )",@maxlength="10" })
+                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "text", @onkeypress = "mascaraData( this, event )", @maxlength = "10" })
                         @Html.ValidationMessageFor(model => model.Data)
                     </div>
                 </div>

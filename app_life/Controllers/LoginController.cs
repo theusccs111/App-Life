@@ -16,6 +16,13 @@ namespace APP_Life.Controllers
         public ActionResult Index()
         {//view tipada
             var user = new usuario();
+
+
+            if (Session["messUsuario"] == null)
+            {
+                Session["messUsuario"] = "nada";
+            }
+
             return View(user);
         }
 
@@ -45,27 +52,33 @@ namespace APP_Life.Controllers
         [HttpPost]
         public ActionResult Index(usuario user)
         {
+         
+            
             if (ModelState.IsValid)
             {
-             
-                    var query = from u in contexto.usuarios select u;
+                int erro = 0;
+                var query = from u in contexto.usuarios select u;
                     foreach (var item in query)
                     {
+
                         if ((item.email == user.email) && (item.senha == user.senha))
                         {
-                            Session["usuarioLogadoID"] = item.usuarioID.ToString();
+                       erro = 1;
+                        Session["usuarioLogadoID"] = item.usuarioID.ToString();
                             Session["nomeUsuarioLogado"] = item.nome.ToString();
+                        Session["messUsuario"] = "nada";
                         return RedirectToAction("Geral","Lancamento");
                        
 
                     }
+                    Session["messUsuario"] = "Erro";
                   
 
                 }
           
               
             }
-            return RedirectToAction("Inicio", "Login");
+            return RedirectToAction("Index", "Login");
         }
 
   
