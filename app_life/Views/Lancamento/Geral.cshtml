@@ -30,19 +30,19 @@
 
 <div class="col-md-12 b">
     <div class="col-md-3 objetivo">
-        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#1F861F;
+        <a href="@Url.Action("Index", "Lancamento")" class="modal-link btn r" style="background:#1F861F;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-plus"></span></a>
     </div>
     <div class="col-md-3 dicasalim">
-        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#47A547;
+        <a href="@Url.Action("Index", "Projetado")" class="modal-link btn r" style="background:#47A547;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-plus"></span></a>
     </div>
     <div class="col-md-3 lancrec">
-        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#70C270;
+        <a href="@Url.Action("Index", "Dieta")" class="modal-link btn r" style="background:#70C270;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-plus"></span></a>
     </div>
     <div class="col-md-3">
-        <a href="@Url.Action("CadastrarReceita", "Lancamento")" class="modal-link btn r" style="background:#A1DFA1;
+        <a href="@Url.Action("dicas", "Dieta")" class="modal-link btn r" style="background:#A1DFA1;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-sign-out fa-fw" style="width:50px;"></span></a>
     </div>
 </div>
@@ -240,7 +240,7 @@
 
 
 
-                            <a href="@Url.Action("Excel3", "Excel", new { id = @item.DietaID})" class="modal-link btn btn-danger btn-block d">
+                            <a href="@Url.Action("Excel3", "Excel", new { id = @item.DietaID})" class="modal-link btn btn-info btn-block d">
                                 <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Dieta: @item.Nome</span>
                             </a>
 
