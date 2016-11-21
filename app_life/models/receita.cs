@@ -19,7 +19,6 @@ namespace APP_Life.Models
 
         [DisplayName("Valor")]
         [Required(ErrorMessage = "Digite o Valor")]
-     
         public decimal Valor { get; set; }
 
         [DisplayName("Descrição")]

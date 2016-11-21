@@ -125,7 +125,7 @@
 
         <script>
             $('#primPaginaDespesa').click(function () {
-            var mes = $('#mes').val();
+                var mes = $('#mesDespesa').val();
             var url = "/Lancamento/Despesas?mes=" + mes;
         // alert(mes)
             $.post(url, { mes: mes, pagina:  1 }, function (data) {
@@ -134,7 +134,7 @@
             })
 
             $('#antPaginaDespesa').click(function () {
-                var mes = $('#mes').val();
+                var mes = $('#mesDespesa').val();
                 var url = "/Lancamento/Despesas?mes=" + mes;
                 // alert(mes)
                 $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageNumber - 1 }, function (data) {
@@ -162,7 +162,7 @@
     {
         <script>
             $('#proPaginaDespesa').click(function () {
-            var mes = $('#mes').val();
+                var mes = $('#mesDespesa').val();
             var url = "/Lancamento/Despesas?mes=" + mes;
         // alert(mes)
             $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageNumber + 1 }, function (data) {
@@ -171,7 +171,7 @@
             })
 
             $('#ultPaginaDespesa').click(function () {
-                var mes = $('#mes').val();
+                var mes = $('#mesDespesa').val();
                 var url = "/Lancamento/Despesas?mes=" + mes;
                 // alert(mes)
                 $.post(url, { mes: mes, pagina: @ViewBag.listaDespesa.PageCount }, function (data) {
