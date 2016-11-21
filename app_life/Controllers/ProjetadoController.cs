@@ -17,52 +17,59 @@ namespace APP_Life.Controllers
 
         public ActionResult Index(int? pagina)
         {
-            int mes = DateTime.Now.Month;
-
-            int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
-
-
-
-            ViewBag.listaProjetadoR2 = contexto.projetadoes.ToList().Where(x =>
-        x.categoria.tipo == true && x.UsuarioID == id && x.categoria.tipo == true);
-
-
-
-            ViewBag.listaProjetadoD2 = contexto.projetadoes.ToList().Where(x =>
-            x.categoria.tipo == false && x.UsuarioID == id && x.categoria.tipo == false);
-
-            int paginaTamanho = 4;
-            int paginaNumero = (pagina ?? 1);
-
-
-            ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id).ToPagedList(paginaNumero, paginaTamanho);
-
-            ViewBag.CategoriaID = new SelectList
-            (
-                contexto.categorias.ToList(),
-                "CategoriaID",
-                "nome"
-            );
-
-            if (Session["messProjetadoR"] == null)
+            if (Session["usuarioLogadoID"] != null || ViewBag.usuarioFacebookID != null)
             {
-                Session["messProjetadoR"] = "nada";
-            }
 
-            if (Session["messProjetadoD"] == null)
+                int mes = DateTime.Now.Month;
+
+                int id = Convert.ToInt32(Session["usuarioLogadoID"].ToString());
+
+
+
+                ViewBag.listaProjetadoR2 = contexto.projetadoes.ToList().Where(x =>
+            x.categoria.tipo == true && x.UsuarioID == id && x.categoria.tipo == true);
+
+
+
+                ViewBag.listaProjetadoD2 = contexto.projetadoes.ToList().Where(x =>
+                x.categoria.tipo == false && x.UsuarioID == id && x.categoria.tipo == false);
+
+                int paginaTamanho = 4;
+                int paginaNumero = (pagina ?? 1);
+
+
+                ViewBag.listaObjetivo = contexto.objetivos.ToList().Where(x => x.UsuarioID == id).ToPagedList(paginaNumero, paginaTamanho);
+
+                ViewBag.CategoriaID = new SelectList
+                (
+                    contexto.categorias.ToList(),
+                    "CategoriaID",
+                    "nome"
+                );
+
+                if (Session["messProjetadoR"] == null)
+                {
+                    Session["messProjetadoR"] = "nada";
+                }
+
+                if (Session["messProjetadoD"] == null)
+                {
+                    Session["messProjetadoD"] = "nada";
+                }
+
+                if (Session["messObjetivo"] == null)
+                {
+                    Session["messObjetivo"] = "nada";
+
+                }
+
+
+                return View();
+            }
+            else
             {
-                Session["messProjetadoD"] = "nada";
+                return RedirectToAction("Inicio", "Login");
             }
-
-            if (Session["messObjetivo"] == null)
-            {
-                Session["messObjetivo"] = "nada";
-
-            }
-
-
-            return View();
-
         }
 
 
