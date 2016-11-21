@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="~/Content/circle.css">
 
-
 <style>
     .container {
         padding-top: 3%;
@@ -18,7 +17,7 @@
     }
 
     .alert {
-        padding: 20px;
+        padding: 15px;
         background-color: #f44336; /* Red */
         color: white;
         margin-bottom: 15px;
@@ -78,9 +77,6 @@
 
     </div>
 </div>
-
-
-
 
 @if (Session["messObjetivo"].ToString() == "Incluido")
 {
@@ -176,7 +172,7 @@
 
 <div>
     Página @(ViewBag.listaObjetivo.PageCount < ViewBag.listaObjetivo.PageNumber ? 0 : ViewBag.listaObjetivo.PageNumber)
-    of @ViewBag.listaObjetivo.PageCount
+    de @ViewBag.listaObjetivo.PageCount
 
     @if (ViewBag.listaObjetivo.HasPreviousPage)
     {

@@ -24,7 +24,7 @@
     }
 
     .alert {
-        padding: 20px;
+        padding: 15px;
         background-color: #f44336; /* Red */
         color: white;
         margin-bottom: 15px;
@@ -63,11 +63,53 @@
 
 <div id="cabeçalho" class="cab" style="color:#337ab7;">
     <h2>Dietas</h2>
-    <p style="background:#e8e8e8; padding: 10px;">Controle de dietas</p>
+    <p style="background:#e8e8e8; padding: 10px;">Controle de dietas</p> </div>
+
+    @if (Session["messDieta"].ToString() == "Incluido")
+    {
+        <div class="alert" style="background-color: #4CAF50;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Dieta Incluída com sucesso!
+        </div>
+        Session["messDieta"] = "nada";
+    }
+
+    @if (Session["messDieta"].ToString() == "Deletado")
+    {
+        <div class="alert" >
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Dieta Deletada com sucesso!
+        </div>
+        Session["messDieta"] = "nada";
+
+    }
+
+    @if (Session["messDieta"].ToString() == "Atualizado")
+    {
+        <div class="alert" style="background-color: #2196F3;">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Dieta Atualizada com sucesso!
+        </div>
+        Session["messDieta"] = "nada";
+
+    }
+    @*
+        dieta em cima, itens da dieta em baixo
+
+    *@
+
+    @if (Session["messDietaitens"].ToString() == "Incluido")
+    {
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            Item  Incluído com sucesso!
+        </div>
+        Session["messDietaitens"] = "nada";
+
+    }
 
     <div class="col-md-12">
         <div class="col-md-3"></div>
-
 
         <div class="col-md-3">
             <a href="@Url.Action("CadastrarDieta", "Dieta")" class="modal-link btn btn-success dietaC" data-toggle="tooltip" title="Cadastrar Dieta" style="margin-left: 100px;">
@@ -128,7 +170,7 @@
 
 <div>
     Página @(ViewBag.listaDieta.PageCount < ViewBag.listaDieta.PageNumber ? 0 : ViewBag.listaDieta.PageNumber)
-    of @ViewBag.listaDieta.PageCount
+    de @ViewBag.listaDieta.PageCount
 
     @if (ViewBag.listaDieta.HasPreviousPage)
     {
@@ -202,76 +244,19 @@
     }
 </div>
 
-
-
-
-
 <div class="modal fade" id="modalDi">
-
-
 
 </div>
 
 <div class="modal fade" id="modalAI">
 
-
-
 </div>
-
 
 <div class="modal fade" id="modalCadI">
 
-
-
 </div>
 
 
-
-
-@if (Session["messDieta"].ToString() == "Incluido")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Dieta Incluída com sucesso!
-    </div>
-    Session["messDieta"] = "nada";
-
-}
-
-@if (Session["messDieta"].ToString() == "Deletado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Dieta Deletada com sucesso!
-    </div>
-    Session["messDieta"] = "nada";
-
-}
-
-@if (Session["messDieta"].ToString() == "Atualizado")
-{
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        Dieta Atualizada com sucesso!
-    </div>
-    Session["messDieta"] = "nada";
-
-}
-
-    @*
-        dieta em cima, itens da dieta em baixo
-
-    *@
-
-    @if (Session["messDietaitens"].ToString() == "Incluido")
-    {
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            Item  Incluído com sucesso!
-        </div>
-        Session["messDietaitens"] = "nada";
-
-    }
 
 
     <script type="text/javascript">
