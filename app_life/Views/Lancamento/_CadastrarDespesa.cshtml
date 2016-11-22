@@ -100,7 +100,7 @@ function mascaraData( campo, e )
                 <div class="form-group">
                     @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "text",@onkeypress = "mascaraData( this, event )", @maxlength = "10", @data_toggle = "tooltip", @title = "Informe a data ex: 12/12/2012" })
+                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe uma Data", @type = "text",@onkeypress = "mascaraData( this, event )", @maxlength = "10", @data_toggle = "tooltip", @title = "Informe a data ex: 12/12/2012" })
                         @Html.ValidationMessageFor(model => model.Data)
                     </div>
                 </div>

@@ -90,7 +90,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Valor, new { @class = "control-label col-md-3" })
                 <div class="col-md-9">
-                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe o Valor" } })
                     @Html.ValidationMessageFor(model => model.Valor)
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Data, new { @class = "control-label col-md-3" })
                     <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @type = "text", @onkeypress = "mascaraData( this, event )", @maxlength = "10" })
+                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe uma Data", @type = "text", @onkeypress = "mascaraData( this, event )", @maxlength = "10" })
                         @Html.ValidationMessageFor(model => model.Data)
                     </div>
                 </div>

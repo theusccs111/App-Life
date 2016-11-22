@@ -90,6 +90,36 @@
      .col-md-12 > a:hover{
         color:white;
     }
+
+     .bg-info{
+         padding: 7px;
+         text-align:center;
+     }
+
+     .bg-info:hover{
+         background: #46b8da;
+         color: white;
+     }
+
+     .bg-danger {
+         padding: 7px;
+         text-align:center;
+     }
+
+     .bg-danger:hover{
+         background: #d43f3a;
+         color: white;
+     }
+
+     .bg-success {
+         padding: 7px;
+         text-align:center;
+     }
+
+     .bg-success:hover{
+         background: #4cae4c;
+         color: white;
+     }
 </style>
 
 
@@ -105,8 +135,6 @@
 
     </a>
 
-
-
     <div class="feature-item feature-item-orange col-md-4 col-3" align="justify">
         <a href="@Url.Action("dicas","Dieta")">
             <h3>Dicas Alimentares</h3>
@@ -116,7 +144,6 @@
     </div>
     <div class="feature-background"></div>
     </a>
-
 
     <div class="feature-item feature-item-orange col-md-4 col-3" align="justify">
         <a href="@Url.Action("ConsultarNutrientesDieta","Dieta")">
@@ -367,14 +394,14 @@
               font-weight: 700;
               color:#337ab7;" >Situação Financeira</p>
         <h4 id="receitaTotal2" style="">
-           Receita Atual: R$@Convert.ToDecimal(Session["receitaTotal2"].ToString())
+            <p class="bg-success"> Receita Atual: R$@Convert.ToDecimal(Session["receitaTotal2"].ToString())</p>
         </h4>
 
         <h4 id="despesaTotal2" style="">
-            Despesa Atual: R$@Convert.ToDecimal(Session["despesaTotal2"].ToString())
+            <p class="bg-danger">Despesa Atual: R$@Convert.ToDecimal(Session["despesaTotal2"].ToString())</p>
         </h4>
         <h4 id="Total2" style="">
-           Saldo Atual: R$@(Convert.ToDecimal(Session["receitaTotal2"].ToString()) - Convert.ToDecimal(Session["despesaTotal2"].ToString()))
+            <p class="bg-info"> Saldo Atual: R$@(Convert.ToDecimal(Session["receitaTotal2"].ToString()) - Convert.ToDecimal(Session["despesaTotal2"].ToString())) </p>
         </h4>
     </div>
 

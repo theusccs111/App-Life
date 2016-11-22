@@ -60,14 +60,14 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control red-tooltip ", @data_toggle = "tooltip", @title = "Informe seu endereço de email" } })
                         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.senha, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(model => model.senha, new { @class = "form-control", @id = "Senha" })
+                        @Html.PasswordFor(model => model.senha, new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe uma senha", @id = "Senha" })
                         @Html.ValidationMessageFor(model => model.senha, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -82,23 +82,21 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe seu nome" } })
                         @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.sobrenome, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.sobrenome, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe seu sobrenome" } })
                         @Html.ValidationMessageFor(model => model.sobrenome, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.datanasc, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.datanasc, new { htmlAttributes = new { @class = "form-control", @type = "Date" } })
+                        @Html.EditorFor(model => model.datanasc, new { htmlAttributes = new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe sua data de nascimento", @type = "Date" } })
                         @Html.ValidationMessageFor(model => model.datanasc, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -106,35 +104,35 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.rua, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.rua, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.rua, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe a rua de sua residência" } })
                         @Html.ValidationMessageFor(model => model.rua, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.numero, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe o número de sua residência" } })
                         @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.bairro, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.bairro, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe seu bairro" } })
                         @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.cidade, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe sua cidade" } })
                         @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control caps" } })
+                        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control caps red-tooltip", @data_toggle = "tooltip", @title = "Informe seu estado" } })
                         @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -142,7 +140,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.telefone, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.telefone, new { htmlAttributes = new { @class = "form-control red-tooltip", @data_toggle = "tooltip", @title = "Informe seu telefone de contato" } })
                         @Html.ValidationMessageFor(model => model.telefone, "", new { @class = "text-danger" })
                     </div>
                 </div>
