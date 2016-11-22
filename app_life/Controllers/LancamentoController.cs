@@ -53,6 +53,11 @@ namespace APP_Life.Controllers
                     Session["messDespesa"] = "nada";
                 }
 
+                if (Session["menuLan"] == null)
+                {
+                    Session["menuLan"] = "nada";
+                }
+
 
                 return View();
             }
@@ -134,7 +139,7 @@ namespace APP_Life.Controllers
                 x.CadastrarReceita(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
                 Session["messReceita"] = "Incluido";
 
-
+                Session["menuLan"] = "Receita";
                 return RedirectToAction("Index");
             }
             else
@@ -161,7 +166,7 @@ namespace APP_Life.Controllers
             receita rece = new receita();
             rece.RemoverReceita(main.ReceitaID);
             Session["messReceita"] = "Deletado";
-
+            Session["menuLan"] = "Receita";
             return RedirectToAction("Index");
         }
 
@@ -197,7 +202,7 @@ namespace APP_Life.Controllers
 
             rece.UpdateReceita(rece);
             Session["messReceita"] = "Atualizado";
-
+            Session["menuLan"] = "Receita";
             return RedirectToAction("Index");
         }
 
@@ -270,6 +275,8 @@ namespace APP_Life.Controllers
                 despesa x = new despesa();
                 x.CadastrarDespesa(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
                 Session["messDespesa"] = "Incluido";
+
+                Session["menuLan"] = "Despesa";
                 return RedirectToAction("Index");
             }
             else
@@ -295,6 +302,7 @@ namespace APP_Life.Controllers
             despesa rece = new despesa();
             rece.RemoverDespesa(main.DespesaID);
             Session["messDespesa"] = "Deletado";
+            Session["menuLan"] = "Despesa";
             return RedirectToAction("Index");
         }
 
@@ -327,6 +335,7 @@ namespace APP_Life.Controllers
 
             rece.UpdateDespesa(rece);
             Session["messDespesa"] = "Atualizado";
+            Session["menuLan"] = "Despesa";
             return RedirectToAction("Index");
         }
 
