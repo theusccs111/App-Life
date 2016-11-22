@@ -64,6 +64,11 @@ namespace APP_Life.Controllers
                 }
 
 
+                if (Session["menuPro"] == null)
+                {
+                    Session["menuPro"] = "nada";
+                }
+
                 return View();
             }
             else
@@ -174,6 +179,7 @@ namespace APP_Life.Controllers
                 Session["messProjetadoR"] = "Incluido";
                 Session["messProjetadoD"] = "Incluido";
 
+                Session["menuPro"] = "Projeto";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Geral");
@@ -196,7 +202,7 @@ namespace APP_Life.Controllers
             rece.RemoverProjetado(main.ProjetadoID);
             Session["messProjetadoR"] = "Deletado";
             Session["messProjetadoD"] = "Deletado";
-
+            Session["menuPro"] = "Projeto";
             return RedirectToAction("Index");
         }
 
@@ -232,7 +238,7 @@ namespace APP_Life.Controllers
             rece.UpdateProjetado(rece);
             Session["messProjetadoR"] = "Atualizado";
             Session["messProjetadoD"] = "Atualizado";
-
+            Session["menuPro"] = "Projeto";
             return RedirectToAction("Index");
         }
 
@@ -278,6 +284,7 @@ namespace APP_Life.Controllers
                 x.CadastrarObjetivo(rece, Convert.ToInt32(Session["usuarioLogadoID"]));
 
                 Session["messObjetivo"] = "Incluido";
+                Session["menuPro"] = "Objeto";
                 return RedirectToAction("Index");
 
             }
@@ -301,6 +308,7 @@ namespace APP_Life.Controllers
             rece.RemoverObjetivo(main.ObjetivoID);
 
             Session["messObjetivo"] = "Deletado";
+            Session["menuPro"] = "Objeto";
             return RedirectToAction("Index");
         }
 
@@ -339,12 +347,14 @@ namespace APP_Life.Controllers
 
                 dp.CadastrarDespesa(dp, Convert.ToInt32(Session["usuarioLogadoID"].ToString()));
                 Session["messObjetivo"] = "Incluido";
+                Session["menuPro"] = "Objeto";
                 return RedirectToAction("Index");
 
             }
          
 
             Session["messObjetivo"] = "Atualizado";
+            Session["menuPro"] = "Objeto";
             return RedirectToAction("Index");
         }
 
