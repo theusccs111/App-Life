@@ -21,20 +21,115 @@
         margin-top: 30px;
     }
 
-    .objetivo {
+    .feature-item {
+    border-bottom: solid 4px;
+    margin-bottom: 20px;
+    -webkit-transition: .6s ease all;
+    -moz-transition: .6s ease all;
+    -ms-transition: .6s ease all;
+    -o-transition: .6s ease all;
+}
+    a {
+    margin: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+    .feature-item a {
+    display: block;
+    min-height: 270px;
+    height: inherit;
+    padding: 13px;
+    text-decoration: none;
+}
+
+    .feature-item .button-pos {
+    background: url(../images/seta-azul.png) no-repeat;
+    display: block;
+    height: 12px;
+    margin-top: 20px;
+    width: 15px;
+}
+    .feature-item p {
+    font-size: 16px;
+    line-height: 20px;
+}
+    .feature-item h3 {
+        font-size: 25px;
+        font-weight: 400;
+        line-height: 1.3em;
+        margin-bottom: 22px;
+        margin-top: 20px;
+        text-transform: uppercase;
+    }
+    .col-3 {
+    display: inline;
+    float: left;
+    width: 30.4375%;
+    margin: 0 .78125%;
+}
+
+    .feature-item.feature-item-orange {
+    border-color: #1cb2a8;
+}
+
+    .feature-item:hover {
+        color:white;
+        background: green; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* Standard syntax */
+        
     }
 
-    objetivo:hover {
-    }
+
 </style>
 
+
+<div class="col-md-12">
+    <div class="feature-item feature-item-orange col-md-4 col-3">
+        <a href="#">
+            <h3>Lançamentos</h3>
+            <p>Realize seus lançamentos para controlar suas despesas e receitas</p>
+            <span class="fa fa-arrow-right"></span>
+    </div>
+    <div class="feature-background"></div>
+
+    </a>
+
+
+
+    <div class="feature-item feature-item-orange col-md-4 col-3">
+        <a href="#">
+            <h3>Dicas Alimentares</h3>
+            <p>Tem dúvidas sobre qual alimentação seguir ? Clique aqui!</p>
+            <span class="fa fa-arrow-right"></span>
+    </div>
+    <div class="feature-background"></div>
+
+    </a>
+
+
+    <div class="feature-item feature-item-orange col-md-4 col-3">
+        <a href="#">
+            <h3>Consultar Nutrientes</h3>
+            <p>Consulte os nutrientes contidos em suas dietas cadastradas</p>
+            <span class="fa fa-arrow-right"></span>
+    </div>
+    <div class="feature-background"></div>
+
+    </a>
+</div>
+<!--
 <div class="col-md-12 b">
     <div class="col-md-3 objetivo">
-        <a href="@Url.Action("Index", "Lancamento")" class="modal-link btn r" style="background:#1F861F;
+        <a href="@Url.Action("Index", "Projetado")" class="modal-link btn r" style="background:#1F861F;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-plus"></span></a>
     </div>
     <div class="col-md-3 dicasalim">
-        <a href="@Url.Action("Index", "Projetado")" class="modal-link btn r" style="background:#47A547;
+        <a href="@Url.Action("Index", "Dicasdietas")" class="modal-link btn r" style="background:#47A547;
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-plus"></span></a>
     </div>
     <div class="col-md-3 lancrec">
@@ -46,7 +141,7 @@
         padding: 100px; border-radius: 0px; color:white"><span class="fa fa-sign-out fa-fw" style="width:50px;"></span></a>
     </div>
 </div>
-
+    -->
 
 <div class="col-md-12">
     <div class="col-md-8 b">
