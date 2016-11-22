@@ -12,28 +12,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-
-
     <!-- Bootstrap Core CSS -->
     <link href="~/Content/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
     <!-- MetisMenu CSS -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
-
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" type="text/css">
-
-
-
-
     <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-
     <script src="~/Scripts/bootstrap.min.js"></script>
-
-
-
-
 </head>
-
 
 <body>
     <script>
@@ -42,15 +29,13 @@
         });
     </script>
 
-
     @using (Html.BeginForm("Index", "Login", new { ReturnUrl = ViewBag.ReturnUrl },
                       FormMethod.Post, new { @class = "login" }))
     {
         @Html.ValidationSummary(true);
         <div class="container" style="width:100%;">
             <div class="col-md-12">
-
-               
+             
                 <p class="form-title"> Vamos Começar!</p>
 
                 <div>
@@ -62,7 +47,6 @@
                     @Html.PasswordFor(model => model.senha, new { @placeholder = "Senha",@id = "Senha", @data_toggle = "tooltip", @title = "Informe sua senha ex: senha123" })
                     @Html.ValidationMessageFor(model => model.senha)
                 </div>
-
 
                 <div>
                     @Html.HiddenFor(model => model.confirmarSenha, new { @placeholder = "Senha",@id="ConfirmarSenha" })
@@ -87,24 +71,14 @@
             </div>
             }
 
-
     @if (Session["messUsuario"].ToString() == "Erro")
             {
-        <div class="alert" style="margin-top: 5%;">
+        <div class="alert" style="margin-top: 5%; text-align:center;">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             Usuario ou Senha Incorreta!
         </div>
         Session["messUsuario"] = "nada";
     }
-
-  
-
-
-
-
-
-
-
 
             <script>
                 $('#Senha').change(function () {
