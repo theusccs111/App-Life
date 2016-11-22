@@ -40,8 +40,18 @@
     <style>
         .field-validation-error {
             color: red;
-            font-weight: bold;
+           letter-spacing: 1px;
+            font-style: italic;
+            font-size: 12px;
+            font-weight: 400;
         }
+
+        .sr-button:hover {
+            background: #06921c;
+            color: white;
+
+        }
+
     </style>
 
 
@@ -94,17 +104,10 @@ FormMethod.Post, new { @class = "login" }))
                                     <!--<a href="#janela2" rel="modal" id="cadastro" class="btn">Cadastre</a>-->
                                     <fb:login-button id="btnFace" scope="public_profile,email" onlogin="checkLoginState();">
                                     </fb:login-button>
-
-
                                 </p>
-
-
 
                                 <div id="status">
                                 </div>
-
-
-
                             </div>
 
                         </div>
@@ -384,7 +387,7 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
     </section>
 
     <script src="~/Scripts/jquery-2.2.4.min.js"></script>
-    
+
     <!-- Bootstrap Core JavaScript -->
     <script src="~/Scripts/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
@@ -536,10 +539,10 @@ FormMethod.Post, new { @class = "login", @id = "cadastro" }))
                 $('#codigo').css("display", "none");
 
                 if ($('#codigo').val(response.id) != null) {
-                  
-                        window.location.href = '/Lancamento/Geral?idf=' + response.id;
-                 
-                    }
+
+                    window.location.href = '/Lancamento/Geral?idf=' + response.id;
+
+                }
             });
         }
     </script>
