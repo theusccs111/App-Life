@@ -420,6 +420,47 @@ namespace APP_Life.Controllers
                 }
                 Session["despesaTotal"] = total2;
 
+
+                //
+                //total receita, total despesa, e diferença das duas
+                var queryT = from u in contexto.receitas
+                            where u.UsuarioID == id &&
+                            u.Data.Split('/')[1] == "11"
+                            select new
+                            {
+
+                                valor = u.Valor,
+
+                            };
+                decimal totalT = 0;
+                foreach (var u in query)
+                {
+                    totalT += (u.valor);
+                }
+                Session["receitaTotal2"] = totalT;
+
+                var query2T = from u in contexto.despesas
+                             where u.UsuarioID == id &&
+           u.Data.Split('/')[1] == "11"
+                              select new
+                             {
+
+                                 valor = u.Valor,
+
+                             };
+                decimal total2T = 0;
+                foreach (var u2 in query2)
+                {
+                    total2T += (u2.valor);
+                }
+                Session["despesaTotal2"] = total2T;
+
+
+           
+
+                //
+
+
                 return View(contexto.despesas.ToList().Where(x =>
                 x.UsuarioID == id &&
                 x.Data.Split('/')[1] == Convert.ToString(mes)

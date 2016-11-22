@@ -94,7 +94,7 @@
 
 
 <div class="col-md-12">
-    <div class="feature-item feature-item-orange col-md-4 col-3">
+    <div class="feature-item feature-item-orange col-md-4 col-3" align="justify">
         <a href="@Url.Action("Index","Lancamento")">
             <h3>Lançamentos</h3>
             <p>Realize seus lançamentos para controlar suas despesas e receitas</p>
@@ -107,7 +107,7 @@
 
 
 
-    <div class="feature-item feature-item-orange col-md-4 col-3">
+    <div class="feature-item feature-item-orange col-md-4 col-3" align="justify">
         <a href="@Url.Action("dicas","Dieta")">
             <h3>Dicas Alimentares</h3>
             <p>Tem dúvidas sobre qual alimentação seguir ? Clique aqui!</p>
@@ -119,7 +119,7 @@
     </a>
 
 
-    <div class="feature-item feature-item-orange col-md-4 col-3">
+    <div class="feature-item feature-item-orange col-md-4 col-3" align="justify">
         <a href="@Url.Action("ConsultarNutrientesDieta","Dieta")">
             <h3>Consultar Nutrientes</h3>
             <p>Consulte os nutrientes contidos em suas dietas cadastradas</p>
@@ -341,13 +341,13 @@
         @Html.Partial("_ObjetivoDash")
     </div>
 
-    <div class="col-md-4 b">
+    <div class="col-md-4 b" align="justify">
         <p style="background:#e8e8e8;
               padding: 10px;
               font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
               font-weight: 700;
               color:#337ab7;">Dieta do Dia</p>
-        <div class="feature-item feature-item-orange col-md-12">
+        <div class="feature-item feature-item-orange col-md-12" style="height:175px;">
             <a href="@Url.Action("Index","Dieta")">
                 <h3>Dietas</h3>
                 <p>Clique aqui para consultar suas dietas!</p>
@@ -358,9 +358,25 @@
 
         </a>
 
-       
+    </div>
 
 
+    <div class="col-md-4 b" align="justify">
+        <p style="background:#e8e8e8;
+              padding: 10px;
+              font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+              font-weight: 700;
+              color:#337ab7;" >Situação Financeira</p>
+        <h4 id="receitaTotal2" style="">
+           Receita Atual: R$@Convert.ToDecimal(Session["receitaTotal2"].ToString())
+        </h4>
+
+        <h4 id="despesaTotal2" style="">
+            Despesa Atual: R$@Convert.ToDecimal(Session["despesaTotal2"].ToString())
+        </h4>
+        <h4 id="Total2" style="">
+           Saldo Atual: R$@(Convert.ToDecimal(Session["receitaTotal2"].ToString()) - Convert.ToDecimal(Session["despesaTotal2"].ToString()))
+        </h4>
     </div>
 
 </div>
