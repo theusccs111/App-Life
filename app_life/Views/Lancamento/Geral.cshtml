@@ -75,7 +75,7 @@
 }
 
     .feature-item:hover {
-        color:white;
+        
         background: green; /* For browsers that do not support gradients */
         background: -webkit-linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* For Safari 5.1 to 6.0 */
         background: -o-linear-gradient(-90deg, rgb(0, 152, 161), #1cb2a8); /* For Opera 11.1 to 12.0 */
@@ -84,16 +84,22 @@
         
     }
 
-
+    .col-3 > a:hover{
+        color:white;
+    }
+     .col-md-12 > a:hover{
+        color:white;
+    }
 </style>
 
 
 <div class="col-md-12">
     <div class="feature-item feature-item-orange col-md-4 col-3">
-        <a href="#">
+        <a href="@Url.Action("Index","Lancamento")">
             <h3>Lançamentos</h3>
             <p>Realize seus lançamentos para controlar suas despesas e receitas</p>
             <span class="fa fa-arrow-right"></span>
+           
     </div>
     <div class="feature-background"></div>
 
@@ -102,16 +108,17 @@
 
 
     <div class="feature-item feature-item-orange col-md-4 col-3">
-        <a href="#">
+        <a href="@Url.Action("dicas","Dieta")">
             <h3>Dicas Alimentares</h3>
             <p>Tem dúvidas sobre qual alimentação seguir ? Clique aqui!</p>
             <span class="fa fa-arrow-right"></span>
+           
     </div>
     <div class="feature-background"></div>
     </a>
 
     <div class="feature-item feature-item-orange col-md-4 col-3">
-        <a href="#">
+        <a href="@Url.Action("ConsultarNutrientesDieta","Dieta")">
             <h3>Consultar Nutrientes</h3>
             <p>Consulte os nutrientes contidos em suas dietas cadastradas</p>
             <span class="fa fa-arrow-right"></span>
@@ -275,16 +282,38 @@
               font-weight: 700;
               color:#337ab7;">Relatórios</p>
 
-        <div class="col-md-10" style="margin: 20px;">
+        <div class="col-md-10" style="margin-left:10%;margin-bottom:5%;">
             <a href="@Url.Action("Excel", "Excel")" class="modal-link btn btn-success btn-block d">
                 <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Receitas</span>
             </a>
         </div>
-        <div class="col-md-10" style="margin: 20px;">
+        <div class="col-md-10" style="margin-left:10%;margin-bottom:5%;">
 
             <a href="@Url.Action("Excel2", "Excel")" class="modal-link btn btn-danger btn-block d">
                 <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Despesas</span>
             </a>
+
+        </div>
+        <div class="col-md-10" style="margin-left:10%;margin-bottom:5%;">
+  
+             
+                    @foreach (var item in (ViewBag.listaDietaGeral))
+            {
+                        <tr>
+                            <td id="@item.DietaID">
+
+
+
+                                <a href="@Url.Action("Excel3", "Excel", new { id = @item.DietaID})" class="modal-link btn btn-info btn-block d">
+                                    <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Dieta: @item.Nome</span>
+                                </a>
+
+
+                            </td>
+                        </tr>
+                    }
+               
+          
 
         </div>
 
@@ -316,33 +345,18 @@
               font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
               font-weight: 700;
               color:#337ab7;">Dieta do Dia</p>
+        <div class="feature-item feature-item-orange col-md-12">
+            <a href="@Url.Action("Index","Dieta")">
+                <h3>Dietas</h3>
+                <p>Clique aqui para consultar suas dietas!</p>
+                <span class="fa fa-arrow-right"></span>
 
+        </div>
+        <div class="feature-background"></div>
 
-        <table id="tabelaDieta" class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline sortable" cellspacing="0" style="width: 100%;">
-            <thead style="">
-                <tr>
-                    <th>Dietas</th>
+        </a>
 
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in (ViewBag.listaDietaGeral))
-            {
-                    <tr>
-                        <td id="@item.DietaID">
-
-
-
-                            <a href="@Url.Action("Excel3", "Excel", new { id = @item.DietaID})" class="modal-link btn btn-info btn-block d">
-                                <span class="fa fa-file-excel-o"></span><span style="font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; border: none; font-weight: 700;"> Exportar Dieta: @item.Nome</span>
-                            </a>
-
-
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+       
 
 
     </div>

@@ -180,7 +180,7 @@
 <script type="text/javascript">
     $(".eita").click(function () {
         var id = $(this).attr("data-id");
-        $("#modalpd").load("ProjetadoUpdate?id=" + id, function () {
+        $("#modalpd").load("ProjetadoUpdate?id=" + id+"&cod=false", function () {
             $("#modalpd").modal();
         })
     });

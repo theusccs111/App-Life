@@ -31,6 +31,13 @@ namespace APP_Life.Models
         {
             app_lifeContext contexto = new app_lifeContext();
             dieta main = contexto.dietas.Find(id);
+            var query = from u in contexto.lista_alimentos where u.IDDieta == id select u;
+            foreach (var item in query)
+            {
+                lista_alimentos mainc = contexto.lista_alimentos.Find(item.id);
+                contexto.lista_alimentos.Remove(mainc);
+            }
+
             contexto.dietas.Remove(main);
             contexto.SaveChanges();
         }

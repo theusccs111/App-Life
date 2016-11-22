@@ -67,7 +67,7 @@
 
     @if (Session["messDieta"].ToString() == "Incluido")
     {
-        <div class="alert" style="background-color: #4CAF50;">
+        <div class="alert" style="background-color: #4caf50;">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             Dieta Incluída com sucesso!
         </div>
@@ -100,8 +100,8 @@
 
     @if (Session["messDietaitens"].ToString() == "Incluido")
     {
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <div class="alert" style="background-color: #4caf50;">
+            <span class="closebtn" style="background-color: #4caf50;" onclick="this.parentElement.style.display='none';">&times;</span>
             Item  Incluído com sucesso!
         </div>
         Session["messDietaitens"] = "nada";
