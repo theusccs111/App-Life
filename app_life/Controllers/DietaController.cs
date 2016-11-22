@@ -60,7 +60,7 @@ namespace APP_Life.Controllers
 
             ViewBag.IDDieta = new SelectList
                (
-                   contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) && x.DietaID == id),
+                   contexto.dietas.ToList().Where(x => x.UsuarioID == Convert.ToInt32(Session["usuarioLogadoID"]) && x.DietaID == id).OrderBy(x => x.Nome),
                    "DietaID",
                    "Nome"
                );
@@ -68,7 +68,7 @@ namespace APP_Life.Controllers
 
             ViewBag.IDAlimento = new SelectList
     (
-        contexto.alimentos.ToList(),
+        contexto.alimentos.ToList().OrderBy(x => x.Nome),
         "ID",
         "Nome"
     );

@@ -25,7 +25,14 @@ namespace APP_Life.Models
             contexto.SaveChanges();
         }
 
-
+        public void RemoverItens(int id)
+        {
+            app_lifeContext contexto = new app_lifeContext();
+            //rece.IDDieta = id;
+            lista_alimentos main = contexto.lista_alimentos.Find(id);
+            contexto.lista_alimentos.Remove(main);
+            contexto.SaveChanges();
+        }
 
 
         List<lista_alimentos> listaAlimentosLista;

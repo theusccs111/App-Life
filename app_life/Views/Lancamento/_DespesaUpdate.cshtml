@@ -64,6 +64,9 @@
 
             @Html.AntiForgeryToken()
 
+            @Html.HiddenFor(model => model.DespesaID, new { @class = "form-control" })
+
+
             <div class="modal-body">
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true)

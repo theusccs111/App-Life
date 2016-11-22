@@ -39,8 +39,7 @@ namespace APP_Life.Controllers
             var query = from u in contexto.usuarios where u.usuarioID == id select u;
             foreach (var item in query)
             {
-         
-                item.idfacebook = user.idfacebook;
+                              item.idfacebook = user.idfacebook;
             
              
             }
